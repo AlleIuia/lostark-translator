@@ -163,9 +163,8 @@ async function rebuildStorage() {
 
   const tabs = await chrome.tabs.query({});
   for (const tab of tabs) {
-    try {
-      await chrome.tabs.sendMessage(tab.id, { action: 'updateDictionary', dictionary: flatDict });
-    } catch (e) {}
+    if (!tab.id) continue;
+    chrome.tabs.sendMessage(tab.id, { action: 'updateDictionary', dictionary: flatDict }).catch(() => {});
   }
 }
 
@@ -189,9 +188,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'toggle') {
     chrome.tabs.query({}, (tabs) => {
       for (const tab of tabs) {
-        try {
-          chrome.tabs.sendMessage(tab.id, { action: 'toggle', enabled: request.enabled });
-        } catch (e) {}
+        if (!tab.id) continue;
+        chrome.tabs.sendMessage(tab.id, { action: 'toggle', enabled: request.enabled }).catch(() => {});
       }
     });
     sendResponse({ success: true });

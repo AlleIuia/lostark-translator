@@ -1,6 +1,14 @@
+if (location.search.includes('standalone')) {
+  window.addEventListener('DOMContentLoaded', () => {
+    const borderX = window.outerWidth - window.innerWidth;
+    const borderY = window.outerHeight - window.innerHeight;
+    window.resizeTo(450 + borderX, 600 + borderY);
+  });
+}
+
 const SYNC_URLS = [
-  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/lt-classes.json',
-  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/lt-engravings.json'
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classes.json',
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-engravings.json'
 ];
 
 const UI_TEXTS = {

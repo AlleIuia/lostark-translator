@@ -276,8 +276,6 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-
-      /* Скрытие ползунка с сохранением возможности прокрутки колесиком */
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
@@ -463,14 +461,5 @@
   </div>
 
   <script src="popup.js"></script>
-<script>
-  if (location.search.includes('standalone')) {
-    window.addEventListener('DOMContentLoaded', () => {
-      const borderX = window.outerWidth - window.innerWidth;
-      const borderY = window.outerHeight - window.innerHeight;
-      window.resizeTo(450 + borderX, 600 + borderY);
-    });
-  }
-</script>
 </body>
 </html>
