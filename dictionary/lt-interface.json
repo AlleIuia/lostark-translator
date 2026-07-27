@@ -133,7 +133,7 @@
     { "en": "Atk. Power", "ru": "Сила атаки", "kr": "공격력" },
     { "en": "Weapon Power", "ru": "Урон оружия", "kr": "무기 공격력" },
     { "en": "Crit Damage", "ru": "Критический урон", "kr": "치명타 피해" },
-    { "en": "Serenade, Piety, Harmony Meter Gain", "ru": "Эффективность стигмы", "kr": "아덴 게이지 획득량" },
+    { "en": "Serenade, Piety, Harmony Meter Gain", "ru": "Набор эн. аккордов/веры/гармонии", "kr": "아덴 게이지 획득량" },
     { "en": "Ally Damage Enhancement Effect", "ru": "Эфф. увеличения урона союзников", "kr": "아군 피해량 증가 효과" },
     { "en": "Equipment", "ru": "Снаряжение", "kr": "장비" },
     { "en": "Roster Level", "ru": "Уровень Наследия", "kr": "원정대 레벨" },
