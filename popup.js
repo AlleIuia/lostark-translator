@@ -8,7 +8,8 @@ if (location.search.includes('standalone')) {
 
 const SYNC_URLS = [
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classes.json',
-  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-engravings.json'
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-engravings.json',
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-interface.json'
 ];
 
 const UI_TEXTS = {
@@ -31,7 +32,7 @@ const UI_TEXTS = {
     syncLoading: 'Загрузка…',
     syncOk: 'Словарь обновлён',
     syncErr: 'Ошибка синхронизации: ',
-    importErrorFormat: 'Неверный формат файла. Ожидается объект с полем classes.',
+    importErrorFormat: 'Неверный формат файла. Ожидается объект с полями classes, terms и т.д.',
     importErrorJson: 'Ошибка чтения JSON: '
   },
   en: {
@@ -53,7 +54,7 @@ const UI_TEXTS = {
     syncLoading: 'Loading…',
     syncOk: 'Dictionary updated',
     syncErr: 'Sync error: ',
-    importErrorFormat: 'Invalid file format. Expected object with classes field.',
+    importErrorFormat: 'Invalid file format.',
     importErrorJson: 'JSON read error: '
   },
   kr: {
@@ -75,12 +76,12 @@ const UI_TEXTS = {
     syncLoading: '로딩 중…',
     syncOk: '사전 업데이트됨',
     syncErr: '동기화 오류: ',
-    importErrorFormat: '잘못된 파일 형식입니다. classes 필드가 있는 개체가 필요합니다.',
+    importErrorFormat: '잘못된 파일 형식입니다.',
     importErrorJson: 'JSON 읽기 오류: '
   }
 };
 
-let fullData = { classes: [], engravings: [], _orphanBuilds: [] };
+let fullData = { classes: [], engravings: [], _orphanBuilds: [], terms: [] };
 let isEnabled = true;
 let targetLang = 'ru';
 let currentTheme = 'dark';
@@ -166,7 +167,7 @@ function loadData() {
   });
 
   chrome.storage.local.get(['fullData'], (localResult) => {
-    fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [] };
+    fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [] };
     renderList();
   });
 }
@@ -274,7 +275,7 @@ function clearAddForm() {
 function reloadData() {
   return new Promise((resolve) => {
     chrome.storage.local.get(['fullData'], (localResult) => {
-      fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [] };
+      fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [] };
       renderList();
       resolve();
     });
@@ -352,6 +353,17 @@ function renderList() {
     tbody.appendChild(tr);
   }
 
+  for (const term of fullData.terms || []) {
+    if (search && ![term.en, term.ru, term.kr].some(v => v && v.toLowerCase().includes(search))) continue;
+
+    const tr = document.createElement('tr');
+    tr.className = 'orphan-row';
+    tr.appendChild(createCell(term.en, 'editable en-cell', { type: 'term', field: 'en', en: term.en }));
+    tr.appendChild(createCell(term.ru, 'editable', { type: 'term', field: 'ru', en: term.en }));
+    tr.appendChild(createCell(term.kr, 'editable kr-cell', { type: 'term', field: 'kr', en: term.en }));
+    tbody.appendChild(tr);
+  }
+
   setupEditableCells();
 }
 
@@ -390,6 +402,10 @@ function setupEditableCells() {
           const b = c.builds.find(x => x.en === oldEn);
           if (!b) return;
           msg = { action: 'updateEntry', oldEn, type: 'build', classEn, data: { ...b, [field]: newVal } };
+        } else if (type === 'term') {
+          const t = fullData.terms.find(x => x.en === oldEn);
+          if (!t) return;
+          msg = { action: 'updateEntry', oldEn, type: 'term', data: { ...t, [field]: newVal } };
         }
 
         if (msg) {
@@ -477,7 +493,7 @@ function importDictionary(e) {
   reader.onload = async (event) => {
     try {
       const data = JSON.parse(event.target.result);
-      if (!data.classes && !data._orphanBuilds) {
+      if (!data.classes && !data._orphanBuilds && !data.terms) {
         statusEl.textContent = t.importErrorFormat;
         statusEl.className = 'sync-status err';
         return;
