@@ -1,4 +1,219 @@
 {
-  "classes": [],
-  "_orphanBuilds": []
+  "_orphanBuilds": [
+    {
+      "en": "Adrenaline",
+      "kr": "아드레날린",
+      "ru": "Адреналин"
+    },
+    {
+      "en": "MP Efficiency Increase",
+      "kr": "마나 효율 증가",
+      "ru": "Астральное тело"
+    },
+    {
+      "en": "Magick Stream",
+      "kr": "마나의 흐름",
+      "ru": "Безмятежный дух"
+    },
+    {
+      "en": "Ether Predator",
+      "kr": "에테르 포식자",
+      "ru": "Час жатвы"
+    },
+    {
+      "en": "Broken Bone",
+      "kr": "부러진 뼈",
+      "ru": "Беспощадность"
+    },
+    {
+      "en": "Ambush Master",
+      "kr": "기습의 대가",
+      "ru": "Бесшумный убийца"
+    },
+    {
+      "en": "Divine Protection",
+      "kr": "여신의 가호",
+      "ru": "Божественная защита"
+    },
+    {
+      "en": "Stabilized Status",
+      "kr": "안정된 상태",
+      "ru": "Бравада"
+    },
+    {
+      "en": "Master Brawler",
+      "kr": "결투의 대가",
+      "ru": "Гильотина"
+    },
+    {
+      "en": "Cursed Doll",
+      "kr": "저주받은 인형",
+      "ru": "Голем"
+    },
+    {
+      "en": "Explosive Expert",
+      "kr": "폭발물 전문가",
+      "ru": "Гренадер"
+    },
+    {
+      "en": "Lightning Fury",
+      "kr": "번개의 분노",
+      "ru": "Грозовая буря"
+    },
+    {
+      "en": "Preemptive Strike",
+      "kr": "선수필승",
+      "ru": "Засада"
+    },
+    {
+      "en": "Expert",
+      "kr": "전문의",
+      "ru": "Заступник"
+    },
+    {
+      "en": "Vital Point Hit",
+      "kr": "급소 타격",
+      "ru": "Иссечение"
+    },
+    {
+      "en": "Max MP Increase",
+      "kr": "최대 마나 증가",
+      "ru": "Источник маны"
+    },
+    {
+      "en": "Mass Increase",
+      "kr": "질량 증가",
+      "ru": "Карающая длань"
+    },
+    {
+      "en": "Barricade",
+      "kr": "바리케이드",
+      "ru": "Лучшая защита"
+    },
+    {
+      "en": "Super Charge",
+      "kr": "슈퍼 차지",
+      "ru": "Мастер подготовки"
+    },
+    {
+      "en": "Master of Escape",
+      "kr": "탈출의 명수",
+      "ru": "Молниеносные рефлексы"
+    },
+    {
+      "en": "Keen Blunt Weapon",
+      "kr": "예리한 둔기",
+      "ru": "Моргенштерн"
+    },
+    {
+      "en": "Strong Will",
+      "kr": "굳은 의지",
+      "ru": "Несокрушимый боец"
+    },
+    {
+      "en": "Fortitude",
+      "kr": "불굴",
+      "ru": "Неутомимость"
+    },
+    {
+      "en": "Raid Captain",
+      "kr": "돌격대장",
+      "ru": "Неутомимый натиск"
+    },
+    {
+      "en": "Awakening",
+      "kr": "각성",
+      "ru": "Новый рассвет"
+    },
+    {
+      "en": "Crisis Evasion",
+      "kr": "위기 모면",
+      "ru": "Обман смерти"
+    },
+    {
+      "en": "Propulsion",
+      "kr": "추진력",
+      "ru": "Обманный маневр"
+    },
+    {
+      "en": "Enhanced Shield",
+      "kr": "강화 방패",
+      "ru": "Отражающий барьер"
+    },
+    {
+      "en": "Sight Focus",
+      "kr": "시선 집중",
+      "ru": "ПАНИКА"
+    },
+    {
+      "en": "Contender",
+      "kr": "승부사",
+      "ru": "Победная эйфория"
+    },
+    {
+      "en": "Hit Master",
+      "kr": "타격의 대가",
+      "ru": "Побоище"
+    },
+    {
+      "en": "Disrespect",
+      "kr": "약자 무시",
+      "ru": "Презрение к слабым"
+    },
+    {
+      "en": "Shield Piercing",
+      "kr": "실드관통",
+      "ru": "Разрушитель щитов"
+    },
+    {
+      "en": "Precise Dagger",
+      "kr": "정밀 단도",
+      "ru": "Скальпель"
+    },
+    {
+      "en": "Emergency Rescue",
+      "kr": "긴급구조",
+      "ru": "Скорая помощь"
+    },
+    {
+      "en": "All-Out Attack",
+      "kr": "속전속결",
+      "ru": "Скоротечная расправа"
+    },
+    {
+      "en": "Drops of Ether",
+      "kr": "구슬동자",
+      "ru": "Собиратель душ"
+    },
+    {
+      "en": "Master's Tenacity",
+      "kr": "달인의 저력",
+      "ru": "Стальные нервы"
+    },
+    {
+      "en": "Spirit Absorption",
+      "kr": "정기 흡수",
+      "ru": "Стремительность"
+    },
+    {
+      "en": "Crushing Fist",
+      "kr": "분쇄의 주먹",
+      "ru": "Тактическое превосходство"
+    },
+    {
+      "en": "Necromancy",
+      "kr": "강령술",
+      "ru": "Темный пакт"
+    },
+    {
+      "en": "Grudge",
+      "kr": "원한",
+      "ru": "Титаноборец"
+    },
+    {
+      "en": "Heavy Armor",
+      "kr": "중갑 착용",
+      "ru": "Тяжелая броня"
+    }
+ ]
 }
