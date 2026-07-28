@@ -120,7 +120,8 @@
         {
           "en": "Judgment",
           "kr": "심판자",
-          "ru": "Мастер-фехтовальщик"
+          "ru": "Мастер-фехтовальщик",
+          "tags": ["holy", "Blessed Aura", "paladin", "(", "Class Engraving"]
         }
       ],
       "en": "Paladin",

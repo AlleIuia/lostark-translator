@@ -1,5 +1,5 @@
 {
-  "_orphanBuilds": [
+  "engravings": [
     {
       "en": "Adrenaline",
       "kr": "아드레날린",
@@ -215,5 +215,5 @@
       "kr": "중갑 착용",
       "ru": "Тяжелая броня"
     }
- ]
+  ]
 }

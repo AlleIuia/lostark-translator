@@ -1,12 +1,10 @@
 {
   "manifest_version": 3,
   "name": "Lost Ark Translator BETA",
-  "version": "0.3.2",
+  "version": "0.4.3",
   "description": "Переводит игровые термины Lost Ark. Работает с встроенными переводчиками.",
   "permissions": [
-    "storage",
-    "activeTab",
-    "contextMenus"
+    "storage"
   ],
   "host_permissions": [
     "<all_urls>",
@@ -23,10 +21,18 @@
       "128": "icons/icon128.png"
     }
   },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_idle",
       "all_frames": true
     }
@@ -34,9 +40,11 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "lt-*.json"
+        "dictionary/lt-*.json"
       ],
-      "matches": ["<all_urls>"]
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ],
   "icons": {

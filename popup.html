@@ -5,381 +5,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lost Ark Translator</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0f1215;
-      --panel: #161a1e;
-      --border: #262c33;
-      --text: #c2c9d1;
-      --text-bright: #ffffff;
-      --primary: #f0a020;
-      --primary-hover: #d88f1a;
-      --accent-kr: #e5b042;
-      --row-hover: #1e242a;
-      --row-alt: #121518;
-      --input-bg: #0b0d0f;
-      --btn-bg: #222830;
-      --btn-hover: #2e3642;
+      --bg: #0f1215; --panel: #161a1e; --border: #262c33; --text: #c2c9d1;
+      --text-bright: #ffffff; --primary: #f0a020; --primary-hover: #d88f1a;
+      --accent-kr: #e5b042; --row-hover: #1e242a; --row-alt: #121518;
+      --input-bg: #0b0d0f; --btn-bg: #222830; --btn-hover: #2e3642;
     }
-
     [data-theme="light"] {
-      --bg: #f4f5f7;
-      --panel: #ffffff;
-      --border: #dcdfe6;
-      --text: #4a4a4a;
-      --text-bright: #1a1a1a;
-      --primary: #d88f1a;
-      --primary-hover: #b87714;
-      --accent-kr: #b87714;
-      --row-hover: #eaecee;
-      --row-alt: #f8f9fa;
-      --input-bg: #ffffff;
-      --btn-bg: #e4e7ed;
-      --btn-hover: #dcdfe6;
+      --bg: #f4f5f7; --panel: #ffffff; --border: #dcdfe6; --text: #4a4a4a;
+      --text-bright: #1a1a1a; --primary: #d88f1a; --primary-hover: #b87714;
+      --accent-kr: #b87714; --row-hover: #eaecee; --row-alt: #f8f9fa;
+      --input-bg: #ffffff; --btn-bg: #e4e7ed; --btn-hover: #dcdfe6;
     }
-
-    html {
-      width: 450px;
-      min-width: 450px;
-      max-width: 450px;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-
+    html { width: 450px; min-width: 450px; max-width: 450px; margin: 0; padding: 0; overflow-x: hidden; }
     body {
-      width: 450px;
-      min-width: 450px;
-      max-width: 450px;
-      height: 600px;
+      width: 450px; min-width: 450px; max-width: 450px; height: 600px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-size: 13px;
-      background: var(--bg);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
+      font-size: 13px; background: var(--bg); color: var(--text);
+      display: flex; flex-direction: column; overflow: hidden; margin: 0; padding: 0;
     }
-
-    body.standalone {
-      width: 450px !important;
-      height: 600px !important;
-      margin: 0 auto;
-    }
-
+    body.standalone { width: 450px !important; height: 600px !important; margin: 0 auto; }
     header {
-      background: var(--panel);
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-shrink: 0;
+      background: var(--panel); padding: 10px 12px; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
     }
-
-    .title-area {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    h1 {
-      font-size: 15px;
-      color: var(--primary);
-      font-weight: 700;
-    }
-
-    .controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .title-area { display: flex; align-items: center; gap: 8px; }
+    h1 { font-size: 15px; color: var(--primary); font-weight: 700; }
+    .controls { display: flex; align-items: center; gap: 8px; }
     .lang-selector {
-      display: flex;
-      background: var(--bg);
-      border-radius: 4px;
-      padding: 2px;
-      border: 1px solid var(--border);
+      display: flex; background: var(--bg); border-radius: 4px; padding: 2px; border: 1px solid var(--border);
     }
-
     .lang-btn {
-      background: none;
-      border: none;
-      color: var(--text);
-      padding: 2px 6px;
-      font-size: 11px;
-      cursor: pointer;
-      border-radius: 2px;
-      font-weight: 600;
+      background: none; border: none; color: var(--text); padding: 2px 6px; font-size: 11px;
+      cursor: pointer; border-radius: 2px; font-weight: 600;
     }
-
-    .lang-btn.active {
-      background: var(--primary);
-      color: #000;
-    }
-
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 36px;
-      height: 20px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
+    .lang-btn.active { background: var(--primary); color: #000; }
+    .switch { position: relative; display: inline-block; width: 36px; height: 20px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
     .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: var(--border);
-      transition: .2s;
-      border-radius: 20px;
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: var(--border); transition: .2s; border-radius: 20px;
     }
-
     .slider:before {
-      position: absolute;
-      content: "";
-      height: 14px;
-      width: 14px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: .2s;
-      border-radius: 50%;
+      position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px;
+      background-color: white; transition: .2s; border-radius: 50%;
     }
-
-    input:checked + .slider {
-      background-color: var(--primary);
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(16px);
-    }
-
+    input:checked + .slider { background-color: var(--primary); }
+    input:checked + .slider:before { transform: translateX(16px); }
+    .icon-btn svg { display: block; }
     .icon-btn {
-      background: none;
-      border: none;
-      color: var(--text);
-      cursor: pointer;
-      font-size: 14px;
-      padding: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: none; border: none; color: var(--text); cursor: pointer; font-size: 14px;
+      padding: 2px 4px; display: flex; align-items: center; justify-content: center;
     }
-
     .status-bar {
-      padding: 4px 12px;
-      font-size: 11px;
-      font-weight: 600;
-      border-bottom: 1px solid var(--border);
-      background: var(--panel);
-      flex-shrink: 0;
+      padding: 4px 12px; font-size: 11px; font-weight: 600; border-bottom: 1px solid var(--border);
+      background: var(--panel); flex-shrink: 0; display: flex; justify-content: space-between; align-items: center;
     }
-
     .status.active { color: #4caf50; }
     .status.disabled { color: #d9534f; }
-
+    #pageStats { color: var(--text); font-weight: 500; opacity: 0.8; }
     .search-bar {
-      padding: 8px 12px;
-      display: flex;
-      gap: 6px;
-      background: var(--panel);
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
+      padding: 8px 12px; display: flex; gap: 6px; background: var(--panel);
+      border-bottom: 1px solid var(--border); flex-shrink: 0;
     }
-
     input[type="text"], select, textarea {
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      color: var(--text-bright);
-      padding: 6px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      outline: none;
+      background: var(--input-bg); border: 1px solid var(--border); color: var(--text-bright);
+      padding: 6px 8px; border-radius: 4px; font-size: 12px; outline: none;
     }
-
-    input[type="text"]:focus, select:focus, textarea:focus {
-      border-color: var(--primary);
-    }
-
-    .search-input {
-      flex: 1;
-    }
-
+    input[type="text"]:focus, select:focus, textarea:focus { border-color: var(--primary); }
+    .search-input { flex: 1; }
     .btn {
-      background: var(--btn-bg);
-      color: var(--text-bright);
-      border: 1px solid var(--border);
-      padding: 6px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: var(--btn-bg); color: var(--text-bright); border: 1px solid var(--border);
+      padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;
+      display: flex; align-items: center; justify-content: center;
     }
-
-    .btn:hover {
-      background: var(--btn-hover);
+    .btn:hover { background: var(--btn-hover); }
+    .btn-primary { background: var(--primary); color: #000; border: none; font-weight: 600; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .filter-bar {
+      padding: 6px 12px; display: flex; gap: 4px; background: var(--panel);
+      border-bottom: 1px solid var(--border); flex-shrink: 0; flex-wrap: wrap;
     }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #000;
-      border: none;
-      font-weight: 600;
+    .filter-btn {
+      background: var(--btn-bg); border: 1px solid var(--border); color: var(--text);
+      padding: 3px 8px; border-radius: 12px; font-size: 11px; cursor: pointer; font-weight: 600;
     }
-
-    .btn-primary:hover {
-      background: var(--primary-hover);
-    }
-
+    .filter-btn.active { background: var(--primary); color: #000; border-color: var(--primary); }
     .add-form {
-      padding: 8px 12px;
-      background: var(--panel);
-      border-bottom: 1px solid var(--border);
-      display: none;
-      flex-direction: column;
-      gap: 6px;
-      flex-shrink: 0;
+      padding: 8px 12px; background: var(--panel); border-bottom: 1px solid var(--border);
+      display: none; flex-direction: column; gap: 6px; flex-shrink: 0;
     }
-
-    .form-row {
-      display: flex;
-      gap: 6px;
-    }
-
-    .form-row input {
-      flex: 1;
-      min-width: 0;
-      width: 100%; 
-    }
-
+    .form-row { display: flex; gap: 6px; }
+    .form-row input, .form-row select { flex: 1; min-width: 0; }
     .content-area {
-      flex: 1 1 auto;
-      height: 0;
-      min-height: 0;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+      flex: 1 1 auto; height: 0; min-height: 0; overflow-y: auto;
+      display: flex; flex-direction: column; scrollbar-width: none;
     }
-
-    .content-area::-webkit-scrollbar {
-      display: none;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-      table-layout: fixed;
-    }
-
+    .content-area::-webkit-scrollbar { display: none; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
     th {
-      position: sticky;
-      top: 0;
-      background: var(--panel);
-      color: var(--primary);
-      text-align: left;
-      padding: 8px;
-      border-bottom: 1px solid var(--border);
-      z-index: 10;
-      width: 33.33%;
+      position: sticky; top: 0; background: var(--panel); color: var(--primary);
+      text-align: left; padding: 8px; border-bottom: 1px solid var(--border); z-index: 10; width: 33.33%;
     }
-
-    td {
-      padding: 6px 8px;
-      border-bottom: 1px solid var(--border);
-      word-break: break-word;
-      width: 33.33%;
+    td { padding: 6px 8px; border-bottom: 1px solid var(--border); word-break: break-word; width: 33.33%; }
+    tr:nth-child(even) { background: var(--row-alt); }
+    tr:hover { background: var(--row-hover); }
+    .class-row { font-weight: 700; color: var(--text-bright); background: var(--panel) !important; }
+    .section-row td {
+      font-weight: 700; color: var(--primary); background: var(--bg) !important;
+      text-transform: uppercase; font-size: 10px; letter-spacing: 0.6px; padding: 8px;
     }
-
-    tr:nth-child(even) {
-      background: var(--row-alt);
-    }
-
-    tr:hover {
-      background: var(--row-hover);
-    }
-
-    .class-row {
-      font-weight: 700;
-      color: var(--text-bright);
-      background: var(--panel) !important;
-    }
-
-    .kr-cell {
-      color: var(--accent-kr);
-    }
-
-    .editable {
-      cursor: pointer;
-    }
-
-    .editable:hover {
-      outline: 1px dashed var(--primary);
-    }
-
-    .sites-accordion {
-      border-top: 1px solid var(--border);
-      background: var(--panel);
-      flex-shrink: 0;
-      margin-top: auto;
-    }
-
-    .sites-header {
-      padding: 8px 12px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--primary);
-    }
-
-    .sites-body {
-      display: none;
-      padding: 8px 12px 12px;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .sites-body.open {
-      display: flex;
-    }
-
-    .arrow {
-      transition: transform .2s;
-    }
-
-    .arrow.open {
-      transform: rotate(180deg);
-    }
-
-    .sync-status {
-      padding: 4px 12px;
-      font-size: 11px;
-      display: none;
-    }
-
+    .kr-cell { color: var(--accent-kr); }
+    .editable { cursor: pointer; }
+    .editable:hover { outline: 1px dashed var(--primary); }
+    .sync-status { padding: 4px 12px; font-size: 11px; display: none; }
     .sync-status.ok { display: block; color: #4caf50; }
     .sync-status.err { display: block; color: #d9534f; }
+    .btn-del {
+      background: transparent; border: 1px solid var(--border); color: #f44336;
+      width: 24px; height: 24px; border-radius: 4px; cursor: pointer;
+      font-size: 14px; line-height: 1; padding: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .btn-del:hover { background: rgba(244,67,54,0.15); border-color: #f44336; }
+    .btn.delete-mode-on { background: rgba(244,67,54,0.2); border-color: #f44336; color: #f44336; }
+    th.col-actions, td.col-actions { width: 36px; text-align: center; padding: 4px; }
+
   </style>
 </head>
 <body>
@@ -391,13 +143,15 @@
         <button class="lang-btn" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="kr">KR</button>
       </div>
-      <label class="switch" title="Тема">
-        <input type="checkbox" id="themeToggle">
-        <span class="slider"></span>
-      </label>
     </div>
     <div class="controls">
-      <button class="icon-btn" id="detachBtn">❐</button>
+      <button class="icon-btn" id="optionsBtn" title="Настройки">⚙</button>
+      <button class="icon-btn" id="detachBtn" title="Open window" aria-label="Open window">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1.5" y="3.5" width="9" height="11" rx="1" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M5.5 1.5h9v11h-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
       <label class="switch">
         <input type="checkbox" id="toggleEnabled">
         <span class="slider"></span>
@@ -407,20 +161,39 @@
 
   <div class="status-bar">
     <span id="status" class="status"></span>
+    <span id="pageStats"></span>
   </div>
 
   <div class="search-bar">
     <input type="text" id="searchInput" class="search-input" placeholder="Поиск...">
     <button class="btn" id="addBtn">+</button>
+    <button class="btn" id="deleteModeBtn" title="Delete">🗑</button>
     <button class="btn" id="syncBtn">🔄</button>
-    <button class="btn" id="exportBtn">⬇</button>
-    <button class="btn" id="importBtn">⬆</button>
-    <input type="file" id="importFile" accept=".json" style="display: none;">
+  </div>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all">Все</button>
+    <button class="filter-btn" data-filter="classes">Классы</button>
+    <button class="filter-btn" data-filter="engravings">Гравировки</button>
+    <button class="filter-btn" data-filter="terms">Термины</button>
+    <button class="filter-btn" data-filter="skills">Умения</button>
+    <button class="filter-btn" data-filter="orphans">Прочее</button>
   </div>
 
   <div id="syncStatus" class="sync-status"></div>
 
   <div class="add-form" id="addForm">
+    <div class="form-row">
+      <select id="newType">
+        <option value="orphan">Прочее</option>
+        <option value="term">Термин</option>
+        <option value="skill">Умение</option>
+        <option value="engraving">Гравировка</option>
+        <option value="build">Build</option>
+        <option value="class">Класс</option>
+      </select>
+      <select id="newParent" style="display:none;"></select>
+    </div>
     <div class="form-row">
       <input type="text" id="newEn" placeholder="EN">
       <input type="text" id="newRu" placeholder="RU">
@@ -443,21 +216,6 @@
       </thead>
       <tbody id="wordList"></tbody>
     </table>
-  </div>
-
-  <div class="sites-accordion">
-    <div class="sites-header" id="sitesHeader">
-      <span id="sitesTitle">САЙТЫ</span>
-      <span class="arrow" id="sitesArrow">▼</span>
-    </div>
-    <div class="sites-body" id="sitesBody">
-      <select id="siteMode">
-        <option value="everywhere">Везде</option>
-        <option value="allowlist">Только разрешенные</option>
-        <option value="blocklist">Кроме запрещенных</option>
-      </select>
-      <textarea id="sitesList" rows="4"></textarea>
-    </div>
   </div>
 
   <script src="popup.js"></script>

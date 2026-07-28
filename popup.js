@@ -9,165 +9,165 @@ if (location.search.includes('standalone')) {
 const SYNC_URLS = [
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classes.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-engravings.json',
-  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-interface.json'
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-interface.json',
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-skills.json'
 ];
 
 const UI_TEXTS = {
   ru: {
-    active: 'Активно',
-    disabled: 'Выключено',
-    searchPlaceholder: 'Поиск...',
-    addTitle: 'Добавить',
-    syncTitle: 'Синхронизировать',
-    exportTitle: 'Экспорт',
-    importTitle: 'Импорт',
-    saveNewTitle: 'Сохранить',
-    cancelAddTitle: 'Отмена',
-    detachTitle: 'Открыть в отдельном окне',
-    sitesLabel: 'САЙТЫ',
-    siteModeEverywhere: 'Везде',
-    siteModeAllowlist: 'Только разрешенные',
-    siteModeBlocklist: 'Кроме запрещенных',
-    sitesPlaceholder: 'По одного домену на строку\nloawa.com\ninven.co.kr',
-    syncLoading: 'Загрузка…',
-    syncOk: 'Словарь обновлён',
-    syncErr: 'Ошибка синхронизации: ',
-    importErrorFormat: 'Неверный формат файла. Ожидается объект с полями classes, terms и т.д.',
-    importErrorJson: 'Ошибка чтения JSON: '
+    active: 'Активно', disabled: 'Выключено', searchPlaceholder: 'Поиск...',
+    addTitle: 'Добавить', syncTitle: 'Синхронизировать', exportTitle: 'Экспорт',
+    importTitle: 'Импорт', saveNewTitle: 'Сохранить', cancelAddTitle: 'Отмена',
+    deleteModeTitle: 'Удаление',
+    deleteConfirm: 'Удалить запись?',
+    detachTitle: 'Открыть в отдельном окне', optionsTitle: 'Настройки',
+    filterAll: 'Все', filterClasses: 'Классы', filterEngravings: 'Гравировки',
+    filterTerms: 'Термины', filterSkills: 'Умения', filterOrphans: 'Прочее',
+    sectionClasses: 'Классы / Сборки', sectionEngravings: 'Гравировки',
+    sectionTerms: 'Термины', sectionSkills: 'Умения', sectionOrphans: 'Прочее',
+    typeOrphan: 'Прочее', typeTerm: 'Термин', typeSkill: 'Умение',
+    typeEngraving: 'Гравировка', typeBuild: 'Сборка', typeClass: 'Класс',
+    statsLabel: 'переведено: ',
+    syncLoading: 'Загрузка…', syncOk: 'Словарь обновлён', syncErr: 'Ошибка синхронизации: ',
+    importErrorFormat: 'Неверный формат файла.', importErrorJson: 'Ошибка чтения JSON: '
   },
   en: {
-    active: 'Active',
-    disabled: 'Disabled',
-    searchPlaceholder: 'Search...',
-    addTitle: 'Add',
-    syncTitle: 'Sync',
-    exportTitle: 'Export',
-    importTitle: 'Import',
-    saveNewTitle: 'Save',
-    cancelAddTitle: 'Cancel',
-    detachTitle: 'Open in separate window',
-    sitesLabel: 'SITES',
-    siteModeEverywhere: 'Everywhere',
-    siteModeAllowlist: 'Allowed only',
-    siteModeBlocklist: 'Except blocked',
-    sitesPlaceholder: 'One domain per line\nloawa.com\ninven.co.kr',
-    syncLoading: 'Loading…',
-    syncOk: 'Dictionary updated',
-    syncErr: 'Sync error: ',
-    importErrorFormat: 'Invalid file format.',
-    importErrorJson: 'JSON read error: '
+    active: 'Active', disabled: 'Disabled', searchPlaceholder: 'Search...',
+    addTitle: 'Add', syncTitle: 'Sync', exportTitle: 'Export',
+    importTitle: 'Import', saveNewTitle: 'Save', cancelAddTitle: 'Cancel',
+    deleteModeTitle: 'Delete',
+    deleteConfirm: 'Delete this entry?',
+    detachTitle: 'Open in separate window', optionsTitle: 'Settings',
+    filterAll: 'All', filterClasses: 'Classes', filterEngravings: 'Engravings',
+    filterTerms: 'Terms', filterSkills: 'Skills', filterOrphans: 'Other',
+    sectionClasses: 'Classes / Builds', sectionEngravings: 'Engravings',
+    sectionTerms: 'Terms', sectionSkills: 'Skills', sectionOrphans: 'Other',
+    typeOrphan: 'Other', typeTerm: 'Term', typeSkill: 'Skill',
+    typeEngraving: 'Engraving', typeBuild: 'Build', typeClass: 'Class',
+    statsLabel: 'translated: ',
+    syncLoading: 'Loading…', syncOk: 'Dictionary updated', syncErr: 'Sync error: ',
+    importErrorFormat: 'Invalid file format.', importErrorJson: 'JSON read error: '
   },
   kr: {
-    active: '활성화',
-    disabled: '비활성화',
-    searchPlaceholder: '검색...',
-    addTitle: '추가',
-    syncTitle: '동기화',
-    exportTitle: '내보내기',
-    importTitle: '가져오기',
-    saveNewTitle: '저장',
-    cancelAddTitle: '취소',
-    detachTitle: '별도 창에서 열기',
-    sitesLabel: '사이트',
-    siteModeEverywhere: '전체',
-    siteModeAllowlist: '허용 목록만',
-    siteModeBlocklist: '차단 목록 제외',
-    sitesPlaceholder: '줄당 하나의 도메인\nloawa.com\ninven.co.kr',
-    syncLoading: '로딩 중…',
-    syncOk: '사전 업데이트됨',
-    syncErr: '동기화 오류: ',
-    importErrorFormat: '잘못된 파일 형식입니다.',
-    importErrorJson: 'JSON 읽기 오류: '
+    active: '활성화', disabled: '비활성화', searchPlaceholder: '검색...',
+    addTitle: '추가', syncTitle: '동기화', exportTitle: '내보내기',
+    importTitle: '가져오기', saveNewTitle: '저장', cancelAddTitle: '취소',
+    deleteModeTitle: '삭제',
+    deleteConfirm: '이 항목을 삭제할까요?',
+    detachTitle: '별도 창에서 열기', optionsTitle: '설정',
+    filterAll: '전체', filterClasses: '직업', filterEngravings: '각인',
+    filterTerms: '용어', filterSkills: '스킬', filterOrphans: '기타',
+    sectionClasses: '직업 / 빌드', sectionEngravings: '각인',
+    sectionTerms: '용어', sectionSkills: '스킬', sectionOrphans: '기타',
+    typeOrphan: '기타', typeTerm: '용어', typeSkill: '스킬',
+    typeEngraving: '각인', typeBuild: '빌드', typeClass: '직업',
+    statsLabel: '번역됨: ',
+    syncLoading: '로딩 중…', syncOk: '사전 업데이트됨', syncErr: '동기화 오류: ',
+    importErrorFormat: '잘못된 파일 형식입니다.', importErrorJson: 'JSON 읽기 오류: '
   }
 };
 
-let fullData = { classes: [], engravings: [], _orphanBuilds: [], terms: [] };
+let fullData = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [] };
 let isEnabled = true;
 let targetLang = 'ru';
 let currentTheme = 'dark';
 let isStandalone = false;
 let currentSearch = '';
+let currentFilter = 'all';
+let deleteMode = false;
+
+
+function installPlainPaste(root) {
+  const target = root || document;
+  target.addEventListener('paste', (e) => {
+    const el = e.target;
+    if (!el) return;
+    const isEditable = el.isContentEditable || el.tagName === 'INPUT' || el.tagName === 'TEXTAREA';
+    if (!isEditable) return;
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+    if (el.isContentEditable) {
+      document.execCommand('insertText', false, text);
+    } else {
+      const start = el.selectionStart ?? el.value.length;
+      const end = el.selectionEnd ?? el.value.length;
+      const val = el.value || '';
+      el.value = val.slice(0, start) + text + val.slice(end);
+      const pos = start + text.length;
+      el.setSelectionRange(pos, pos);
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   isStandalone = new URLSearchParams(location.search).has('standalone');
-  if (isStandalone) document.body.classList.add('standalone');
+  if (isStandalone) {
+    document.body.classList.add('standalone');
+    document.title = 'Lost Ark Translator Window';
+  }
   loadData();
   setupListeners();
+  installPlainPaste(document);
   checkTempSelection();
+  refreshPageStats();
 });
 
 function applyLocalization() {
   const t = UI_TEXTS[targetLang] || UI_TEXTS.ru;
-
   const searchInput = document.getElementById('searchInput');
   if (searchInput) searchInput.placeholder = t.searchPlaceholder;
-
-  const addBtn = document.getElementById('addBtn');
-  if (addBtn) addBtn.title = t.addTitle;
-
-  const syncBtn = document.getElementById('syncBtn');
-  if (syncBtn) syncBtn.title = t.syncTitle;
-
-  const exportBtn = document.getElementById('exportBtn');
-  if (exportBtn) exportBtn.title = t.exportTitle;
-
-  const importBtn = document.getElementById('importBtn');
-  if (importBtn) importBtn.title = t.importTitle;
-
-  const detachBtn = document.getElementById('detachBtn');
-  if (detachBtn) detachBtn.title = t.detachTitle;
-
-  const saveNewBtn = document.getElementById('saveNewBtn');
-  if (saveNewBtn) saveNewBtn.textContent = t.saveNewTitle;
-
-  const cancelAddBtn = document.getElementById('cancelAddBtn');
-  if (cancelAddBtn) cancelAddBtn.textContent = t.cancelAddTitle;
-
-  const sitesTitle = document.getElementById('sitesTitle') || document.querySelector('#sitesHeader span');
-  if (sitesTitle) sitesTitle.textContent = t.sitesLabel;
-
-  const siteMode = document.getElementById('siteMode');
-  if (siteMode) {
-    if (siteMode.options[0]) siteMode.options[0].textContent = t.siteModeEverywhere;
-    if (siteMode.options[1]) siteMode.options[1].textContent = t.siteModeAllowlist;
-    if (siteMode.options[2]) siteMode.options[2].textContent = t.siteModeBlocklist;
+  const map = {
+    addBtn: t.addTitle, syncBtn: t.syncTitle, deleteModeBtn: t.deleteModeTitle,
+    detachBtn: t.detachTitle, optionsBtn: t.optionsTitle,
+    saveNewBtn: t.saveNewTitle, cancelAddBtn: t.cancelAddTitle
+  };
+  for (const [id, title] of Object.entries(map)) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    if (id === 'saveNewBtn' || id === 'cancelAddBtn') el.textContent = title;
+    else el.title = title;
   }
+  const filters = {
+    all: t.filterAll, classes: t.filterClasses, engravings: t.filterEngravings,
+    terms: t.filterTerms, skills: t.filterSkills, orphans: t.filterOrphans
+  };
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    const f = btn.dataset.filter;
+    if (filters[f]) btn.textContent = filters[f];
+  });
 
-  const sitesList = document.getElementById('sitesList');
-  if (sitesList) sitesList.placeholder = t.sitesPlaceholder;
-
+  const typeSel = document.getElementById('newType');
+  if (typeSel) {
+    const typeLabels = {
+      orphan: t.typeOrphan,
+      term: t.typeTerm,
+      skill: t.typeSkill,
+      engraving: t.typeEngraving,
+      build: t.typeBuild,
+      class: t.typeClass
+    };
+    for (const opt of typeSel.options) {
+      if (typeLabels[opt.value]) opt.textContent = typeLabels[opt.value];
+    }
+  }
   updateStatus();
 }
 
 function loadData() {
-  chrome.storage.sync.get(['isEnabled','targetLang','theme','siteMode','allowedSites','blockedSites'], (syncResult) => {
+  chrome.storage.sync.get(['isEnabled', 'targetLang', 'theme'], (syncResult) => {
     targetLang = syncResult.targetLang || 'ru';
     currentTheme = syncResult.theme || 'dark';
     isEnabled = syncResult.isEnabled !== false;
-
     document.getElementById('toggleEnabled').checked = isEnabled;
-    document.getElementById('themeToggle').checked = currentTheme === 'dark';
     document.documentElement.setAttribute('data-theme', currentTheme);
-
-    const siteMode = syncResult.siteMode || 'everywhere';
-    document.getElementById('siteMode').value = siteMode;
-    if (siteMode === 'allowlist') {
-      document.getElementById('sitesList').value = syncResult.allowedSites || '';
-    } else if (siteMode === 'blocklist') {
-      document.getElementById('sitesList').value = syncResult.blockedSites || '';
-    } else {
-      document.getElementById('sitesList').value = '';
-    }
-
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === targetLang);
     });
-
     applyLocalization();
   });
-
   chrome.storage.local.get(['fullData'], (localResult) => {
-    fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [] };
+    fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [] };
     renderList();
   });
 }
@@ -180,18 +180,35 @@ function updateStatus() {
   statusEl.className = 'status ' + (isEnabled ? 'active' : 'disabled');
 }
 
+function refreshPageStats() {
+  chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+    const el = document.getElementById('pageStats');
+    if (!el) return;
+    const t = UI_TEXTS[targetLang] || UI_TEXTS.ru;
+    if (!tabs[0] || !tabs[0].id) {
+      el.textContent = '';
+      return;
+    }
+    try {
+      const res = await chrome.tabs.sendMessage(tabs[0].id, { action: 'getStats' });
+      if (res && res.success) {
+        el.textContent = t.statsLabel + (res.count || 0);
+      } else {
+        el.textContent = '';
+      }
+    } catch (_) {
+      el.textContent = '';
+    }
+  });
+}
+
 function setupListeners() {
   document.getElementById('toggleEnabled').addEventListener('change', (e) => {
     isEnabled = e.target.checked;
     chrome.storage.sync.set({ isEnabled });
     updateStatus();
     chrome.runtime.sendMessage({ action: 'toggle', enabled: isEnabled });
-  });
-
-  document.getElementById('themeToggle').addEventListener('change', (e) => {
-    currentTheme = e.target.checked ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    chrome.storage.sync.set({ theme: currentTheme });
+    setTimeout(refreshPageStats, 300);
   });
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -211,10 +228,43 @@ function setupListeners() {
     renderList();
   });
 
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentFilter = btn.dataset.filter;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderList();
+    });
+  });
+
+  document.getElementById('deleteModeBtn').addEventListener('click', () => {
+    deleteMode = !deleteMode;
+    document.getElementById('deleteModeBtn').classList.toggle('delete-mode-on', deleteMode);
+    renderList();
+  });
+
   document.getElementById('addBtn').addEventListener('click', () => {
     const form = document.getElementById('addForm');
     form.style.display = form.style.display === 'flex' ? 'none' : 'flex';
-    if (form.style.display === 'flex') document.getElementById('newEn').focus();
+    if (form.style.display === 'flex') {
+      const type = document.getElementById('newType').value;
+      if (type === 'build' || type === 'skill') {
+        document.getElementById('newParent').style.display = '';
+        populateParentSelect(type);
+      }
+      document.getElementById('newEn').focus();
+    }
+  });
+
+  document.getElementById('newType').addEventListener('change', () => {
+    const type = document.getElementById('newType').value;
+    const parentSel = document.getElementById('newParent');
+    if (type === 'build' || type === 'skill') {
+      parentSel.style.display = '';
+      populateParentSelect(type);
+    } else {
+      parentSel.style.display = 'none';
+    }
   });
 
   document.getElementById('cancelAddBtn').addEventListener('click', () => {
@@ -223,63 +273,85 @@ function setupListeners() {
   });
 
   document.getElementById('saveNewBtn').addEventListener('click', saveNewEntry);
-
   document.getElementById('syncBtn').addEventListener('click', syncDictionary);
-  document.getElementById('exportBtn').addEventListener('click', exportDictionary);
-  document.getElementById('importBtn').addEventListener('click', () => {
-    document.getElementById('importFile').click();
-  });
-  document.getElementById('importFile').addEventListener('change', importDictionary);
 
   document.getElementById('detachBtn').addEventListener('click', () => {
     chrome.windows.create({
-     url: 'popup.html?standalone=true',
-     type: 'popup',
-     width: 450,
-     height: 600
+      url: 'popup.html?standalone=true',
+      type: 'popup',
+      width: 450,
+      height: 600
     });
   });
 
-  document.getElementById('sitesHeader').addEventListener('click', () => {
-    document.getElementById('sitesBody').classList.toggle('open');
-    document.getElementById('sitesArrow').classList.toggle('open');
+  document.getElementById('optionsBtn').addEventListener('click', () => {
+    chrome.windows.create({
+      url: 'options.html',
+      type: 'popup',
+      width: 520,
+      height: 640
+    });
   });
+}
 
-  document.getElementById('siteMode').addEventListener('change', (e) => {
-    const mode = e.target.value;
-    const updates = { siteMode: mode };
-    if (mode === 'allowlist') updates.allowedSites = document.getElementById('sitesList').value;
-    else if (mode === 'blocklist') updates.blockedSites = document.getElementById('sitesList').value;
-    chrome.storage.sync.set(updates);
-  });
-
-  let siteTimeout;
-  document.getElementById('sitesList').addEventListener('input', (e) => {
-    clearTimeout(siteTimeout);
-    siteTimeout = setTimeout(() => {
-      const mode = document.getElementById('siteMode').value;
-      const updates = {};
-      if (mode === 'allowlist') updates.allowedSites = e.target.value;
-      else if (mode === 'blocklist') updates.blockedSites = e.target.value;
-      if (Object.keys(updates).length) chrome.storage.sync.set(updates);
-    }, 500);
-  });
+function populateParentSelect(type) {
+  const sel = document.getElementById('newParent');
+  sel.innerHTML = '';
+  const list = (type === 'skill')
+    ? (fullData.skillClasses || []).concat(
+        (fullData.classes || []).filter(c => !(fullData.skillClasses || []).some(s => s.en === c.en))
+      )
+    : (fullData.classes || []);
+  for (const cls of list) {
+    const opt = document.createElement('option');
+    opt.value = cls.en;
+    opt.textContent = cls.en;
+    sel.appendChild(opt);
+  }
 }
 
 function clearAddForm() {
   document.getElementById('newEn').value = '';
   document.getElementById('newRu').value = '';
   document.getElementById('newKr').value = '';
+  document.getElementById('newType').value = 'orphan';
+  document.getElementById('newParent').style.display = 'none';
 }
 
 function reloadData() {
   return new Promise((resolve) => {
     chrome.storage.local.get(['fullData'], (localResult) => {
-      fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [] };
+      fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [] };
       renderList();
       resolve();
     });
   });
+}
+
+
+function createDeleteCell(type, en, classEn) {
+  const td = document.createElement('td');
+  td.className = 'col-actions';
+  const btn = document.createElement('button');
+  btn.className = 'btn-del';
+  btn.textContent = '×';
+  btn.title = (UI_TEXTS[targetLang] || UI_TEXTS.ru).deleteModeTitle;
+  btn.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    const t = UI_TEXTS[targetLang] || UI_TEXTS.ru;
+    if (!confirm(t.deleteConfirm)) return;
+    try {
+      const res = await chrome.runtime.sendMessage({
+        action: 'deleteEntry',
+        type,
+        en,
+        classEn: classEn || undefined
+      });
+      if (res && res.success) await reloadData();
+    } catch (err) { console.error(err); }
+  });
+  td.appendChild(btn);
+  return td;
 }
 
 function createCell(text, className = '', dataset = {}) {
@@ -290,78 +362,168 @@ function createCell(text, className = '', dataset = {}) {
   return td;
 }
 
-function addDeleteButton(row, type, en, classEn) {
+function addSectionRow(tbody, label) {
+  const tr = document.createElement('tr');
+  tr.className = 'section-row';
   const td = document.createElement('td');
-  td.style.width = '34px';
-  td.style.textAlign = 'center';
-  
-  const btn = document.createElement('button');
-  btn.className = 'btn-del';
-  btn.textContent = '×';
-  btn.title = 'Удалить';
-  btn.addEventListener('click', async () => {
-    if (!confirm('Удалить запись?')) return;
-    try {
-      const res = await chrome.runtime.sendMessage({ action: 'deleteEntry', type, en, classEn });
-      if (res.success) await reloadData();
-    } catch (e) { console.error(e); }
-  });
-  
-  td.appendChild(btn);
-  row.appendChild(td);
+  td.colSpan = deleteMode ? 4 : 3;
+  td.textContent = label;
+  tr.appendChild(td);
+  tbody.appendChild(tr);
+}
+
+function matchesSearch(obj) {
+  if (!currentSearch) return true;
+  return [obj.en, obj.ru, obj.kr].some(v => v && v.toLowerCase().includes(currentSearch));
 }
 
 function renderList() {
   const tbody = document.getElementById('wordList');
   tbody.innerHTML = '';
-  const search = currentSearch;
+  const theadRow = document.querySelector('table thead tr');
+  if (theadRow) {
+    const existing = theadRow.querySelector('th.col-actions');
+    if (deleteMode && !existing) {
+      const th = document.createElement('th');
+      th.className = 'col-actions';
+      th.textContent = '';
+      theadRow.appendChild(th);
+    } else if (!deleteMode && existing) {
+      existing.remove();
+    }
+  }
+  const t = UI_TEXTS[targetLang] || UI_TEXTS.ru;
+  const showClasses = currentFilter === 'all' || currentFilter === 'classes';
+  const showEngravings = currentFilter === 'all' || currentFilter === 'engravings';
+  const showTerms = currentFilter === 'all' || currentFilter === 'terms';
+  const showOrphans = currentFilter === 'all' || currentFilter === 'orphans';
 
-  for (const cls of fullData.classes || []) {
-    const clsMatch = !search || [cls.en, cls.ru, cls.kr].some(v => v && v.toLowerCase().includes(search));
-    const matchedBuilds = (cls.builds || []).filter(b =>
-      !search || [b.en, b.ru, b.kr].some(v => v && v.toLowerCase().includes(search))
-    );
-
-    if (!clsMatch && matchedBuilds.length === 0) continue;
-
-    const trClass = document.createElement('tr');
-    trClass.className = 'class-row';
-    trClass.appendChild(createCell(cls.en, 'editable', { type: 'class', field: 'en', class: cls.en }));
-    trClass.appendChild(createCell(cls.ru, 'editable', { type: 'class', field: 'ru', class: cls.en }));
-    trClass.appendChild(createCell(cls.kr, 'editable kr-cell', { type: 'class', field: 'kr', class: cls.en }));
-    tbody.appendChild(trClass);
-
-    const buildsToShow = clsMatch ? (cls.builds || []) : matchedBuilds;
-    for (const b of buildsToShow) {
-      const trBuild = document.createElement('tr');
-      trBuild.className = 'build-row';
-      trBuild.appendChild(createCell(b.en, 'editable en-cell', { type: 'build', field: 'en', class: cls.en, build: b.en }));
-      trBuild.appendChild(createCell(b.ru, 'editable', { type: 'build', field: 'ru', class: cls.en, build: b.en }));
-      trBuild.appendChild(createCell(b.kr, 'editable kr-cell', { type: 'build', field: 'kr', class: cls.en, build: b.en }));
-      tbody.appendChild(trBuild);
+  if (showClasses) {
+    let anyClass = false;
+    for (const cls of fullData.classes || []) {
+      const clsMatch = matchesSearch(cls);
+      const matchedBuilds = (cls.builds || []).filter(matchesSearch);
+      if (!clsMatch && matchedBuilds.length === 0) continue;
+      if (!anyClass) {
+        addSectionRow(tbody, t.sectionClasses);
+        anyClass = true;
+      }
+      const trClass = document.createElement('tr');
+      trClass.className = 'class-row';
+      trClass.appendChild(createCell(cls.en, 'editable', { type: 'class', field: 'en', class: cls.en }));
+      trClass.appendChild(createCell(cls.ru, 'editable', { type: 'class', field: 'ru', class: cls.en }));
+      trClass.appendChild(createCell(cls.kr, 'editable kr-cell', { type: 'class', field: 'kr', class: cls.en }));
+      if (deleteMode) trClass.appendChild(createDeleteCell('class', cls.en));
+      tbody.appendChild(trClass);
+      const buildsToShow = clsMatch ? (cls.builds || []) : matchedBuilds;
+      for (const b of buildsToShow) {
+        const trBuild = document.createElement('tr');
+        trBuild.className = 'build-row';
+        trBuild.appendChild(createCell(b.en, 'editable en-cell', { type: 'build', field: 'en', class: cls.en, build: b.en }));
+        trBuild.appendChild(createCell(b.ru, 'editable', { type: 'build', field: 'ru', class: cls.en, build: b.en }));
+        trBuild.appendChild(createCell(b.kr, 'editable kr-cell', { type: 'build', field: 'kr', class: cls.en, build: b.en }));
+        if (deleteMode) trBuild.appendChild(createDeleteCell('build', b.en, cls.en));
+        tbody.appendChild(trBuild);
+      }
     }
   }
 
-  for (const o of fullData._orphanBuilds || []) {
-    if (search && ![o.en, o.ru, o.kr].some(v => v && v.toLowerCase().includes(search))) continue;
-
-    const tr = document.createElement('tr');
-    tr.className = 'orphan-row';
-    tr.appendChild(createCell(o.en, 'editable en-cell', { type: 'orphan', field: 'en', en: o.en }));
-    tr.appendChild(createCell(o.ru, 'editable', { type: 'orphan', field: 'ru', en: o.en }));
-    tr.appendChild(createCell(o.kr, 'editable kr-cell', { type: 'orphan', field: 'kr', en: o.en }));
-    tbody.appendChild(tr);
+  if (showEngravings) {
+    const list = (fullData.engravings || []).filter(matchesSearch);
+    if (list.length) {
+      addSectionRow(tbody, t.sectionEngravings);
+      for (const eng of list) {
+        const tr = document.createElement('tr');
+        tr.className = 'orphan-row';
+        tr.appendChild(createCell(eng.en, 'editable en-cell', { type: 'engraving', field: 'en', en: eng.en }));
+        tr.appendChild(createCell(eng.ru, 'editable', { type: 'engraving', field: 'ru', en: eng.en }));
+        tr.appendChild(createCell(eng.kr, 'editable kr-cell', { type: 'engraving', field: 'kr', en: eng.en }));
+        if (deleteMode) tr.appendChild(createDeleteCell('engraving', eng.en));
+        tbody.appendChild(tr);
+      }
+    }
   }
 
-  for (const term of fullData.terms || []) {
-    if (search && ![term.en, term.ru, term.kr].some(v => v && v.toLowerCase().includes(search))) continue;
+  if (showTerms) {
+    const list = (fullData.terms || []).filter(matchesSearch);
+    if (list.length) {
+      addSectionRow(tbody, t.sectionTerms);
+      for (const term of list) {
+        const tr = document.createElement('tr');
+        tr.className = 'orphan-row';
+        tr.appendChild(createCell(term.en, 'editable en-cell', { type: 'term', field: 'en', en: term.en }));
+        tr.appendChild(createCell(term.ru, 'editable', { type: 'term', field: 'ru', en: term.en }));
+        tr.appendChild(createCell(term.kr, 'editable kr-cell', { type: 'term', field: 'kr', en: term.en }));
+        if (deleteMode) tr.appendChild(createDeleteCell('term', term.en));
+        tbody.appendChild(tr);
+      }
+    }
+  }
 
-    const tr = document.createElement('tr');
-    tr.className = 'orphan-row';
-    tr.appendChild(createCell(term.en, 'editable en-cell', { type: 'term', field: 'en', en: term.en }));
-    tr.appendChild(createCell(term.ru, 'editable', { type: 'term', field: 'ru', en: term.en }));
-    tr.appendChild(createCell(term.kr, 'editable kr-cell', { type: 'term', field: 'kr', en: term.en }));
-    tbody.appendChild(tr);
+  const showSkills = currentFilter === 'all' || currentFilter === 'skills';
+  if (showSkills) {
+    let anySkill = false;
+    for (const sc of fullData.skillClasses || []) {
+      const clsMatch = matchesSearch(sc);
+      const matchedSkills = (sc.skills || []).filter(s => s && s.en && String(s.en).trim() && matchesSearch(s));
+      const emptySlots = (sc.skills || []).filter(s => s && (!s.en || !String(s.en).trim()));
+      if (!clsMatch && matchedSkills.length === 0 && !(currentSearch === '' && (sc.skills || []).length)) continue;
+      if (!anySkill) {
+        addSectionRow(tbody, t.sectionSkills);
+        anySkill = true;
+      }
+      const trClass = document.createElement('tr');
+      trClass.className = 'class-row';
+      trClass.appendChild(createCell(sc.en, 'editable', { type: 'skillClass', field: 'en', class: sc.en }));
+      trClass.appendChild(createCell(sc.ru, 'editable', { type: 'skillClass', field: 'ru', class: sc.en }));
+      trClass.appendChild(createCell(sc.kr, 'editable kr-cell', { type: 'skillClass', field: 'kr', class: sc.en }));
+      tbody.appendChild(trClass);
+
+      const skillsToShow = currentSearch
+        ? matchedSkills
+        : (sc.skills || []).filter(s => s && s.en && String(s.en).trim());
+      for (const sk of skillsToShow) {
+        const tr = document.createElement('tr');
+        tr.className = 'build-row';
+        tr.appendChild(createCell(sk.en, 'editable en-cell', { type: 'skill', field: 'en', class: sc.en, build: sk.en }));
+        tr.appendChild(createCell(sk.ru, 'editable', { type: 'skill', field: 'ru', class: sc.en, build: sk.en }));
+        tr.appendChild(createCell(sk.kr, 'editable kr-cell', { type: 'skill', field: 'kr', class: sc.en, build: sk.en }));
+        if (deleteMode) tr.appendChild(createDeleteCell('skill', sk.en, sc.en));
+        tbody.appendChild(tr);
+      }
+    }
+    const flatList = (fullData.skills || []).filter(s => s && s.en && matchesSearch(s));
+    if (flatList.length) {
+      if (!anySkill) {
+        addSectionRow(tbody, t.sectionSkills);
+        anySkill = true;
+      }
+      for (const skill of flatList) {
+        const tr = document.createElement('tr');
+        tr.className = 'orphan-row';
+        tr.appendChild(createCell(skill.en, 'editable en-cell', { type: 'skill', field: 'en', en: skill.en }));
+        tr.appendChild(createCell(skill.ru, 'editable', { type: 'skill', field: 'ru', en: skill.en }));
+        tr.appendChild(createCell(skill.kr, 'editable kr-cell', { type: 'skill', field: 'kr', en: skill.en }));
+        if (deleteMode) tr.appendChild(createDeleteCell('skill', skill.en));
+        tbody.appendChild(tr);
+      }
+    }
+  }
+
+  if (showOrphans) {
+    const list = (fullData._orphanBuilds || []).filter(matchesSearch);
+    if (list.length) {
+      addSectionRow(tbody, t.sectionOrphans);
+      for (const o of list) {
+        const tr = document.createElement('tr');
+        tr.className = 'orphan-row';
+        tr.appendChild(createCell(o.en, 'editable en-cell', { type: 'orphan', field: 'en', en: o.en }));
+        tr.appendChild(createCell(o.ru, 'editable', { type: 'orphan', field: 'ru', en: o.en }));
+        tr.appendChild(createCell(o.kr, 'editable kr-cell', { type: 'orphan', field: 'kr', en: o.en }));
+        if (deleteMode) tr.appendChild(createDeleteCell('orphan', o.en));
+        tbody.appendChild(tr);
+      }
+    }
   }
 
   setupEditableCells();
@@ -406,6 +568,27 @@ function setupEditableCells() {
           const t = fullData.terms.find(x => x.en === oldEn);
           if (!t) return;
           msg = { action: 'updateEntry', oldEn, type: 'term', data: { ...t, [field]: newVal } };
+        } else if (type === 'skill') {
+          const classEn = this.dataset.class;
+          if (classEn) {
+            const sc = (fullData.skillClasses || []).find(x => x.en === classEn);
+            if (!sc) return;
+            const s = (sc.skills || []).find(x => x.en === oldEn);
+            if (!s) return;
+            msg = { action: 'updateEntry', oldEn, type: 'skill', classEn, data: { ...s, [field]: newVal } };
+          } else {
+            const s = (fullData.skills || []).find(x => x.en === oldEn);
+            if (!s) return;
+            msg = { action: 'updateEntry', oldEn, type: 'skill', data: { ...s, [field]: newVal } };
+          }
+        } else if (type === 'skillClass') {
+          const sc = (fullData.skillClasses || []).find(x => x.en === classEn);
+          if (!sc) return;
+          msg = { action: 'updateEntry', oldEn: classEn, type: 'skillClass', data: { ...sc, [field]: newVal } };
+        } else if (type === 'engraving') {
+          const e = (fullData.engravings || []).find(x => x.en === oldEn);
+          if (!e) return;
+          msg = { action: 'updateEntry', oldEn, type: 'engraving', data: { ...e, [field]: newVal } };
         }
 
         if (msg) {
@@ -437,9 +620,27 @@ async function saveNewEntry() {
   const en = document.getElementById('newEn').value.trim();
   const ru = document.getElementById('newRu').value.trim();
   const kr = document.getElementById('newKr').value.trim();
+  const type = document.getElementById('newType').value;
   if (!en) return;
 
-  let msg = { action: 'addEntry', type: 'orphan', data: { en, ru, kr } };
+  let msg;
+  if (type === 'build') {
+    const classEn = document.getElementById('newParent').value;
+    if (!classEn) return;
+    msg = { action: 'addEntry', type: 'build', classEn, data: { en, ru, kr } };
+  } else if (type === 'class') {
+    msg = { action: 'addEntry', type: 'class', data: { en, ru, kr, builds: [] } };
+  } else if (type === 'term') {
+    msg = { action: 'addEntry', type: 'term', data: { en, ru, kr } };
+  } else if (type === 'skill') {
+    const classEn = document.getElementById('newParent').value;
+    msg = { action: 'addEntry', type: 'skill', classEn, data: { en, ru, kr } };
+  } else if (type === 'engraving') {
+    msg = { action: 'addEntry', type: 'engraving', data: { en, ru, kr } };
+  } else {
+    msg = { action: 'addEntry', type: 'orphan', data: { en, ru, kr } };
+  }
+
   try {
     const res = await chrome.runtime.sendMessage(msg);
     if (res.success) {
@@ -469,7 +670,7 @@ async function syncDictionary() {
     statusEl.textContent = t.syncErr + e.message;
     statusEl.className = 'sync-status err';
   }
-  setTimeout(() => { statusEl.textContent = ''; }, 4000);
+  setTimeout(() => { statusEl.textContent = ''; statusEl.className = 'sync-status'; }, 4000);
 }
 
 function exportDictionary() {
@@ -493,7 +694,7 @@ function importDictionary(e) {
   reader.onload = async (event) => {
     try {
       const data = JSON.parse(event.target.result);
-      if (!data.classes && !data._orphanBuilds && !data.terms) {
+      if (!data.classes && !data._orphanBuilds && !data.terms && !data.engravings && !data.skills) {
         statusEl.textContent = t.importErrorFormat;
         statusEl.className = 'sync-status err';
         return;
@@ -514,6 +715,29 @@ function importDictionary(e) {
   };
   reader.readAsText(file);
 }
+
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area !== 'sync') return;
+  if (changes.theme) {
+    currentTheme = changes.theme.newValue || 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+  }
+  if (changes.targetLang) {
+    targetLang = changes.targetLang.newValue || 'ru';
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === targetLang);
+    });
+    applyLocalization();
+    renderList();
+  }
+  if (changes.isEnabled) {
+    isEnabled = changes.isEnabled.newValue !== false;
+    const toggle = document.getElementById('toggleEnabled');
+    if (toggle) toggle.checked = isEnabled;
+    updateStatus();
+  }
+});
 
 function checkTempSelection() {
   chrome.storage.sync.get('tempSelection', (result) => {
