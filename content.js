@@ -135,7 +135,7 @@
   function doTranslate(text, surrounding) {
     if (!text || !text.trim()) return null;
     let result = text;
-    let changed = false;
+    let matchCount = 0;
 
     if (compiledRegex) {
       compiledRegex.lastIndex = 0;
@@ -143,7 +143,7 @@
         compiledRegex.lastIndex = 0;
         const replaced = result.replace(compiledRegex, (match) => {
           const v = resolveTranslation(match, surrounding || text);
-          if (v !== match) changed = true;
+          if (v !== match) matchCount++;
           return v;
         });
         result = replaced;
@@ -153,10 +153,10 @@
     const custom = applyCustomPatterns(result);
     if (custom !== null) {
       result = custom;
-      changed = true;
+      matchCount = Math.max(matchCount, 1);
     }
 
-    return changed ? result : null;
+    return matchCount > 0 ? { text: result, count: matchCount } : null;
   }
 
   function getSurroundingText(node) {
@@ -178,13 +178,13 @@
     if (!text || !text.trim()) return;
     const surrounding = getSurroundingText(node);
     const result = doTranslate(text, surrounding);
-    if (result === null || result === text) return;
+    if (result === null || result.text === text) return;
     if (node.__origText === undefined) {
       node.__origText = text;
     }
-    node.textContent = result;
+    node.textContent = result.text;
     PROCESSED.add(node);
-    translatedCount++;
+    translatedCount += result.count;
     if (node.parentElement) protectElement(node.parentElement);
   }
 
@@ -200,14 +200,14 @@
       const val = el.getAttribute(attr);
       if (!val || !val.trim()) continue;
       const result = doTranslate(val, surrounding);
-      if (result === null || result === val) continue;
+      if (result === null || result.text === val) continue;
       const dataKey = 'origAttr_' + attr.replace(/-/g, '_');
       if (!el.dataset[dataKey]) {
         el.dataset[dataKey] = val;
       }
-      el.setAttribute(attr, result);
+      el.setAttribute(attr, result.text);
       any = true;
-      translatedCount++;
+      translatedCount += result.count;
     }
     if (any) {
       protectElement(el);

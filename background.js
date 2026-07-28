@@ -2,7 +2,9 @@ const DEFAULT_DICTIONARY_FILES = [
   'dictionary/lt-classes.json',
   'dictionary/lt-engravings.json',
   'dictionary/lt-interface.json',
-  'dictionary/lt-skills.json'
+  'dictionary/lt-skills.json',
+  'dictionary/lt-arkpass.json',
+  'dictionary/lt-classcore.json'
 ];
 
 async function getDictionaryFileList() {
@@ -94,6 +96,44 @@ function flattenData(data, target) {
     });
   });
 
+  (data.arkPassClasses || []).forEach(sc => {
+    sources.forEach(src => {
+      if (sc[src]) addEntry(sc[src], sc[target], {
+        tags: sc.tags || ['arkpass_class', 'class'],
+        priority: 20
+      });
+    });
+    (sc.skills || []).forEach(skill => {
+      if (!skill || !skill.en || !String(skill.en).trim()) return;
+      sources.forEach(src => {
+        if (skill[src]) addEntry(skill[src], skill[target], {
+          parent: sc.en,
+          tags: skill.tags || ['arkpass', (sc.en || '').toLowerCase()],
+          priority: 12
+        });
+      });
+    });
+  });
+
+  (data.classCoreClasses || []).forEach(sc => {
+    sources.forEach(src => {
+      if (sc[src]) addEntry(sc[src], sc[target], {
+        tags: sc.tags || ['classcore_class', 'class'],
+        priority: 20
+      });
+    });
+    (sc.skills || []).forEach(skill => {
+      if (!skill || !skill.en || !String(skill.en).trim()) return;
+      sources.forEach(src => {
+        if (skill[src]) addEntry(skill[src], skill[target], {
+          parent: sc.en,
+          tags: skill.tags || ['classcore', (sc.en || '').toLowerCase()],
+          priority: 12
+        });
+      });
+    });
+  });
+
   if (data._orphanBuilds) {
     data._orphanBuilds.forEach(o => {
       sources.forEach(src => {
@@ -137,6 +177,18 @@ function cleanEmptyEntries(data) {
   if (data.skills) data.skills = data.skills.filter(s => !isEmpty(s));
   if (data.skillClasses) {
     data.skillClasses = data.skillClasses.filter(c => c && c.en && String(c.en).trim()).map(c => {
+      if (!c.skills) c.skills = [];
+      return c;
+    });
+  }
+  if (data.arkPassClasses) {
+    data.arkPassClasses = data.arkPassClasses.filter(c => c && c.en && String(c.en).trim()).map(c => {
+      if (!c.skills) c.skills = [];
+      return c;
+    });
+  }
+  if (data.classCoreClasses) {
+    data.classCoreClasses = data.classCoreClasses.filter(c => c && c.en && String(c.en).trim()).map(c => {
       if (!c.skills) c.skills = [];
       return c;
     });
@@ -255,6 +307,66 @@ function mergeData(target, source) {
     }
   }
 
+  if (!target.arkPassClasses) target.arkPassClasses = [];
+  for (const srcSc of source.arkPassClasses || []) {
+    let existingSc = target.arkPassClasses.find(c => c.en === srcSc.en);
+    if (existingSc) {
+      if (srcSc.ru) existingSc.ru = srcSc.ru;
+      if (srcSc.kr) existingSc.kr = srcSc.kr;
+      if (!existingSc.skills) existingSc.skills = [];
+      for (const srcSk of srcSc.skills || []) {
+        if (!srcSk || !srcSk.en || !String(srcSk.en).trim()) {
+          if (!(srcSk && (srcSk.ru || srcSk.kr))) continue;
+        }
+        const key = (srcSk.en || '').trim();
+        let existingSk = key ? existingSc.skills.find(s => s.en === key) : null;
+        if (existingSk) {
+          if (srcSk.ru) existingSk.ru = srcSk.ru;
+          if (srcSk.kr) existingSk.kr = srcSk.kr;
+        } else {
+          existingSc.skills.push({ ...srcSk });
+        }
+      }
+    } else {
+      target.arkPassClasses.push({
+        en: srcSc.en,
+        ru: srcSc.ru || '',
+        kr: srcSc.kr || '',
+        skills: (srcSc.skills || []).map(s => ({ ...s }))
+      });
+    }
+  }
+
+  if (!target.classCoreClasses) target.classCoreClasses = [];
+  for (const srcSc of source.classCoreClasses || []) {
+    let existingSc = target.classCoreClasses.find(c => c.en === srcSc.en);
+    if (existingSc) {
+      if (srcSc.ru) existingSc.ru = srcSc.ru;
+      if (srcSc.kr) existingSc.kr = srcSc.kr;
+      if (!existingSc.skills) existingSc.skills = [];
+      for (const srcSk of srcSc.skills || []) {
+        if (!srcSk || !srcSk.en || !String(srcSk.en).trim()) {
+          if (!(srcSk && (srcSk.ru || srcSk.kr))) continue;
+        }
+        const key = (srcSk.en || '').trim();
+        let existingSk = key ? existingSc.skills.find(s => s.en === key) : null;
+        if (existingSk) {
+          if (srcSk.ru) existingSk.ru = srcSk.ru;
+          if (srcSk.kr) existingSk.kr = srcSk.kr;
+        } else {
+          existingSc.skills.push({ ...srcSk });
+        }
+      }
+    } else {
+      target.classCoreClasses.push({
+        en: srcSc.en,
+        ru: srcSc.ru || '',
+        kr: srcSc.kr || '',
+        skills: (srcSc.skills || []).map(s => ({ ...s }))
+      });
+    }
+  }
+
   return target;
 }
 
@@ -266,7 +378,9 @@ function mergeWithDeleted(base, user) {
     _orphanBuilds: [],
     terms: [],
     skills: [],
-    skillClasses: []
+    skillClasses: [],
+    arkPassClasses: [],
+    classCoreClasses: []
   };
 
   const userClasses = JSON.parse(JSON.stringify(user.classes || []));
@@ -365,12 +479,70 @@ function mergeWithDeleted(base, user) {
     result.skillClasses.push(copy);
   }
 
+  result.arkPassClasses = [];
+  const userAp = JSON.parse(JSON.stringify(user.arkPassClasses || []));
+  const userApEns = new Set(userAp.map(c => c.en));
+  for (const sc of userAp) {
+    if (deleted.has(sc.en)) continue;
+    const baseSc = (base.arkPassClasses || []).find(c => c.en === sc.en);
+    if (baseSc) {
+      if (!sc.ru) sc.ru = baseSc.ru || '';
+      if (!sc.kr) sc.kr = baseSc.kr || '';
+      const userSkEns = new Set((sc.skills || []).filter(s => s && s.en).map(s => s.en));
+      const mergedSk = [...(sc.skills || [])];
+      for (const sk of baseSc.skills || []) {
+        if (!sk || !sk.en || !String(sk.en).trim()) continue;
+        if (deleted.has(sk.en)) continue;
+        if (!userSkEns.has(sk.en)) mergedSk.push(JSON.parse(JSON.stringify(sk)));
+      }
+      sc.skills = mergedSk;
+    }
+    result.arkPassClasses.push(sc);
+  }
+  for (const sc of base.arkPassClasses || []) {
+    if (deleted.has(sc.en) || userApEns.has(sc.en)) continue;
+    const copy = JSON.parse(JSON.stringify(sc));
+    if (copy.skills) {
+      copy.skills = copy.skills.filter(s => !s || !s.en || !deleted.has(s.en));
+    }
+    result.arkPassClasses.push(copy);
+  }
+
+  result.classCoreClasses = [];
+  const userCc = JSON.parse(JSON.stringify(user.classCoreClasses || []));
+  const userCcEns = new Set(userCc.map(c => c.en));
+  for (const sc of userCc) {
+    if (deleted.has(sc.en)) continue;
+    const baseSc = (base.classCoreClasses || []).find(c => c.en === sc.en);
+    if (baseSc) {
+      if (!sc.ru) sc.ru = baseSc.ru || '';
+      if (!sc.kr) sc.kr = baseSc.kr || '';
+      const userSkEns = new Set((sc.skills || []).filter(s => s && s.en).map(s => s.en));
+      const mergedSk = [...(sc.skills || [])];
+      for (const sk of baseSc.skills || []) {
+        if (!sk || !sk.en || !String(sk.en).trim()) continue;
+        if (deleted.has(sk.en)) continue;
+        if (!userSkEns.has(sk.en)) mergedSk.push(JSON.parse(JSON.stringify(sk)));
+      }
+      sc.skills = mergedSk;
+    }
+    result.classCoreClasses.push(sc);
+  }
+  for (const sc of base.classCoreClasses || []) {
+    if (deleted.has(sc.en) || userCcEns.has(sc.en)) continue;
+    const copy = JSON.parse(JSON.stringify(sc));
+    if (copy.skills) {
+      copy.skills = copy.skills.filter(s => !s || !s.en || !deleted.has(s.en));
+    }
+    result.classCoreClasses.push(copy);
+  }
+
   return result;
 }
 
 async function loadDefaultDictionaries() {
   const files = await getDictionaryFileList();
-  let merged = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [] };
+  let merged = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [] };
   for (const file of files) {
     try {
       const res = await fetch(chrome.runtime.getURL(file));
@@ -403,6 +575,20 @@ async function markDeletedIfInBase(ud, en, type, classEn) {
       inBase = baseData.skills?.some(s => s.en === en) ||
         baseData.skillClasses?.some(c => c.skills?.some(s => s.en === en));
     }
+  } else if (type === 'arkpass') {
+    if (classEn) {
+      const sc = baseData.arkPassClasses?.find(c => c.en === classEn);
+      inBase = sc?.skills?.some(s => s.en === en);
+    }
+  } else if (type === 'classcore') {
+    if (classEn) {
+      const sc = baseData.classCoreClasses?.find(c => c.en === classEn);
+      inBase = sc?.skills?.some(s => s.en === en);
+    }
+  } else if (type === 'arkPassClass') {
+    inBase = baseData.arkPassClasses?.some(c => c.en === en);
+  } else if (type === 'classCoreClass') {
+    inBase = baseData.classCoreClasses?.some(c => c.en === en);
   }
 
   if (inBase) {
@@ -432,12 +618,26 @@ async function removeFromUserData(ud, en, type, classEn) {
     }
   } else if (type === 'skillClass') {
     ud.skillClasses = (ud.skillClasses || []).filter(c => c.en !== en);
+  } else if (type === 'arkpass') {
+    if (classEn) {
+      const sc = ud.arkPassClasses?.find(c => c.en === classEn);
+      if (sc) sc.skills = (sc.skills || []).filter(s => s.en !== en);
+    }
+  } else if (type === 'classcore') {
+    if (classEn) {
+      const sc = ud.classCoreClasses?.find(c => c.en === classEn);
+      if (sc) sc.skills = (sc.skills || []).filter(s => s.en !== en);
+    }
+  } else if (type === 'arkPassClass') {
+    ud.arkPassClasses = (ud.arkPassClasses || []).filter(c => c.en !== en);
+  } else if (type === 'classCoreClass') {
+    ud.classCoreClasses = (ud.classCoreClasses || []).filter(c => c.en !== en);
   }
 }
 
 async function handleAddEntry(entry) {
   const { userData } = await chrome.storage.local.get('userData');
-  const ud = userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], _deleted: [] };
+  const ud = userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [], _deleted: [] };
 
   if (entry.type === 'orphan') {
     const existing = (ud._orphanBuilds || []).find(o => o.en === entry.data.en);
@@ -505,6 +705,32 @@ async function handleAddEntry(entry) {
         ud.skills.unshift(entry.data);
       }
     }
+  } else if (entry.type === 'arkpass') {
+    if (entry.classEn) {
+      let sc = (ud.arkPassClasses || []).find(c => c.en === entry.classEn);
+      if (!sc) {
+        if (!ud.arkPassClasses) ud.arkPassClasses = [];
+        sc = { en: entry.classEn, ru: entry.classRu || '', kr: entry.classKr || '', skills: [] };
+        ud.arkPassClasses.unshift(sc);
+      }
+      if (!sc.skills) sc.skills = [];
+      const existing = sc.skills.find(s => s.en === entry.data.en);
+      if (existing) Object.assign(existing, entry.data);
+      else sc.skills.unshift(entry.data);
+    }
+  } else if (entry.type === 'classcore') {
+    if (entry.classEn) {
+      let sc = (ud.classCoreClasses || []).find(c => c.en === entry.classEn);
+      if (!sc) {
+        if (!ud.classCoreClasses) ud.classCoreClasses = [];
+        sc = { en: entry.classEn, ru: entry.classRu || '', kr: entry.classKr || '', skills: [] };
+        ud.classCoreClasses.unshift(sc);
+      }
+      if (!sc.skills) sc.skills = [];
+      const existing = sc.skills.find(s => s.en === entry.data.en);
+      if (existing) Object.assign(existing, entry.data);
+      else sc.skills.unshift(entry.data);
+    }
   }
 
   await chrome.storage.local.set({ userData: ud });
@@ -513,7 +739,7 @@ async function handleAddEntry(entry) {
 
 async function handleUpdateEntry(oldEn, entry) {
   const { userData } = await chrome.storage.local.get('userData');
-  const ud = userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], _deleted: [] };
+  const ud = userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [], _deleted: [] };
 
   if (entry.type === 'orphan') {
     if (oldEn !== entry.data.en) await markDeletedIfInBase(ud, oldEn, 'orphan');
@@ -602,6 +828,54 @@ async function handleUpdateEntry(oldEn, entry) {
         ud.skills.unshift(entry.data);
       }
     }
+  } else if (entry.type === 'arkpass') {
+    if (oldEn !== entry.data.en) await markDeletedIfInBase(ud, oldEn, 'arkpass', entry.classEn);
+    await removeFromUserData(ud, oldEn, 'arkpass', entry.classEn);
+    if (entry.classEn) {
+      let sc = (ud.arkPassClasses || []).find(c => c.en === entry.classEn);
+      if (!sc) {
+        if (!ud.arkPassClasses) ud.arkPassClasses = [];
+        sc = { en: entry.classEn, ru: entry.classRu || '', kr: entry.classKr || '', skills: [] };
+        ud.arkPassClasses.unshift(sc);
+      }
+      if (!sc.skills) sc.skills = [];
+      const existing = sc.skills.find(s => s.en === entry.data.en);
+      if (existing) Object.assign(existing, entry.data);
+      else sc.skills.unshift(entry.data);
+    }
+  } else if (entry.type === 'classcore') {
+    if (oldEn !== entry.data.en) await markDeletedIfInBase(ud, oldEn, 'classcore', entry.classEn);
+    await removeFromUserData(ud, oldEn, 'classcore', entry.classEn);
+    if (entry.classEn) {
+      let sc = (ud.classCoreClasses || []).find(c => c.en === entry.classEn);
+      if (!sc) {
+        if (!ud.classCoreClasses) ud.classCoreClasses = [];
+        sc = { en: entry.classEn, ru: entry.classRu || '', kr: entry.classKr || '', skills: [] };
+        ud.classCoreClasses.unshift(sc);
+      }
+      if (!sc.skills) sc.skills = [];
+      const existing = sc.skills.find(s => s.en === entry.data.en);
+      if (existing) Object.assign(existing, entry.data);
+      else sc.skills.unshift(entry.data);
+    }
+  } else if (entry.type === 'arkPassClass') {
+    if (oldEn !== entry.data.en) await markDeletedIfInBase(ud, oldEn, 'arkPassClass');
+    await removeFromUserData(ud, oldEn, 'arkPassClass');
+    const existing = (ud.arkPassClasses || []).find(c => c.en === entry.data.en);
+    if (existing) Object.assign(existing, entry.data);
+    else {
+      if (!ud.arkPassClasses) ud.arkPassClasses = [];
+      ud.arkPassClasses.unshift({ ...entry.data, skills: entry.data.skills || [] });
+    }
+  } else if (entry.type === 'classCoreClass') {
+    if (oldEn !== entry.data.en) await markDeletedIfInBase(ud, oldEn, 'classCoreClass');
+    await removeFromUserData(ud, oldEn, 'classCoreClass');
+    const existing = (ud.classCoreClasses || []).find(c => c.en === entry.data.en);
+    if (existing) Object.assign(existing, entry.data);
+    else {
+      if (!ud.classCoreClasses) ud.classCoreClasses = [];
+      ud.classCoreClasses.unshift({ ...entry.data, skills: entry.data.skills || [] });
+    }
   }
 
   await chrome.storage.local.set({ userData: ud });
@@ -610,7 +884,7 @@ async function handleUpdateEntry(oldEn, entry) {
 
 async function handleDeleteEntry(en, type, classEn) {
   const { userData, baseData } = await chrome.storage.local.get(['userData', 'baseData']);
-  const ud = userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], _deleted: [] };
+  const ud = userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [], _deleted: [] };
 
   let inBase = false;
   if (baseData) {
@@ -629,6 +903,20 @@ async function handleDeleteEntry(en, type, classEn) {
         inBase = baseData.skills?.some(s => s.en === en) ||
           baseData.skillClasses?.some(c => c.skills?.some(s => s.en === en));
       }
+    } else if (type === 'arkpass') {
+      if (classEn) {
+        const sc = baseData.arkPassClasses?.find(c => c.en === classEn);
+        inBase = sc?.skills?.some(s => s.en === en);
+      }
+    } else if (type === 'classcore') {
+      if (classEn) {
+        const sc = baseData.classCoreClasses?.find(c => c.en === classEn);
+        inBase = sc?.skills?.some(s => s.en === en);
+      }
+    } else if (type === 'arkPassClass') {
+      inBase = baseData.arkPassClasses?.some(c => c.en === en);
+    } else if (type === 'classCoreClass') {
+      inBase = baseData.classCoreClasses?.some(c => c.en === en);
     }
   }
 
@@ -644,14 +932,14 @@ async function handleDeleteEntry(en, type, classEn) {
 
 async function handleImport(data) {
   const { userData } = await chrome.storage.local.get('userData');
-  const ud = userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], _deleted: [] };
+  const ud = userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [], _deleted: [] };
   mergeData(ud, data);
   await chrome.storage.local.set({ userData: ud });
   await rebuildStorage();
 }
 
 async function syncFromUrls(urls) {
-  let merged = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [] };
+  let merged = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [] };
   let totalCount = 0;
 
   for (const url of urls) {
@@ -665,7 +953,9 @@ async function syncFromUrls(urls) {
                     (data._orphanBuilds?.length || 0) +
                     (data.terms?.length || 0) +
                     (data.skills?.length || 0) +
-                    (data.skillClasses?.length || 0);
+                    (data.skillClasses?.length || 0) +
+                    (data.arkPassClasses?.length || 0) +
+                    (data.classCoreClasses?.length || 0);
     } catch (e) {
       console.error('Sync failed:', url, e.message);
     }
@@ -675,10 +965,7 @@ async function syncFromUrls(urls) {
     throw new Error('Failed to load any dictionary');
   }
 
-  const { userData } = await chrome.storage.local.get('userData');
-  const existing = userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], _deleted: [] };
-  mergeData(existing, merged);
-  await chrome.storage.local.set({ userData: existing });
+  await chrome.storage.local.set({ baseData: merged });
   await rebuildStorage();
 
   return { count: totalCount };
@@ -691,8 +978,8 @@ async function rebuildStorage() {
   ]);
   const targetLang = syncResult.targetLang || 'ru';
   const fullData = cleanEmptyEntries(mergeWithDeleted(
-    baseData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [] },
-    userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], _deleted: [] }
+    baseData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [] },
+    userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [], _deleted: [] }
   ));
   const flatDict = flattenData(fullData, targetLang);
   await chrome.storage.local.set({ fullData, dictionary: flatDict });
@@ -708,7 +995,9 @@ const SYNC_URLS = [
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classes.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-engravings.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-interface.json',
-  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-skills.json'
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-skills.json',
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-arkpass.json',
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classcore.json'
 ];
 const AUTO_SYNC_THROTTLE_MS = 48 * 60 * 60 * 1000;
 
@@ -815,7 +1104,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'getUserData') {
     reply((async () => {
       const { userData } = await chrome.storage.local.get('userData');
-      return { userData: userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], _deleted: [] } };
+      return { userData: userData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [], _deleted: [] } };
     })());
     return true;
   }

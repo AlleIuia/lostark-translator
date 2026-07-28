@@ -442,6 +442,18 @@ async function loadUserWords() {
         if (sk && sk.en) lines.push(['skill', sk.en, sk.ru || '', sk.kr || '']);
       }
     }
+    for (const sc of ud.arkPassClasses || []) {
+      lines.push(['arkPass', sc.en, sc.ru || '', sc.kr || '']);
+      for (const sk of sc.skills || []) {
+        if (sk && sk.en) lines.push(['arkpass', sk.en, sk.ru || '', sk.kr || '']);
+      }
+    }
+    for (const sc of ud.classCoreClasses || []) {
+      lines.push(['classCore', sc.en, sc.ru || '', sc.kr || '']);
+      for (const sk of sc.skills || []) {
+        if (sk && sk.en) lines.push(['classcore', sk.en, sk.ru || '', sk.kr || '']);
+      }
+    }
     if (!lines.length) {
       box.textContent = t.userEmpty;
       return;
@@ -489,11 +501,13 @@ async function exportUserWords() {
       _orphanBuilds: ud._orphanBuilds || [],
       terms: ud.terms || [],
       skills: ud.skills || [],
-      skillClasses: ud.skillClasses || []
+      skillClasses: ud.skillClasses || [],
+      arkPassClasses: ud.arkPassClasses || [],
+      classCoreClasses: ud.classCoreClasses || []
     };
     const total = payload.classes.length + payload.engravings.length +
       payload._orphanBuilds.length + payload.terms.length + payload.skills.length +
-      payload.skillClasses.length;
+      payload.skillClasses.length + payload.arkPassClasses.length + payload.classCoreClasses.length;
     if (!total) {
       st.textContent = t.exportUserEmpty;
       st.className = 'status err';

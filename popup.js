@@ -10,7 +10,9 @@ const SYNC_URLS = [
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classes.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-engravings.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-interface.json',
-  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-skills.json'
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-skills.json',
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-arkpass.json',
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classcore.json'
 ];
 
 const UI_TEXTS = {
@@ -22,11 +24,12 @@ const UI_TEXTS = {
     deleteConfirm: 'Удалить запись?',
     detachTitle: 'Открыть в отдельном окне', optionsTitle: 'Настройки',
     filterAll: 'Все', filterClasses: 'Классы', filterEngravings: 'Гравировки',
-    filterTerms: 'Термины', filterSkills: 'Умения', filterOrphans: 'Прочее',
+    filterTerms: 'Термины', filterSkills: 'Умения', filterArkpass: 'Система А.Р.К.', filterClasscore: 'Ядра', filterOrphans: 'Прочее',
     sectionClasses: 'Классы / Сборки', sectionEngravings: 'Гравировки',
-    sectionTerms: 'Термины', sectionSkills: 'Умения', sectionOrphans: 'Прочее',
+    sectionTerms: 'Термины', sectionSkills: 'Умения', sectionArkpass: 'Система А.Р.К.', sectionClasscore: 'Ядра', sectionOrphans: 'Прочее',
     typeOrphan: 'Прочее', typeTerm: 'Термин', typeSkill: 'Умение',
     typeEngraving: 'Гравировка', typeBuild: 'Сборка', typeClass: 'Класс',
+    typeArkpass: 'Система А.Р.К.', typeClasscore: 'Ядра',
     statsLabel: 'переведено: ',
     syncLoading: 'Загрузка…', syncOk: 'Словарь обновлён', syncErr: 'Ошибка синхронизации: ',
     importErrorFormat: 'Неверный формат файла.', importErrorJson: 'Ошибка чтения JSON: '
@@ -39,11 +42,12 @@ const UI_TEXTS = {
     deleteConfirm: 'Delete this entry?',
     detachTitle: 'Open in separate window', optionsTitle: 'Settings',
     filterAll: 'All', filterClasses: 'Classes', filterEngravings: 'Engravings',
-    filterTerms: 'Terms', filterSkills: 'Skills', filterOrphans: 'Other',
+    filterTerms: 'Terms', filterSkills: 'Skills', filterArkpass: 'Ark Passive', filterClasscore: 'Cores', filterOrphans: 'Other',
     sectionClasses: 'Classes / Builds', sectionEngravings: 'Engravings',
-    sectionTerms: 'Terms', sectionSkills: 'Skills', sectionOrphans: 'Other',
+    sectionTerms: 'Terms', sectionSkills: 'Skills', sectionArkpass: 'Ark Passive', sectionClasscore: 'Cores', sectionOrphans: 'Other',
     typeOrphan: 'Other', typeTerm: 'Term', typeSkill: 'Skill',
     typeEngraving: 'Engraving', typeBuild: 'Build', typeClass: 'Class',
+    typeArkpass: 'Ark Passive', typeClasscore: 'Core',
     statsLabel: 'translated: ',
     syncLoading: 'Loading…', syncOk: 'Dictionary updated', syncErr: 'Sync error: ',
     importErrorFormat: 'Invalid file format.', importErrorJson: 'JSON read error: '
@@ -56,18 +60,19 @@ const UI_TEXTS = {
     deleteConfirm: '이 항목을 삭제할까요?',
     detachTitle: '별도 창에서 열기', optionsTitle: '설정',
     filterAll: '전체', filterClasses: '직업', filterEngravings: '각인',
-    filterTerms: '용어', filterSkills: '스킬', filterOrphans: '기타',
+    filterTerms: '용어', filterSkills: '스킬', filterArkpass: '아크 패시브', filterClasscore: '코어', filterOrphans: '기타',
     sectionClasses: '직업 / 빌드', sectionEngravings: '각인',
-    sectionTerms: '용어', sectionSkills: '스킬', sectionOrphans: '기타',
+    sectionTerms: '용어', sectionSkills: '스킬', sectionArkpass: '아크 패시브', sectionClasscore: '코어', sectionOrphans: '기타',
     typeOrphan: '기타', typeTerm: '용어', typeSkill: '스킬',
     typeEngraving: '각인', typeBuild: '빌드', typeClass: '직업',
+    typeArkpass: '아크 패시브', typeClasscore: '코어',
     statsLabel: '번역됨: ',
     syncLoading: '로딩 중…', syncOk: '사전 업데이트됨', syncErr: '동기화 오류: ',
     importErrorFormat: '잘못된 파일 형식입니다.', importErrorJson: 'JSON 읽기 오류: '
   }
 };
 
-let fullData = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [] };
+let fullData = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [] };
 let isEnabled = true;
 let targetLang = 'ru';
 let currentTheme = 'dark';
@@ -130,7 +135,8 @@ function applyLocalization() {
   }
   const filters = {
     all: t.filterAll, classes: t.filterClasses, engravings: t.filterEngravings,
-    terms: t.filterTerms, skills: t.filterSkills, orphans: t.filterOrphans
+    terms: t.filterTerms, skills: t.filterSkills, arkpass: t.filterArkpass,
+    classcore: t.filterClasscore, orphans: t.filterOrphans
   };
   document.querySelectorAll('.filter-btn').forEach(btn => {
     const f = btn.dataset.filter;
@@ -145,7 +151,9 @@ function applyLocalization() {
       skill: t.typeSkill,
       engraving: t.typeEngraving,
       build: t.typeBuild,
-      class: t.typeClass
+      class: t.typeClass,
+      arkpass: t.typeArkpass,
+      classcore: t.typeClasscore
     };
     for (const opt of typeSel.options) {
       if (typeLabels[opt.value]) opt.textContent = typeLabels[opt.value];
@@ -167,7 +175,7 @@ function loadData() {
     applyLocalization();
   });
   chrome.storage.local.get(['fullData'], (localResult) => {
-    fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [] };
+    fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [] };
     renderList();
   });
 }
@@ -248,7 +256,7 @@ function setupListeners() {
     form.style.display = form.style.display === 'flex' ? 'none' : 'flex';
     if (form.style.display === 'flex') {
       const type = document.getElementById('newType').value;
-      if (type === 'build' || type === 'skill') {
+      if (type === 'build' || type === 'skill' || type === 'arkpass' || type === 'classcore') {
         document.getElementById('newParent').style.display = '';
         populateParentSelect(type);
       }
@@ -259,7 +267,7 @@ function setupListeners() {
   document.getElementById('newType').addEventListener('change', () => {
     const type = document.getElementById('newType').value;
     const parentSel = document.getElementById('newParent');
-    if (type === 'build' || type === 'skill') {
+    if (type === 'build' || type === 'skill' || type === 'arkpass' || type === 'classcore') {
       parentSel.style.display = '';
       populateParentSelect(type);
     } else {
@@ -297,15 +305,22 @@ function setupListeners() {
 function populateParentSelect(type) {
   const sel = document.getElementById('newParent');
   sel.innerHTML = '';
-  const list = (type === 'skill')
-    ? (fullData.skillClasses || []).concat(
-        (fullData.classes || []).filter(c => !(fullData.skillClasses || []).some(s => s.en === c.en))
-      )
-    : (fullData.classes || []);
+  let list;
+  if (type === 'skill') {
+    list = (fullData.skillClasses || []).concat(
+      (fullData.classes || []).filter(c => !(fullData.skillClasses || []).some(s => s.en === c.en))
+    );
+  } else if (type === 'arkpass') {
+    list = fullData.arkPassClasses || fullData.classes || [];
+  } else if (type === 'classcore') {
+    list = fullData.classCoreClasses || fullData.classes || [];
+  } else {
+    list = fullData.classes || [];
+  }
   for (const cls of list) {
     const opt = document.createElement('option');
     opt.value = cls.en;
-    opt.textContent = cls.en;
+    opt.textContent = (cls[targetLang] && String(cls[targetLang]).trim()) ? cls[targetLang] : cls.en;
     sel.appendChild(opt);
   }
 }
@@ -321,7 +336,7 @@ function clearAddForm() {
 function reloadData() {
   return new Promise((resolve) => {
     chrome.storage.local.get(['fullData'], (localResult) => {
-      fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [] };
+      fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [] };
       renderList();
       resolve();
     });
@@ -477,6 +492,7 @@ function renderList() {
       trClass.appendChild(createCell(sc.en, 'editable', { type: 'skillClass', field: 'en', class: sc.en }));
       trClass.appendChild(createCell(sc.ru, 'editable', { type: 'skillClass', field: 'ru', class: sc.en }));
       trClass.appendChild(createCell(sc.kr, 'editable kr-cell', { type: 'skillClass', field: 'kr', class: sc.en }));
+      if (deleteMode) trClass.appendChild(createDeleteCell('skillClass', sc.en));
       tbody.appendChild(trClass);
 
       const skillsToShow = currentSearch
@@ -505,6 +521,69 @@ function renderList() {
         tr.appendChild(createCell(skill.ru, 'editable', { type: 'skill', field: 'ru', en: skill.en }));
         tr.appendChild(createCell(skill.kr, 'editable kr-cell', { type: 'skill', field: 'kr', en: skill.en }));
         if (deleteMode) tr.appendChild(createDeleteCell('skill', skill.en));
+        tbody.appendChild(tr);
+      }
+    }
+  }
+
+
+  const showArkpass = currentFilter === 'all' || currentFilter === 'arkpass';
+  if (showArkpass) {
+    let any = false;
+    for (const sc of fullData.arkPassClasses || []) {
+      const clsMatch = matchesSearch(sc);
+      const matched = (sc.skills || []).filter(s => s && s.en && String(s.en).trim() && matchesSearch(s));
+      if (!clsMatch && matched.length === 0 && !(currentSearch === '' && (sc.skills || []).length)) continue;
+      if (!any) {
+        addSectionRow(tbody, t.sectionArkpass);
+        any = true;
+      }
+      const trClass = document.createElement('tr');
+      trClass.className = 'class-row';
+      trClass.appendChild(createCell(sc.en, 'editable', { type: 'arkPassClass', field: 'en', class: sc.en }));
+      trClass.appendChild(createCell(sc.ru, 'editable', { type: 'arkPassClass', field: 'ru', class: sc.en }));
+      trClass.appendChild(createCell(sc.kr, 'editable kr-cell', { type: 'arkPassClass', field: 'kr', class: sc.en }));
+      if (deleteMode) trClass.appendChild(createDeleteCell('arkPassClass', sc.en));
+      tbody.appendChild(trClass);
+      const toShow = currentSearch ? matched : (sc.skills || []).filter(s => s && s.en && String(s.en).trim());
+      for (const sk of toShow) {
+        const tr = document.createElement('tr');
+        tr.className = 'build-row';
+        tr.appendChild(createCell(sk.en, 'editable en-cell', { type: 'arkpass', field: 'en', class: sc.en, build: sk.en }));
+        tr.appendChild(createCell(sk.ru, 'editable', { type: 'arkpass', field: 'ru', class: sc.en, build: sk.en }));
+        tr.appendChild(createCell(sk.kr, 'editable kr-cell', { type: 'arkpass', field: 'kr', class: sc.en, build: sk.en }));
+        if (deleteMode) tr.appendChild(createDeleteCell('arkpass', sk.en, sc.en));
+        tbody.appendChild(tr);
+      }
+    }
+  }
+
+  const showClasscore = currentFilter === 'all' || currentFilter === 'classcore';
+  if (showClasscore) {
+    let any = false;
+    for (const sc of fullData.classCoreClasses || []) {
+      const clsMatch = matchesSearch(sc);
+      const matched = (sc.skills || []).filter(s => s && s.en && String(s.en).trim() && matchesSearch(s));
+      if (!clsMatch && matched.length === 0 && !(currentSearch === '' && (sc.skills || []).length)) continue;
+      if (!any) {
+        addSectionRow(tbody, t.sectionClasscore);
+        any = true;
+      }
+      const trClass = document.createElement('tr');
+      trClass.className = 'class-row';
+      trClass.appendChild(createCell(sc.en, 'editable', { type: 'classCoreClass', field: 'en', class: sc.en }));
+      trClass.appendChild(createCell(sc.ru, 'editable', { type: 'classCoreClass', field: 'ru', class: sc.en }));
+      trClass.appendChild(createCell(sc.kr, 'editable kr-cell', { type: 'classCoreClass', field: 'kr', class: sc.en }));
+      if (deleteMode) trClass.appendChild(createDeleteCell('classCoreClass', sc.en));
+      tbody.appendChild(trClass);
+      const toShow = currentSearch ? matched : (sc.skills || []).filter(s => s && s.en && String(s.en).trim());
+      for (const sk of toShow) {
+        const tr = document.createElement('tr');
+        tr.className = 'build-row';
+        tr.appendChild(createCell(sk.en, 'editable en-cell', { type: 'classcore', field: 'en', class: sc.en, build: sk.en }));
+        tr.appendChild(createCell(sk.ru, 'editable', { type: 'classcore', field: 'ru', class: sc.en, build: sk.en }));
+        tr.appendChild(createCell(sk.kr, 'editable kr-cell', { type: 'classcore', field: 'kr', class: sc.en, build: sk.en }));
+        if (deleteMode) tr.appendChild(createDeleteCell('classcore', sk.en, sc.en));
         tbody.appendChild(tr);
       }
     }
@@ -585,6 +664,28 @@ function setupEditableCells() {
           const sc = (fullData.skillClasses || []).find(x => x.en === classEn);
           if (!sc) return;
           msg = { action: 'updateEntry', oldEn: classEn, type: 'skillClass', data: { ...sc, [field]: newVal } };
+        } else if (type === 'arkpass') {
+          const classEn = this.dataset.class;
+          const sc = (fullData.arkPassClasses || []).find(x => x.en === classEn);
+          if (!sc) return;
+          const s = (sc.skills || []).find(x => x.en === oldEn);
+          if (!s) return;
+          msg = { action: 'updateEntry', oldEn, type: 'arkpass', classEn, data: { ...s, [field]: newVal } };
+        } else if (type === 'classcore') {
+          const classEn = this.dataset.class;
+          const sc = (fullData.classCoreClasses || []).find(x => x.en === classEn);
+          if (!sc) return;
+          const s = (sc.skills || []).find(x => x.en === oldEn);
+          if (!s) return;
+          msg = { action: 'updateEntry', oldEn, type: 'classcore', classEn, data: { ...s, [field]: newVal } };
+        } else if (type === 'arkPassClass') {
+          const sc = (fullData.arkPassClasses || []).find(x => x.en === classEn);
+          if (!sc) return;
+          msg = { action: 'updateEntry', oldEn: classEn, type: 'arkPassClass', data: { ...sc, [field]: newVal } };
+        } else if (type === 'classCoreClass') {
+          const sc = (fullData.classCoreClasses || []).find(x => x.en === classEn);
+          if (!sc) return;
+          msg = { action: 'updateEntry', oldEn: classEn, type: 'classCoreClass', data: { ...sc, [field]: newVal } };
         } else if (type === 'engraving') {
           const e = (fullData.engravings || []).find(x => x.en === oldEn);
           if (!e) return;
@@ -635,6 +736,14 @@ async function saveNewEntry() {
   } else if (type === 'skill') {
     const classEn = document.getElementById('newParent').value;
     msg = { action: 'addEntry', type: 'skill', classEn, data: { en, ru, kr } };
+  } else if (type === 'arkpass') {
+    const classEn = document.getElementById('newParent').value;
+    if (!classEn) return;
+    msg = { action: 'addEntry', type: 'arkpass', classEn, data: { en, ru, kr } };
+  } else if (type === 'classcore') {
+    const classEn = document.getElementById('newParent').value;
+    if (!classEn) return;
+    msg = { action: 'addEntry', type: 'classcore', classEn, data: { en, ru, kr } };
   } else if (type === 'engraving') {
     msg = { action: 'addEntry', type: 'engraving', data: { en, ru, kr } };
   } else {
@@ -644,8 +753,10 @@ async function saveNewEntry() {
   try {
     const res = await chrome.runtime.sendMessage(msg);
     if (res.success) {
-      clearAddForm();
-      document.getElementById('addForm').style.display = 'none';
+      document.getElementById('newEn').value = '';
+      document.getElementById('newRu').value = '';
+      document.getElementById('newKr').value = '';
+      document.getElementById('newEn').focus();
       await reloadData();
     }
   } catch (e) { console.error(e); }
