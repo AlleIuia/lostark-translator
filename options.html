@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lost Ark Translator Settings</title>
+  <title>LA Translator Settings</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -106,7 +106,7 @@
   </style>
 </head>
 <body>
-  <h1 id="pageTitle">Lost Ark Translator Settings</h1>
+  <h1 id="pageTitle">LA Translator Settings</h1>
 
   <h2 id="secTheme">Theme</h2>
   <div class="card">
@@ -119,6 +119,24 @@
     </div>
   </div>
 
+  <h2 id="secTermMode">Term mode</h2>
+  <div class="card">
+    <p class="hint" id="hintTermMode">Mode is switched in the popup (ЗА / ПД / СК). Lists below set the mode automatically when you open a matching site (Tooltip → Brackets → Replace → last mode from popup).</p>
+    <div class="row" style="margin-top:10px;flex-direction:column;align-items:stretch;gap:4px;">
+      <span class="label" id="lblTermReplaceSites" style="min-width:0;">Replace sites</span>
+      <textarea id="termModeReplaceSites" rows="2" placeholder="maxroll.gg&#10;loawa.com"></textarea>
+    </div>
+    <div class="row" style="flex-direction:column;align-items:stretch;gap:4px;">
+      <span class="label" id="lblTermAnnotateSites" style="min-width:0;">Tooltip sites</span>
+      <textarea id="termModeAnnotateSites" rows="2" placeholder="reddit.com&#10;www.reddit.com"></textarea>
+    </div>
+    <div class="row" style="flex-direction:column;align-items:stretch;gap:4px;">
+      <span class="label" id="lblTermBracketsSites" style="min-width:0;">Brackets sites</span>
+      <textarea id="termModeBracketsSites" rows="2"></textarea>
+    </div>
+    <p class="hint" id="hintTermModeSites">One domain per line. On visit, mode is taken from lists (Tooltip → Brackets → Replace → popup mode).</p>
+  </div>
+
   <h2 id="secSites">Sites</h2>
   <div class="card">
     <div class="row">
@@ -127,6 +145,7 @@
         <option value="everywhere">Everywhere</option>
         <option value="allowlist">Allowlist only</option>
         <option value="blocklist">Except blocklist</option>
+        <option value="developer">Developer list</option>
       </select>
     </div>
     <div class="row">
@@ -166,9 +185,18 @@
     <div class="row">
       <button class="btn" id="exportBtn">Export</button>
       <button class="btn" id="importBtn">Import</button>
+      <button class="btn" id="exportSettingsBtn">Export settings</button>
+      <button class="btn" id="importSettingsBtn">Import settings</button>
       <input type="file" id="importFile" accept=".json" style="display:none;">
+      <input type="file" id="importSettingsFile" accept=".json" style="display:none;">
       <span class="status" id="ioStatus"></span>
     </div>
+    <p class="hint" id="hintExportSettings">Settings export: term-mode site lists, site allow/block lists, and custom regex rules.</p>
+    <div class="row" style="margin-top:10px;">
+      <button class="btn btn-danger" id="clearDictBtn">Clear dictionary</button>
+      <span class="status" id="clearDictStatus"></span>
+    </div>
+    <p class="hint" id="hintClearDict">Removes all user entries and restores the bundled default dictionary.</p>
   </div>
 
   <h2 id="secPatterns">Custom regex patterns</h2>

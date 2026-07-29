@@ -1,14 +1,25 @@
 const UI = {
   ru: {
-    title: 'Lost Ark Translator Settings',
+    title: 'LA Translator Settings',
     secTheme: 'Тема',
     lblThemeDark: 'Тёмная тема',
     lblThemeLight: 'Светлая тема',
+    secTermMode: 'Режим терминов',
+    lblTermMode: 'Режим',
+    termReplace: 'Замена',
+    termAnnotate: 'Подсказка',
+    termBrackets: 'Скобки',
+    hintTermMode: 'Режим переключается в главном меню (ЗА / ПД / СК). Списки ниже задают режим автоматически при открытии сайта (Подсказка → Скобки → Замена → последний режим из меню).',
+    lblTermReplaceSites: 'Сайты: Замена',
+    lblTermAnnotateSites: 'Сайты: Подсказка',
+    lblTermBracketsSites: 'Сайты: Скобки',
+    hintTermModeSites: 'По одному домену на строку. При открытии сайта режим берётся из списка (Подсказка → Скобки → Замена → по умолчанию).',
     secSites: 'Сайты',
     lblSiteMode: 'Режим',
     siteEverywhere: 'Везде',
     siteAllowlist: 'Только разрешённые',
     siteBlocklist: 'Кроме запрещённых',
+    siteDeveloper: 'Список разработчика',
     sitesPlaceholder: 'По одному домену на строку\nloawa.com\nmaxroll.gg',
     secSync: 'Автосинхронизация',
     lblAutoSync: 'Включить',
@@ -40,18 +51,39 @@ const UI = {
     importErr: 'Ошибка импорта: ',
     exportOk: 'Экспорт выполнен',
     invalidRegex: 'Неверный regex: ',
-    lastPrefix: 'Последний: '
+    lastPrefix: 'Последний: ',
+    exportSettingsBtn: 'Экспорт настроек',
+    importSettingsBtn: 'Импорт настроек',
+    hintExportSettings: 'Экспорт: списки сайтов режимов терминов, списки сайтов расширения и свои regex-правила.',
+    exportSettingsOk: 'Настройки экспортированы',
+    importSettingsOk: 'Настройки импортированы',
+    clearDictBtn: 'Удалить весь словарь',
+    hintClearDict: 'Удаляет все пользовательские записи и восстанавливает словарь по умолчанию из расширения.',
+    clearDictConfirm: 'Удалить весь пользовательский словарь и сбросить к встроенному? Это нельзя отменить.',
+    clearDictOk: 'Словарь очищен',
+    clearDictErr: 'Ошибка: '
   },
   en: {
-    title: 'Lost Ark Translator Settings',
+    title: 'LA Translator Settings',
     secTheme: 'Theme',
     lblThemeDark: 'Dark theme',
     lblThemeLight: 'Light theme',
+    secTermMode: 'Term mode',
+    lblTermMode: 'Mode',
+    termReplace: 'Replace',
+    termAnnotate: 'Tooltip',
+    termBrackets: 'Brackets',
+    hintTermMode: 'Mode is switched in the popup (RE / TT / BR). Lists below set the mode automatically when you open a matching site (Tooltip → Brackets → Replace → last popup mode).',
+    lblTermReplaceSites: 'Replace sites',
+    lblTermAnnotateSites: 'Tooltip sites',
+    lblTermBracketsSites: 'Brackets sites',
+    hintTermModeSites: 'One domain per line. On visit, mode is taken from lists (Tooltip → Brackets → Replace → default).',
     secSites: 'Sites',
     lblSiteMode: 'Mode',
     siteEverywhere: 'Everywhere',
     siteAllowlist: 'Allowlist only',
     siteBlocklist: 'Except blocklist',
+    siteDeveloper: 'Developer list',
     sitesPlaceholder: 'One domain per line\nloawa.com\nmaxroll.gg',
     secSync: 'Auto sync',
     lblAutoSync: 'Enable',
@@ -83,18 +115,39 @@ const UI = {
     importErr: 'Import error: ',
     exportOk: 'Export complete',
     invalidRegex: 'Invalid regex: ',
-    lastPrefix: 'Last: '
+    lastPrefix: 'Last: ',
+    exportSettingsBtn: 'Export settings',
+    importSettingsBtn: 'Import settings',
+    hintExportSettings: 'Exports term-mode site lists, extension site lists, and custom regex rules.',
+    exportSettingsOk: 'Settings exported',
+    importSettingsOk: 'Settings imported',
+    clearDictBtn: 'Clear dictionary',
+    hintClearDict: 'Removes all user entries and restores the bundled default dictionary.',
+    clearDictConfirm: 'Delete all user dictionary data and reset to bundled defaults? This cannot be undone.',
+    clearDictOk: 'Dictionary cleared',
+    clearDictErr: 'Error: '
   },
   kr: {
-    title: 'Lost Ark Translator Settings',
+    title: 'LA Translator Settings',
     secTheme: '테마',
     lblThemeDark: '다크 테마',
     lblThemeLight: '라이트 테마',
+    secTermMode: '용어 모드',
+    lblTermMode: '모드',
+    termReplace: '교체',
+    termAnnotate: '툴팁',
+    termBrackets: '괄호',
+    hintTermMode: '모드는 팝업에서 전환합니다(교 / 팁 / 괄). 아래 목록은 사이트 접속 시 모드를 자동 설정합니다(툴팁 → 괄호 → 교체 → 팝업 마지막 모드).',
+    lblTermReplaceSites: '교체 사이트',
+    lblTermAnnotateSites: '툴팁 사이트',
+    lblTermBracketsSites: '괄호 사이트',
+    hintTermModeSites: '줄당 하나의 도메인. 사이트 접속 시 목록에서 모드 선택 (툴팁 → 괄호 → 교체 → 기본값).',
     secSites: '사이트',
     lblSiteMode: '모드',
     siteEverywhere: '전체',
     siteAllowlist: '허용 목록만',
     siteBlocklist: '차단 목록 제외',
+    siteDeveloper: '개발자 목록',
     sitesPlaceholder: '줄당 하나의 도메인\nloawa.com\nmaxroll.gg',
     secSync: '자동 동기화',
     lblAutoSync: '사용',
@@ -126,7 +179,17 @@ const UI = {
     importErr: '가져오기 오류: ',
     exportOk: '내보내기 완료',
     invalidRegex: '잘못된 정규식: ',
-    lastPrefix: '최근: '
+    lastPrefix: '최근: ',
+    exportSettingsBtn: '설정 내보내기',
+    importSettingsBtn: '설정 가져오기',
+    hintExportSettings: '용어 모드 사이트 목록, 확장 사이트 목록, 사용자 정규식 규칙을 내보냅니다.',
+    exportSettingsOk: '설정 내보냄',
+    importSettingsOk: '설정 가져옴',
+    clearDictBtn: '사전 전체 삭제',
+    hintClearDict: '사용자 항목을 모두 삭제하고 확장 프로그램 기본 사전으로 복원합니다.',
+    clearDictConfirm: '모든 사용자 사전 데이터를 삭제하고 기본값으로 재설정할까요? 되돌릴 수 없습니다.',
+    clearDictOk: '사전이 초기화됨',
+    clearDictErr: '오류: '
   }
 };
 
@@ -135,7 +198,7 @@ let t = UI.ru;
 let lastSyncInfo = { ts: null, status: null };
 
 document.addEventListener('DOMContentLoaded', () => {
-  chrome.storage.sync.get(['targetLang', 'theme', 'siteMode', 'allowedSites', 'blockedSites'], (sync) => {
+  chrome.storage.sync.get(['targetLang', 'theme', 'siteMode', 'allowedSites', 'blockedSites', 'termMode', 'termModeReplaceSites', 'termModeAnnotateSites', 'termModeBracketsSites'], (sync) => {
     targetLang = sync.targetLang || 'ru';
     t = UI[targetLang] || UI.ru;
     applyLocalization();
@@ -143,6 +206,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const theme = sync.theme || 'dark';
     document.documentElement.setAttribute('data-theme', theme);
     document.getElementById('themeToggle').checked = theme === 'dark';
+
+    const trs = document.getElementById('termModeReplaceSites');
+    if (trs) trs.value = sync.termModeReplaceSites || '';
+    const tas = document.getElementById('termModeAnnotateSites');
+    if (tas) tas.value = sync.termModeAnnotateSites || '';
+    const tbs = document.getElementById('termModeBracketsSites');
+    if (tbs) tbs.value = sync.termModeBracketsSites || '';
 
     const mode = sync.siteMode || 'everywhere';
     document.getElementById('siteMode').value = mode;
@@ -195,12 +265,25 @@ function applyLocalization() {
   document.getElementById('secTheme').textContent = t.secTheme;
   const themeOn = document.getElementById('themeToggle').checked;
   document.getElementById('lblTheme').textContent = themeOn ? t.lblThemeDark : t.lblThemeLight;
+  const secTerm = document.getElementById('secTermMode');
+  if (secTerm) secTerm.textContent = t.secTermMode;
+  const hintTerm = document.getElementById('hintTermMode');
+  if (hintTerm) hintTerm.textContent = t.hintTermMode;
+  const lr = document.getElementById('lblTermReplaceSites');
+  if (lr) lr.textContent = t.lblTermReplaceSites;
+  const la = document.getElementById('lblTermAnnotateSites');
+  if (la) la.textContent = t.lblTermAnnotateSites;
+  const lb = document.getElementById('lblTermBracketsSites');
+  if (lb) lb.textContent = t.lblTermBracketsSites;
+  const hs = document.getElementById('hintTermModeSites');
+  if (hs) hs.textContent = t.hintTermModeSites;
   document.getElementById('secSites').textContent = t.secSites;
   document.getElementById('lblSiteMode').textContent = t.lblSiteMode;
   const mode = document.getElementById('siteMode');
   if (mode.options[0]) mode.options[0].textContent = t.siteEverywhere;
   if (mode.options[1]) mode.options[1].textContent = t.siteAllowlist;
   if (mode.options[2]) mode.options[2].textContent = t.siteBlocklist;
+  if (mode.options[3]) mode.options[3].textContent = t.siteDeveloper;
   document.getElementById('sitesList').placeholder = t.sitesPlaceholder;
   document.getElementById('secSync').textContent = t.secSync;
   document.getElementById('lblAutoSync').textContent = t.lblAutoSync;
@@ -215,6 +298,16 @@ function applyLocalization() {
   document.getElementById('secImportExport').textContent = t.secImportExport;
   document.getElementById('exportBtn').textContent = t.exportBtn;
   document.getElementById('importBtn').textContent = t.importBtn;
+  const esb = document.getElementById('exportSettingsBtn');
+  if (esb) esb.textContent = t.exportSettingsBtn;
+  const isb = document.getElementById('importSettingsBtn');
+  if (isb) isb.textContent = t.importSettingsBtn;
+  const hes = document.getElementById('hintExportSettings');
+  if (hes) hes.textContent = t.hintExportSettings;
+  const clearBtn = document.getElementById('clearDictBtn');
+  if (clearBtn) clearBtn.textContent = t.clearDictBtn;
+  const hintClear = document.getElementById('hintClearDict');
+  if (hintClear) hintClear.textContent = t.hintClearDict;
   document.getElementById('secPatterns').textContent = t.secPatterns;
   document.getElementById('hintPatterns').textContent = t.hintPatterns;
   document.getElementById('patPattern').placeholder = t.patPattern;
@@ -234,6 +327,23 @@ function setupListeners() {
     document.documentElement.setAttribute('data-theme', theme);
     chrome.storage.sync.set({ theme });
     document.getElementById('lblTheme').textContent = e.target.checked ? t.lblThemeDark : t.lblThemeLight;
+  });
+
+  let termSitesTimer;
+  function saveTermModeSites() {
+    chrome.storage.sync.set({
+      termModeReplaceSites: (document.getElementById('termModeReplaceSites') || {}).value || '',
+      termModeAnnotateSites: (document.getElementById('termModeAnnotateSites') || {}).value || '',
+      termModeBracketsSites: (document.getElementById('termModeBracketsSites') || {}).value || ''
+    });
+  }
+  ['termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', () => {
+      clearTimeout(termSitesTimer);
+      termSitesTimer = setTimeout(saveTermModeSites, 400);
+    });
   });
 
   document.getElementById('siteMode').addEventListener('change', saveSites);
@@ -276,6 +386,17 @@ function setupListeners() {
     document.getElementById('importFile').click();
   });
   document.getElementById('importFile').addEventListener('change', importDictionary);
+  const exportSettingsBtn = document.getElementById('exportSettingsBtn');
+  if (exportSettingsBtn) exportSettingsBtn.addEventListener('click', exportSettings);
+  const importSettingsBtn = document.getElementById('importSettingsBtn');
+  if (importSettingsBtn) importSettingsBtn.addEventListener('click', () => {
+    document.getElementById('importSettingsFile').click();
+  });
+  const importSettingsFile = document.getElementById('importSettingsFile');
+  if (importSettingsFile) importSettingsFile.addEventListener('change', importSettings);
+
+  const clearDictBtn = document.getElementById('clearDictBtn');
+  if (clearDictBtn) clearDictBtn.addEventListener('click', clearDictionary);
 
   document.getElementById('addPatternBtn').addEventListener('click', addPattern);
 
@@ -487,6 +608,118 @@ async function loadUserWords() {
     box.appendChild(table);
   } catch (e) {
     box.textContent = String(e.message || e);
+  }
+}
+
+async function exportSettings() {
+  const st = document.getElementById('ioStatus');
+  try {
+    const sync = await chrome.storage.sync.get([
+      'termMode', 'termModeReplaceSites', 'termModeAnnotateSites', 'termModeBracketsSites',
+      'siteMode', 'allowedSites', 'blockedSites'
+    ]);
+    const local = await chrome.storage.local.get(['customPatterns']);
+    const payload = {
+      type: 'lost-ark-translator-settings',
+      version: 1,
+      termMode: sync.termMode || 'replace',
+      termModeReplaceSites: sync.termModeReplaceSites || '',
+      termModeAnnotateSites: sync.termModeAnnotateSites || '',
+      termModeBracketsSites: sync.termModeBracketsSites || '',
+      siteMode: sync.siteMode || 'everywhere',
+      allowedSites: sync.allowedSites || '',
+      blockedSites: sync.blockedSites || '',
+      customPatterns: local.customPatterns || []
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'lost-ark-translator-settings.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    if (st) {
+      st.textContent = t.exportSettingsOk;
+      st.className = 'status ok';
+      setTimeout(() => { st.textContent = ''; }, 3000);
+    }
+  } catch (e) {
+    if (st) {
+      st.textContent = (t.clearDictErr || 'Error: ') + (e.message || e);
+      st.className = 'status err';
+    }
+  }
+}
+
+async function importSettings(e) {
+  const file = e.target.files && e.target.files[0];
+  e.target.value = '';
+  if (!file) return;
+  const st = document.getElementById('ioStatus');
+  try {
+    const text = await file.text();
+    const data = JSON.parse(text);
+    if (!data || data.type !== 'lost-ark-translator-settings') {
+      throw new Error('invalid settings file');
+    }
+    const syncUpdates = {};
+    if (data.termMode) syncUpdates.termMode = data.termMode;
+    if (typeof data.termModeReplaceSites === 'string') syncUpdates.termModeReplaceSites = data.termModeReplaceSites;
+    if (typeof data.termModeAnnotateSites === 'string') syncUpdates.termModeAnnotateSites = data.termModeAnnotateSites;
+    if (typeof data.termModeBracketsSites === 'string') syncUpdates.termModeBracketsSites = data.termModeBracketsSites;
+    if (data.siteMode) syncUpdates.siteMode = data.siteMode;
+    if (typeof data.allowedSites === 'string') syncUpdates.allowedSites = data.allowedSites;
+    if (typeof data.blockedSites === 'string') syncUpdates.blockedSites = data.blockedSites;
+    await chrome.storage.sync.set(syncUpdates);
+    if (Array.isArray(data.customPatterns)) {
+      await chrome.storage.local.set({ customPatterns: data.customPatterns });
+      await chrome.runtime.sendMessage({ action: 'setCustomPatterns', patterns: data.customPatterns });
+    }
+    const trs = document.getElementById('termModeReplaceSites');
+    if (trs && typeof data.termModeReplaceSites === 'string') trs.value = data.termModeReplaceSites;
+    const tas = document.getElementById('termModeAnnotateSites');
+    if (tas && typeof data.termModeAnnotateSites === 'string') tas.value = data.termModeAnnotateSites;
+    const tbs = document.getElementById('termModeBracketsSites');
+    if (tbs && typeof data.termModeBracketsSites === 'string') tbs.value = data.termModeBracketsSites;
+    const siteModeEl = document.getElementById('siteMode');
+    if (siteModeEl && data.siteMode) siteModeEl.value = data.siteMode;
+    const sitesList = document.getElementById('sitesList');
+    if (sitesList) {
+      const mode = data.siteMode || 'everywhere';
+      if (mode === 'allowlist') sitesList.value = data.allowedSites || '';
+      else if (mode === 'blocklist') sitesList.value = data.blockedSites || '';
+    }
+    renderPatterns(Array.isArray(data.customPatterns) ? data.customPatterns : []);
+    if (st) {
+      st.textContent = t.importSettingsOk;
+      st.className = 'status ok';
+      setTimeout(() => { st.textContent = ''; }, 3000);
+    }
+  } catch (err) {
+    if (st) {
+      st.textContent = (t.clearDictErr || 'Error: ') + (err.message || err);
+      st.className = 'status err';
+    }
+  }
+}
+
+async function clearDictionary() {
+  if (!confirm(t.clearDictConfirm)) return;
+  const st = document.getElementById('clearDictStatus');
+  try {
+    const res = await chrome.runtime.sendMessage({ action: 'clearDictionary' });
+    if (!res || !res.success) throw new Error(res && res.error ? res.error : 'failed');
+    if (st) {
+      st.textContent = t.clearDictOk;
+      st.className = 'status ok';
+      setTimeout(() => { st.textContent = ''; }, 3000);
+    }
+    loadUserWords();
+  } catch (e) {
+    if (st) {
+      st.textContent = t.clearDictErr + (e.message || e);
+      st.className = 'status err';
+    }
   }
 }
 

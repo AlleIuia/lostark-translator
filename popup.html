@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lost Ark Translator</title>
+  <title>LA Translator</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -137,11 +137,16 @@
 <body>
   <header>
     <div class="title-area">
-      <h1>Lost Ark Translator</h1>
+      <h1>LA Translator</h1>
       <div class="lang-selector">
         <button class="lang-btn" data-lang="ru">RU</button>
         <button class="lang-btn" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="kr">KR</button>
+      </div>
+      <div class="lang-selector" id="termModeSelector" style="margin-left:6px;">
+        <button class="lang-btn term-mode-btn" data-term-mode="replace" title="Replace">ЗА</button>
+        <button class="lang-btn term-mode-btn" data-term-mode="annotate" title="Tooltip">ПД</button>
+        <button class="lang-btn term-mode-btn" data-term-mode="brackets" title="Brackets">СК</button>
       </div>
     </div>
     <div class="controls">

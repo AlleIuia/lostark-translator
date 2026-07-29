@@ -31,6 +31,8 @@ const UI_TEXTS = {
     typeEngraving: 'Гравировка', typeBuild: 'Сборка', typeClass: 'Класс',
     typeArkpass: 'Система А.Р.К.', typeClasscore: 'Ядра',
     statsLabel: 'переведено: ',
+    termModeReplace: 'ЗА', termModeAnnotate: 'ПД', termModeBrackets: 'СК',
+    termModeReplaceTitle: 'Замена', termModeAnnotateTitle: 'Подсказка', termModeBracketsTitle: 'Скобки',
     syncLoading: 'Загрузка…', syncOk: 'Словарь обновлён', syncErr: 'Ошибка синхронизации: ',
     importErrorFormat: 'Неверный формат файла.', importErrorJson: 'Ошибка чтения JSON: '
   },
@@ -49,6 +51,8 @@ const UI_TEXTS = {
     typeEngraving: 'Engraving', typeBuild: 'Build', typeClass: 'Class',
     typeArkpass: 'Ark Passive', typeClasscore: 'Core',
     statsLabel: 'translated: ',
+    termModeReplace: 'RE', termModeAnnotate: 'TT', termModeBrackets: 'BR',
+    termModeReplaceTitle: 'Replace', termModeAnnotateTitle: 'Tooltip', termModeBracketsTitle: 'Brackets',
     syncLoading: 'Loading…', syncOk: 'Dictionary updated', syncErr: 'Sync error: ',
     importErrorFormat: 'Invalid file format.', importErrorJson: 'JSON read error: '
   },
@@ -67,6 +71,8 @@ const UI_TEXTS = {
     typeEngraving: '각인', typeBuild: '빌드', typeClass: '직업',
     typeArkpass: '아크 패시브', typeClasscore: '코어',
     statsLabel: '번역됨: ',
+    termModeReplace: '교', termModeAnnotate: '팁', termModeBrackets: '괄',
+    termModeReplaceTitle: '교체', termModeAnnotateTitle: '툴팁', termModeBracketsTitle: '괄호',
     syncLoading: '로딩 중…', syncOk: '사전 업데이트됨', syncErr: '동기화 오류: ',
     importErrorFormat: '잘못된 파일 형식입니다.', importErrorJson: 'JSON 읽기 오류: '
   }
@@ -75,6 +81,7 @@ const UI_TEXTS = {
 let fullData = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [] };
 let isEnabled = true;
 let targetLang = 'ru';
+let termMode = 'replace';
 let currentTheme = 'dark';
 let isStandalone = false;
 let currentSearch = '';
@@ -109,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
   isStandalone = new URLSearchParams(location.search).has('standalone');
   if (isStandalone) {
     document.body.classList.add('standalone');
-    document.title = 'Lost Ark Translator Window';
+    document.title = 'LA Translator';
   }
   loadData();
   setupListeners();
@@ -142,6 +149,20 @@ function applyLocalization() {
     const f = btn.dataset.filter;
     if (filters[f]) btn.textContent = filters[f];
   });
+  document.querySelectorAll('.term-mode-btn').forEach(btn => {
+    const m = btn.dataset.termMode;
+    if (m === 'replace') {
+      btn.textContent = t.termModeReplace;
+      btn.title = t.termModeReplaceTitle;
+    } else if (m === 'annotate') {
+      btn.textContent = t.termModeAnnotate;
+      btn.title = t.termModeAnnotateTitle;
+    } else if (m === 'brackets') {
+      btn.textContent = t.termModeBrackets;
+      btn.title = t.termModeBracketsTitle;
+    }
+    btn.classList.toggle('active', m === termMode);
+  });
 
   const typeSel = document.getElementById('newType');
   if (typeSel) {
@@ -163,14 +184,18 @@ function applyLocalization() {
 }
 
 function loadData() {
-  chrome.storage.sync.get(['isEnabled', 'targetLang', 'theme'], (syncResult) => {
+  chrome.storage.sync.get(['isEnabled', 'targetLang', 'theme', 'termMode'], (syncResult) => {
     targetLang = syncResult.targetLang || 'ru';
+    termMode = syncResult.termMode || 'replace';
     currentTheme = syncResult.theme || 'dark';
     isEnabled = syncResult.isEnabled !== false;
     document.getElementById('toggleEnabled').checked = isEnabled;
     document.documentElement.setAttribute('data-theme', currentTheme);
     document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === targetLang);
+      if (btn.dataset.lang) btn.classList.toggle('active', btn.dataset.lang === targetLang);
+    });
+    document.querySelectorAll('.term-mode-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.termMode === termMode);
     });
     applyLocalization();
   });
@@ -220,14 +245,26 @@ function setupListeners() {
   });
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
+    if (!btn.dataset.lang) return;
     btn.addEventListener('click', () => {
       targetLang = btn.dataset.lang;
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        if (b.dataset.lang) b.classList.remove('active');
+      });
       btn.classList.add('active');
       chrome.storage.sync.set({ targetLang });
       applyLocalization();
       chrome.runtime.sendMessage({ action: 'rebuildDictionary' });
       setTimeout(reloadData, 150);
+    });
+  });
+
+  document.querySelectorAll('.term-mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      termMode = btn.dataset.termMode;
+      document.querySelectorAll('.term-mode-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      chrome.storage.sync.set({ termMode });
     });
   });
 
@@ -837,10 +874,16 @@ chrome.storage.onChanged.addListener((changes, area) => {
   if (changes.targetLang) {
     targetLang = changes.targetLang.newValue || 'ru';
     document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === targetLang);
+      if (btn.dataset.lang) btn.classList.toggle('active', btn.dataset.lang === targetLang);
     });
     applyLocalization();
     renderList();
+  }
+  if (changes.termMode) {
+    termMode = changes.termMode.newValue || 'replace';
+    document.querySelectorAll('.term-mode-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.termMode === termMode);
+    });
   }
   if (changes.isEnabled) {
     isEnabled = changes.isEnabled.newValue !== false;

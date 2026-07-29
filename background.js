@@ -1123,4 +1123,25 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     })());
     return true;
   }
+  if (request.action === 'clearDictionary') {
+    reply((async () => {
+      const emptyUser = {
+        classes: [],
+        engravings: [],
+        _orphanBuilds: [],
+        terms: [],
+        skills: [],
+        skillClasses: [],
+        arkPassClasses: [],
+        classCoreClasses: [],
+        _deleted: []
+      };
+      await chrome.storage.local.set({ userData: emptyUser });
+      const baseData = await loadDefaultDictionaries();
+      await chrome.storage.local.set({ baseData });
+      await rebuildStorage();
+      return {};
+    })());
+    return true;
+  }
 });
