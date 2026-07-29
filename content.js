@@ -146,19 +146,87 @@
   function matchesContext(variant, surrounding) {
     if (!surrounding) return false;
     const text = surrounding.toLowerCase();
-    if (variant.parent && text.includes(variant.parent.toLowerCase())) return true;
+    if (variant.parent && text.includes(String(variant.parent).toLowerCase())) return true;
     if (variant.tags && variant.tags.length) {
-      return variant.tags.some(tag => text.includes(tag.toLowerCase()));
+      return variant.tags.some(tag => {
+        const t = String(tag).toLowerCase();
+        if (t === 'skill' || t === 'class_build' || t === 'engraving' || t === 'skill_class') return false;
+        if (t === 'arkpass' || t === 'classcore' || t === 'class') return false;
+        return t.length > 1 && text.includes(t);
+      });
     }
     return false;
   }
 
-  function resolveTranslation(match, surrounding) {
+  function isBuildVariant(v) {
+    const tags = v.tags || [];
+    if (tags.includes('class_build') || tags.includes('engraving')) return true;
+    return (v.priority || 0) >= 25;
+  }
+
+  function isSkillVariant(v) {
+    const tags = v.tags || [];
+    return tags.includes('skill') || tags.includes('arkpass') || tags.includes('classcore');
+  }
+
+  function hasSkillLevelContext(surrounding) {
+    if (!surrounding) return false;
+    const t = String(surrounding);
+    if (/(?:^|[^\d])(?:lv\.?\s*|lvl\.?\s*|level\s*|레벨\s*)?10(?=[^\d]|$)/i.test(t)) return true;
+    if (/(?:^|[\s\[\(·:|/+])10(?=[\s\]\)·:|.,/+]|$)/.test(t)) return true;
+    return false;
+  }
+
+  function hasSkillUiContext(node) {
+    if (!node) return false;
+    let el = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+    let depth = 0;
+    while (el && depth < 8) {
+      if (el.getAttribute) {
+        if (el.getAttribute('data-lostark-skill-code')) return true;
+        if (el.getAttribute('data-skill-code') || el.getAttribute('data-skill-id')) return true;
+        if (el.getAttribute('data-skill')) return true;
+      }
+      if (el.classList) {
+        if (el.classList.contains('skill-icon')) return true;
+        if (el.classList.contains('skill-name')) return true;
+      }
+      if (el.tagName === 'A') {
+        const href = el.getAttribute('href') || '';
+        if (/skill|code=\d+/i.test(href)) return true;
+      }
+      if (el.tagName === 'IMG') {
+        const src = el.getAttribute('src') || '';
+        const alt = el.getAttribute('alt') || '';
+        if (/skill/i.test(src) || /스킬|skill/i.test(alt)) return true;
+      }
+      el = el.parentElement;
+      depth++;
+    }
+    return false;
+  }
+
+  function resolveTranslation(match, surrounding, node) {
     const variants = dictionary.get(match.toLowerCase());
     if (!variants || !variants.length) return match;
     if (typeof variants === 'string') return variants;
+
     for (const v of variants) {
-      if (matchesContext(v, surrounding)) return v.value;
+      if (isBuildVariant(v) && matchesContext(v, surrounding)) return v.value;
+    }
+    for (const v of variants) {
+      if (!isSkillVariant(v) && !isBuildVariant(v) && matchesContext(v, surrounding)) return v.value;
+    }
+    for (const v of variants) {
+      if (isSkillVariant(v) && matchesContext(v, surrounding)) return v.value;
+    }
+    if (hasSkillLevelContext(surrounding) || hasSkillUiContext(node)) {
+      for (const v of variants) {
+        if (isSkillVariant(v)) return v.value;
+      }
+    }
+    for (const v of variants) {
+      if (isBuildVariant(v)) return v.value;
     }
     return variants[0].value;
   }
@@ -186,7 +254,7 @@
       if (compiledRegex.test(result)) {
         compiledRegex.lastIndex = 0;
         const replaced = result.replace(compiledRegex, (match) => {
-          const v = resolveTranslation(match, surrounding || text);
+          const v = resolveTranslation(match, surrounding || text, null);
           if (v !== match) matchCount++;
           return v;
         });
@@ -205,10 +273,17 @@
     let text = '';
     let el = node.parentElement || node;
     let depth = 0;
-    while (el && depth < 3) {
-      text += ' ' + (el.textContent || '').slice(0, 500);
+    while (el && depth < 5) {
+      text += ' ' + (el.textContent || '').slice(0, 800);
+      if (el.tagName === 'TR' || el.tagName === 'LI' || el.tagName === 'ARTICLE') break;
       el = el.parentElement;
       depth++;
+    }
+    if (node.parentElement) {
+      const tr = node.parentElement.closest && node.parentElement.closest('tr');
+      if (tr) text += ' ' + (tr.textContent || '').slice(0, 800);
+      const row = node.parentElement.closest && node.parentElement.closest('[class*="row"], [class*="skill"]');
+      if (row && row !== tr) text += ' ' + (row.textContent || '').slice(0, 500);
     }
     return text;
   }
@@ -335,7 +410,7 @@
       if (compiledRegex) {
         compiledRegex.lastIndex = 0;
         out = text.replace(compiledRegex, (original) => {
-          const translated = resolveTranslation(original, surrounding || text);
+          const translated = resolveTranslation(original, surrounding || text, node);
           if (translated !== original) {
             matchCount++;
             return translated;
@@ -371,7 +446,7 @@
           parts.push({ type: 'text', value: text.slice(lastIndex, m.index) });
         }
         const original = m[0];
-        const translated = resolveTranslation(original, surrounding || text);
+        const translated = resolveTranslation(original, surrounding || text, node);
         if (translated !== original) {
           parts.push({ type: 'term', value: translated, original: original });
           anyChanged = true;
