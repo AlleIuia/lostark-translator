@@ -166,7 +166,7 @@
 
   function isSkillVariant(v) {
     const tags = v.tags || [];
-    return tags.includes('skill') || tags.includes('arkpass') || tags.includes('classcore');
+    return tags.includes('skill') || tags.includes('arkpass') || tags.includes('classcore') || tags.includes('tripod');
   }
 
   function hasSkillLevelContext(surrounding) {
@@ -206,6 +206,31 @@
     return false;
   }
 
+  // Руны/гемы/предметы: иконки из /use/ (use_7_200 и т.п.)
+  function hasRuneOrItemContext(node) {
+    if (!node) return false;
+    let el = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+    let depth = 0;
+    while (el && depth < 6) {
+      if (el.tagName === 'IMG') {
+        const src = el.getAttribute('src') || '';
+        if (/\/use\//i.test(src) || /use_\d/i.test(src)) return true;
+      }
+      if (el.parentElement) {
+        for (const sib of el.parentElement.children) {
+          if (sib === el) continue;
+          if (sib.tagName === 'IMG') {
+            const src = sib.getAttribute('src') || '';
+            if (/\/use\//i.test(src) || /use_\d/i.test(src)) return true;
+          }
+        }
+      }
+      el = el.parentElement;
+      depth++;
+    }
+    return false;
+  }
+
   function resolveTranslation(match, surrounding, node) {
     const variants = dictionary.get(match.toLowerCase());
     if (!variants || !variants.length) return match;
@@ -220,6 +245,14 @@
     for (const v of variants) {
       if (isSkillVariant(v) && matchesContext(v, surrounding)) return v.value;
     }
+
+    // Рядом с иконкой руны/гема/предмета (/use/) — приоритет у терминов (Focus → Марх)
+    if (hasRuneOrItemContext(node)) {
+      for (const v of variants) {
+        if (!isSkillVariant(v) && !isBuildVariant(v)) return v.value;
+      }
+    }
+
     if (hasSkillLevelContext(surrounding) || hasSkillUiContext(node)) {
       for (const v of variants) {
         if (isSkillVariant(v)) return v.value;

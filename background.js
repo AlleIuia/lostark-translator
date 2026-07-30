@@ -83,6 +83,16 @@ function flattenData(data, target) {
           priority: 12
         });
       });
+      (skill.tripods || []).forEach(tp => {
+        if (!tp || !tp.en || !String(tp.en).trim()) return;
+        sources.forEach(src => {
+          if (tp[src]) addEntry(tp[src], tp[target], {
+            parent: skill.en || sc.en,
+            tags: ['tripod', 'skill', (sc.en || '').toLowerCase()],
+            priority: 11
+          });
+        });
+      });
     });
   });
 
@@ -92,6 +102,16 @@ function flattenData(data, target) {
       if (skill[src]) addEntry(skill[src], skill[target], {
         tags: skill.tags || ['skill'],
         priority: 12
+      });
+    });
+    (skill.tripods || []).forEach(tp => {
+      if (!tp || !tp.en || !String(tp.en).trim()) return;
+      sources.forEach(src => {
+        if (tp[src]) addEntry(tp[src], tp[target], {
+          parent: skill.en,
+          tags: ['tripod', 'skill'],
+          priority: 11
+        });
       });
     });
   });

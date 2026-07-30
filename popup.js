@@ -517,9 +517,12 @@ function renderList() {
     let anySkill = false;
     for (const sc of fullData.skillClasses || []) {
       const clsMatch = matchesSearch(sc);
-      const matchedSkills = (sc.skills || []).filter(s => s && s.en && String(s.en).trim() && matchesSearch(s));
-      const emptySlots = (sc.skills || []).filter(s => s && (!s.en || !String(s.en).trim()));
-      if (!clsMatch && matchedSkills.length === 0 && !(currentSearch === '' && (sc.skills || []).length)) continue;
+      const filledSkills = (sc.skills || []).filter(s => s && s.en && String(s.en).trim());
+      const skillsWithMatch = filledSkills.filter(s => {
+        if (matchesSearch(s)) return true;
+        return (s.tripods || []).some(tp => tp && matchesSearch(tp));
+      });
+      if (!clsMatch && skillsWithMatch.length === 0 && !(currentSearch === '' && filledSkills.length)) continue;
       if (!anySkill) {
         addSectionRow(tbody, t.sectionSkills);
         anySkill = true;
@@ -532,9 +535,7 @@ function renderList() {
       if (deleteMode) trClass.appendChild(createDeleteCell('skillClass', sc.en));
       tbody.appendChild(trClass);
 
-      const skillsToShow = currentSearch
-        ? matchedSkills
-        : (sc.skills || []).filter(s => s && s.en && String(s.en).trim());
+      const skillsToShow = (!currentSearch || clsMatch) ? filledSkills : skillsWithMatch;
       for (const sk of skillsToShow) {
         const tr = document.createElement('tr');
         tr.className = 'build-row';
@@ -543,6 +544,21 @@ function renderList() {
         tr.appendChild(createCell(sk.kr, 'editable kr-cell', { type: 'skill', field: 'kr', class: sc.en, build: sk.en }));
         if (deleteMode) tr.appendChild(createDeleteCell('skill', sk.en, sc.en));
         tbody.appendChild(tr);
+
+        const tripods = sk.tripods || [];
+        const skillMatch = !currentSearch || matchesSearch(sk) || clsMatch;
+        const tripodsToShow = skillMatch
+          ? tripods.filter(tp => tp && tp.en && String(tp.en).trim())
+          : tripods.filter(tp => tp && tp.en && String(tp.en).trim() && matchesSearch(tp));
+        for (const tp of tripodsToShow) {
+          const trTp = document.createElement('tr');
+          trTp.className = 'tripod-row';
+          trTp.appendChild(createCell(tp.en || '', 'editable en-cell', { type: 'tripod', field: 'en', class: sc.en, build: sk.en, tripod: tp.en }));
+          trTp.appendChild(createCell(tp.ru || '', 'editable', { type: 'tripod', field: 'ru', class: sc.en, build: sk.en, tripod: tp.en }));
+          trTp.appendChild(createCell(tp.kr || '', 'editable kr-cell', { type: 'tripod', field: 'kr', class: sc.en, build: sk.en, tripod: tp.en }));
+          if (deleteMode) trTp.appendChild(createDeleteCell('tripod', tp.en, sc.en));
+          tbody.appendChild(trTp);
+        }
       }
     }
     const flatList = (fullData.skills || []).filter(s => s && s.en && matchesSearch(s));
@@ -569,8 +585,9 @@ function renderList() {
     let any = false;
     for (const sc of fullData.arkPassClasses || []) {
       const clsMatch = matchesSearch(sc);
-      const matched = (sc.skills || []).filter(s => s && s.en && String(s.en).trim() && matchesSearch(s));
-      if (!clsMatch && matched.length === 0 && !(currentSearch === '' && (sc.skills || []).length)) continue;
+      const filled = (sc.skills || []).filter(s => s && s.en && String(s.en).trim());
+      const matched = filled.filter(matchesSearch);
+      if (!clsMatch && matched.length === 0 && !(currentSearch === '' && filled.length)) continue;
       if (!any) {
         addSectionRow(tbody, t.sectionArkpass);
         any = true;
@@ -582,7 +599,7 @@ function renderList() {
       trClass.appendChild(createCell(sc.kr, 'editable kr-cell', { type: 'arkPassClass', field: 'kr', class: sc.en }));
       if (deleteMode) trClass.appendChild(createDeleteCell('arkPassClass', sc.en));
       tbody.appendChild(trClass);
-      const toShow = currentSearch ? matched : (sc.skills || []).filter(s => s && s.en && String(s.en).trim());
+      const toShow = (!currentSearch || clsMatch) ? filled : matched;
       for (const sk of toShow) {
         const tr = document.createElement('tr');
         tr.className = 'build-row';
@@ -600,8 +617,9 @@ function renderList() {
     let any = false;
     for (const sc of fullData.classCoreClasses || []) {
       const clsMatch = matchesSearch(sc);
-      const matched = (sc.skills || []).filter(s => s && s.en && String(s.en).trim() && matchesSearch(s));
-      if (!clsMatch && matched.length === 0 && !(currentSearch === '' && (sc.skills || []).length)) continue;
+      const filled = (sc.skills || []).filter(s => s && s.en && String(s.en).trim());
+      const matched = filled.filter(matchesSearch);
+      if (!clsMatch && matched.length === 0 && !(currentSearch === '' && filled.length)) continue;
       if (!any) {
         addSectionRow(tbody, t.sectionClasscore);
         any = true;
@@ -613,7 +631,7 @@ function renderList() {
       trClass.appendChild(createCell(sc.kr, 'editable kr-cell', { type: 'classCoreClass', field: 'kr', class: sc.en }));
       if (deleteMode) trClass.appendChild(createDeleteCell('classCoreClass', sc.en));
       tbody.appendChild(trClass);
-      const toShow = currentSearch ? matched : (sc.skills || []).filter(s => s && s.en && String(s.en).trim());
+      const toShow = (!currentSearch || clsMatch) ? filled : matched;
       for (const sk of toShow) {
         const tr = document.createElement('tr');
         tr.className = 'build-row';
