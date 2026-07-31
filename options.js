@@ -231,7 +231,8 @@ const DEFAULT_DEV_SITES = [
   'lostgld.com',
   'ark.bynn.kr',
   'loatracker.pages.dev',
-  'reddit.com'
+  'reddit.com',
+  'inven.co.kr'
 ];
 
 document.addEventListener('DOMContentLoaded', () => {

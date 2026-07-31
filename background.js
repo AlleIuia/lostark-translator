@@ -1046,7 +1046,7 @@ const DEFAULT_DEV_SITES = [
   'lostark.qq.com',
   'lostark.bible',
   'loa-buddy.pages.dev',
-  'mokoko.co.jp',
+  'mokoko.co.kr',
   'loaguard.com',
   'lostbuilds.com',
   'maxroll.gg',
@@ -1055,11 +1055,11 @@ const DEFAULT_DEV_SITES = [
   'nexus-guide-site.pages.dev',
   'sites.google.com',
   'mokitoki.ru',
-  'lopec.jp',
+  'lopec.kr',
   'zloa.net',
   'loaup.com',
   'honing-forecast.pages.dev',
-  'loatto.jp',
+  'loatto.kr',
   'icepeng.com',
   'lo4.app',
   'loaclac-doss.vercel.app',
@@ -1067,11 +1067,12 @@ const DEFAULT_DEV_SITES = [
   'airplaner.github.io',
   'ssbcalc.poyomi.fyi',
   'raimundomedeiros.github.io',
-  'loatool.taeu.jp',
+  'loatool.taeu.kr',
   'lostgld.com',
-  'ark.bynn.jp',
+  'ark.bynn.kr',
   'loatracker.pages.dev',
-  'reddit.com'
+  'reddit.com',
+  'inven.co.kr'
 ];
 
 chrome.runtime.onInstalled.addListener(async () => {
