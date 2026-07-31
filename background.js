@@ -62,7 +62,7 @@ function flattenData(data, target) {
     sources.forEach(src => {
       if (term[src]) addEntry(term[src], term[target], {
         tags: term.tags || ['interface', 'term'],
-        priority: 10
+        priority: 22
       });
     });
   });
@@ -79,7 +79,7 @@ function flattenData(data, target) {
       sources.forEach(src => {
         if (skill[src]) addEntry(skill[src], skill[target], {
           parent: sc.en,
-          tags: skill.tags || ['skill', (sc.en || '').toLowerCase()],
+          tags: skill.tags || ['skill'],
           priority: 12
         });
       });
@@ -88,7 +88,7 @@ function flattenData(data, target) {
         sources.forEach(src => {
           if (tp[src]) addEntry(tp[src], tp[target], {
             parent: skill.en || sc.en,
-            tags: ['tripod', 'skill', (sc.en || '').toLowerCase()],
+            tags: ['tripod', 'skill'],
             priority: 11
           });
         });
@@ -128,7 +128,7 @@ function flattenData(data, target) {
       sources.forEach(src => {
         if (skill[src]) addEntry(skill[src], skill[target], {
           parent: sc.en,
-          tags: skill.tags || ['arkpass', (sc.en || '').toLowerCase()],
+          tags: skill.tags || ['arkpass'],
           priority: 12
         });
       });
@@ -147,7 +147,7 @@ function flattenData(data, target) {
       sources.forEach(src => {
         if (skill[src]) addEntry(skill[src], skill[target], {
           parent: sc.en,
-          tags: skill.tags || ['classcore', (sc.en || '').toLowerCase()],
+          tags: skill.tags || ['classcore'],
           priority: 12
         });
       });
@@ -1034,15 +1034,58 @@ async function tryAutoSync() {
   }
 }
 
+const DEFAULT_DEV_SITES = [
+  'uwuowo.mathi.moe',
+  'loawa.com',
+  'lostark.ru',
+  'docs.google.com',
+  'loachart.com',
+  'rloa.gg',
+  'playlostark.com',
+  'lostark.game.onstove.com',
+  'lostark.qq.com',
+  'lostark.bible',
+  'loa-buddy.pages.dev',
+  'mokoko.co.jp',
+  'loaguard.com',
+  'lostbuilds.com',
+  'maxroll.gg',
+  'loaviewer.github.io',
+  'loapattern.com',
+  'nexus-guide-site.pages.dev',
+  'sites.google.com',
+  'mokitoki.ru',
+  'lopec.jp',
+  'zloa.net',
+  'loaup.com',
+  'honing-forecast.pages.dev',
+  'loatto.jp',
+  'icepeng.com',
+  'lo4.app',
+  'loaclac-doss.vercel.app',
+  'la-tools.com',
+  'airplaner.github.io',
+  'ssbcalc.poyomi.fyi',
+  'raimundomedeiros.github.io',
+  'loatool.taeu.jp',
+  'lostgld.com',
+  'ark.bynn.jp',
+  'loatracker.pages.dev',
+  'reddit.com'
+];
+
 chrome.runtime.onInstalled.addListener(async () => {
   const baseData = await loadDefaultDictionaries();
   await chrome.storage.local.set({ baseData });
   await rebuildStorage();
-  tryAutoSync();
+  const sync = await chrome.storage.sync.get(['developerSites']);
+  if (typeof sync.developerSites !== 'string' || !sync.developerSites.trim()) {
+    await chrome.storage.sync.set({ developerSites: DEFAULT_DEV_SITES.join('\n') });
+  }
 });
 
-chrome.runtime.onStartup.addListener(() => {
-  tryAutoSync();
+chrome.runtime.onStartup.addListener(async () => {
+  try { await rebuildStorage(); } catch (_) {}
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

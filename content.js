@@ -32,7 +32,7 @@
       updateDictionaryData(localResult.dictionary || {});
       loadCustomPatterns(localResult.customPatterns || []);
       chrome.storage.sync.get([
-        'isEnabled','siteMode','allowedSites','blockedSites','termMode',
+        'isEnabled','siteMode','allowedSites','blockedSites','developerSites','termMode',
         'termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites'
       ], (syncResult) => {
         isEnabled = syncResult.isEnabled !== false;
@@ -86,13 +86,51 @@
     compiledRegex = new RegExp('(?<![\\p{L}\\p{N}_])(' + escapedKeys.join('|') + ')(?![\\p{L}\\p{N}_])', 'giu');
   }
 
-  const DEV_SITES = [
-    'lostark.bible',
-    'maxroll.gg',
+  const DEFAULT_DEV_SITES = [
+    'uwuowo.mathi.moe',
     'loawa.com',
-    'reddit.com',
-    'www.reddit.com'
+    'lostark.ru',
+    'docs.google.com',
+    'loachart.com',
+    'rloa.gg',
+    'playlostark.com',
+    'lostark.game.onstove.com',
+    'lostark.qq.com',
+    'lostark.bible',
+    'loa-buddy.pages.dev',
+    'mokoko.co.kr',
+    'loaguard.com',
+    'lostbuilds.com',
+    'maxroll.gg',
+    'loaviewer.github.io',
+    'loapattern.com',
+    'nexus-guide-site.pages.dev',
+    'sites.google.com',
+    'mokitoki.ru',
+    'lopec.kr',
+    'zloa.net',
+    'loaup.com',
+    'honing-forecast.pages.dev',
+    'loatto.jp',
+    'icepeng.com',
+    'lo4.app',
+    'loaclac-doss.vercel.app',
+    'la-tools.com',
+    'airplaner.github.io',
+    'ssbcalc.poyomi.fyi',
+    'raimundomedeiros.github.io',
+    'loatool.taeu.kr',
+    'lostgld.com',
+    'ark.bynn.jp',
+    'loatracker.pages.dev',
+    'reddit.com'
   ];
+
+  function parseSiteList(raw, fallbackArr) {
+    const list = (raw || '').split('\n').map(s => s.trim()).filter(Boolean);
+    if (list.length) return list;
+    return fallbackArr || [];
+  }
 
   function checkSiteAllowed(result) {
     const mode = result.siteMode || 'everywhere';
@@ -100,13 +138,14 @@
     if (mode === 'everywhere') {
       siteAllowed = true;
     } else if (mode === 'allowlist') {
-      const list = (result.allowedSites || '').split('\n').map(s => s.trim()).filter(Boolean);
+      const list = parseSiteList(result.allowedSites);
       siteAllowed = list.some(d => hostname === d || hostname.endsWith('.' + d));
     } else if (mode === 'blocklist') {
-      const list = (result.blockedSites || '').split('\n').map(s => s.trim()).filter(Boolean);
+      const list = parseSiteList(result.blockedSites);
       siteAllowed = !list.some(d => hostname === d || hostname.endsWith('.' + d));
     } else if (mode === 'developer') {
-      siteAllowed = DEV_SITES.some(d => hostname === d || hostname.endsWith('.' + d));
+      const list = parseSiteList(result.developerSites, DEFAULT_DEV_SITES);
+      siteAllowed = list.some(d => hostname === d || hostname.endsWith('.' + d));
     } else {
       siteAllowed = true;
     }
@@ -169,11 +208,31 @@
     return tags.includes('skill') || tags.includes('arkpass') || tags.includes('classcore') || tags.includes('tripod');
   }
 
-  function hasSkillLevelContext(surrounding) {
-    if (!surrounding) return false;
-    const t = String(surrounding);
-    if (/(?:^|[^\d])(?:lv\.?\s*|lvl\.?\s*|level\s*|레벨\s*)?10(?=[^\d]|$)/i.test(t)) return true;
-    if (/(?:^|[\s\[\(·:|/+])10(?=[\s\]\)·:|.,/+]|$)/.test(t)) return true;
+  function isInterfaceVariant(v) {
+    const tags = v.tags || [];
+    return tags.includes('interface') || tags.includes('term');
+  }
+
+  function getLocalSkillContext(node) {
+    if (!node) return '';
+    let el = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
+    if (!el) return '';
+    let text = el.textContent || '';
+    if (text.trim().length < 40 && el.parentElement) {
+      const p = el.parentElement;
+      const tag = (p.tagName || '').toUpperCase();
+      if (tag === 'TD' || tag === 'TH' || tag === 'A' || tag === 'SPAN' || tag === 'LABEL') {
+        text = p.textContent || text;
+      }
+    }
+    return text.slice(0, 150);
+  }
+
+  function hasSkillLevelContext(node) {
+    const t = getLocalSkillContext(node);
+    if (!t) return false;
+    if (/(?:lv\.?\s*|lvl\.?\s*|level\s*|레벨\s+)10\b/i.test(t)) return true;
+    if (t.trim().length <= 30 && /(?:^|[^\d])10(?=[^\d]|$)/.test(t)) return true;
     return false;
   }
 
@@ -181,11 +240,10 @@
     if (!node) return false;
     let el = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
     let depth = 0;
-    while (el && depth < 8) {
+    while (el && depth < 6) {
       if (el.getAttribute) {
         if (el.getAttribute('data-lostark-skill-code')) return true;
         if (el.getAttribute('data-skill-code') || el.getAttribute('data-skill-id')) return true;
-        if (el.getAttribute('data-skill')) return true;
       }
       if (el.classList) {
         if (el.classList.contains('skill-icon')) return true;
@@ -193,37 +251,12 @@
       }
       if (el.tagName === 'A') {
         const href = el.getAttribute('href') || '';
-        if (/skill|code=\d+/i.test(href)) return true;
+        if (/\/skill\/|skill\/\d+|code=\d{4,}/i.test(href)) return true;
       }
       if (el.tagName === 'IMG') {
         const src = el.getAttribute('src') || '';
         const alt = el.getAttribute('alt') || '';
-        if (/skill/i.test(src) || /스킬|skill/i.test(alt)) return true;
-      }
-      el = el.parentElement;
-      depth++;
-    }
-    return false;
-  }
-
-  // Руны/гемы/предметы: иконки из /use/ (use_7_200 и т.п.)
-  function hasRuneOrItemContext(node) {
-    if (!node) return false;
-    let el = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
-    let depth = 0;
-    while (el && depth < 6) {
-      if (el.tagName === 'IMG') {
-        const src = el.getAttribute('src') || '';
-        if (/\/use\//i.test(src) || /use_\d/i.test(src)) return true;
-      }
-      if (el.parentElement) {
-        for (const sib of el.parentElement.children) {
-          if (sib === el) continue;
-          if (sib.tagName === 'IMG') {
-            const src = sib.getAttribute('src') || '';
-            if (/\/use\//i.test(src) || /use_\d/i.test(src)) return true;
-          }
-        }
+        if (/\/skill|skillicon|skill_icon|tripod_tier/i.test(src) || /스킬|skill/i.test(alt)) return true;
       }
       el = el.parentElement;
       depth++;
@@ -240,23 +273,19 @@
       if (isBuildVariant(v) && matchesContext(v, surrounding)) return v.value;
     }
     for (const v of variants) {
-      if (!isSkillVariant(v) && !isBuildVariant(v) && matchesContext(v, surrounding)) return v.value;
-    }
-    for (const v of variants) {
       if (isSkillVariant(v) && matchesContext(v, surrounding)) return v.value;
     }
-
-    // Рядом с иконкой руны/гема/предмета (/use/) — приоритет у терминов (Focus → Марх)
-    if (hasRuneOrItemContext(node)) {
-      for (const v of variants) {
-        if (!isSkillVariant(v) && !isBuildVariant(v)) return v.value;
-      }
-    }
-
-    if (hasSkillLevelContext(surrounding) || hasSkillUiContext(node)) {
+    const skillUi = hasSkillLevelContext(node) || hasSkillUiContext(node);
+    if (skillUi) {
       for (const v of variants) {
         if (isSkillVariant(v)) return v.value;
       }
+    }
+    for (const v of variants) {
+      if (isInterfaceVariant(v)) return v.value;
+    }
+    for (const v of variants) {
+      if (!isSkillVariant(v) && !isBuildVariant(v)) return v.value;
     }
     for (const v of variants) {
       if (isBuildVariant(v)) return v.value;
@@ -820,14 +849,22 @@
 
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area === 'sync' && (changes.termMode || changes.termModeReplaceSites ||
-        changes.termModeAnnotateSites || changes.termModeBracketsSites)) {
+        changes.termModeAnnotateSites || changes.termModeBracketsSites ||
+        changes.siteMode || changes.allowedSites || changes.blockedSites || changes.developerSites ||
+        changes.isEnabled)) {
       chrome.storage.sync.get([
+        'isEnabled','siteMode','allowedSites','blockedSites','developerSites',
         'termMode','termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites'
       ], (r) => {
+        isEnabled = r.isEnabled !== false;
         termMode = resolveTermMode(r || {});
+        checkSiteAllowed(r || {});
         if (isEnabled && siteAllowed) {
           restoreDocument();
           translateDocument();
+          startObserver();
+        } else {
+          restoreDocument();
         }
       });
     }

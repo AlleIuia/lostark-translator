@@ -21,10 +21,9 @@ const UI = {
     siteBlocklist: 'Кроме запрещённых',
     siteDeveloper: 'Список разработчика',
     sitesPlaceholder: 'По одному домену на строку\nloawa.com\nmaxroll.gg',
-    secSync: 'Автосинхронизация',
-    lblAutoSync: 'Включить',
-    forceSync: 'Синхронизировать',
-    hintAutoSync: 'Выключено по умолчанию. Не чаще раза в 48 часов при запуске браузера.',
+    hintSitesAllow: 'По одному домену на строку. Расширение работает только на этих сайтах.',
+    hintSitesBlock: 'По одному домену на строку. На этих сайтах расширение не работает.',
+    hintSitesDev: 'Список разработчика. Редактируется здесь; по умолчанию задан при установке.',
     secImportExport: 'Импорт / Экспорт',
     exportBtn: 'Экспорт',
     importBtn: 'Импорт',
@@ -85,10 +84,9 @@ const UI = {
     siteBlocklist: 'Except blocklist',
     siteDeveloper: 'Developer list',
     sitesPlaceholder: 'One domain per line\nloawa.com\nmaxroll.gg',
-    secSync: 'Auto sync',
-    lblAutoSync: 'Enable',
-    forceSync: 'Sync now',
-    hintAutoSync: 'Off by default. At most once every 48 hours on browser start.',
+    hintSitesAllow: 'One domain per line. Extension runs only on these sites.',
+    hintSitesBlock: 'One domain per line. Extension does not run on these sites.',
+    hintSitesDev: 'Developer list. Editable here; default is set on install.',
     secImportExport: 'Import / Export',
     exportBtn: 'Export',
     importBtn: 'Import',
@@ -149,10 +147,9 @@ const UI = {
     siteBlocklist: '차단 목록 제외',
     siteDeveloper: '개발자 목록',
     sitesPlaceholder: '줄당 하나의 도메인\nloawa.com\nmaxroll.gg',
-    secSync: '자동 동기화',
-    lblAutoSync: '사용',
-    forceSync: '지금 동기화',
-    hintAutoSync: '기본값 꺼짐. 브라우저 시작 시 48시간에 한 번까지.',
+    hintSitesAllow: '줄당 하나의 도메인. 이 사이트에서만 확장 프로그램이 동작합니다.',
+    hintSitesBlock: '줄당 하나의 도메인. 이 사이트에서는 확장 프로그램이 동작하지 않습니다.',
+    hintSitesDev: '개발자 목록. 여기서 편집할 수 있으며, 설치 시 기본값이 설정됩니다.',
     secImportExport: '가져오기 / 내보내기',
     exportBtn: '내보내기',
     importBtn: '가져오기',
@@ -195,10 +192,50 @@ const UI = {
 
 let targetLang = 'ru';
 let t = UI.ru;
-let lastSyncInfo = { ts: null, status: null };
+
+
+const DEFAULT_DEV_SITES = [
+  'uwuowo.mathi.moe',
+  'loawa.com',
+  'lostark.ru',
+  'docs.google.com',
+  'loachart.com',
+  'rloa.gg',
+  'playlostark.com',
+  'lostark.game.onstove.com',
+  'lostark.qq.com',
+  'lostark.bible',
+  'loa-buddy.pages.dev',
+  'mokoko.co.kr',
+  'loaguard.com',
+  'lostbuilds.com',
+  'maxroll.gg',
+  'loaviewer.github.io',
+  'loapattern.com',
+  'nexus-guide-site.pages.dev',
+  'sites.google.com',
+  'mokitoki.ru',
+  'lopec.kr',
+  'zloa.net',
+  'loaup.com',
+  'honing-forecast.pages.dev',
+  'loatto.kr',
+  'icepeng.com',
+  'lo4.app',
+  'loaclac-doss.vercel.app',
+  'la-tools.com',
+  'airplaner.github.io',
+  'ssbcalc.poyomi.fyi',
+  'raimundomedeiros.github.io',
+  'loatool.taeu.kr',
+  'lostgld.com',
+  'ark.bynn.kr',
+  'loatracker.pages.dev',
+  'reddit.com'
+];
 
 document.addEventListener('DOMContentLoaded', () => {
-  chrome.storage.sync.get(['targetLang', 'theme', 'siteMode', 'allowedSites', 'blockedSites', 'termMode', 'termModeReplaceSites', 'termModeAnnotateSites', 'termModeBracketsSites'], (sync) => {
+  chrome.storage.sync.get(['targetLang', 'theme', 'siteMode', 'allowedSites', 'blockedSites', 'developerSites', 'termMode', 'termModeReplaceSites', 'termModeAnnotateSites', 'termModeBracketsSites'], (sync) => {
     targetLang = sync.targetLang || 'ru';
     t = UI[targetLang] || UI.ru;
     applyLocalization();
@@ -216,20 +253,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mode = sync.siteMode || 'everywhere';
     document.getElementById('siteMode').value = mode;
-    if (mode === 'allowlist') {
-      document.getElementById('sitesList').value = sync.allowedSites || '';
-    } else if (mode === 'blocklist') {
-      document.getElementById('sitesList').value = sync.blockedSites || '';
-    } else {
-      document.getElementById('sitesList').value = '';
-    }
+    updateSitesListUI(mode, sync);
   });
 
-  chrome.storage.local.get(['autoSyncEnabled', 'lastAutoSync', 'lastAutoSyncStatus', 'customPatterns'], (local) => {
-    document.getElementById('autoSyncToggle').checked = local.autoSyncEnabled === true;
-    const st = document.getElementById('autoSyncStatus');
-    lastSyncInfo = { ts: local.lastAutoSync || null, status: local.lastAutoSyncStatus || null };
-    updateSyncStatusLabel();
+  chrome.storage.local.get(['customPatterns'], (local) => {
     renderPatterns(local.customPatterns || []);
   });
 
@@ -244,18 +271,29 @@ document.addEventListener('DOMContentLoaded', () => {
   setupListeners();
 });
 
-
-function updateSyncStatusLabel() {
-  const st = document.getElementById('autoSyncStatus');
-  if (!st) return;
-  if (!lastSyncInfo.ts) {
-    if (!st.textContent || st.textContent === t.syncing) return;
+function updateSitesListUI(mode, sync) {
+  const ta = document.getElementById('sitesList');
+  const row = document.getElementById('sitesListRow');
+  const hint = document.getElementById('hintSitesList');
+  if (!ta) return;
+  const show = mode === 'allowlist' || mode === 'blocklist' || mode === 'developer';
+  if (row) row.style.display = show ? '' : 'none';
+  if (!show) {
+    ta.value = '';
+    if (hint) hint.textContent = '';
     return;
   }
-  const d = new Date(lastSyncInfo.ts);
-  const status = lastSyncInfo.status || '';
-  st.textContent = (t.lastPrefix || 'Last: ') + d.toLocaleString() + (status ? ' (' + status + ')' : '');
-  st.className = 'status ' + (String(status).startsWith('err') ? 'err' : 'ok');
+  if (mode === 'allowlist') {
+    ta.value = (sync && typeof sync.allowedSites === 'string') ? sync.allowedSites : '';
+    if (hint) hint.textContent = t.hintSitesAllow || '';
+  } else if (mode === 'blocklist') {
+    ta.value = (sync && typeof sync.blockedSites === 'string') ? sync.blockedSites : '';
+    if (hint) hint.textContent = t.hintSitesBlock || '';
+  } else if (mode === 'developer') {
+    const raw = sync && typeof sync.developerSites === 'string' ? sync.developerSites : '';
+    ta.value = raw.trim() ? raw : DEFAULT_DEV_SITES.join('\n');
+    if (hint) hint.textContent = t.hintSitesDev || '';
+  }
 }
 
 function applyLocalization() {
@@ -285,10 +323,17 @@ function applyLocalization() {
   if (mode.options[2]) mode.options[2].textContent = t.siteBlocklist;
   if (mode.options[3]) mode.options[3].textContent = t.siteDeveloper;
   document.getElementById('sitesList').placeholder = t.sitesPlaceholder;
-  document.getElementById('secSync').textContent = t.secSync;
-  document.getElementById('lblAutoSync').textContent = t.lblAutoSync;
-  document.getElementById('forceSyncBtn').textContent = t.forceSync;
-  document.getElementById('hintAutoSync').textContent = t.hintAutoSync;
+  const modeEl = document.getElementById('siteMode');
+  if (modeEl) {
+    const m = modeEl.value;
+    const hint = document.getElementById('hintSitesList');
+    if (hint) {
+      if (m === 'allowlist') hint.textContent = t.hintSitesAllow || '';
+      else if (m === 'blocklist') hint.textContent = t.hintSitesBlock || '';
+      else if (m === 'developer') hint.textContent = t.hintSitesDev || '';
+      else hint.textContent = '';
+    }
+  }
   const secUser = document.getElementById('secUserWords');
   if (secUser) secUser.textContent = t.secUserWords;
   const hintUser = document.getElementById('hintUserWords');
@@ -317,7 +362,6 @@ function applyLocalization() {
   document.getElementById('thPattern').textContent = t.thPattern;
   document.getElementById('thFlags').textContent = t.thFlags;
   document.getElementById('thRepl').textContent = t.thRepl;
-  updateSyncStatusLabel();
   loadUserWords();
 }
 
@@ -346,36 +390,24 @@ function setupListeners() {
     });
   });
 
-  document.getElementById('siteMode').addEventListener('change', saveSites);
+  document.getElementById('siteMode').addEventListener('change', () => {
+    const mode = document.getElementById('siteMode').value;
+    chrome.storage.sync.get(['allowedSites', 'blockedSites', 'developerSites'], (sync) => {
+      updateSitesListUI(mode, sync);
+      const updates = { siteMode: mode };
+      if (mode === 'developer') {
+        const ta = document.getElementById('sitesList');
+        if (ta && !((sync.developerSites || '').trim())) {
+          updates.developerSites = DEFAULT_DEV_SITES.join('\n');
+        }
+      }
+      chrome.storage.sync.set(updates);
+    });
+  });
   let siteTimeout;
   document.getElementById('sitesList').addEventListener('input', () => {
     clearTimeout(siteTimeout);
     siteTimeout = setTimeout(saveSites, 400);
-  });
-
-  document.getElementById('autoSyncToggle').addEventListener('change', (e) => {
-    chrome.runtime.sendMessage({ action: 'setAutoSync', enabled: e.target.checked });
-  });
-
-  document.getElementById('forceSyncBtn').addEventListener('click', async () => {
-    const st = document.getElementById('autoSyncStatus');
-    st.textContent = t.syncing;
-    st.className = 'status';
-    try {
-      const res = await chrome.runtime.sendMessage({ action: 'forceAutoSync' });
-      if (res && res.success) {
-        if (res.lastAutoSync) lastSyncInfo.ts = res.lastAutoSync;
-        if (res.status) lastSyncInfo.status = res.status;
-        else lastSyncInfo.status = 'ok';
-        st.textContent = t.syncOk + (lastSyncInfo.ts ? ' ' + new Date(lastSyncInfo.ts).toLocaleString() : '');
-        st.className = 'status ok';
-      } else {
-        throw new Error(res && res.error ? res.error : 'failed');
-      }
-    } catch (e) {
-      st.textContent = t.syncErr + e.message;
-      st.className = 'status err';
-    }
   });
 
   document.getElementById('exportUserBtn').addEventListener('click', exportUserWords);
@@ -415,11 +447,6 @@ function setupListeners() {
       }
     }
     if (area === 'local') {
-      if (changes.lastAutoSync || changes.lastAutoSyncStatus) {
-        if (changes.lastAutoSync) lastSyncInfo.ts = changes.lastAutoSync.newValue;
-        if (changes.lastAutoSyncStatus) lastSyncInfo.status = changes.lastAutoSyncStatus.newValue;
-        updateSyncStatusLabel();
-      }
       if (changes.userData) {
         loadUserWords();
       }
@@ -433,6 +460,7 @@ function saveSites() {
   const updates = { siteMode: mode };
   if (mode === 'allowlist') updates.allowedSites = list;
   else if (mode === 'blocklist') updates.blockedSites = list;
+  else if (mode === 'developer') updates.developerSites = list;
   chrome.storage.sync.set(updates);
 }
 
@@ -616,7 +644,7 @@ async function exportSettings() {
   try {
     const sync = await chrome.storage.sync.get([
       'termMode', 'termModeReplaceSites', 'termModeAnnotateSites', 'termModeBracketsSites',
-      'siteMode', 'allowedSites', 'blockedSites'
+      'siteMode', 'allowedSites', 'blockedSites', 'developerSites'
     ]);
     const local = await chrome.storage.local.get(['customPatterns']);
     const payload = {
@@ -629,6 +657,7 @@ async function exportSettings() {
       siteMode: sync.siteMode || 'everywhere',
       allowedSites: sync.allowedSites || '',
       blockedSites: sync.blockedSites || '',
+      developerSites: sync.developerSites || DEFAULT_DEV_SITES.join('\n'),
       customPatterns: local.customPatterns || []
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
@@ -670,6 +699,7 @@ async function importSettings(e) {
     if (data.siteMode) syncUpdates.siteMode = data.siteMode;
     if (typeof data.allowedSites === 'string') syncUpdates.allowedSites = data.allowedSites;
     if (typeof data.blockedSites === 'string') syncUpdates.blockedSites = data.blockedSites;
+    if (typeof data.developerSites === 'string') syncUpdates.developerSites = data.developerSites;
     await chrome.storage.sync.set(syncUpdates);
     if (Array.isArray(data.customPatterns)) {
       await chrome.storage.local.set({ customPatterns: data.customPatterns });
@@ -683,12 +713,11 @@ async function importSettings(e) {
     if (tbs && typeof data.termModeBracketsSites === 'string') tbs.value = data.termModeBracketsSites;
     const siteModeEl = document.getElementById('siteMode');
     if (siteModeEl && data.siteMode) siteModeEl.value = data.siteMode;
-    const sitesList = document.getElementById('sitesList');
-    if (sitesList) {
-      const mode = data.siteMode || 'everywhere';
-      if (mode === 'allowlist') sitesList.value = data.allowedSites || '';
-      else if (mode === 'blocklist') sitesList.value = data.blockedSites || '';
-    }
+    updateSitesListUI(data.siteMode || 'everywhere', {
+      allowedSites: data.allowedSites,
+      blockedSites: data.blockedSites,
+      developerSites: data.developerSites
+    });
     renderPatterns(Array.isArray(data.customPatterns) ? data.customPatterns : []);
     if (st) {
       st.textContent = t.importSettingsOk;

@@ -148,27 +148,11 @@
         <option value="developer">Developer list</option>
       </select>
     </div>
-    <div class="row">
-      <textarea id="sitesList" rows="3"></textarea>
+    <div class="row" id="sitesListRow">
+      <textarea id="sitesList" rows="4"></textarea>
     </div>
+    <p class="hint" id="hintSitesList"></p>
   </div>
-
-  <h2 id="secSync">Auto sync</h2>
-  <div class="card">
-    <div class="row">
-      <span class="label" id="lblAutoSync">Enable auto sync</span>
-      <label class="switch">
-        <input type="checkbox" id="autoSyncToggle">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div class="row">
-      <button class="btn" id="forceSyncBtn">Sync now</button>
-      <span class="status" id="autoSyncStatus"></span>
-    </div>
-    <p class="hint" id="hintAutoSync">Throttle: once every 6 hours on browser start / install.</p>
-  </div>
-
 
   <h2 id="secUserWords">User words</h2>
   <div class="card">
@@ -226,6 +210,7 @@
     <a id="githubLink" href="https://github.com/AlleIuia/lostark-translator" target="_blank" rel="noopener"
        style="color:var(--primary);font-size:12px;text-decoration:none;">GitHub</a>
   </div>
+  <div aria-hidden="true" style="height:16px;flex-shrink:0;"></div>
 
   <script src="options.js"></script>
 </body>
