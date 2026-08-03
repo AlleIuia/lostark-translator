@@ -1,0 +1,18 @@
+{
+  "loawa.com": {
+    "termMode": "replace",
+    "siteCss": "#content-container { white-space: normal !important; overflow: visible !important; text-overflow: unset !important; flex-shrink: 0 !important; min-width: 1200px !important; width: auto !important; max-width: none !important; height: auto !important; max-height: none !important; }\ndiv > div.rounded.border.bg-card > div.border-b.p-4:nth-of-type(2) > div.flex.gap-4 > div.flex-1.xl\\:max-w-2xl.space-y-4 > div:nth-of-type(3) > div.hidden.xl\\:block > div.flex.flex-wrap.items-center:nth-of-type(3) { white-space: normal !important; overflow: visible !important; text-overflow: unset !important; flex-shrink: 0 !important; min-width: 714px !important; width: auto !important; max-width: none !important; min-height: 4px !important; height: auto !important; max-height: none !important; }\ndiv.rounded.border.bg-card > div.border-b.p-4:nth-of-type(2) > div.flex.gap-4 > div.flex-1.xl\\:max-w-2xl.space-y-4 > div:nth-of-type(3) > div.hidden.xl\\:block > div.flex.flex-wrap.items-center:nth-of-type(7) > span.text-sm.font-medium.text-muted-foreground { white-space: normal !important; overflow: visible !important; text-overflow: unset !important; flex-shrink: 0 !important; min-width: 126px !important; width: auto !important; max-width: none !important; }\ndiv > div.rounded.border.bg-card > div.border-b.p-4:nth-of-type(2) > div.flex.gap-4 > div.flex-1.xl\\:max-w-2xl.space-y-4 > div:nth-of-type(5) > div.hidden.xl\\:flex.items-center > span.w-24.text-sm.font-medium { white-space: normal !important; overflow: visible !important; text-overflow: unset !important; flex-shrink: 0 !important; min-width: 116px !important; width: auto !important; max-width: none !important; min-height: 20px !important; height: auto !important; max-height: none !important; }\ndiv.flex.flex-col.xl\\:flex-row > aside.w-full.xl\\:w-72.shrink-0 > div.hidden.xl\\:block.space-y-4 > div.rounded.border.border-border:nth-of-type(1) > div.p-4.space-y-2 > div.grid.grid-cols-2.gap-2 > div.flex.justify-between:nth-of-type(5) > span.text-muted-foreground.notranslate { white-space: normal !important; overflow: visible !important; text-overflow: unset !important; flex-shrink: 0 !important; min-width: 121px !important; width: auto !important; max-width: none !important; min-height: 20px !important; height: auto !important; max-height: none !important; }"
+  },
+  "lostark.bible": {
+    "termMode": "replace",
+    "siteCss": ""
+  },
+  "reddit.com": {
+    "termMode": "annotate",
+    "siteCss": ""
+  },
+  "maxroll.gg": {
+    "termMode": "replace",
+    "siteCss": ""
+  }
+}

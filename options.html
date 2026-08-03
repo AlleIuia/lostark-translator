@@ -154,14 +154,58 @@
     <p class="hint" id="hintSitesList"></p>
   </div>
 
+  <h2 id="secFitText">Layout fit</h2>
+  <div class="card">
+    <p class="hint" id="hintFitText">When translations are longer than the original and overflow UI blocks.</p>
+    <div class="row">
+      <span class="label" id="lblFitEnabled">Enable</span>
+      <label class="switch">
+        <input type="checkbox" id="fitEnabled" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="row">
+      <span class="label" id="lblFitScale">Term font size</span>
+      <input type="range" id="fitScale" min="50" max="100" value="90" style="flex:1;min-width:80px;">
+      <span id="fitScaleVal" style="min-width:36px;text-align:right;font-weight:600;">90%</span>
+    </div>
+    <div class="row">
+      <span class="label" id="lblFitWrap">Allow wrap</span>
+      <label class="switch">
+        <input type="checkbox" id="fitWrap" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="row">
+      <span class="label" id="lblFitExpand">Expand parents</span>
+      <label class="switch">
+        <input type="checkbox" id="fitExpand" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+    <p class="hint" id="hintFitExpand">Removes fixed width / nowrap on parents of translated terms.</p>
+    <div class="row" style="flex-direction:column;align-items:stretch;gap:4px;margin-top:8px;">
+      <span class="label" id="lblFitSiteCss" style="min-width:0;">Site CSS</span>
+      <textarea id="fitSiteCss" rows="8" placeholder="# lostark.bible&#10;.whitespace-nowrap { white-space: normal !important; }&#10;&#10;# loawa.com&#10;.chip { min-width: 7rem; }"></textarea>
+    </div>
+    <p class="hint" id="hintFitSiteCss">Blocks start with # domain. CSS below applies only on that site.</p>
+    <p class="hint" id="hintFitPicker">On a page: Ctrl + right-click a block → width/height/font (live preview) → Save. Parent / Child / arrows for neighbors. Esc closes.</p>
+  </div>
+
+  <h2 id="secDictFiles">Dictionaries</h2>
+  <div class="card">
+    <p class="hint" id="hintDictFiles">Enable or disable bundled dictionary files. lt-user.json is for curated user terms shipped with the extension.</p>
+    <div id="dictFilesList" style="font-size:12px;"></div>
+  </div>
+
   <h2 id="secUserWords">User words</h2>
   <div class="card">
-    <p class="hint" id="hintUserWords">Entries you added or changed. Shown at the top of the dictionary list.</p>
+    <p class="hint" id="hintUserWords">Entries you added or changed (Alt+A / popup). Delete one by one with ×.</p>
     <div class="row">
       <button class="btn" id="exportUserBtn">Export user words</button>
       <span class="status" id="userExportStatus"></span>
     </div>
-    <div id="userWordsList" style="margin-top:10px;max-height:200px;overflow-y:auto;font-size:12px;"></div>
+    <div id="userWordsList" style="margin-top:10px;max-height:280px;overflow-y:auto;font-size:12px;"></div>
   </div>
 
   <h2 id="secImportExport">Import / Export</h2>

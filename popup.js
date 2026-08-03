@@ -198,10 +198,45 @@ function loadData() {
       btn.classList.toggle('active', btn.dataset.termMode === termMode);
     });
     applyLocalization();
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const tab = tabs && tabs[0];
+      if (!tab || !tab.url) return;
+      let host = '';
+      try { host = new URL(tab.url).hostname.replace(/^www\./, '').toLowerCase(); } catch (_) { return; }
+      if (!host) return;
+      chrome.storage.local.get(['siteProfiles'], (local) => {
+        const profiles = local.siteProfiles || {};
+        const p = profiles[host];
+        if (p && p.termMode) {
+          termMode = p.termMode;
+          document.querySelectorAll('.term-mode-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.termMode === termMode);
+          });
+        }
+        const stats = document.getElementById('pageStats');
+        if (stats && host) {
+          const base = stats.textContent || '';
+          if (!base.includes(host)) {
+            /* keep stats; domain shown via title on mode buttons context */
+          }
+        }
+        const statusBar = document.querySelector('.status-bar');
+        let siteLabel = document.getElementById('siteProfileLabel');
+        if (!siteLabel && statusBar) {
+          siteLabel = document.createElement('span');
+          siteLabel.id = 'siteProfileLabel';
+          siteLabel.style.cssText = 'opacity:0.75;font-size:10px;margin-left:6px;';
+          statusBar.appendChild(siteLabel);
+        }
+        if (siteLabel) siteLabel.textContent = host + (p && p.termMode ? ' · site' : '');
+      });
+    });
   });
-  chrome.storage.local.get(['fullData'], (localResult) => {
-    fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [] };
-    renderList();
+  chrome.runtime.sendMessage({ action: 'reloadLocalDictionaries' }, () => {
+    chrome.storage.local.get(['fullData'], (localResult) => {
+      fullData = localResult.fullData || { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [] };
+      renderList();
+    });
   });
 }
 
@@ -265,6 +300,19 @@ function setupListeners() {
       document.querySelectorAll('.term-mode-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       chrome.storage.sync.set({ termMode });
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const tab = tabs && tabs[0];
+        if (!tab || !tab.url) return;
+        let host = '';
+        try { host = new URL(tab.url).hostname.replace(/^www\./, '').toLowerCase(); } catch (_) { return; }
+        if (!host || host.startsWith('chrome')) return;
+        chrome.storage.local.get(['siteProfiles'], (local) => {
+          const profiles = Object.assign({}, local.siteProfiles || {});
+          const prev = profiles[host] || {};
+          profiles[host] = Object.assign({}, prev, { termMode: termMode });
+          chrome.storage.local.set({ siteProfiles: profiles });
+        });
+      });
     });
   });
 
@@ -773,11 +821,13 @@ function setupEditableCells() {
 }
 
 async function saveNewEntry() {
-  const en = document.getElementById('newEn').value.trim();
+  let en = document.getElementById('newEn').value.trim();
   const ru = document.getElementById('newRu').value.trim();
   const kr = document.getElementById('newKr').value.trim();
   const type = document.getElementById('newType').value;
-  if (!en) return;
+  const filled = [en, ru, kr].filter(Boolean).length;
+  if (filled < 2) return;
+  if (!en) en = kr || ru;
 
   let msg;
   if (type === 'build') {

@@ -1,15 +1,26 @@
 {
   "manifest_version": 3,
   "name": "LA Translator",
-  "version": "0.5.7",
+  "version": "0.5.9",
   "description": "Переводит игровые термины Lost Ark. Работает с встроенными переводчиками.",
   "permissions": [
-    "storage"
+    "storage",
+    "activeTab",
+    "tabs"
   ],
   "host_permissions": [
     "<all_urls>",
     "https://raw.githubusercontent.com/*"
   ],
+  "commands": {
+    "lt-quick-edit": {
+      "suggested_key": {
+        "default": "Alt+A",
+        "mac": "Alt+A"
+      },
+      "description": "LA Translator: add or edit selected term"
+    }
+  },
   "background": {
     "service_worker": "background.js"
   },

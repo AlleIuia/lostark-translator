@@ -24,6 +24,16 @@ const UI = {
     hintSitesAllow: 'По одному домену на строку. Расширение работает только на этих сайтах.',
     hintSitesBlock: 'По одному домену на строку. На этих сайтах расширение не работает.',
     hintSitesDev: 'Список разработчика. Редактируется здесь; по умолчанию задан при установке.',
+    secFitText: 'Подгонка размера',
+    hintFitText: 'Когда перевод длиннее оригинала и не помещается в блоки сайта.',
+    lblFitEnabled: 'Включить',
+    lblFitScale: 'Размер шрифта термина',
+    lblFitWrap: 'Перенос строк',
+    lblFitExpand: 'Расширять контейнеры',
+    hintFitExpand: 'Снимает nowrap / обрезание у родителей переведённых терминов.',
+    lblFitSiteCss: 'CSS по сайтам',
+    hintFitSiteCss: 'Блок начинается с # домен. CSS ниже действует только на этом сайте.',
+    hintFitPicker: 'На сайте: Ctrl + ПКМ по блоку → ширина/высота/шрифт (сразу видно) → Сохранить. Соседи: ← →, Родитель/Дочерний. Esc — выход.',
     secImportExport: 'Импорт / Экспорт',
     exportBtn: 'Экспорт',
     importBtn: 'Импорт',
@@ -87,6 +97,16 @@ const UI = {
     hintSitesAllow: 'One domain per line. Extension runs only on these sites.',
     hintSitesBlock: 'One domain per line. Extension does not run on these sites.',
     hintSitesDev: 'Developer list. Editable here; default is set on install.',
+    secFitText: 'Layout fit',
+    hintFitText: 'When translations are longer than the original and overflow UI blocks.',
+    lblFitEnabled: 'Enable',
+    lblFitScale: 'Term font size',
+    lblFitWrap: 'Allow wrap',
+    lblFitExpand: 'Expand containers',
+    hintFitExpand: 'Clears nowrap / clipping on parents of translated terms.',
+    lblFitSiteCss: 'Site CSS',
+    hintFitSiteCss: 'Blocks start with # domain. CSS below applies only on that site.',
+    hintFitPicker: 'On a page: Ctrl + right-click a block → width/height/font (live preview) → Save. Neighbors: ← →, Parent/Child. Esc closes.',
     secImportExport: 'Import / Export',
     exportBtn: 'Export',
     importBtn: 'Import',
@@ -150,6 +170,16 @@ const UI = {
     hintSitesAllow: '줄당 하나의 도메인. 이 사이트에서만 확장 프로그램이 동작합니다.',
     hintSitesBlock: '줄당 하나의 도메인. 이 사이트에서는 확장 프로그램이 동작하지 않습니다.',
     hintSitesDev: '개발자 목록. 여기서 편집할 수 있으며, 설치 시 기본값이 설정됩니다.',
+    secFitText: '레이아웃 맞춤',
+    hintFitText: '번역이 원문보다 길어 UI 블록을 넘칠 때.',
+    lblFitEnabled: '사용',
+    lblFitScale: '용어 글자 크기',
+    lblFitWrap: '줄바꿈 허용',
+    lblFitExpand: '컨테이너 확장',
+    hintFitExpand: '번역된 용어 부모의 nowrap / 잘림을 해제합니다.',
+    lblFitSiteCss: '사이트별 CSS',
+    hintFitSiteCss: '블록은 # 도메인으로 시작합니다. 아래 CSS는 해당 사이트에만 적용됩니다.',
+    hintFitPicker: '페이지에서 Ctrl + 우클릭으로 블록 선택 → 너비/높이/글꼴(즉시 미리보기) → 저장. 이웃: ← →, 부모/자식. Esc로 종료.',
     secImportExport: '가져오기 / 내보내기',
     exportBtn: '내보내기',
     importBtn: '가져오기',
@@ -235,6 +265,72 @@ const DEFAULT_DEV_SITES = [
   'inven.co.kr'
 ];
 
+const DEFAULT_FIT = {
+  enabled: true,
+  termScale: 90,
+  allowWrap: true,
+  expandParents: true,
+  siteCss: ''
+};
+
+function normalizeFit(raw) {
+  const f = raw && typeof raw === 'object' ? raw : {};
+  return {
+    enabled: f.enabled !== false,
+    termScale: Math.min(100, Math.max(50, parseInt(f.termScale, 10) || 90)),
+    allowWrap: f.allowWrap !== false,
+    expandParents: f.expandParents !== false,
+    siteCss: typeof f.siteCss === 'string' ? f.siteCss : ''
+  };
+}
+
+function readFitFromUI() {
+  const scaleEl = document.getElementById('fitScale');
+  return {
+    enabled: !!(document.getElementById('fitEnabled') || {}).checked,
+    termScale: scaleEl ? parseInt(scaleEl.value, 10) || 90 : 90,
+    allowWrap: !!(document.getElementById('fitWrap') || {}).checked,
+    expandParents: !!(document.getElementById('fitExpand') || {}).checked,
+    siteCss: (document.getElementById('fitSiteCss') || {}).value || ''
+  };
+}
+
+function applyFitToUI(fit) {
+  const f = normalizeFit(fit);
+  const en = document.getElementById('fitEnabled');
+  if (en) en.checked = f.enabled;
+  const sc = document.getElementById('fitScale');
+  if (sc) sc.value = String(f.termScale);
+  const sv = document.getElementById('fitScaleVal');
+  if (sv) sv.textContent = f.termScale + '%';
+  const wr = document.getElementById('fitWrap');
+  if (wr) wr.checked = f.allowWrap;
+  const ex = document.getElementById('fitExpand');
+  if (ex) ex.checked = f.expandParents;
+  const css = document.getElementById('fitSiteCss');
+  if (css) css.value = f.siteCss;
+}
+
+let fitSaveTimer = null;
+let fitSavePending = null;
+
+function saveFitSettings(immediate) {
+  fitSavePending = readFitFromUI();
+  const doSave = () => {
+    const data = fitSavePending || readFitFromUI();
+    fitSavePending = null;
+    fitSaveTimer = null;
+    chrome.storage.local.set({ fitText: data });
+  };
+  if (immediate) {
+    if (fitSaveTimer) clearTimeout(fitSaveTimer);
+    doSave();
+    return;
+  }
+  if (fitSaveTimer) clearTimeout(fitSaveTimer);
+  fitSaveTimer = setTimeout(doSave, 600);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.sync.get(['targetLang', 'theme', 'siteMode', 'allowedSites', 'blockedSites', 'developerSites', 'termMode', 'termModeReplaceSites', 'termModeAnnotateSites', 'termModeBracketsSites'], (sync) => {
     targetLang = sync.targetLang || 'ru';
@@ -255,6 +351,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const mode = sync.siteMode || 'everywhere';
     document.getElementById('siteMode').value = mode;
     updateSitesListUI(mode, sync);
+  });
+  chrome.storage.local.get(['fitText'], (local) => {
+    applyFitToUI(local.fitText || DEFAULT_FIT);
   });
 
   chrome.storage.local.get(['customPatterns'], (local) => {
@@ -335,6 +434,26 @@ function applyLocalization() {
       else hint.textContent = '';
     }
   }
+  const secFit = document.getElementById('secFitText');
+  if (secFit) secFit.textContent = t.secFitText || 'Layout fit';
+  const hintFit = document.getElementById('hintFitText');
+  if (hintFit) hintFit.textContent = t.hintFitText || '';
+  const lblFitEn = document.getElementById('lblFitEnabled');
+  if (lblFitEn) lblFitEn.textContent = t.lblFitEnabled || 'Enable';
+  const lblFitSc = document.getElementById('lblFitScale');
+  if (lblFitSc) lblFitSc.textContent = t.lblFitScale || 'Term font size';
+  const lblFitWr = document.getElementById('lblFitWrap');
+  if (lblFitWr) lblFitWr.textContent = t.lblFitWrap || 'Allow wrap';
+  const lblFitEx = document.getElementById('lblFitExpand');
+  if (lblFitEx) lblFitEx.textContent = t.lblFitExpand || 'Expand containers';
+  const hintFitEx = document.getElementById('hintFitExpand');
+  if (hintFitEx) hintFitEx.textContent = t.hintFitExpand || '';
+  const lblFitCss = document.getElementById('lblFitSiteCss');
+  if (lblFitCss) lblFitCss.textContent = t.lblFitSiteCss || 'Site CSS';
+  const hintFitCss = document.getElementById('hintFitSiteCss');
+  if (hintFitCss) hintFitCss.textContent = t.hintFitSiteCss || '';
+  const hintFitPick = document.getElementById('hintFitPicker');
+  if (hintFitPick) hintFitPick.textContent = t.hintFitPicker || '';
   const secUser = document.getElementById('secUserWords');
   if (secUser) secUser.textContent = t.secUserWords;
   const hintUser = document.getElementById('hintUserWords');
@@ -373,6 +492,25 @@ function setupListeners() {
     chrome.storage.sync.set({ theme });
     document.getElementById('lblTheme').textContent = e.target.checked ? t.lblThemeDark : t.lblThemeLight;
   });
+
+  const fitScale = document.getElementById('fitScale');
+  if (fitScale) {
+    fitScale.addEventListener('input', () => {
+      const sv = document.getElementById('fitScaleVal');
+      if (sv) sv.textContent = fitScale.value + '%';
+      saveFitSettings(false);
+    });
+    fitScale.addEventListener('change', () => saveFitSettings(true));
+  }
+  ['fitEnabled', 'fitWrap', 'fitExpand'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('change', () => saveFitSettings(true));
+  });
+  const fitCss = document.getElementById('fitSiteCss');
+  if (fitCss) {
+    fitCss.addEventListener('input', () => saveFitSettings(false));
+    fitCss.addEventListener('change', () => saveFitSettings(true));
+  }
 
   let termSitesTimer;
   function saveTermModeSites() {
@@ -413,6 +551,7 @@ function setupListeners() {
 
   document.getElementById('exportUserBtn').addEventListener('click', exportUserWords);
   loadUserWords();
+  loadDictFilesUI();
 
   document.getElementById('exportBtn').addEventListener('click', exportDictionary);
   document.getElementById('importBtn').addEventListener('click', () => {
@@ -568,41 +707,33 @@ async function loadUserWords() {
     const res = await chrome.runtime.sendMessage({ action: 'getUserData' });
     const ud = (res && res.userData) || {};
     const lines = [];
+    const push = (type, item, classEn) => {
+      if (!item) return;
+      const en = item.en || '';
+      const ru = item.ru || '';
+      const kr = item.kr || '';
+      if (!en && !ru && !kr) return;
+      lines.push({ type, en, ru, kr, classEn: classEn || '', parent: item.parent || '' });
+    };
     for (const c of ud.classes || []) {
-      lines.push(['class', c.en, c.ru || '', c.kr || '']);
-      for (const b of c.builds || []) {
-        lines.push(['build', b.en, b.ru || '', b.kr || '']);
-      }
+      push('class', c);
+      for (const b of c.builds || []) push('build', b, c.en);
     }
-    for (const e of ud.engravings || []) {
-      lines.push(['engraving', e.en, e.ru || '', e.kr || '']);
-    }
-    for (const o of ud._orphanBuilds || []) {
-      lines.push(['orphan', o.en, o.ru || '', o.kr || '']);
-    }
-    for (const term of ud.terms || []) {
-      lines.push(['term', term.en, term.ru || '', term.kr || '']);
-    }
-    for (const skill of ud.skills || []) {
-      lines.push(['skill', skill.en, skill.ru || '', skill.kr || '']);
-    }
+    for (const e of ud.engravings || []) push('engraving', e);
+    for (const o of ud._orphanBuilds || []) push('orphan', o);
+    for (const term of ud.terms || []) push('term', term);
+    for (const skill of ud.skills || []) push('skill', skill);
     for (const sc of ud.skillClasses || []) {
-      lines.push(['skillClass', sc.en, sc.ru || '', sc.kr || '']);
-      for (const sk of sc.skills || []) {
-        if (sk && sk.en) lines.push(['skill', sk.en, sk.ru || '', sk.kr || '']);
-      }
+      push('skillClass', sc);
+      for (const sk of sc.skills || []) push('skill', sk, sc.en);
     }
     for (const sc of ud.arkPassClasses || []) {
-      lines.push(['arkPass', sc.en, sc.ru || '', sc.kr || '']);
-      for (const sk of sc.skills || []) {
-        if (sk && sk.en) lines.push(['arkpass', sk.en, sk.ru || '', sk.kr || '']);
-      }
+      push('arkPass', sc);
+      for (const sk of sc.skills || []) push('arkpass', sk, sc.en);
     }
     for (const sc of ud.classCoreClasses || []) {
-      lines.push(['classCore', sc.en, sc.ru || '', sc.kr || '']);
-      for (const sk of sc.skills || []) {
-        if (sk && sk.en) lines.push(['classcore', sk.en, sk.ru || '', sk.kr || '']);
-      }
+      push('classCore', sc);
+      for (const sk of sc.skills || []) push('classcore', sk, sc.en);
     }
     if (!lines.length) {
       box.textContent = t.userEmpty;
@@ -612,32 +743,102 @@ async function loadUserWords() {
     const head = document.createElement('div');
     head.style.marginBottom = '6px';
     head.style.opacity = '0.7';
-    head.textContent = t.userCount + lines.length;
+    head.textContent = (t.userCount || '') + lines.length;
     box.appendChild(head);
     const table = document.createElement('table');
     table.style.width = '100%';
-    for (const [type, en, ru, kr] of lines) {
+    table.style.borderCollapse = 'collapse';
+    for (const row of lines) {
       const tr = document.createElement('tr');
-      const td0 = document.createElement('td');
-      td0.textContent = type;
-      td0.style.opacity = '0.5';
-      td0.style.width = '70px';
-      const td1 = document.createElement('td');
-      td1.textContent = en;
-      const td2 = document.createElement('td');
-      td2.textContent = ru;
-      const td3 = document.createElement('td');
-      td3.textContent = kr;
-      tr.appendChild(td0);
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
+      tr.style.borderBottom = '1px solid var(--border, #333)';
+      const cells = [row.type, row.en || '—', row.ru || '—', row.kr || '—'];
+      cells.forEach((txt, i) => {
+        const td = document.createElement('td');
+        td.textContent = txt;
+        td.style.padding = '3px 4px';
+        td.style.verticalAlign = 'top';
+        if (i === 0) { td.style.opacity = '0.5'; td.style.width = '64px'; }
+        if (i === 1 && row.parent) td.title = 'parent: ' + row.parent;
+        tr.appendChild(td);
+      });
+      const tdAct = document.createElement('td');
+      tdAct.style.width = '28px';
+      const btn = document.createElement('button');
+      btn.className = 'btn btn-danger';
+      btn.textContent = '×';
+      btn.title = 'Delete';
+      btn.style.padding = '2px 6px';
+      btn.addEventListener('click', async () => {
+        const key = row.en || row.kr || row.ru;
+        if (!key) return;
+        try {
+          await chrome.runtime.sendMessage({
+            action: 'deleteEntry',
+            en: key,
+            type: row.type === 'skillClass' ? 'skillClass' : row.type,
+            classEn: row.classEn || undefined
+          });
+          await loadUserWords();
+          chrome.runtime.sendMessage({ action: 'rebuildDictionary' }).catch(() => {});
+        } catch (err) {
+          console.error(err);
+        }
+      });
+      tdAct.appendChild(btn);
+      tr.appendChild(tdAct);
       table.appendChild(tr);
     }
     box.appendChild(table);
   } catch (e) {
     box.textContent = String(e.message || e);
   }
+}
+
+const BUNDLED_DICTS = [
+  'dictionary/lt-classes.json',
+  'dictionary/lt-engravings.json',
+  'dictionary/lt-interface.json',
+  'dictionary/lt-skills.json',
+  'dictionary/lt-arkpass.json',
+  'dictionary/lt-classcore.json',
+  'dictionary/lt-user.json'
+];
+
+async function loadDictFilesUI() {
+  const box = document.getElementById('dictFilesList');
+  if (!box) return;
+  const local = await chrome.storage.local.get(['disabledDictionaries']);
+  const disabled = Array.isArray(local.disabledDictionaries) ? local.disabledDictionaries : [];
+  box.innerHTML = '';
+  BUNDLED_DICTS.forEach(path => {
+    const name = path.split('/').pop();
+    const label = document.createElement('label');
+    label.style.display = 'flex';
+    label.style.alignItems = 'center';
+    label.style.gap = '8px';
+    label.style.margin = '4px 0';
+    label.style.cursor = 'pointer';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.checked = !disabled.includes(path) && !disabled.includes(name);
+    cb.addEventListener('change', async () => {
+      const cur = await chrome.storage.local.get(['disabledDictionaries']);
+      let list = Array.isArray(cur.disabledDictionaries) ? cur.disabledDictionaries.slice() : [];
+      list = list.filter(x => x !== path && x !== name);
+      if (!cb.checked) list.push(path);
+      await chrome.storage.local.set({ disabledDictionaries: list });
+      try {
+        await chrome.runtime.sendMessage({ action: 'reloadBaseDictionaries' });
+      } catch (_) {
+        await chrome.runtime.sendMessage({ action: 'rebuildDictionary' });
+      }
+    });
+    label.appendChild(cb);
+    const span = document.createElement('span');
+    span.textContent = name;
+    label.appendChild(span);
+    box.appendChild(label);
+  });
 }
 
 async function exportSettings() {
@@ -647,10 +848,10 @@ async function exportSettings() {
       'termMode', 'termModeReplaceSites', 'termModeAnnotateSites', 'termModeBracketsSites',
       'siteMode', 'allowedSites', 'blockedSites', 'developerSites'
     ]);
-    const local = await chrome.storage.local.get(['customPatterns']);
+    const local = await chrome.storage.local.get(['customPatterns', 'fitText', 'siteProfiles']);
     const payload = {
       type: 'lost-ark-translator-settings',
-      version: 1,
+      version: 2,
       termMode: sync.termMode || 'replace',
       termModeReplaceSites: sync.termModeReplaceSites || '',
       termModeAnnotateSites: sync.termModeAnnotateSites || '',
@@ -659,6 +860,8 @@ async function exportSettings() {
       allowedSites: sync.allowedSites || '',
       blockedSites: sync.blockedSites || '',
       developerSites: sync.developerSites || DEFAULT_DEV_SITES.join('\n'),
+      fitText: normalizeFit(local.fitText || DEFAULT_FIT),
+      siteProfiles: local.siteProfiles || {},
       customPatterns: local.customPatterns || []
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
@@ -702,6 +905,14 @@ async function importSettings(e) {
     if (typeof data.blockedSites === 'string') syncUpdates.blockedSites = data.blockedSites;
     if (typeof data.developerSites === 'string') syncUpdates.developerSites = data.developerSites;
     await chrome.storage.sync.set(syncUpdates);
+    if (data.fitText && typeof data.fitText === 'object') {
+      const fit = normalizeFit(data.fitText);
+      await chrome.storage.local.set({ fitText: fit });
+      applyFitToUI(fit);
+    }
+    if (data.siteProfiles && typeof data.siteProfiles === 'object') {
+      await chrome.storage.local.set({ siteProfiles: data.siteProfiles });
+    }
     if (Array.isArray(data.customPatterns)) {
       await chrome.storage.local.set({ customPatterns: data.customPatterns });
       await chrome.runtime.sendMessage({ action: 'setCustomPatterns', patterns: data.customPatterns });

@@ -4,12 +4,15 @@ const DEFAULT_DICTIONARY_FILES = [
   'dictionary/lt-interface.json',
   'dictionary/lt-skills.json',
   'dictionary/lt-arkpass.json',
-  'dictionary/lt-classcore.json'
+  'dictionary/lt-classcore.json',
+  'dictionary/lt-user.json'
 ];
 
 async function getDictionaryFileList() {
-  const result = await chrome.storage.local.get('dictionaryFiles');
-  return result.dictionaryFiles || DEFAULT_DICTIONARY_FILES;
+  const result = await chrome.storage.local.get(['dictionaryFiles', 'disabledDictionaries']);
+  const all = result.dictionaryFiles || DEFAULT_DICTIONARY_FILES;
+  const disabled = Array.isArray(result.disabledDictionaries) ? result.disabledDictionaries : [];
+  return all.filter(f => !disabled.includes(f) && !disabled.includes(f.split('/').pop()));
 }
 
 function flattenData(data, target) {
@@ -62,7 +65,8 @@ function flattenData(data, target) {
     sources.forEach(src => {
       if (term[src]) addEntry(term[src], term[target], {
         tags: term.tags || ['interface', 'term'],
-        priority: 22
+        parent: term.parent || null,
+        priority: term.priority != null ? term.priority : 22
       });
     });
   });
@@ -79,7 +83,7 @@ function flattenData(data, target) {
       sources.forEach(src => {
         if (skill[src]) addEntry(skill[src], skill[target], {
           parent: sc.en,
-          tags: skill.tags || ['skill'],
+          tags: skill.tags || ['skill', (sc.en || '').toLowerCase()],
           priority: 12
         });
       });
@@ -88,7 +92,7 @@ function flattenData(data, target) {
         sources.forEach(src => {
           if (tp[src]) addEntry(tp[src], tp[target], {
             parent: skill.en || sc.en,
-            tags: ['tripod', 'skill'],
+            tags: ['tripod', 'skill', (sc.en || '').toLowerCase()],
             priority: 11
           });
         });
@@ -128,7 +132,7 @@ function flattenData(data, target) {
       sources.forEach(src => {
         if (skill[src]) addEntry(skill[src], skill[target], {
           parent: sc.en,
-          tags: skill.tags || ['arkpass'],
+          tags: skill.tags || ['arkpass', (sc.en || '').toLowerCase()],
           priority: 12
         });
       });
@@ -147,7 +151,7 @@ function flattenData(data, target) {
       sources.forEach(src => {
         if (skill[src]) addEntry(skill[src], skill[target], {
           parent: sc.en,
-          tags: skill.tags || ['classcore'],
+          tags: skill.tags || ['classcore', (sc.en || '').toLowerCase()],
           priority: 12
         });
       });
@@ -184,32 +188,38 @@ function normalizeSourceData(data, hint) {
 }
 
 function cleanEmptyEntries(data) {
-  const isEmpty = (item) => !item || !item.en || !String(item.en).trim();
+  const hasAny = (item) => {
+    if (!item || typeof item !== 'object') return false;
+    return [item.en, item.ru, item.kr].some(v => v != null && String(v).trim());
+  };
   if (data.classes) {
-    data.classes = data.classes.filter(c => !isEmpty(c)).map(c => {
-      if (c.builds) c.builds = c.builds.filter(b => !isEmpty(b));
+    data.classes = data.classes.filter(c => hasAny(c)).map(c => {
+      if (c.builds) c.builds = c.builds.filter(b => hasAny(b));
       return c;
     });
   }
-  if (data.engravings) data.engravings = data.engravings.filter(e => !isEmpty(e));
-  if (data._orphanBuilds) data._orphanBuilds = data._orphanBuilds.filter(o => !isEmpty(o));
-  if (data.terms) data.terms = data.terms.filter(t => !isEmpty(t));
-  if (data.skills) data.skills = data.skills.filter(s => !isEmpty(s));
+  if (data.engravings) data.engravings = data.engravings.filter(e => hasAny(e));
+  if (data._orphanBuilds) data._orphanBuilds = data._orphanBuilds.filter(o => hasAny(o));
+  if (data.terms) data.terms = data.terms.filter(t => hasAny(t));
+  if (data.skills) data.skills = data.skills.filter(s => hasAny(s));
   if (data.skillClasses) {
-    data.skillClasses = data.skillClasses.filter(c => c && c.en && String(c.en).trim()).map(c => {
-      if (!c.skills) c.skills = [];
+    data.skillClasses = data.skillClasses.filter(c => hasAny(c) || (c && c.en)).map(c => {
+      if (c.skills) c.skills = c.skills.filter(s => hasAny(s));
+      else c.skills = [];
       return c;
     });
   }
   if (data.arkPassClasses) {
-    data.arkPassClasses = data.arkPassClasses.filter(c => c && c.en && String(c.en).trim()).map(c => {
-      if (!c.skills) c.skills = [];
+    data.arkPassClasses = data.arkPassClasses.filter(c => hasAny(c) || (c && c.en)).map(c => {
+      if (c.skills) c.skills = c.skills.filter(s => hasAny(s));
+      else c.skills = [];
       return c;
     });
   }
   if (data.classCoreClasses) {
-    data.classCoreClasses = data.classCoreClasses.filter(c => c && c.en && String(c.en).trim()).map(c => {
-      if (!c.skills) c.skills = [];
+    data.classCoreClasses = data.classCoreClasses.filter(c => hasAny(c) || (c && c.en)).map(c => {
+      if (c.skills) c.skills = c.skills.filter(s => hasAny(s));
+      else c.skills = [];
       return c;
     });
   }
@@ -273,14 +283,38 @@ function mergeData(target, source) {
 
   if (!target.terms) target.terms = [];
   for (const srcTerm of source.terms || []) {
-    let existing = target.terms.find(t => t.en === srcTerm.en);
+    const srcEn = (srcTerm.en || '').trim();
+    const srcKr = (srcTerm.kr || '').trim();
+    const srcRu = (srcTerm.ru || '').trim();
+    let existing = target.terms.find(t => {
+      const te = (t.en || '').trim();
+      const tk = (t.kr || '').trim();
+      if (srcKr && tk) return te === srcEn && tk === srcKr;
+      if (srcKr && !tk && te === srcEn) return true;
+      if (!srcKr && !tk && te && te === srcEn) return true;
+      if (!srcEn && srcKr && tk === srcKr) return true;
+      return false;
+    });
     if (existing) {
-      if (srcTerm.ru) existing.ru = srcTerm.ru;
-      if (srcTerm.kr) existing.kr = srcTerm.kr;
+      if (srcRu) existing.ru = srcTerm.ru;
+      if (srcKr) existing.kr = srcTerm.kr;
+      if (srcEn) existing.en = srcTerm.en;
       if (srcTerm.tags) existing.tags = srcTerm.tags;
+      if (srcTerm.parent) existing.parent = srcTerm.parent;
+      if (srcTerm.priority != null) existing.priority = srcTerm.priority;
     } else {
       target.terms.push({ ...srcTerm });
     }
+  }
+  // Keep alternate KR forms that share the same EN but differ by KR text
+  for (const srcTerm of source.terms || []) {
+    const srcEn = (srcTerm.en || '').trim();
+    const srcKr = (srcTerm.kr || '').trim();
+    if (!srcEn || !srcKr) continue;
+    const has = target.terms.some(t =>
+      (t.en || '').trim() === srcEn && (t.kr || '').trim() === srcKr
+    );
+    if (!has) target.terms.push({ ...srcTerm });
   }
 
   if (!target.skills) target.skills = [];
@@ -453,10 +487,30 @@ function mergeWithDeleted(base, user) {
   }
 
   for (const t of userTerms) {
-    if (!deleted.has(t.en)) result.terms.push(t);
+    if (deleted.has(t.en)) continue;
+    const baseSame = (base.terms || []).filter(b => b.en === t.en);
+    if (baseSame.length) {
+      if (!(t.kr || '').trim()) {
+        const withKr = baseSame.find(b => (b.kr || '').trim());
+        if (withKr) t.kr = withKr.kr;
+      }
+      if (!(t.ru || '').trim()) {
+        const withRu = baseSame.find(b => (b.ru || '').trim());
+        if (withRu) t.ru = withRu.ru;
+      }
+      if (!t.tags && baseSame[0].tags) t.tags = baseSame[0].tags;
+      if (t.priority == null && baseSame[0].priority != null) t.priority = baseSame[0].priority;
+    }
+    result.terms.push(t);
   }
+  const userTermKeys = new Set(
+    userTerms.map(t => (t.en || '') + '\0' + (t.kr || ''))
+  );
   for (const t of base.terms || []) {
-    if (deleted.has(t.en) || userTermEns.has(t.en)) continue;
+    if (deleted.has(t.en)) continue;
+    const key = (t.en || '') + '\0' + (t.kr || '');
+    if (userTermKeys.has(key)) continue;
+    if (userTermEns.has(t.en) && !(t.kr || '').trim()) continue;
     result.terms.push(JSON.parse(JSON.stringify(t)));
   }
 
@@ -626,9 +680,9 @@ async function removeFromUserData(ud, en, type, classEn) {
     const cls = ud.classes?.find(c => c.en === classEn);
     if (cls) cls.builds = (cls.builds || []).filter(b => b.en !== en);
   } else if (type === 'term') {
-    ud.terms = (ud.terms || []).filter(t => t.en !== en);
+    ud.terms = (ud.terms || []).filter(t => t.en !== en && t.kr !== en && t.ru !== en);
   } else if (type === 'engraving') {
-    ud.engravings = (ud.engravings || []).filter(e => e.en !== en);
+    ud.engravings = (ud.engravings || []).filter(e => e.en !== en && e.kr !== en && e.ru !== en);
   } else if (type === 'skill') {
     if (classEn) {
       const sc = ud.skillClasses?.find(c => c.en === classEn);
@@ -692,11 +746,17 @@ async function handleAddEntry(entry) {
       });
     }
   } else if (entry.type === 'term') {
-    const existing = (ud.terms || []).find(t => t.en === entry.data.en);
-    if (existing) Object.assign(existing, entry.data);
+    const d = entry.data || {};
+    if (!d.en && (d.kr || d.ru)) d.en = d.kr || d.ru;
+    const existing = (ud.terms || []).find(t =>
+      (d.en && t.en === d.en) ||
+      (d.kr && t.kr === d.kr && (!d.en || !t.en || t.en === d.en)) ||
+      (d.ru && t.ru === d.ru && d.kr && t.kr === d.kr)
+    );
+    if (existing) Object.assign(existing, d);
     else {
       if (!ud.terms) ud.terms = [];
-      ud.terms.unshift(entry.data);
+      ud.terms.unshift(d);
     }
   } else if (entry.type === 'engraving') {
     const existing = (ud.engravings || []).find(e => e.en === entry.data.en);
@@ -959,7 +1019,7 @@ async function handleImport(data) {
 }
 
 async function syncFromUrls(urls) {
-  let merged = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [] };
+  let merged = await loadDefaultDictionaries();
   let totalCount = 0;
 
   for (const url of urls) {
@@ -1046,7 +1106,7 @@ const DEFAULT_DEV_SITES = [
   'lostark.qq.com',
   'lostark.bible',
   'loa-buddy.pages.dev',
-  'mokoko.co.kr',
+  'mokoko.co.jp',
   'loaguard.com',
   'lostbuilds.com',
   'maxroll.gg',
@@ -1055,11 +1115,11 @@ const DEFAULT_DEV_SITES = [
   'nexus-guide-site.pages.dev',
   'sites.google.com',
   'mokitoki.ru',
-  'lopec.kr',
+  'lopec.jp',
   'zloa.net',
   'loaup.com',
   'honing-forecast.pages.dev',
-  'loatto.kr',
+  'loatto.jp',
   'icepeng.com',
   'lo4.app',
   'loaclac-doss.vercel.app',
@@ -1067,13 +1127,88 @@ const DEFAULT_DEV_SITES = [
   'airplaner.github.io',
   'ssbcalc.poyomi.fyi',
   'raimundomedeiros.github.io',
-  'loatool.taeu.kr',
+  'loatool.taeu.jp',
   'lostgld.com',
-  'ark.bynn.kr',
+  'ark.bynn.jp',
   'loatracker.pages.dev',
   'reddit.com',
   'inven.co.kr'
 ];
+
+async function loadSiteDefaults() {
+  try {
+    const res = await fetch(chrome.runtime.getURL('dictionary/lt-site-defaults.json'));
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (_) {
+    return null;
+  }
+}
+
+async function applySiteDefaults(force) {
+  const defaults = await loadSiteDefaults();
+  if (!defaults || typeof defaults !== 'object') return;
+
+  const local = await chrome.storage.local.get(['siteProfiles', 'fitText']);
+  const profiles = Object.assign({}, local.siteProfiles || {});
+  const fit = local.fitText && typeof local.fitText === 'object'
+    ? Object.assign({}, local.fitText)
+    : { enabled: true, termScale: 90, allowWrap: true, expandParents: true, siteCss: '' };
+
+  let siteCss = fit.siteCss || '';
+  let profilesChanged = false;
+  let cssChanged = false;
+
+  for (const domain of Object.keys(defaults)) {
+    const d = defaults[domain] || {};
+    if (!profiles[domain] || force) {
+      const prev = profiles[domain] || {};
+      profiles[domain] = Object.assign({}, prev);
+      if (d.termMode) profiles[domain].termMode = d.termMode;
+      profilesChanged = true;
+    }
+    if (d.siteCss && String(d.siteCss).trim()) {
+      const header = '# ' + domain;
+      const hasBlock = new RegExp('(^|\\n)#\\s*' + domain.replace(/\./g, '\\.') + '\\s*(\\n|$)', 'i').test(siteCss);
+      if (!hasBlock || force) {
+        if (hasBlock && force) {
+          const lines = siteCss.split('\n');
+          const out = [];
+          let inBlock = false;
+          for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            const m = line.match(/^\s*#\s*([a-z0-9.-]+)\s*$/i);
+            if (m) {
+              const key = m[1].toLowerCase();
+              if (inBlock) inBlock = false;
+              if (key === domain.toLowerCase()) {
+                inBlock = true;
+                out.push(header);
+                out.push(String(d.siteCss).trim());
+                continue;
+              }
+            }
+            if (inBlock) continue;
+            out.push(line);
+          }
+          siteCss = out.join('\n');
+        } else {
+          siteCss = (siteCss ? siteCss.trim() + '\n\n' : '') + header + '\n' + String(d.siteCss).trim();
+        }
+        cssChanged = true;
+      }
+    }
+  }
+
+  const patch = {};
+  if (profilesChanged) patch.siteProfiles = profiles;
+  if (cssChanged) {
+    fit.siteCss = siteCss;
+    fit.enabled = true;
+    patch.fitText = fit;
+  }
+  if (Object.keys(patch).length) await chrome.storage.local.set(patch);
+}
 
 chrome.runtime.onInstalled.addListener(async () => {
   const baseData = await loadDefaultDictionaries();
@@ -1083,10 +1218,25 @@ chrome.runtime.onInstalled.addListener(async () => {
   if (typeof sync.developerSites !== 'string' || !sync.developerSites.trim()) {
     await chrome.storage.sync.set({ developerSites: DEFAULT_DEV_SITES.join('\n') });
   }
+  try { await applySiteDefaults(false); } catch (_) {}
 });
 
 chrome.runtime.onStartup.addListener(async () => {
-  try { await rebuildStorage(); } catch (_) {}
+  try {
+    const baseData = await loadDefaultDictionaries();
+    await chrome.storage.local.set({ baseData });
+    await rebuildStorage();
+  } catch (_) {}
+});
+
+chrome.commands.onCommand.addListener(async (command) => {
+  if (command !== 'lt-quick-edit') return;
+  try {
+    const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+    const tab = tabs && tabs[0];
+    if (!tab || !tab.id) return;
+    chrome.tabs.sendMessage(tab.id, { action: 'quickEditSelection' }).catch(() => {});
+  } catch (_) {}
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -1165,6 +1315,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     })());
     return true;
   }
+  if (request.action === 'reloadBaseDictionaries') {
+    reply((async () => {
+      const baseData = await loadDefaultDictionaries();
+      await chrome.storage.local.set({ baseData });
+      await rebuildStorage();
+      return {};
+    })());
+    return true;
+  }
   if (request.action === 'getUserData') {
     reply((async () => {
       const { userData } = await chrome.storage.local.get('userData');
@@ -1208,4 +1367,25 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     })());
     return true;
   }
+  if (request.action === 'reloadLocalDictionaries') {
+    reply((async () => {
+      const baseData = await loadDefaultDictionaries();
+      await chrome.storage.local.set({ baseData });
+      await rebuildStorage();
+      const n = (baseData.terms || []).length;
+      const has = (baseData.terms || []).some(t => (t.kr || '').includes('상태이상'));
+      return { terms: n, hasStatusAilment: has };
+    })());
+    return true;
+  }
 });
+
+(async () => {
+  try {
+    const baseData = await loadDefaultDictionaries();
+    await chrome.storage.local.set({ baseData });
+    await rebuildStorage();
+  } catch (e) {
+    console.error('init dict reload failed', e);
+  }
+})();

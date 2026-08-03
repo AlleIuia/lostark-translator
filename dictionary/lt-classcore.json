@@ -5,56 +5,18 @@
       "ru": "Берсерк",
       "kr": "버서커",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Brawn", "ru": "", "kr": "강인한 육체" },
+        { "en": "Mayhem", "ru": "", "kr": "광기" },
+        { "en": "Invigoration", "ru": "", "kr": "신체 활성" },
+        { "en": "Restore Fury", "ru": "", "kr": "분노 반환" },
+        { "en": "Physical Awakening", "ru": "", "kr": "신체 각성" },
+        { "en": "Provocation", "ru": "", "kr": "분노 자극" },
+        { "en": "Burst Enhancement", "ru": "", "kr": "폭주 강화" },
+        { "en": "Cold Fury", "ru": "", "kr": "차가운 분노" },
+        { "en": "Fury Consumption", "ru": "", "kr": "분노 소모" },
+        { "en": "Berserker Technique", "ru": "", "kr": "광전사의 비기" },
+        { "en": "Dark Enhancement", "ru": "", "kr": "어둠 강화" },
+        { "en": "Stampede", "ru": "", "kr": "쇄도" }
       ]
     },
     {
@@ -62,56 +24,18 @@
       "ru": "Сокрушитель",
       "kr": "디스트로이어",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Gravity Armor", "ru": "", "kr": "중력 갑옷" },
+        { "en": "Gravity Shock", "ru": "", "kr": "중력 충격" },
+        { "en": "Sharp Hammer", "ru": "", "kr": "날카로운 해머" },
+        { "en": "Gravity Charge", "ru": "", "kr": "중력 충전" },
+        { "en": "Release Enhancement", "ru": "", "kr": "해방 강화" },
+        { "en": "Rage Hammer", "ru": "", "kr": "분노의 망치" },
+        { "en": "Gravity Training", "ru": "", "kr": "중력 수련" },
+        { "en": "Inertia Enhancement", "ru": "", "kr": "영역 강화" },
+        { "en": "Gravity Conversion", "ru": "", "kr": "중력 변환" },
+        { "en": "Gravity Release", "ru": "", "kr": "중력 해방" },
+        { "en": "New Core", "ru": "", "kr": "새로운 코어" },
+        { "en": "Gravity Acceleration", "ru": "", "kr": "중력 가속" }
       ]
     },
     {
@@ -119,56 +43,18 @@
       "ru": "Страж",
       "kr": "워로드",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Impregnable Fortress", "ru": "", "kr": "철옹성" },
+        { "en": "Lone Knight", "ru": "", "kr": "고독한 기사" },
+        { "en": "Sophistication", "ru": "", "kr": "정교함" },
+        { "en": "Combat Readiness", "ru": "", "kr": "전투 태세" },
+        { "en": "Skilled Tactician", "ru": "", "kr": "숙련된 전술가" },
+        { "en": "Increase Efficiency", "ru": "", "kr": "효율 증대" },
+        { "en": "Spear Training", "ru": "", "kr": "건랜스 수련" },
+        { "en": "Strategy Training", "ru": "", "kr": "전술 훈련" },
+        { "en": "Reckless", "ru": "", "kr": "결사대" },
+        { "en": "Vanguard's Shout", "ru": "", "kr": "선봉장의 함성" },
+        { "en": "Vanguard's Mindset", "ru": "", "kr": "선봉장의 마음가짐" },
+        { "en": "Strategic Move", "ru": "", "kr": "전술 이동" }
       ]
     },
     {
@@ -176,56 +62,18 @@
       "ru": "Валькирия",
       "kr": "슬레이어",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Unwavering Strength", "ru": "", "kr": "지치지 않는 힘" },
+        { "en": "Endless Fury", "ru": "", "kr": "끝나지 않는 분노" },
+        { "en": "Enhanced Skill", "ru": "", "kr": "강화된 기술" },
+        { "en": "Predator", "ru": "", "kr": "포식자" },
+        { "en": "Quench Thirst", "ru": "", "kr": "갈증해소" },
+        { "en": "Punisher", "ru": "", "kr": "처단자" },
+        { "en": "Wrath", "ru": "", "kr": "격분" },
+        { "en": "Combat Instinct", "ru": "", "kr": "전투 본능" },
+        { "en": "Crushing Fear", "ru": "", "kr": "사무치는 공포" },
+        { "en": "Unstoppable Fury", "ru": "", "kr": "막을 수 없는 분노" },
+        { "en": "Intensifying Fury", "ru": "", "kr": "깊어지는 분노" },
+        { "en": "Reckless Attack", "ru": "", "kr": "무모한 공격" }
       ]
     },
     {
@@ -233,56 +81,18 @@
       "ru": "Паладин",
       "kr": "홀리나이트",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Holy Protection", "ru": "", "kr": "신성 보호" },
+        { "en": "Divine Knight", "ru": "", "kr": "신의 기사" },
+        { "en": "Piety Training", "ru": "", "kr": "신앙 수련" },
+        { "en": "Blessed Aura", "ru": "", "kr": "축복의 오라" },
+        { "en": "Punishment Enhancement", "ru": "", "kr": "징벌의 서막" },
+        { "en": "Judgment", "ru": "", "kr": "심판자" },
+        { "en": "Godly Grace", "ru": "", "kr": "신의 가호" },
+        { "en": "Healing Light", "ru": "", "kr": "빠른 구원" },
+        { "en": "Judgment's Protection", "ru": "", "kr": "심판의 가호" },
+        { "en": "Judgment's Baptism", "ru": "", "kr": "심판의 세례" },
+        { "en": "Sacred Liberation", "ru": "", "kr": "신성 해방" },
+        { "en": "Light's Vestige", "ru": "", "kr": "빛의 흔적" }
       ]
     },
     {
@@ -290,56 +100,18 @@
       "ru": "Храмовница",
       "kr": "발키리",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Liberator", "ru": "", "kr": "해방자" },
+        { "en": "Shining Knight", "ru": "", "kr": "빛의 기사" },
+        { "en": "Sword Training", "ru": "", "kr": "검술 훈련" },
+        { "en": "Vitality", "ru": "", "kr": "활력" },
+        { "en": "Light's Bond", "ru": "", "kr": "연결되는 빛" },
+        { "en": "Holy Sword Unleashed", "ru": "", "kr": "성검 개방" },
+        { "en": "Divine Plan", "ru": "", "kr": "하늘의 뜻" },
+        { "en": "Brilliant Bladecraft", "ru": "", "kr": "빛의 검기" },
+        { "en": "Last Light", "ru": "", "kr": "최후의 빛" },
+        { "en": "Trinity", "ru": "", "kr": "삼위일체" },
+        { "en": "Wings of Freedom", "ru": "", "kr": "해방의 날개" },
+        { "en": "Liberator's Sign", "ru": "", "kr": "해방자의 흔적" }
       ]
     },
     {
@@ -347,56 +119,18 @@
       "ru": "Рыцарь-Хранитель",
       "kr": "가디언나이트",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Successor of Hellfire", "ru": "", "kr": "업화의 계승자" },
+        { "en": "Dread Roar", "ru": "", "kr": "드레드 로어" },
+        { "en": "Awakening Power", "ru": "", "kr": "깨어나는 힘" },
+        { "en": "Complete Combustion", "ru": "", "kr": "완전 연소" },
+        { "en": "Super Flight", "ru": "", "kr": "초비행" },
+        { "en": "Power Control", "ru": "", "kr": "힘의 제어" },
+        { "en": "Breakthrough Shout", "ru": "", "kr": "돌파의 외침" },
+        { "en": "Sharp Scales", "ru": "", "kr": "날카로운 비늘" },
+        { "en": "Embers", "ru": "", "kr": "잔불" },
+        { "en": "Complete Fusion", "ru": "", "kr": "완전 융화" },
+        { "en": "Limit Transcendence", "ru": "", "kr": "한계 초월" },
+        { "en": "Halberd Master", "ru": "", "kr": "할버드의 대가" }
       ]
     },
     {
@@ -404,56 +138,18 @@
       "ru": "Арканолог",
       "kr": "아르카나",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Grace of the Empress", "ru": "", "kr": "황후의 은총" },
+        { "en": "Order of the Emperor", "ru": "", "kr": "황제의 명령" },
+        { "en": "Scheme of the Empress", "ru": "", "kr": "황후의 계략" },
+        { "en": "Gift of the Emperor", "ru": "", "kr": "황제의 하사품" },
+        { "en": "Avarice of the Empress", "ru": "", "kr": "황후의 탐욕" },
+        { "en": "Banquet of the Empress", "ru": "", "kr": "황후의 연회" },
+        { "en": "Feast of the Emperor", "ru": "", "kr": "황제의 만찬" },
+        { "en": "Mercy of the Emperor", "ru": "", "kr": "황제의 자비" },
+        { "en": "Knight of the Empress", "ru": "", "kr": "황후의 기사" },
+        { "en": "Whispers of the Empress", "ru": "", "kr": "황후의 속삭임" },
+        { "en": "Another Emperor", "ru": "", "kr": "또 다른 황제" },
+        { "en": "Judgment of the Emperor", "ru": "", "kr": "황제의 심판" }
       ]
     },
     {
@@ -461,56 +157,18 @@
       "ru": "Призывательница",
       "kr": "서머너",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Master Summoner", "ru": "", "kr": "상급 소환사" },
+        { "en": "Communication Overflow", "ru": "", "kr": "넘치는 교감" },
+        { "en": "Cleverness", "ru": "", "kr": "총명함" },
+        { "en": "Mind Concentration", "ru": "", "kr": "정신 집중" },
+        { "en": "Communication Enhancement", "ru": "", "kr": "교감 강화" },
+        { "en": "Elemental's Harmony", "ru": "", "kr": "정령의 교감" },
+        { "en": "Ancient Strength", "ru": "", "kr": "고대의 힘" },
+        { "en": "Ancient Energy Enhancement", "ru": "", "kr": "고대의 바람" },
+        { "en": "Absolute Command", "ru": "", "kr": "절대적인 명령" },
+        { "en": "Elemental's Fury", "ru": "", "kr": "정령 폭주" },
+        { "en": "Ancient Blessing", "ru": "", "kr": "고대의 축복" },
+        { "en": "Ancient Whisper", "ru": "", "kr": "고대의 속삭임" }
       ]
     },
     {
@@ -518,56 +176,18 @@
       "ru": "Менестрель",
       "kr": "바드",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Perfect Harmony", "ru": "", "kr": "완벽한 화음" },
+        { "en": "True Courage", "ru": "", "kr": "진실된 용맹" },
+        { "en": "Hymn: Tempest", "ru": "", "kr": "찬가 : 템페스트" },
+        { "en": "Desperate Salvation", "ru": "", "kr": "절실한 구원" },
+        { "en": "Serenade of Tolerance", "ru": "", "kr": "포용의 세레나데" },
+        { "en": "Serenade of Amplification", "ru": "", "kr": "증폭의 세레나데" },
+        { "en": "Maestro", "ru": "", "kr": "마에스트로" },
+        { "en": "Hymn of Combat", "ru": "", "kr": "전투의 찬가" },
+        { "en": "Rage Movement", "ru": "", "kr": "격노의 악장" },
+        { "en": "Serenade of Branding", "ru": "", "kr": "낙인의 세레나데" },
+        { "en": "Serenade Code", "ru": "", "kr": "세레나데 코드" },
+        { "en": "Tempest Field", "ru": "", "kr": "템페스트 필드" }
       ]
     },
     {
@@ -575,56 +195,18 @@
       "ru": "Чародейка",
       "kr": "소서리스",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Igniter", "ru": "", "kr": "점화" },
+        { "en": "Reflux", "ru": "", "kr": "환류" },
+        { "en": "Igniter's Ember", "ru": "", "kr": "점화의 불씨" },
+        { "en": "Reflux Energy", "ru": "", "kr": "환류의 기운" },
+        { "en": "Firepower Charge", "ru": "", "kr": "화력 충전" },
+        { "en": "Ignite", "ru": "", "kr": "발화" },
+        { "en": "Reflux Enhancement", "ru": "", "kr": "환류 강화" },
+        { "en": "Arcane Release Seal", "ru": "", "kr": "해방 봉인" },
+        { "en": "Blink Explosion", "ru": "", "kr": "점멸 폭발" },
+        { "en": "Magick Cycle", "ru": "", "kr": "마나 순환" },
+        { "en": "Magick Charge", "ru": "", "kr": "마력 충전" },
+        { "en": "Concentrated Magick", "ru": "", "kr": "응집되는 마력" }
       ]
     },
     {
@@ -632,56 +214,18 @@
       "ru": "Охотник на демонов",
       "kr": "데빌헌터",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Tactical Bullet", "ru": "", "kr": "전술 탄환" },
+        { "en": "Pistoleer", "ru": "", "kr": "핸드 거너" },
+        { "en": "Ammo Supplement", "ru": "", "kr": "탄약 보충" },
+        { "en": "Fancy Footwork", "ru": "", "kr": "화려한 발재간" },
+        { "en": "Precision Shot Training", "ru": "", "kr": "정밀 사격 훈련" },
+        { "en": "Specialist's Movement", "ru": "", "kr": "해결사의 움직임" },
+        { "en": "Handgun Enhancement", "ru": "", "kr": "핸드건 강화" },
+        { "en": "Quick Draw", "ru": "", "kr": "퀵 드로우" },
+        { "en": "High Explosive Shot", "ru": "", "kr": "고폭탄" },
+        { "en": "Strategic Garb", "ru": "", "kr": "전략적 군장" },
+        { "en": "Secret Weapon", "ru": "", "kr": "비밀 병기" },
+        { "en": "Shining Bullet", "ru": "", "kr": "빛나는 탄" }
       ]
     },
     {
@@ -689,56 +233,18 @@
       "ru": "Охотница на демонов",
       "kr": "건슬링어",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Peacemaker: Handgun", "ru": "", "kr": "피스메이커 - 핸드건" },
+        { "en": "Time to Hunt", "ru": "", "kr": "사냥의 시간" },
+        { "en": "Peacemaker: Shotgun", "ru": "", "kr": "피스메이커 - 샷건" },
+        { "en": "Rifle Cooling", "ru": "", "kr": "라이플 냉각" },
+        { "en": "Secret Bullet", "ru": "", "kr": "시크릿 불릿" },
+        { "en": "Peacemaker: Rifle", "ru": "", "kr": "피스메이커 - 라이플" },
+        { "en": "Rifle Expertise", "ru": "", "kr": "라이플 숙련" },
+        { "en": "Sniper's Will", "ru": "", "kr": "저격수의 의지" },
+        { "en": "Gun Replacement Skill", "ru": "", "kr": "총기 교체 기술" },
+        { "en": "Pacifist", "ru": "", "kr": "평화주의자" },
+        { "en": "One Shot One Kill", "ru": "", "kr": "일발필중" },
+        { "en": "Vital Point Expert", "ru": "", "kr": "급소 전문가" }
       ]
     },
     {
@@ -746,56 +252,18 @@
       "ru": "Рейнджер",
       "kr": "호크아이",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Death Strike", "ru": "", "kr": "죽음의 습격" },
+        { "en": "Loyal Companion", "ru": "", "kr": "두 번째 동료" },
+        { "en": "Hawk Meter Recovery", "ru": "", "kr": "호크 게이지 회수" },
+        { "en": "Hawk Support", "ru": "", "kr": "호크 서포트" },
+        { "en": "Faint Note", "ru": "", "kr": "페일 노트" },
+        { "en": "Final Mark", "ru": "", "kr": "최후의 표적" },
+        { "en": "Storm Mark", "ru": "", "kr": "폭풍의 표적" },
+        { "en": "Silverhawk Enhancement", "ru": "", "kr": "실버호크 강화" },
+        { "en": "MP Recovery", "ru": "", "kr": "마나 회수" },
+        { "en": "Silverhawk Assault", "ru": "", "kr": "실버호크 강습" },
+        { "en": "Storm Hunter", "ru": "", "kr": "폭풍의 사냥꾼" },
+        { "en": "Deep Learning", "ru": "", "kr": "딥러닝" }
       ]
     },
     {
@@ -803,56 +271,18 @@
       "ru": "Механист",
       "kr": "블래스터",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Firepower Enhancement", "ru": "", "kr": "화력 강화" },
+        { "en": "Barrage Enhancement", "ru": "", "kr": "포격 강화" },
+        { "en": "Barrage Charge", "ru": "", "kr": "포격 충전" },
+        { "en": "Sustained Firepower", "ru": "", "kr": "화력 지속" },
+        { "en": "Swiftness Barrage", "ru": "", "kr": "신속 포격" },
+        { "en": "Barrage Output Enhancement", "ru": "", "kr": "포격 출력 강화" },
+        { "en": "Overheat", "ru": "", "kr": "과열" },
+        { "en": "Maintain Firepower", "ru": "", "kr": "화력 유지" },
+        { "en": "Positioning System", "ru": "", "kr": "위치 이동 시스템" },
+        { "en": "Summon A.C.T", "ru": "", "kr": "A.C.T 호출" },
+        { "en": "Barrage Attack", "ru": "", "kr": "포화 공격" },
+        { "en": "Kindle", "ru": "", "kr": "오버히트" }
       ]
     },
     {
@@ -860,56 +290,18 @@
       "ru": "Агент С.К.А.У.Т.",
       "kr": "스카우터",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Evolutionary Legacy", "ru": "", "kr": "진화의 유산" },
+        { "en": "Arthetinean Skill", "ru": "", "kr": "아르데타인의 기술" },
+        { "en": "Oversync", "ru": "", "kr": "오버 싱크" },
+        { "en": "Drone Defense System", "ru": "", "kr": "드론 방어 체계" },
+        { "en": "Core Reaction Amplification", "ru": "", "kr": "코어 반응 증폭" },
+        { "en": "Skill Upgrade", "ru": "", "kr": "기술 업그레이드" },
+        { "en": "Tactical Reload", "ru": "", "kr": "전술 재장전" },
+        { "en": "Combat Mode", "ru": "", "kr": "전투 모드" },
+        { "en": "EX - Zero Point", "ru": "", "kr": "제로 코어 에너지" },
+        { "en": "Zero Mode", "ru": "", "kr": "제로 모드" },
+        { "en": "Enchanted Core", "ru": "", "kr": "코어 인챈트" },
+        { "en": "Collaboration", "ru": "", "kr": "최고의 합작" }
       ]
     },
     {
@@ -917,56 +309,18 @@
       "ru": "Аватар",
       "kr": "배틀마스터",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Powerful Taijutsu", "ru": "", "kr": "강력한 체술" },
+        { "en": "Powerful Esoteric Skill", "ru": "", "kr": "강력한 오의" },
+        { "en": "Orb Bonus", "ru": "", "kr": "구슬 증가" },
+        { "en": "Energy Recovery", "ru": "", "kr": "원기 회복" },
+        { "en": "Lethal Taijutsu", "ru": "", "kr": "치명적인 체술" },
+        { "en": "First Intention", "ru": "", "kr": "초심" },
+        { "en": "Esoteric Skill Enhancement", "ru": "", "kr": "오의 강화" },
+        { "en": "Esoteric Combustion", "ru": "", "kr": "엘리멘탈 연소" },
+        { "en": "Arrive Empty", "ru": "", "kr": "공수래" },
+        { "en": "Esoteric Origin", "ru": "", "kr": "근원의 엘리멘탈" },
+        { "en": "Circulation", "ru": "", "kr": "순환" },
+        { "en": "Esoteric Skill Preparation", "ru": "", "kr": "오의 준비" }
       ]
     },
     {
@@ -974,56 +328,18 @@
       "ru": "Дуалист",
       "kr": "인파이터",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Stamina Recovery", "ru": "", "kr": "기력 회복" },
+        { "en": "Enhanced Speed", "ru": "", "kr": "속도 강화" },
+        { "en": "Tenacity Recovery", "ru": "", "kr": "투지 회복" },
+        { "en": "Shock Recovery", "ru": "", "kr": "충격 회복" },
+        { "en": "Keen Strike", "ru": "", "kr": "날카로운 타격" },
+        { "en": "Ultimate Skill: Taijutsu", "ru": "", "kr": "극의 : 체술" },
+        { "en": "Shock Training", "ru": "", "kr": "충격 단련" },
+        { "en": "Duck II", "ru": "", "kr": "더킹 II" },
+        { "en": "Lethal Tenacity", "ru": "", "kr": "치명적인 투지" },
+        { "en": "Earth Rend", "ru": "", "kr": "대지 가르기" },
+        { "en": "Shock Explosion", "ru": "", "kr": "충격 발산" },
+        { "en": "One-Sided Strike", "ru": "", "kr": "일방 타격" }
       ]
     },
     {
@@ -1031,56 +347,18 @@
       "ru": "Ки-мастер",
       "kr": "기공사",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Energy Overflow I", "ru": "", "kr": "무상신공" },
+        { "en": "Robust Spirit", "ru": "", "kr": "역천지체" },
+        { "en": "Energy Overflow II", "ru": "", "kr": "무상진결" },
+        { "en": "Energy Activation", "ru": "", "kr": "운기행공" },
+        { "en": "Keen Force", "ru": "", "kr": "날카로운 기공" },
+        { "en": "Natural Body", "ru": "", "kr": "혼원진기" },
+        { "en": "Hype Enhancement", "ru": "", "kr": "삼화취정" },
+        { "en": "Energy Practice", "ru": "", "kr": "금강선공 강화" },
+        { "en": "Energy Explosion", "ru": "", "kr": "단전대성" },
+        { "en": "Limit Break", "ru": "", "kr": "오기조원" },
+        { "en": "Recoil Control", "ru": "", "kr": "한계 돌파" },
+        { "en": "Unbreakable", "ru": "", "kr": "반동 제어" }
       ]
     },
     {
@@ -1088,56 +366,18 @@
       "ru": "Мастер копья",
       "kr": "창술사",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Control", "ru": "", "kr": "절제" },
+        { "en": "Pinnacle I", "ru": "", "kr": "절정 I" },
+        { "en": "Flurry Move", "ru": "", "kr": "난무 이동" },
+        { "en": "Pinnacle II", "ru": "", "kr": "절정 II" },
+        { "en": "Lethal Slash", "ru": "", "kr": "치명적인 베기" },
+        { "en": "Flurry Enhancement", "ru": "", "kr": "난무 강화" },
+        { "en": "Pinnacle III", "ru": "", "kr": "절정 III" },
+        { "en": "Power Stab", "ru": "", "kr": "강력한 찌르기" },
+        { "en": "Yeon-Style Mark", "ru": "", "kr": "연가표식" },
+        { "en": "Yeon-Style Technique", "ru": "", "kr": "연가비기" },
+        { "en": "Yeon-Style Encore", "ru": "", "kr": "연가심공" },
+        { "en": "Quick-Change Crits", "ru": "", "kr": "전환난무" }
       ]
     },
     {
@@ -1145,56 +385,18 @@
       "ru": "Тайгон",
       "kr": "스트라이커",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Esoteric Flurry", "ru": "", "kr": "오의난무" },
+        { "en": "Deathblow I", "ru": "", "kr": "일격필살 I" },
+        { "en": "Orb Bonus", "ru": "", "kr": "구슬 증가" },
+        { "en": "Untouchable", "ru": "", "kr": "답보" },
+        { "en": "Rear Ambush", "ru": "", "kr": "후방 기습" },
+        { "en": "Esoteric Skill Focus", "ru": "", "kr": "오의 집중" },
+        { "en": "Deathblow II", "ru": "", "kr": "일격필살 II" },
+        { "en": "Lethal Esoteric Skill", "ru": "", "kr": "치명적인 오의" },
+        { "en": "Taijutsu Enhancement", "ru": "", "kr": "체술 강화" },
+        { "en": "Flurry Enhancement", "ru": "", "kr": "난무 강화" },
+        { "en": "Orb's Blessing", "ru": "", "kr": "구슬의 축복" },
+        { "en": "Fully Charged", "ru": "", "kr": "완전 충전" }
       ]
     },
     {
@@ -1202,56 +404,18 @@
       "ru": "Стальной кулак",
       "kr": "브레이커",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Brawl King Storm", "ru": "", "kr": "권왕파천무" },
+        { "en": "Asura's Path", "ru": "", "kr": "수라의 길" },
+        { "en": "Hypogastric Breathing", "ru": "", "kr": "단전 호흡" },
+        { "en": "Lethal Fist", "ru": "", "kr": "치명적인 주먹" },
+        { "en": "Falling Blossoms Enhancement", "ru": "", "kr": "권왕십이식 : 낙화 강화" },
+        { "en": "Asura Iron Body", "ru": "", "kr": "수라강체" },
+        { "en": "Brawl King Acuity", "ru": "", "kr": "권왕심법" },
+        { "en": "All-Out War", "ru": "", "kr": "전면전" },
+        { "en": "Energy Shield", "ru": "", "kr": "호신강기" },
+        { "en": "Violent Waves", "ru": "", "kr": "권왕십이식 : 풍랑" },
+        { "en": "Trance", "ru": "", "kr": "무아지경" },
+        { "en": "Defensive Speculation Enhancement", "ru": "", "kr": "호신투기 강화" }
       ]
     },
     {
@@ -1259,56 +423,18 @@
       "ru": "Клинок смерти",
       "kr": "블레이드",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Surge Enhancement", "ru": "", "kr": "버스트 강화" },
+        { "en": "Swift Strike", "ru": "", "kr": "신속한 일격" },
+        { "en": "Orb Compression", "ru": "", "kr": "오브 압축" },
+        { "en": "Remaining Energy", "ru": "", "kr": "잔재된 기운" },
+        { "en": "Swordcraft Enhancement", "ru": "", "kr": "검술 강화" },
+        { "en": "Orb Control", "ru": "", "kr": "오브 제어" },
+        { "en": "Limit Break", "ru": "", "kr": "한계 돌파" },
+        { "en": "Firm Will", "ru": "", "kr": "확고한 의지" },
+        { "en": "Chaos Injection", "ru": "", "kr": "혼돈 주입" },
+        { "en": "Power of Chaos", "ru": "", "kr": "혼돈의 힘" },
+        { "en": "Extreme Body Movement", "ru": "", "kr": "극한의 몸놀림" },
+        { "en": "Orb Circulation", "ru": "", "kr": "오브 순환" }
       ]
     },
     {
@@ -1316,56 +442,18 @@
       "ru": "Фурия",
       "kr": "데모닉",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Perfect Suppression", "ru": "", "kr": "완벽한 억제" },
+        { "en": "Demonic Impulse", "ru": "", "kr": "멈출 수 없는 충동" },
+        { "en": "Instinct Enhancement", "ru": "", "kr": "본능 강화" },
+        { "en": "Shadowburst Control", "ru": "", "kr": "잠식 제어" },
+        { "en": "Chaos Enhancement", "ru": "", "kr": "혼돈 강화" },
+        { "en": "Chaos Training", "ru": "", "kr": "혼돈 단련" },
+        { "en": "Weapon Training", "ru": "", "kr": "무기 단련" },
+        { "en": "Shadowburst Absorption", "ru": "", "kr": "잠식 흡수" },
+        { "en": "Corrosion", "ru": "", "kr": "침식" },
+        { "en": "Bloody Piercing", "ru": "", "kr": "처형식" },
+        { "en": "Storm Grinding", "ru": "", "kr": "스톰 그라인딩" },
+        { "en": "Shadowburst Enhancement", "ru": "", "kr": "잠식 강화" }
       ]
     },
     {
@@ -1373,56 +461,18 @@
       "ru": "Жнец",
       "kr": "리퍼",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Scent of Blood", "ru": "", "kr": "피냄새" },
+        { "en": "Lunar Voice", "ru": "", "kr": "달의 소리" },
+        { "en": "Hunger", "ru": "", "kr": "굶주림" },
+        { "en": "Ghost Dancer", "ru": "", "kr": "유령 무희" },
+        { "en": "Thirst", "ru": "", "kr": "갈증" },
+        { "en": "Acrobat", "ru": "", "kr": "곡예사" },
+        { "en": "Shadow Step", "ru": "", "kr": "그림자 밟기" },
+        { "en": "Assassin's Hands", "ru": "", "kr": "암살자의 손놀림" },
+        { "en": "Stealth", "ru": "", "kr": "잠행" },
+        { "en": "Vital Point Acquisition", "ru": "", "kr": "급소 확보" },
+        { "en": "Murderer", "ru": "", "kr": "살인귀" },
+        { "en": "Chaos Enhancement", "ru": "", "kr": "혼돈 강화" }
       ]
     },
     {
@@ -1430,56 +480,18 @@
       "ru": "Пожирательница душ",
       "kr": "소울이터",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Soul Affinity", "ru": "", "kr": "영혼친화력" },
+        { "en": "Crescent Boundary", "ru": "", "kr": "그믐의 경계" },
+        { "en": "Full Moon Executor", "ru": "", "kr": "만월의 집행자" },
+        { "en": "Death Training", "ru": "", "kr": "죽음 연마" },
+        { "en": "Broken Boundary", "ru": "", "kr": "허물어진 경계" },
+        { "en": "Soul Amplification", "ru": "", "kr": "영혼 증폭" },
+        { "en": "Execution Enhancement", "ru": "", "kr": "집행 강화" },
+        { "en": "Soul Enhancement", "ru": "", "kr": "영혼 강화" },
+        { "en": "Soul Guide", "ru": "", "kr": "영혼 길잡이" },
+        { "en": "Soul Resonance", "ru": "", "kr": "영혼 공명" },
+        { "en": "Soul Beheading", "ru": "", "kr": "영혼 참수" },
+        { "en": "Soul Control", "ru": "", "kr": "영혼 제어" }
       ]
     },
     {
@@ -1487,56 +499,18 @@
       "ru": "Художница",
       "kr": "도화가",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Waning Moon", "ru": "", "kr": "저물어 가는 달" },
+        { "en": "Regression", "ru": "", "kr": "회귀" },
+        { "en": "Full Bloom", "ru": "", "kr": "만개" },
+        { "en": "Rising Moon", "ru": "", "kr": "떠오르는 달" },
+        { "en": "Siblings", "ru": "", "kr": "오누이" },
+        { "en": "Sun's Blessing", "ru": "", "kr": "해의 축복" },
+        { "en": "Moon's Blessing", "ru": "", "kr": "달의 축복" },
+        { "en": "Moon's Shadow", "ru": "", "kr": "달의 그림자" },
+        { "en": "Artistry", "ru": "", "kr": "기예" },
+        { "en": "Brand Enhancement", "ru": "", "kr": "낙인 강화" },
+        { "en": "Ink Technique: Dance", "ru": "", "kr": "묵법 : 접무" },
+        { "en": "Ink Technique: Break", "ru": "", "kr": "묵법 : 파죽" }
       ]
     },
     {
@@ -1544,56 +518,18 @@
       "ru": "Аэромант",
       "kr": "기상술사",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Drizzle", "ru": "", "kr": "이슬비" },
+        { "en": "Gale Force", "ru": "", "kr": "질풍노도" },
+        { "en": "Ventilation", "ru": "", "kr": "환기" },
+        { "en": "Rain Shield", "ru": "", "kr": "비의 보호막" },
+        { "en": "Nature's Flow", "ru": "", "kr": "자연의 흐름" },
+        { "en": "Clear Day", "ru": "", "kr": "맑은 날" },
+        { "en": "Agility", "ru": "", "kr": "기민함" },
+        { "en": "Training", "ru": "", "kr": "단련" },
+        { "en": "Path of Wind", "ru": "", "kr": "바람의 길" },
+        { "en": "Space Slash", "ru": "", "kr": "공간 가르기" },
+        { "en": "Radiant Days", "ru": "", "kr": "눈부신 나날들" },
+        { "en": "Steam Charge", "ru": "", "kr": "수증기 충전" }
       ]
     },
     {
@@ -1601,56 +537,18 @@
       "ru": "Друид",
       "kr": "환수사",
       "skills": [
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        },
-        {
-          "en": "",
-          "ru": "",
-          "kr": ""
-        }
+        { "en": "Wildness", "ru": "", "kr": "야성" },
+        { "en": "Beast Awakening", "ru": "", "kr": "환수 각성" },
+        { "en": "Awakened Potential", "ru": "", "kr": "깨어난 잠재력" },
+        { "en": "Vitality", "ru": "", "kr": "활기" },
+        { "en": "Beast Resonance", "ru": "", "kr": "야수의 공명" },
+        { "en": "Wild Impulse", "ru": "", "kr": "야생의 충동" },
+        { "en": "Beast Spirit", "ru": "", "kr": "환수의 정기" },
+        { "en": "Natural Talent", "ru": "", "kr": "천부적 재능" },
+        { "en": "Agility", "ru": "", "kr": "기민함" },
+        { "en": "Hunting Instinct", "ru": "", "kr": "사냥 본능" },
+        { "en": "Nimble Steps", "ru": "", "kr": "날렵한 걸음걸이" },
+        { "en": "Beast Master", "ru": "", "kr": "환수 술사" }
       ]
     }
   ]
