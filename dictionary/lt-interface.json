@@ -692,8 +692,13 @@
     },
     {
       "en": "Serenade, Piety, Harmony Meter Gain",
-      "ru": "Набор эн. аккордов/веры/гармонии",
+      "ru": "Набор энергии",
       "kr": "아덴 게이지 획득량"
+    },
+    {
+      "en": "Serenade, Piety, Harmony Meter Gain",
+      "ru": "Набор энергии",
+      "kr": "조화 게이지 획득량"
     },
     {
       "en": "Ally Damage Enhancement Effect",
