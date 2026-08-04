@@ -524,30 +524,21 @@
       "en": "Evolution",
       "ru": "Экспансия",
       "kr": "진화",
-      "tags": [
-        "interface",
-        "ark_passive"
-      ],
+      "tags": ["interface", "ark_passive"],
       "priority": 28
     },
     {
       "en": "Enlightenment",
       "ru": "Становление",
       "kr": "깨달음",
-      "tags": [
-        "interface",
-        "ark_passive"
-      ],
+      "tags": ["interface", "ark_passive"],
       "priority": 28
     },
     {
       "en": "Leap",
       "ru": "Прогресс",
       "kr": "도약",
-      "tags": [
-        "interface",
-        "ark_passive"
-      ],
+      "tags": ["interface", "ark_passive"],
       "priority": 28
     },
     {
@@ -656,11 +647,6 @@
       "kr": "주는 피해"
     },
     {
-      "en": "Outgoing Damage",
-      "ru": "Наносимый урон",
-      "kr": "적에게 주는 피해"
-    },
-    {
       "en": "to Staggered foes",
       "ru": "по ошеломлённым противникам",
       "kr": "무력화 상태의 적에게"
@@ -706,11 +692,6 @@
       "kr": "아군 피해량 증가 효과"
     },
     {
-      "en": "Ally Damage Enhancement Effect",
-      "ru": "Эфф. увеличения урона союзников",
-      "kr": "아군 피해량 강화"
-    },
-    {
       "en": "Equipment",
       "ru": "Снаряжение",
       "kr": "장비"
@@ -744,13 +725,7 @@
       "en": "Judgment",
       "ru": "Валь'Морт",
       "kr": "심판",
-      "tags": [
-        "gem",
-        "card",
-        "bracelet",
-        "bracelet effects",
-        "accessory"
-      ]
+      "tags": ["gem", "card", "bracelet", "bracelet effects", "accessory"]
     },
     {
       "en": "Bleed",
@@ -771,11 +746,7 @@
       "en": "Focus",
       "ru": "Марх",
       "kr": "집중",
-      "tags": [
-        "rune",
-        "gem",
-        "item"
-      ]
+      "tags": ["rune", "gem", "item"]
     },
     {
       "en": "Rage",
@@ -981,22 +952,14 @@
       "en": "Low",
       "ru": "Н",
       "kr": "하",
-      "tags": [
-        "interface",
-        "grade",
-        "accessory"
-      ],
+      "tags": ["interface", "grade", "accessory"],
       "priority": 26
     },
     {
       "en": "Mid",
       "ru": "Э",
       "kr": "중",
-      "tags": [
-        "interface",
-        "grade",
-        "accessory"
-      ],
+      "tags": ["interface", "grade", "accessory"],
       "priority": 26
     },
     {
@@ -1023,42 +986,26 @@
       "en": "High",
       "ru": "Л",
       "kr": "상",
-      "tags": [
-        "interface",
-        "grade",
-        "accessory"
-      ],
+      "tags": ["interface", "grade", "accessory"],
       "priority": 26
     },
     {
       "en": "High Grade",
       "ru": "Л",
       "kr": "상",
-      "tags": [
-        "interface",
-        "grade"
-      ],
-      "priority": 26
+      "tags": ["interface", "grade"]
     },
     {
       "en": "Mid Grade",
       "ru": "Э",
       "kr": "중",
-      "tags": [
-        "interface",
-        "grade"
-      ],
-      "priority": 26
+      "tags": ["interface", "grade"]
     },
     {
       "en": "Low Grade",
       "ru": "Н",
       "kr": "하",
-      "tags": [
-        "interface",
-        "grade"
-      ],
-      "priority": 26
+      "tags": ["interface", "grade"]
     },
     {
       "en": "All order core combinations",
@@ -1161,9 +1108,11 @@
       "kr": "혼돈의"
     },
     {
-      "en": "Combat HP Recovery",
+      "en": "전투 중 생명력 회복량",
       "ru": "Восстановление здоровья в бою",
-      "kr": ""
+      "kr": "전투 중 생명력 회복량",
+      "tags": ["interface", "term"],
+      "priority": 28
     },
     {
       "en": "Max MP",
@@ -1174,6 +1123,11 @@
       "en": "Shield for Party Members",
       "ru": "Эфф. щита для союзников",
       "kr": "파티원 보호막 효과"
+    },
+    {
+      "en": "Heal for Party Members",
+      "ru": "Эфф. исциления для союзников",
+      "kr": "파티원 회복 효과"
     },
     {
       "en": "Ally Atk. Power Enhancement Effect",
@@ -1206,14 +1160,9 @@
       "kr": "아공강"
     },
     {
-      "en": "Ally Atk. Power Enhancement",
-      "ru": "Эфф. увел. силы атаки союзников",
-      "kr": "아공강 효과"
-    },
-    {
       "en": "Ally Damage Enhancement",
       "ru": "Эфф. увел. урона союзников",
-      "kr": ""
+      "kr": "아군 피해량 강화 효과"
     },
     {
       "en": "This effect is limited to a single application per party",
@@ -1284,29 +1233,19 @@
       "en": "공격력 감소",
       "kr": "공격력 감소",
       "ru": "Ржавчина",
-      "tags": [
-        "interface",
-        "term"
-      ]
+      "tags": ["interface", "term"]
     },
     {
       "en": "CritD+CritD",
       "kr": "치피증+치피증",
       "ru": "КУ+КУ",
-      "tags": [
-        "interface",
-        "term"
-      ]
+      "tags": ["interface", "term"]
     },
     {
       "en": "Crit Damage",
       "kr": "치명타 피해가 증가",
-      "parent": "치명타 피해가 증가",
-      "priority": 28,
       "ru": "Критический урон",
-      "tags": [
-        "context"
-      ]
+      "tags": ["context"]
     },
     {
       "en": "Server",
@@ -1314,109 +1253,211 @@
       "ru": "Сервер"
     },
     {
+      "en": "Prices for costume jewelry at auction",
+      "kr": "악세서리 경매장 시세",
+      "ru": "Цены бижутерии на аукционе"
+    },
+    {
+      "en": "Additional filter",
+      "kr": "추가필터",
+      "ru": "Дополнительный фильтр"
+    },
+    {
+      "en": "3 legendary",
+      "kr": "상상상",
+      "ru": "3 Легендарных"
+    },
+    {
+      "en": "2 legendary",
+      "kr": "상상",
+      "ru": "2 Легендарных" 
+    },
+    {
+      "en": "Quality",
+      "kr": "전체 품질",
+      "ru": "Общее качество"
+    },
+    {
       "en": "CD",
       "kr": "쿨감",
-      "parent": "쿨감 10광휘x7",
-      "priority": 28,
       "ru": "КД",
-      "tags": [
-        "context"
-      ]
+      "tags": ["context"]
     },
     {
       "en": "DD",
       "kr": "피해",
-      "parent": "피해",
-      "priority": 28,
       "ru": "Урон",
-      "tags": [
-        "context"
-      ]
+      "tags": ["context"]
     },
     {
       "en": "Ark Grid",
       "kr": "아크그리드",
-      "parent": "아크그리드",
-      "priority": 28,
       "ru": "Созвездия А.Р.К",
-      "tags": [
-        "context"
-      ]
+      "tags": ["context"]
+    },
+    {
+      "en": "공격 적중 시 매 초마다",
+      "kr": "공격 적중 시 매 초마다",
+      "ru": "При атаке урон оружия в течении"
+    },
+    {
+      "en": "동안 무기 공격력이",
+      "kr": "동안 무기 공격력이",
+      "ru": "увеличивается на"
+    },
+    {
+      "en": "Class Loadouts",
+      "kr": "클래스 장비 구성",
+      "ru": "Классовые сборки"
+    },
+    {
+      "en": "Rating Lopec",
+      "kr": "로펙 랭킹",
+      "ru": "Рейтинг Лопека"
+    },
+    {
+      "en": "CD",
+      "kr": "쿨",
+      "ru": "КД"
+    },
+    {
+      "en": "공격 적중 시 무공",
+      "kr": "공격 적중 시 무공",
+      "ru": "Урон оружия"
+    },
+    {
+      "en": "공격 및 이동 속도가",
+      "kr": "공격 및 이동 속도가",
+      "ru": "скорость атаки и передвижения на"
+    },
+    {
+      "en": "(Effect stacks up to 6 times)",
+      "kr": "(최대 6중첩)",
+      "ru": "(Эффект суммируется до 6 раз)"
     },
     {
       "en": "치명타 피해",
       "kr": "치명타 피해",
-      "parent": "치명타 피해",
-      "priority": 28,
       "ru": "Критический урон",
-      "tags": [
-        "context"
-      ]
+      "tags": ["context"]
     },
     {
       "en": "высокое",
       "ru": "Л",
       "kr": "상",
-      "tags": [
-        "interface",
-        "grade",
-        "accessory"
-      ],
+      "tags": ["interface", "grade", "accessory"],
       "priority": 30
     },
     {
       "en": "среднее",
       "ru": "Э",
       "kr": "중",
-      "tags": [
-        "interface",
-        "grade",
-        "accessory"
-      ],
+      "tags": ["interface", "grade", "accessory"],
       "priority": 30
     },
     {
       "en": "низкое",
       "ru": "Н",
       "kr": "하",
-      "tags": [
-        "interface",
-        "grade",
-        "accessory"
-      ],
+      "tags": ["interface", "grade", "accessory"],
       "priority": 30
     },
     {
       "en": "Status Ailment Time Bonus",
       "ru": "Длительность эффектов контроля",
       "kr": "상태이상 공격 지속시간",
-      "tags": [
-        "interface",
-        "accessory",
-        "bracelet"
-      ],
+      "tags": ["interface", "accessory", "bracelet"],
       "priority": 28
     },
     {
       "en": "Status Ailment Duration",
       "ru": "Длительность эффектов контроля",
       "kr": "상태이상지속",
-      "tags": [
-        "interface",
-        "accessory",
-        "bracelet"
-      ],
+      "tags": ["interface", "accessory", "bracelet"],
       "priority": 28
     },
     {
       "en": "Status Ailment Time",
       "ru": "Длительность эффектов контроля",
       "kr": "상태이상 지속시간",
-      "tags": [
-        "interface",
-        "accessory"
-      ],
-      "priority": 27
+      "tags": ["interface", "accessory"]
+    },
+    {
+      "en": "Defense Decrease",
+      "kr": "방어력 감소",
+      "ru": "Износ",
+      "tags": ["interface", "term"],
+      "priority": 30
+    },
+    {
+      "en": "길드",
+      "kr": "길드",
+      "ru": "Гильдия",
+      "tags": ["interface", "term"],
+      "priority": 30
+    },
+    {
+      "en": "수집",
+      "kr": "수집",
+      "ru": "Коллекции",
+      "tags": ["interface", "term"],
+      "priority": 30
+    },
+    {
+      "en": "적에게 주는 피해가 증가",
+      "kr": "적에게 주는 피해가 증가",
+      "ru": "Урон, наносимый врагам, увеличивается",
+      "tags": ["interface", "term"],
+      "priority": 30
+    },
+    {
+      "en": "자신의 생명력이",
+      "kr": "자신의 생명력이",
+      "ru": "Когда уровень вашего здоровья превышает",
+      "tags": ["interface", "term"],
+      "priority": 30
+    },
+    {
+      "en": "피증+무력화피증",
+      "kr": "피증+무력화피증",
+      "ru": "Урон + Урон от ошеломления",
+      "tags": ["interface", "term"],
+      "priority": 30
+    },
+    {
+      "en": "공격 속도",
+      "kr": "공격 속도",
+      "ru": "Скорость атаки",
+      "tags": ["interface", "term"],
+      "priority": 30
+    },
+    {
+      "en": "이동 속도",
+      "kr": "이동 속도",
+      "ru": "Скорость передвижения",
+      "tags": ["interface", "term"],
+      "priority": 30
+    },
+    {
+      "en": "시세",
+      "kr": "시세",
+      "ru": "Аукцион",
+      "tags": ["interface", "term"],
+      "priority": 30
+    },
+    {
+      "en": "재사용 대기시간 감소",
+      "kr": "재사용 대기시간 감소",
+      "ru": "Сокращение времени восстановления",
+      "tags": ["interface", "term"],
+      "priority": 30
+    },
+    {
+      "en": "진화형",
+      "kr": "진화형",
+      "ru": "Экспансивный",
+      "tags": ["interface", "term"],
+      "priority": 30
     }
   ]
 }

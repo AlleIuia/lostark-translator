@@ -3,56 +3,6 @@
   "engravings": [],
   "_orphanBuilds": [],
   "terms": [
-    {
-      "en": "Combat HP Recovery",
-      "kr": "전투 중 생명력 회복량",
-      "ru": "Восстановление здоровья в бою"
-    },
-    {
-      "en": "조화 게이지 획득량",
-      "kr": "조화 게이지 획득량",
-      "ru": "Набор шкалы",
-      "tags": [
-        "interface",
-        "term"
-      ]
-    },
-    {
-      "en": "공격속도 감소",
-      "kr": "공격속도 감소",
-      "ru": "Миролюбие",
-      "tags": [
-        "interface",
-        "term"
-      ]
-    },
-    {
-      "en": "High",
-      "kr": "고대",
-      "ru": "Л",
-      "tags": [
-        "interface",
-        "term"
-      ]
-    },
-    {
-      "en": "Stagger",
-      "kr": "무력",
-      "ru": "Изнурение",
-      "tags": [
-        "interface",
-        "term"
-      ]
-    },
-    {
-      "en": "방어력 감소",
-      "kr": "방어력 감소",
-      "ru": "Износ",
-      "tags": [
-        "interface",
-        "term"
-      ]
-    }
   ],
   "skills": [],
   "skillClasses": [],
