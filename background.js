@@ -1153,7 +1153,7 @@ async function applySiteDefaults(force) {
   const profiles = Object.assign({}, local.siteProfiles || {});
   const fit = local.fitText && typeof local.fitText === 'object'
     ? Object.assign({}, local.fitText)
-    : { enabled: true, termScale: 90, allowWrap: true, expandParents: true, siteCss: '' };
+    : { enabled: true, termScale: 100, allowWrap: true, expandParents: true, siteCss: '' };
 
   let siteCss = fit.siteCss || '';
   let profilesChanged = false;

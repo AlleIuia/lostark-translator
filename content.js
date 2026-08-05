@@ -19,7 +19,7 @@
   let rafPending = false;
   let fitText = {
     enabled: true,
-    termScale: 90,
+    termScale: 100,
     allowWrap: true,
     expandParents: true,
     siteCss: ''
@@ -55,7 +55,7 @@
   function buildFitCss() {
     let css = '.lt-term + .lt-term { margin-inline-start: 0.3em; }\n';
     if (!fitText || fitText.enabled === false) return css;
-    const scale = Math.min(100, Math.max(50, parseInt(fitText.termScale, 10) || 90));
+    const scale = Math.min(100, Math.max(50, parseInt(fitText.termScale, 10) || 100));
     css += 'span.lt-term { font-size: ' + (scale / 100) + 'em; }\n';
     if (fitText.allowWrap !== false) {
       css += 'span.lt-term { white-space: normal; overflow-wrap: anywhere; word-break: break-word; }\n';
@@ -88,7 +88,7 @@
     const f = raw && typeof raw === 'object' ? raw : {};
     fitText = {
       enabled: f.enabled !== false,
-      termScale: Math.min(100, Math.max(50, parseInt(f.termScale, 10) || 90)),
+      termScale: Math.min(100, Math.max(50, parseInt(f.termScale, 10) || 100)),
       allowWrap: f.allowWrap !== false,
       expandParents: f.expandParents !== false,
       siteCss: typeof f.siteCss === 'string' ? f.siteCss : ''
@@ -656,13 +656,50 @@
     }
   }
 
-  function translateNode(node) {
+  function significantChildren(parent) {
+    const out = [];
+    if (!parent || !parent.childNodes) return out;
+    for (const c of parent.childNodes) {
+      if (c.nodeType === Node.COMMENT_NODE) continue;
+      if (c.nodeType === Node.TEXT_NODE && !(c.textContent || '').trim()) continue;
+      out.push(c);
+    }
+    return out;
+  }
+
+  function canUseHostMode(parent, node) {
+    if (!parent || parent.nodeType !== Node.ELEMENT_NODE) return false;
+    const sig = significantChildren(parent);
+    return sig.length === 1 && sig[0] === node;
+  }
+
+  function translateNode(node, force) {
     if (shouldSkipNode(node)) return;
-    if (PROCESSED.has(node)) return;
-    const text = node.textContent;
-    if (!text || !text.trim()) return;
     const parent = node.parentNode;
     if (!parent) return;
+
+    if (force && parent.nodeType === Node.ELEMENT_NODE && parent.hasAttribute('data-lt-host')) {
+      const cur = (node.textContent || '').trim();
+      const orig = (parent.getAttribute('title') || '').trim();
+      if (cur && /[\uac00-\ud7af]/.test(cur) && cur !== orig) {
+        parent.removeAttribute('data-lt-host');
+        parent.classList.remove('notranslate');
+        parent.removeAttribute('translate');
+        try { PROCESSED.delete(node); } catch (_) {}
+      } else if (cur && cur === orig) {
+        parent.removeAttribute('data-lt-host');
+        parent.classList.remove('notranslate');
+        parent.removeAttribute('translate');
+        try { PROCESSED.delete(node); } catch (_) {}
+      } else if (!/[\uac00-\ud7af]/.test(cur)) {
+        return;
+      }
+    }
+
+    if (!force && PROCESSED.has(node)) return;
+
+    const text = node.textContent;
+    if (!text || !text.trim()) return;
     const surrounding = getSurroundingText(node);
 
     const trimmed = text.trim();
@@ -680,14 +717,12 @@
         let out;
         if (mode === 'brackets') out = lead + trimmed + ' (' + translated + ')' + trail;
         else out = lead + translated + trail;
-        if (parent.childNodes.length === 1) {
+        if (canUseHostMode(parent, node)) {
           node.textContent = out;
-          if (parent.nodeType === Node.ELEMENT_NODE) {
-            parent.classList.add('notranslate');
-            parent.setAttribute('translate', 'no');
-            parent.setAttribute('data-lt-host', '1');
-            if (mode === 'replace') parent.setAttribute('title', trimmed);
-          }
+          parent.classList.add('notranslate');
+          parent.setAttribute('translate', 'no');
+          parent.setAttribute('data-lt-host', '1');
+          if (mode === 'replace') parent.setAttribute('title', trimmed);
         } else {
           const span = makeTermSpan(translated, trimmed);
           parent.replaceChild(span, node);
@@ -957,6 +992,19 @@
     } catch (_) {}
   }
 
+  function unwrapStaleTerm(span) {
+    if (!span || !span.isConnected || !span.classList.contains('lt-term')) return null;
+    const cur = (span.textContent || '').trim();
+    const orig = (span.getAttribute('data-lt-orig') || '').trim();
+    const tr = (span.getAttribute('data-lt-tr') || '').trim();
+    if (!cur) return null;
+    if (cur === tr || cur === orig) return null;
+    if (!/[\uac00-\ud7af]/.test(cur)) return null;
+    const textNode = document.createTextNode(span.textContent);
+    if (span.parentNode) span.parentNode.replaceChild(textNode, span);
+    return textNode;
+  }
+
   function processMutations() {
     rafPending = false;
     if (!isEnabled || !siteAllowed) return;
@@ -965,13 +1013,30 @@
     const elementsToProcess = new Set();
     const charDataNodes = [];
     const seenText = new Set();
+    const staleUnwrap = [];
 
     for (const mutation of mutations) {
       if (mutation.type === 'characterData') {
         const node = mutation.target;
         if (!node || !node.parentElement) continue;
-        if (node.parentElement.classList.contains('lt-term')) continue;
-        if (node.parentElement.closest && node.parentElement.closest('.lt-term')) continue;
+        const pe = node.parentElement;
+        if (pe.classList.contains('lt-term')) {
+          const unwrapped = unwrapStaleTerm(pe);
+          if (unwrapped && !seenText.has(unwrapped)) {
+            seenText.add(unwrapped);
+            staleUnwrap.push(unwrapped);
+          }
+          continue;
+        }
+        if (pe.closest && pe.closest('.lt-term')) {
+          const span = pe.closest('.lt-term');
+          const unwrapped = unwrapStaleTerm(span);
+          if (unwrapped && !seenText.has(unwrapped)) {
+            seenText.add(unwrapped);
+            staleUnwrap.push(unwrapped);
+          }
+          continue;
+        }
         if (!seenText.has(node)) {
           seenText.add(node);
           charDataNodes.push(node);
@@ -979,27 +1044,57 @@
       } else if (mutation.type === 'childList') {
         for (const node of mutation.addedNodes) {
           if (node.nodeType === Node.TEXT_NODE) {
-            if (node.parentElement && node.parentElement.classList.contains('lt-term')) continue;
+            if (node.parentElement && node.parentElement.classList.contains('lt-term')) {
+              const unwrapped = unwrapStaleTerm(node.parentElement);
+              if (unwrapped && !seenText.has(unwrapped)) {
+                seenText.add(unwrapped);
+                staleUnwrap.push(unwrapped);
+              }
+              continue;
+            }
             if (!seenText.has(node)) {
               seenText.add(node);
               charDataNodes.push(node);
             }
           } else if (node.nodeType === Node.ELEMENT_NODE) {
-            if (node.classList && node.classList.contains('lt-term')) continue;
+            if (node.classList && node.classList.contains('lt-term')) {
+              const unwrapped = unwrapStaleTerm(node);
+              if (unwrapped && !seenText.has(unwrapped)) {
+                seenText.add(unwrapped);
+                staleUnwrap.push(unwrapped);
+              }
+              continue;
+            }
             elementsToProcess.add(node);
           }
         }
         if (mutation.target && mutation.target.nodeType === Node.ELEMENT_NODE) {
           const t = mutation.target;
-          if (!(t.classList && t.classList.contains('lt-term'))) {
+          if (t.classList && t.classList.contains('lt-term')) {
+            const unwrapped = unwrapStaleTerm(t);
+            if (unwrapped && !seenText.has(unwrapped)) {
+              seenText.add(unwrapped);
+              staleUnwrap.push(unwrapped);
+            }
+          } else {
             elementsToProcess.add(t);
+            t.querySelectorAll && t.querySelectorAll('span.lt-term').forEach((span) => {
+              const unwrapped = unwrapStaleTerm(span);
+              if (unwrapped && !seenText.has(unwrapped)) {
+                seenText.add(unwrapped);
+                staleUnwrap.push(unwrapped);
+              }
+            });
           }
         }
       }
     }
 
+    for (const node of staleUnwrap) {
+      if (node.isConnected) translateNode(node, true);
+    }
     for (const node of charDataNodes) {
-      if (node.isConnected) translateNode(node);
+      if (node.isConnected) translateNode(node, true);
     }
     for (const el of elementsToProcess) {
       if (el.isConnected) translateElementTree(el);
@@ -1228,7 +1323,7 @@
     const host = location.hostname.replace(/^www\./, '');
     chrome.storage.local.get(['fitText'], (local) => {
       const f = local.fitText && typeof local.fitText === 'object' ? Object.assign({}, local.fitText) : {
-        enabled: true, termScale: 90, allowWrap: true, expandParents: true, siteCss: ''
+        enabled: true, termScale: 100, allowWrap: true, expandParents: true, siteCss: ''
       };
       let siteCss = f.siteCss || '';
       const header = '# ' + host;

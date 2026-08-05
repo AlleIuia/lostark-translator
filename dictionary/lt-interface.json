@@ -524,21 +524,30 @@
       "en": "Evolution",
       "ru": "Экспансия",
       "kr": "진화",
-      "tags": ["interface", "ark_passive"],
+      "tags": [
+        "interface",
+        "ark_passive"
+      ],
       "priority": 28
     },
     {
       "en": "Enlightenment",
       "ru": "Становление",
       "kr": "깨달음",
-      "tags": ["interface", "ark_passive"],
+      "tags": [
+        "interface",
+        "ark_passive"
+      ],
       "priority": 28
     },
     {
       "en": "Leap",
       "ru": "Прогресс",
       "kr": "도약",
-      "tags": ["interface", "ark_passive"],
+      "tags": [
+        "interface",
+        "ark_passive"
+      ],
       "priority": 28
     },
     {
@@ -624,12 +633,14 @@
     {
       "en": "Additional Damage",
       "ru": "Доп. Урон",
-      "kr": "추가 피해"
+      "kr": "추가 피해",
+      "priority": 28
     },
     {
       "en": "Boss Damage",
       "ru": "Урон по Боссам",
-      "kr": "보스 피해"
+      "kr": "보스 피해",
+      "priority": 28
     },
     {
       "en": "Level",
@@ -645,6 +656,11 @@
       "en": "Outgoing Damage",
       "ru": "Наносимый урон",
       "kr": "주는 피해"
+    },
+    {
+      "en": "Outgoing Damage",
+      "ru": "Наносимый урон",
+      "kr": "적에게 주는 피해"
     },
     {
       "en": "to Staggered foes",
@@ -678,18 +694,18 @@
     },
     {
       "en": "Serenade, Piety, Harmony Meter Gain",
-      "ru": "Набор энергии",
+      "ru": "Набор эн. аккордов/веры/гармонии",
       "kr": "아덴 게이지 획득량"
-    },
-    {
-      "en": "Serenade, Piety, Harmony Meter Gain",
-      "ru": "Набор энергии",
-      "kr": "조화 게이지 획득량"
     },
     {
       "en": "Ally Damage Enhancement Effect",
       "ru": "Эфф. увеличения урона союзников",
       "kr": "아군 피해량 증가 효과"
+    },
+    {
+      "en": "Ally Damage Enhancement Effect",
+      "ru": "Эфф. увеличения урона союзников",
+      "kr": "아군 피해량 강화"
     },
     {
       "en": "Equipment",
@@ -725,7 +741,13 @@
       "en": "Judgment",
       "ru": "Валь'Морт",
       "kr": "심판",
-      "tags": ["gem", "card", "bracelet", "bracelet effects", "accessory"]
+      "tags": [
+        "gem",
+        "card",
+        "bracelet",
+        "bracelet effects",
+        "accessory"
+      ]
     },
     {
       "en": "Bleed",
@@ -746,7 +768,11 @@
       "en": "Focus",
       "ru": "Марх",
       "kr": "집중",
-      "tags": ["rune", "gem", "item"]
+      "tags": [
+        "rune",
+        "gem",
+        "item"
+      ]
     },
     {
       "en": "Rage",
@@ -952,14 +978,22 @@
       "en": "Low",
       "ru": "Н",
       "kr": "하",
-      "tags": ["interface", "grade", "accessory"],
+      "tags": [
+        "interface",
+        "grade",
+        "accessory"
+      ],
       "priority": 26
     },
     {
       "en": "Mid",
       "ru": "Э",
       "kr": "중",
-      "tags": ["interface", "grade", "accessory"],
+      "tags": [
+        "interface",
+        "grade",
+        "accessory"
+      ],
       "priority": 26
     },
     {
@@ -986,26 +1020,42 @@
       "en": "High",
       "ru": "Л",
       "kr": "상",
-      "tags": ["interface", "grade", "accessory"],
+      "tags": [
+        "interface",
+        "grade",
+        "accessory"
+      ],
       "priority": 26
     },
     {
       "en": "High Grade",
       "ru": "Л",
       "kr": "상",
-      "tags": ["interface", "grade"]
+      "tags": [
+        "interface",
+        "grade"
+      ],
+      "priority": 26
     },
     {
       "en": "Mid Grade",
       "ru": "Э",
       "kr": "중",
-      "tags": ["interface", "grade"]
+      "tags": [
+        "interface",
+        "grade"
+      ],
+      "priority": 26
     },
     {
       "en": "Low Grade",
       "ru": "Н",
       "kr": "하",
-      "tags": ["interface", "grade"]
+      "tags": [
+        "interface",
+        "grade"
+      ],
+      "priority": 26
     },
     {
       "en": "All order core combinations",
@@ -1108,11 +1158,9 @@
       "kr": "혼돈의"
     },
     {
-      "en": "전투 중 생명력 회복량",
+      "en": "Combat HP Recovery",
       "ru": "Восстановление здоровья в бою",
-      "kr": "전투 중 생명력 회복량",
-      "tags": ["interface", "term"],
-      "priority": 28
+      "kr": ""
     },
     {
       "en": "Max MP",
@@ -1125,13 +1173,8 @@
       "kr": "파티원 보호막 효과"
     },
     {
-      "en": "Heal for Party Members",
-      "ru": "Эфф. исциления для союзников",
-      "kr": "파티원 회복 효과"
-    },
-    {
       "en": "Ally Atk. Power Enhancement Effect",
-      "ru": "Эфф. увел. силы атаки союзников",
+      "ru": "Эфф. увел. силы атаки",
       "kr": "아군 공격력 강화"
     },
     {
@@ -1156,13 +1199,18 @@
     },
     {
       "en": "Ally Atk. Power Enhancement",
-      "ru": "Эфф. увел. силы атаки союзников",
+      "ru": "Эфф. увел. силы атаки",
       "kr": "아공강"
+    },
+    {
+      "en": "Ally Atk. Power Enhancement",
+      "ru": "Эфф. увел. силы атаки",
+      "kr": "아공강 효과"
     },
     {
       "en": "Ally Damage Enhancement",
       "ru": "Эфф. увел. урона союзников",
-      "kr": "아군 피해량 강화 효과"
+      "kr": ""
     },
     {
       "en": "This effect is limited to a single application per party",
@@ -1233,19 +1281,29 @@
       "en": "공격력 감소",
       "kr": "공격력 감소",
       "ru": "Ржавчина",
-      "tags": ["interface", "term"]
+      "tags": [
+        "interface",
+        "term"
+      ]
     },
     {
       "en": "CritD+CritD",
       "kr": "치피증+치피증",
       "ru": "КУ+КУ",
-      "tags": ["interface", "term"]
+      "tags": [
+        "interface",
+        "term"
+      ]
     },
     {
       "en": "Crit Damage",
       "kr": "치명타 피해가 증가",
+      "parent": "치명타 피해가 증가",
+      "priority": 28,
       "ru": "Критический урон",
-      "tags": ["context"]
+      "tags": [
+        "context"
+      ]
     },
     {
       "en": "Server",
@@ -1253,211 +1311,747 @@
       "ru": "Сервер"
     },
     {
-      "en": "Prices for costume jewelry at auction",
-      "kr": "악세서리 경매장 시세",
-      "ru": "Цены бижутерии на аукционе"
-    },
-    {
-      "en": "Additional filter",
-      "kr": "추가필터",
-      "ru": "Дополнительный фильтр"
-    },
-    {
-      "en": "3 legendary",
-      "kr": "상상상",
-      "ru": "3 Легендарных"
-    },
-    {
-      "en": "2 legendary",
-      "kr": "상상",
-      "ru": "2 Легендарных" 
-    },
-    {
-      "en": "Quality",
-      "kr": "전체 품질",
-      "ru": "Общее качество"
-    },
-    {
       "en": "CD",
       "kr": "쿨감",
+      "parent": "쿨감 10광휘x7",
+      "priority": 28,
       "ru": "КД",
-      "tags": ["context"]
+      "tags": [
+        "context"
+      ]
     },
     {
       "en": "DD",
       "kr": "피해",
+      "parent": "피해",
+      "priority": 28,
       "ru": "Урон",
-      "tags": ["context"]
+      "tags": [
+        "context"
+      ]
     },
     {
       "en": "Ark Grid",
       "kr": "아크그리드",
+      "parent": "아크그리드",
+      "priority": 28,
       "ru": "Созвездия А.Р.К",
-      "tags": ["context"]
-    },
-    {
-      "en": "공격 적중 시 매 초마다",
-      "kr": "공격 적중 시 매 초마다",
-      "ru": "При атаке урон оружия в течении"
-    },
-    {
-      "en": "동안 무기 공격력이",
-      "kr": "동안 무기 공격력이",
-      "ru": "увеличивается на"
-    },
-    {
-      "en": "Class Loadouts",
-      "kr": "클래스 장비 구성",
-      "ru": "Классовые сборки"
-    },
-    {
-      "en": "Rating Lopec",
-      "kr": "로펙 랭킹",
-      "ru": "Рейтинг Лопека"
-    },
-    {
-      "en": "CD",
-      "kr": "쿨",
-      "ru": "КД"
-    },
-    {
-      "en": "공격 적중 시 무공",
-      "kr": "공격 적중 시 무공",
-      "ru": "Урон оружия"
-    },
-    {
-      "en": "공격 및 이동 속도가",
-      "kr": "공격 및 이동 속도가",
-      "ru": "скорость атаки и передвижения на"
-    },
-    {
-      "en": "(Effect stacks up to 6 times)",
-      "kr": "(최대 6중첩)",
-      "ru": "(Эффект суммируется до 6 раз)"
+      "tags": [
+        "context"
+      ]
     },
     {
       "en": "치명타 피해",
       "kr": "치명타 피해",
+      "parent": "치명타 피해",
+      "priority": 28,
       "ru": "Критический урон",
-      "tags": ["context"]
+      "tags": [
+        "context"
+      ]
     },
     {
       "en": "высокое",
       "ru": "Л",
       "kr": "상",
-      "tags": ["interface", "grade", "accessory"],
+      "tags": [
+        "interface",
+        "grade",
+        "accessory"
+      ],
       "priority": 30
     },
     {
       "en": "среднее",
       "ru": "Э",
       "kr": "중",
-      "tags": ["interface", "grade", "accessory"],
+      "tags": [
+        "interface",
+        "grade",
+        "accessory"
+      ],
       "priority": 30
     },
     {
       "en": "низкое",
       "ru": "Н",
       "kr": "하",
-      "tags": ["interface", "grade", "accessory"],
+      "tags": [
+        "interface",
+        "grade",
+        "accessory"
+      ],
       "priority": 30
     },
     {
       "en": "Status Ailment Time Bonus",
       "ru": "Длительность эффектов контроля",
       "kr": "상태이상 공격 지속시간",
-      "tags": ["interface", "accessory", "bracelet"],
+      "tags": [
+        "interface",
+        "accessory",
+        "bracelet"
+      ],
       "priority": 28
     },
     {
       "en": "Status Ailment Duration",
       "ru": "Длительность эффектов контроля",
       "kr": "상태이상지속",
-      "tags": ["interface", "accessory", "bracelet"],
+      "tags": [
+        "interface",
+        "accessory",
+        "bracelet"
+      ],
       "priority": 28
     },
     {
       "en": "Status Ailment Time",
       "ru": "Длительность эффектов контроля",
       "kr": "상태이상 지속시간",
-      "tags": ["interface", "accessory"]
+      "tags": [
+        "interface",
+        "accessory"
+      ],
+      "priority": 27
     },
     {
-      "en": "Defense Decrease",
+      "en": "게임 화면의 젬의 상태와 똑같이 입력해주세요.",
+      "kr": "게임 화면의 젬의 상태와 똑같이 입력해주세요.",
+      "ru": "Пожалуйста, введите точно такие же характеристики, как у рунита на экране в игре.",
+      "tags": [
+        "interface",
+        "term"
+      ]
+    },
+    {
+      "en": "혼돈 포인트",
+      "kr": "혼돈 포인트",
+      "parent": "초기화 가능초기화 불가 초기화 의지력 효율 1 공격력 1 낙인력 1 혼돈 포인트 1 가공 비용 0G900G1800G 남은 가공 123456789",
+      "priority": 28,
+      "ru": "Очки Хаоса",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "아피강",
+      "kr": "아피강",
+      "ru": "Урон соратников",
+      "tags": [
+        "interface",
+        "term"
+      ]
+    },
+    {
+      "en": "아군피해강화",
+      "kr": "아군피해강화",
+      "parent": "새로고침 0회1회2회3회4회5회6회7회8회9회10회",
+      "priority": 28,
+      "ru": "Урон соратников",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "Additional Damage",
+      "kr": "추가피해",
+      "parent": "Ввод характеристик рунита",
+      "priority": 28,
+      "ru": "Доп. Урон",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "공격력",
+      "kr": "공격력",
+      "parent": "Ввод характеристик рунита",
+      "priority": 28,
+      "ru": "Сила атаки",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "혼돈",
+      "kr": "혼돈",
+      "parent": "등장 옵션 4개 선택",
+      "priority": 28,
+      "ru": "Очки Хаоса",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "질서",
+      "kr": "질서",
+      "parent": "젬 가공 시뮬레이터 - 젬파고",
+      "priority": 28,
+      "ru": "Очки Порядка",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "질서 포인트",
+      "kr": "질서 포인트",
+      "parent": "질서 포인트",
+      "priority": 28,
+      "ru": "Очки Порядка",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "젬파고",
+      "kr": "젬파고",
+      "parent": "젬 가공 시뮬레이터 - 젬파고",
+      "priority": 28,
+      "ru": "Gempago",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "의지력 효율",
+      "kr": "의지력 효율",
+      "parent": "의지력 효율",
+      "priority": 28,
+      "ru": "Экономия заряда",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "의지력",
+      "kr": "의지력",
+      "parent": "⚙️ 사용자 젬 상태 입력",
+      "priority": 28,
+      "ru": "Экономия заряда",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "수동 편집",
+      "kr": "수동 편집",
+      "parent": "수동 편집",
+      "priority": 28,
+      "ru": "назначить вручную",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "자동 추적 중",
+      "kr": "자동 추적 중",
+      "parent": "자동 추적 중",
+      "priority": 28,
+      "ru": "Автоматически",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "젬 초기 옵션",
+      "kr": "젬 초기 옵션",
+      "parent": "젬 초기 옵션",
+      "priority": 28,
+      "ru": "Приоритет характеристик рунита",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "서포터",
+      "kr": "서포터",
+      "parent": "수동 편집",
+      "priority": 28,
+      "ru": "Сап",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "딜러",
+      "kr": "딜러",
+      "parent": "공격력",
+      "priority": 28,
+      "ru": "ДД",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "포지션 설정",
+      "kr": "포지션 설정",
+      "parent": "포지션 설정",
+      "priority": 28,
+      "ru": "Роль персонажа",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "사용자 설정",
+      "kr": "사용자 설정",
+      "parent": "사용자 설정",
+      "priority": 28,
+      "ru": "Пользовательские настройки",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "다시 실행",
+      "kr": "다시 실행",
+      "parent": "Рунит 초기 옵션",
+      "priority": 28,
+      "ru": "Вперед",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "실행 취소",
+      "kr": "실행 취소",
+      "parent": "사용자 설정",
+      "priority": 28,
+      "ru": "Назад",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "조작 히스토리",
+      "kr": "조작 히스토리",
+      "parent": "조작 히스토리",
+      "priority": 28,
+      "ru": "История действий",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "사용자 젬 상태 입력",
+      "kr": "사용자 젬 상태 입력",
+      "parent": "⚙️ 사용자 젬 상태 입력",
+      "priority": 28,
+      "ru": "Ввод характеристик рунита",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "붕괴",
+      "kr": "붕괴",
+      "parent": "포지션 설정",
+      "priority": 32,
+      "ru": "Крах",
+      "tags": [
+        "term",
+        "interface",
+        "context"
+      ]
+    },
+    {
+      "en": "왜곡",
+      "kr": "왜곡",
+      "parent": "포지션 설정",
+      "priority": 32,
+      "ru": "Раздор",
+      "tags": [
+        "term",
+        "interface",
+        "context"
+      ]
+    },
+    {
+      "en": "침식",
+      "kr": "침식",
+      "parent": "포지션 설정",
+      "priority": 32,
+      "ru": "Ропот",
+      "tags": [
+        "term",
+        "interface",
+        "context"
+      ]
+    },
+    {
+      "en": "불변",
+      "kr": "불변",
+      "ru": "Истина",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 32
+    },
+    {
+      "en": "견고",
+      "kr": "견고",
+      "parent": "사용자 설정",
+      "priority": 32,
+      "ru": "Закон",
+      "tags": [
+        "term",
+        "interface",
+        "context"
+      ]
+    },
+    {
+      "en": "안정",
+      "kr": "안정",
+      "parent": "Gempago",
+      "priority": 32,
+      "ru": "Обет",
+      "tags": [
+        "term",
+        "interface",
+        "context"
+      ]
+    },
+    {
+      "en": "영웅",
+      "kr": "영웅",
+      "parent": "Калькулятор обработки рунитов - Gempago",
+      "priority": 28,
+      "ru": "Эпический",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "희귀",
+      "kr": "희귀",
+      "parent": "Качество рунита",
+      "priority": 28,
+      "ru": "Редкий",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "고급",
+      "kr": "고급",
+      "parent": "Gempago",
+      "priority": 28,
+      "ru": "Необычный",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "젬 종류",
+      "kr": "젬 종류",
+      "parent": "젬 종류",
+      "priority": 28,
+      "ru": "Тип рунита",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "젬 등급",
+      "kr": "젬 등급",
+      "parent": "젬 등급",
+      "priority": 28,
+      "ru": "Качество рунита",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "젬",
+      "kr": "젬",
+      "parent": "젬 등급",
+      "priority": 28,
+      "ru": "Рунит",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "수동 입력",
+      "kr": "수동 입력",
+      "parent": "⚙️ 사용자 젬 상태 입력",
+      "priority": 28,
+      "ru": "Ручной ввод",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "화면인식",
+      "kr": "화면인식",
+      "parent": "화면인식 Gempago",
+      "priority": 28,
+      "ru": "Распознавание экрана",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "화면 인식",
+      "kr": "화면 인식",
+      "parent": "화면 공유 시작 버튼을 누르고 LOST ARK 프로그램을 선택해주세요.",
+      "priority": 28,
+      "ru": "Демонстрация экрана",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "젬 가공 시뮬레이터",
+      "kr": "젬 가공 시뮬레이터",
+      "parent": "젬 가공 시뮬레이터 - 젬파고",
+      "priority": 28,
+      "ru": "Калькулятор обработки рунитов",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "Gempago",
+      "kr": "젬파고",
+      "parent": "젬 가공 시뮬레이터 - 젬파고",
+      "priority": 28,
+      "ru": "Gempago",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "Appearing Options",
+      "kr": "등장 옵션 4개 선택",
+      "ru": "Выбор 4 вариантов",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Status Maintain",
+      "kr": "상태유지",
+      "ru": "Без изменений",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Convert",
+      "kr": "변환",
+      "ru": "Замена",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Refresh",
+      "kr": "새로고침",
+      "ru": "Обновить",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Cost",
+      "kr": "비용",
+      "ru": "Стоимость",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Reset Possible",
+      "kr": "초기화 가능",
+      "ru": "Можно сбросить",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Reset Impossible",
+      "kr": "초기화 불가",
+      "ru": "Нельзя сбросить",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Reset",
+      "kr": "초기화",
+      "ru": "Сброс",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Crafting Cost",
+      "kr": "가공 비용",
+      "ru": "Стоимость обработки",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Remaining Crafts",
+      "kr": "남은 가공",
+      "ru": "Осталось попыток",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Option 1",
+      "kr": "1번 옵션",
+      "ru": "Вариант 1",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Option 2",
+      "kr": "2번 옵션",
+      "ru": "Вариант 2",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Option 3",
+      "kr": "3번 옵션",
+      "ru": "Вариант 3",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Option 4",
+      "kr": "4번 옵션",
+      "ru": "Вариант 4",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Select 4 options hint",
+      "kr": "등장 옵션 4개를 선택하면 행동 추천이 표시됩니다",
+      "ru": "Выберите 4 варианта — появится рекомендация",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Click to apply",
+      "kr": "클릭하면 젬 상태에 즉시 반영됩니다",
+      "ru": "Клик сразу применяется к руниту",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Boss Damage",
+      "ru": "Урон по Боссам",
+      "kr": "보스피해",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Processing",
+      "kr": "가공하기",
+      "ru": "Обработка",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Defense Reduction",
       "kr": "방어력 감소",
       "ru": "Износ",
-      "tags": ["interface", "term"],
+      "tags": [
+        "interface",
+        "term"
+      ],
       "priority": 30
     },
     {
-      "en": "길드",
-      "kr": "길드",
-      "ru": "Гильдия",
-      "tags": ["interface", "term"],
-      "priority": 30
+      "en": "Decline",
+      "kr": "포기(분해)",
+      "ru": "Отказаться (слом)",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
     },
     {
-      "en": "수집",
-      "kr": "수집",
-      "ru": "Коллекции",
-      "tags": ["interface", "term"],
-      "priority": 30
+      "en": "Increase",
+      "kr": "증가",
+      "ru": "+100%",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 22
     },
     {
-      "en": "적에게 주는 피해가 증가",
-      "kr": "적에게 주는 피해가 증가",
-      "ru": "Урон, наносимый врагам, увеличивается",
-      "tags": ["interface", "term"],
-      "priority": 30
+      "en": "Decrease",
+      "kr": "감소",
+      "ru": "-100%",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 22
     },
     {
-      "en": "자신의 생명력이",
-      "kr": "자신의 생명력이",
-      "ru": "Когда уровень вашего здоровья превышает",
-      "tags": ["interface", "term"],
-      "priority": 30
-    },
-    {
-      "en": "피증+무력화피증",
-      "kr": "피증+무력화피증",
-      "ru": "Урон + Урон от ошеломления",
-      "tags": ["interface", "term"],
-      "priority": 30
-    },
-    {
-      "en": "공격 속도",
-      "kr": "공격 속도",
-      "ru": "Скорость атаки",
-      "tags": ["interface", "term"],
-      "priority": 30
-    },
-    {
-      "en": "이동 속도",
-      "kr": "이동 속도",
-      "ru": "Скорость передвижения",
-      "tags": ["interface", "term"],
-      "priority": 30
-    },
-    {
-      "en": "시세",
-      "kr": "시세",
-      "ru": "Аукцион",
-      "tags": ["interface", "term"],
-      "priority": 30
-    },
-    {
-      "en": "재사용 대기시간 감소",
-      "kr": "재사용 대기시간 감소",
-      "ru": "Сокращение времени восстановления",
-      "tags": ["interface", "term"],
-      "priority": 30
-    },
-    {
-      "en": "진화형",
-      "kr": "진화형",
-      "ru": "Экспансивный",
-      "tags": ["interface", "term"],
-      "priority": 30
+      "en": "Recommended Strategy",
+      "kr": "추천 전략",
+      "ru": "Рекомендуемая стратегия",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
     }
   ]
 }

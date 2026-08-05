@@ -267,7 +267,7 @@ const DEFAULT_DEV_SITES = [
 
 const DEFAULT_FIT = {
   enabled: true,
-  termScale: 90,
+  termScale: 100,
   allowWrap: true,
   expandParents: true,
   siteCss: ''
@@ -277,7 +277,7 @@ function normalizeFit(raw) {
   const f = raw && typeof raw === 'object' ? raw : {};
   return {
     enabled: f.enabled !== false,
-    termScale: Math.min(100, Math.max(50, parseInt(f.termScale, 10) || 90)),
+    termScale: Math.min(100, Math.max(50, parseInt(f.termScale, 10) || 100)),
     allowWrap: f.allowWrap !== false,
     expandParents: f.expandParents !== false,
     siteCss: typeof f.siteCss === 'string' ? f.siteCss : ''
@@ -288,7 +288,7 @@ function readFitFromUI() {
   const scaleEl = document.getElementById('fitScale');
   return {
     enabled: !!(document.getElementById('fitEnabled') || {}).checked,
-    termScale: scaleEl ? parseInt(scaleEl.value, 10) || 90 : 90,
+    termScale: scaleEl ? parseInt(scaleEl.value, 10) || 100 : 100,
     allowWrap: !!(document.getElementById('fitWrap') || {}).checked,
     expandParents: !!(document.getElementById('fitExpand') || {}).checked,
     siteCss: (document.getElementById('fitSiteCss') || {}).value || ''
