@@ -486,16 +486,6 @@
       "kr": "코어"
     },
     {
-      "en": "Items",
-      "ru": "Предметы",
-      "kr": "아이템"
-    },
-    {
-      "en": "Combat Items",
-      "ru": "Боевые предметы",
-      "kr": "배틀 아이템"
-    },
-    {
       "en": "Kazeros Raid",
       "ru": "Рейды Казероса",
       "kr": "카제로스 레이드"
@@ -706,11 +696,6 @@
       "en": "Serenade, Piety, Harmony Meter Gain",
       "ru": "Набор эн. аккордов/веры/гармонии",
       "kr": "아덴 게이지 획득량"
-    },
-    {
-      "en": "Serenade, Piety, Harmony Meter Gain",
-      "ru": "Набор эн. аккордов/веры/гармонии",
-      "kr": "세레나데, 신앙, 조화 게이지 획득량"
     },
     {
       "en": "Ally Damage Enhancement Effect",
@@ -1189,7 +1174,7 @@
     },
     {
       "en": "Ally Atk. Power Enhancement Effect",
-      "ru": "Эфф. увел. силы атаки",
+      "ru": "Эфф. увел. силы атаки союзников",
       "kr": "아군 공격력 강화"
     },
     {
@@ -1214,33 +1199,18 @@
     },
     {
       "en": "Ally Atk. Power Enhancement",
-      "ru": "Эфф. увел. силы атаки",
+      "ru": "Эфф. увел. силы атаки союзников",
       "kr": "아공강"
     },
     {
       "en": "Ally Atk. Power Enhancement",
-      "ru": "Эфф. увел. силы атаки",
+      "ru": "Эфф. увел. силы атаки союзников",
       "kr": "아공강 효과"
     },
     {
-      "en": "Ally Atk. Power Enhancement",
-      "ru": "Эфф. увел. силы атаки",
-      "kr": "아군공격력강화"
-    },
-    {
       "en": "Ally Damage Enhancement",
-      "ru": "Эфф. увел. урона",
+      "ru": "Эфф. увел. урона союзников",
       "kr": ""
-    },
-    {
-      "en": "Ally healing effectiveness",
-      "ru": "Эфф. исцеления союзников",
-      "kr": "파티원 회복효과"
-    },
-    {
-      "en": "Ally healing effectiveness",
-      "ru": "Эфф. исцеления союзников",
-      "kr": "파티원 회복 효과"
     },
     {
       "en": "This effect is limited to a single application per party",
@@ -2102,6 +2072,88 @@
         "term"
       ],
       "priority": 28
+    },
+    {
+      "en": "Class Loadouts",
+      "kr": "클래스 장비 구성",
+      "ru": "Классовые сборки",
+      "tags": [
+        "interface",
+        "term"
+      ]
+    },
+    {
+      "en": "Strength",
+      "kr": "힘",
+      "parent": "+",
+      "priority": 28,
+      "ru": "Сила",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "Drops of Ether",
+      "kr": "구동",
+      "ru": "Собиратель душ"
+    },
+    {
+      "en": "Simulator",
+      "kr": "시뮬레이터",
+      "ru": "Симулятор"
+    },
+    {
+      "en": "Stats",
+      "kr": "능력치",
+      "ru": "Статистика"
+    },
+    {
+      "en": "Ability cooldown",
+      "kr": "스킬의 재사용 대기 시간이",
+      "parent": "2%",
+      "priority": 28,
+      "ru": "Время восстановления умений",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "Health recovery",
+      "kr": "전투 중 생명력 회복량",
+      "parent": "+",
+      "priority": 28,
+      "ru": "Восстанов. здоровья",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "Auction",
+      "kr": "시세",
+      "ru": "Аукцион",
+      "tags": [
+        "interface",
+        "term"
+      ]
+    },
+    {
+      "en": "Reduction CD",
+      "kr": "재사용 대기시간 감소",
+      "parent": "재사용 대기시간 감소",
+      "priority": 28,
+      "ru": "Сокращение КД",
+      "tags": [
+        "context"
+      ]
+    },
+    {
+      "en": "Agility",
+      "kr": "민첩",
+      "ru": "Ловкость",
+      "tags": [
+        "interface",
+        "term"
+      ]
     }
   ]
 }
