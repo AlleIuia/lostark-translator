@@ -486,6 +486,16 @@
       "kr": "코어"
     },
     {
+      "en": "Items",
+      "ru": "Предметы",
+      "kr": "아이템"
+    },
+    {
+      "en": "Combat Items",
+      "ru": "Боевые предметы",
+      "kr": "배틀 아이템"
+    },
+    {
       "en": "Kazeros Raid",
       "ru": "Рейды Казероса",
       "kr": "카제로스 레이드"
@@ -696,6 +706,11 @@
       "en": "Serenade, Piety, Harmony Meter Gain",
       "ru": "Набор эн. аккордов/веры/гармонии",
       "kr": "아덴 게이지 획득량"
+    },
+    {
+      "en": "Serenade, Piety, Harmony Meter Gain",
+      "ru": "Набор эн. аккордов/веры/гармонии",
+      "kr": "세레나데, 신앙, 조화 게이지 획득량"
     },
     {
       "en": "Ally Damage Enhancement Effect",
@@ -1208,9 +1223,24 @@
       "kr": "아공강 효과"
     },
     {
+      "en": "Ally Atk. Power Enhancement",
+      "ru": "Эфф. увел. силы атаки",
+      "kr": "아군공격력강화"
+    },
+    {
       "en": "Ally Damage Enhancement",
-      "ru": "Эфф. увел. урона союзников",
+      "ru": "Эфф. увел. урона",
       "kr": ""
+    },
+    {
+      "en": "Ally healing effectiveness",
+      "ru": "Эфф. исцеления союзников",
+      "kr": "파티원 회복효과"
+    },
+    {
+      "en": "Ally healing effectiveness",
+      "ru": "Эфф. исцеления союзников",
+      "kr": "파티원 회복 효과"
     },
     {
       "en": "This effect is limited to a single application per party",
@@ -2014,9 +2044,9 @@
       "priority": 30
     },
     {
-      "en": "Decline",
+      "en": "포기(분해)",
       "kr": "포기(분해)",
-      "ru": "Отказаться (слом)",
+      "ru": "Разобрать",
       "tags": [
         "interface",
         "term"
@@ -2047,6 +2077,26 @@
       "en": "Recommended Strategy",
       "kr": "추천 전략",
       "ru": "Рекомендуемая стратегия",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "포기(완료)",
+      "kr": "포기(완료)",
+      "ru": "Сдаться",
+      "tags": [
+        "interface",
+        "term"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "도달가능성",
+      "kr": "도달가능성",
+      "ru": "Шанс",
       "tags": [
         "interface",
         "term"

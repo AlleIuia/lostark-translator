@@ -10,7 +10,7 @@
   let observer = null;
   let translatedCount = 0;
 
-  const SKIP_TAGS = new Set(['script','style','noscript','iframe','textarea','input','code','pre','head','meta','link']);
+  const SKIP_TAGS = new Set(['script','style','noscript','iframe','textarea','input','code','pre','head','meta','link','title','svg','path','symbol','use']);
   const TRANSLATABLE_ATTRS = ['title','aria-label','placeholder','alt'];
   const PROCESSED = new WeakSet();
   const SVG_ORIG = new WeakMap();
@@ -53,20 +53,21 @@
   }
 
   function buildFitCss() {
-    let css = '.lt-term + .lt-term { margin-inline-start: 0.3em; }\n';
+    let css = '';
+    css += 'span.lt-term { display: inline; max-width: none; }\n';
+    css += '.lt-term + .lt-term { margin-inline-start: 0.25em; }\n';
     if (!fitText || fitText.enabled === false) return css;
     const scale = Math.min(100, Math.max(50, parseInt(fitText.termScale, 10) || 100));
     css += 'span.lt-term { font-size: ' + (scale / 100) + 'em; }\n';
-    if (fitText.allowWrap !== false) {
-      css += 'span.lt-term { white-space: normal; overflow-wrap: anywhere; word-break: break-word; }\n';
+    if (fitText.allowWrap === false) {
+      css += 'span.lt-term { white-space: nowrap; }\n';
+    } else {
+      css += 'span.lt-term { white-space: normal; overflow-wrap: break-word; word-break: normal; }\n';
     }
     if (fitText.expandParents !== false) {
-      css += 'span.lt-term { max-width: none; }\n';
       css += ':is(span, div, p, a, button, li, td, th, label):has(> span.lt-term) {\n';
-      css += '  white-space: normal !important;\n';
       css += '  overflow: visible !important;\n';
       css += '  text-overflow: unset !important;\n';
-      css += '  max-width: none;\n';
       css += '}\n';
     }
     const sitePart = parseSiteCss(fitText.siteCss || '', location.hostname);
@@ -201,7 +202,7 @@
     'zloa.net',
     'loaup.com',
     'honing-forecast.pages.dev',
-    'loatto.jp',
+    'loatto.kr',
     'icepeng.com',
     'lo4.app',
     'loaclac-doss.vercel.app',
@@ -224,7 +225,7 @@
   }
 
   function checkSiteAllowed(result) {
-    const mode = result.siteMode || 'everywhere';
+    const mode = result.siteMode || 'developer';
     const hostname = location.hostname;
     if (mode === 'everywhere') {
       siteAllowed = true;
@@ -276,9 +277,12 @@
     if (!node || node.nodeType !== Node.TEXT_NODE) return true;
     const parent = node.parentElement;
     if (!parent) return true;
-    if (SKIP_TAGS.has(parent.tagName.toLowerCase())) return true;
+    const tag = parent.tagName.toLowerCase();
+    if (SKIP_TAGS.has(tag)) return true;
+    if (parent.closest && parent.closest('head, script, style, noscript, textarea, [contenteditable="true"]')) return true;
     if (parent.classList.contains('lt-term')) return true;
     if (parent.closest && parent.closest('.lt-term')) return true;
+    if (parent.id === 'root' || parent.id === 'app' || parent.id === '__next') return true;
     return false;
   }
 
@@ -419,6 +423,42 @@
     return /코어|core|ядр|혼돈|질서|chaos|order|ark\s*grid|아크\s*그리드|созвезд|그리드|grid/i.test(t);
   }
 
+  function hasGemItemContext(surrounding, node) {
+    let t = surrounding || '';
+    if (node) {
+      try {
+        let el = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
+        let depth = 0;
+        while (el && depth < 6) {
+          t += ' ' + (el.textContent || '').slice(0, 120);
+          if (el.querySelectorAll) {
+            const imgs = el.querySelectorAll('img[src], img[alt]');
+            for (let i = 0; i < imgs.length && i < 12; i++) {
+              const src = imgs[i].getAttribute('src') || '';
+              const alt = imgs[i].getAttribute('alt') || '';
+              t += ' ' + src + ' ' + alt;
+              if (/\/use_7_|\/use\/use_7|gemicon|\/gem[s_\/-]|ability.?stone|bracelet|carddeck|\/card/i.test(src)) {
+                return true;
+              }
+            }
+          }
+          const style = el.getAttribute && (el.getAttribute('style') || '');
+          if (/#FE9600|#E5A840|#9e5f04|#9f5e00/i.test(style)) return true;
+          el = el.parentElement;
+          depth++;
+        }
+      } catch (_) {}
+    }
+    return /gem|card|bracelet|accessory|bracelet\s*effects|браслет|карт[аы]?|гем|рунит|악세|카드|젬|팔찌|장신구|질풍|단죄|심판|출혈|갈망/i.test(t);
+  }
+
+  function isRestrictedInterface(v) {
+    const tags = v.tags || [];
+    return tags.some(t =>
+      t === 'gem' || t === 'card' || t === 'bracelet' || t === 'accessory' || t === 'bracelet effects'
+    );
+  }
+
   function resolveTranslation(match, surrounding, node) {
     const variants = dictionary.get(match.toLowerCase());
     if (!variants || !variants.length) return match;
@@ -427,9 +467,16 @@
     for (const v of variants) {
       if (isBuildVariant(v) && matchesContext(v, surrounding)) return v.value;
     }
-    // Интерфейс (ветки АРК: Становление/Прогресс/Экспансия) выше skill без жёсткого parent.
     for (const v of variants) {
-      if (isInterfaceVariant(v)) return v.value;
+      if (isInterfaceVariant(v) && !isRestrictedInterface(v)) return v.value;
+    }
+    if (hasGemItemContext(surrounding, node)) {
+      for (const v of variants) {
+        if (isInterfaceVariant(v) && isRestrictedInterface(v)) return v.value;
+      }
+    }
+    for (const v of variants) {
+      if (isBuildVariant(v)) return v.value;
     }
     for (const v of variants) {
       if (isSkillVariant(v) && matchesContext(v, surrounding)) return v.value;
@@ -455,13 +502,13 @@
       if (isClassVariant(v)) return v.value;
     }
     for (const v of variants) {
-      if (!isSkillVariant(v) && !isBuildVariant(v)) return v.value;
+      if (!isSkillVariant(v) && !isBuildVariant(v) && !isRestrictedInterface(v)) return v.value;
+    }
+    for (const v of variants) {
+      if (isInterfaceVariant(v) && isRestrictedInterface(v)) return v.value;
     }
     const compactLen = String(match).replace(/\s+/g, '').length;
-    if (compactLen >= 3) {
-      for (const v of variants) {
-        if (isBuildVariant(v)) return v.value;
-      }
+    if (compactLen >= 2) {
       for (const v of variants) {
         if (isSkillVariant(v)) return v.value;
       }
@@ -669,6 +716,10 @@
 
   function canUseHostMode(parent, node) {
     if (!parent || parent.nodeType !== Node.ELEMENT_NODE) return false;
+    const tag = parent.tagName.toLowerCase();
+    if (tag === 'html' || tag === 'body' || tag === 'main' || tag === 'title' || tag === 'head') return false;
+    if (parent.id === 'root' || parent.id === 'app' || parent.id === '__next') return false;
+    if (parent.closest && parent.closest('head')) return false;
     const sig = significantChildren(parent);
     return sig.length === 1 && sig[0] === node;
   }
@@ -681,19 +732,15 @@
     if (force && parent.nodeType === Node.ELEMENT_NODE && parent.hasAttribute('data-lt-host')) {
       const cur = (node.textContent || '').trim();
       const orig = (parent.getAttribute('title') || '').trim();
-      if (cur && /[\uac00-\ud7af]/.test(cur) && cur !== orig) {
-        parent.removeAttribute('data-lt-host');
-        parent.classList.remove('notranslate');
-        parent.removeAttribute('translate');
-        try { PROCESSED.delete(node); } catch (_) {}
-      } else if (cur && cur === orig) {
-        parent.removeAttribute('data-lt-host');
-        parent.classList.remove('notranslate');
-        parent.removeAttribute('translate');
-        try { PROCESSED.delete(node); } catch (_) {}
-      } else if (!/[\uac00-\ud7af]/.test(cur)) {
-        return;
+      if (!cur) return;
+      if (orig && dictionary.has(orig.toLowerCase())) {
+        const expected = resolveTranslation(orig, getSurroundingText(node) || cur, node);
+        if (expected === cur) return;
       }
+      parent.removeAttribute('data-lt-host');
+      parent.classList.remove('notranslate');
+      parent.removeAttribute('translate');
+      try { PROCESSED.delete(node); } catch (_) {}
     }
 
     if (!force && PROCESSED.has(node)) return;
@@ -719,10 +766,12 @@
         else out = lead + translated + trail;
         if (canUseHostMode(parent, node)) {
           node.textContent = out;
-          parent.classList.add('notranslate');
-          parent.setAttribute('translate', 'no');
-          parent.setAttribute('data-lt-host', '1');
-          if (mode === 'replace') parent.setAttribute('title', trimmed);
+          if (parent.nodeType === Node.ELEMENT_NODE) {
+            parent.classList.add('notranslate');
+            parent.setAttribute('translate', 'no');
+            parent.setAttribute('data-lt-host', '1');
+            if (mode === 'replace') parent.setAttribute('title', trimmed);
+          }
         } else {
           const span = makeTermSpan(translated, trimmed);
           parent.replaceChild(span, node);
@@ -839,6 +888,7 @@
         parent.classList.add('notranslate');
         parent.setAttribute('translate', 'no');
         parent.setAttribute('data-lt-host', '1');
+        if (mode === 'replace') parent.setAttribute('title', text.trim());
       }
       translatedCount += matchCount;
       return;
@@ -856,6 +906,35 @@
         parts.splice(i + 1, 0, { type: 'text', value: ' ' });
         i++;
       }
+    }
+
+    // replace/brackets: одна текстовая строка — не ломает узкие блоки (nmc-row-name)
+    if (mode === 'replace' || mode === 'brackets' || mode === 'annotate') {
+      let out = '';
+      for (const part of parts) {
+        if (part.type === 'term') {
+          if (mode === 'annotate') out += part.original;
+          else if (mode === 'brackets') out += part.original + ' (' + part.value + ')';
+          else out += part.value;
+        } else {
+          out += part.value || '';
+        }
+      }
+      if (!SVG_ORIG.has(node)) SVG_ORIG.set(node, text);
+      node.textContent = out;
+      if (parent.nodeType === Node.ELEMENT_NODE) {
+        if (mode === 'annotate' && termParts.length) {
+          parent.setAttribute('title', termParts.map(function (p) { return p.value; }).join(' · '));
+        } else if (mode === 'replace') {
+          parent.setAttribute('title', text.trim());
+        }
+        parent.classList.add('notranslate');
+        parent.setAttribute('translate', 'no');
+        parent.setAttribute('data-lt-host', '1');
+      }
+      translatedCount += matchCount;
+      PROCESSED.add(node);
+      return;
     }
 
     const frag = document.createDocumentFragment();
@@ -879,6 +958,7 @@
   function translateAttributes(el) {
     if (!el || el.nodeType !== Node.ELEMENT_NODE) return;
     if (SKIP_TAGS.has(el.tagName.toLowerCase())) return;
+    if (el.closest && el.closest('head')) return;
     if (el.classList.contains('lt-term')) return;
     if (el.closest && el.closest('svg')) return;
     if (PROCESSED.has(el)) return;

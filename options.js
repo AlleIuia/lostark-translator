@@ -259,7 +259,7 @@ const DEFAULT_DEV_SITES = [
   'raimundomedeiros.github.io',
   'loatool.taeu.kr',
   'lostgld.com',
-  'ark.bynn.kr',
+  'ark.bynn.jp',
   'loatracker.pages.dev',
   'reddit.com',
   'inven.co.kr'
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tbs = document.getElementById('termModeBracketsSites');
     if (tbs) tbs.value = sync.termModeBracketsSites || '';
 
-    const mode = sync.siteMode || 'everywhere';
+    const mode = sync.siteMode || 'developer';
     document.getElementById('siteMode').value = mode;
     updateSitesListUI(mode, sync);
   });
@@ -418,10 +418,14 @@ function applyLocalization() {
   document.getElementById('secSites').textContent = t.secSites;
   document.getElementById('lblSiteMode').textContent = t.lblSiteMode;
   const mode = document.getElementById('siteMode');
-  if (mode.options[0]) mode.options[0].textContent = t.siteEverywhere;
-  if (mode.options[1]) mode.options[1].textContent = t.siteAllowlist;
-  if (mode.options[2]) mode.options[2].textContent = t.siteBlocklist;
-  if (mode.options[3]) mode.options[3].textContent = t.siteDeveloper;
+  if (mode) {
+    for (const opt of mode.options) {
+      if (opt.value === 'everywhere') opt.textContent = t.siteEverywhere;
+      else if (opt.value === 'allowlist') opt.textContent = t.siteAllowlist;
+      else if (opt.value === 'blocklist') opt.textContent = t.siteBlocklist;
+      else if (opt.value === 'developer') opt.textContent = t.siteDeveloper;
+    }
+  }
   document.getElementById('sitesList').placeholder = t.sitesPlaceholder;
   const modeEl = document.getElementById('siteMode');
   if (modeEl) {
@@ -856,7 +860,7 @@ async function exportSettings() {
       termModeReplaceSites: sync.termModeReplaceSites || '',
       termModeAnnotateSites: sync.termModeAnnotateSites || '',
       termModeBracketsSites: sync.termModeBracketsSites || '',
-      siteMode: sync.siteMode || 'everywhere',
+      siteMode: sync.siteMode || 'developer',
       allowedSites: sync.allowedSites || '',
       blockedSites: sync.blockedSites || '',
       developerSites: sync.developerSites || DEFAULT_DEV_SITES.join('\n'),
@@ -925,7 +929,7 @@ async function importSettings(e) {
     if (tbs && typeof data.termModeBracketsSites === 'string') tbs.value = data.termModeBracketsSites;
     const siteModeEl = document.getElementById('siteMode');
     if (siteModeEl && data.siteMode) siteModeEl.value = data.siteMode;
-    updateSitesListUI(data.siteMode || 'everywhere', {
+    updateSitesListUI(data.siteMode || 'developer', {
       allowedSites: data.allowedSites,
       blockedSites: data.blockedSites,
       developerSites: data.developerSites

@@ -1106,7 +1106,7 @@ const DEFAULT_DEV_SITES = [
   'lostark.qq.com',
   'lostark.bible',
   'loa-buddy.pages.dev',
-  'mokoko.co.jp',
+  'mokoko.co.kr',
   'loaguard.com',
   'lostbuilds.com',
   'maxroll.gg',
@@ -1115,11 +1115,11 @@ const DEFAULT_DEV_SITES = [
   'nexus-guide-site.pages.dev',
   'sites.google.com',
   'mokitoki.ru',
-  'lopec.jp',
+  'lopec.kr',
   'zloa.net',
   'loaup.com',
   'honing-forecast.pages.dev',
-  'loatto.jp',
+  'loatto.kr',
   'icepeng.com',
   'lo4.app',
   'loaclac-doss.vercel.app',
@@ -1127,7 +1127,7 @@ const DEFAULT_DEV_SITES = [
   'airplaner.github.io',
   'ssbcalc.poyomi.fyi',
   'raimundomedeiros.github.io',
-  'loatool.taeu.jp',
+  'loatool.taeu.kr',
   'lostgld.com',
   'ark.bynn.jp',
   'loatracker.pages.dev',
@@ -1210,14 +1210,31 @@ async function applySiteDefaults(force) {
   if (Object.keys(patch).length) await chrome.storage.local.set(patch);
 }
 
-chrome.runtime.onInstalled.addListener(async () => {
-  const baseData = await loadDefaultDictionaries();
-  await chrome.storage.local.set({ baseData });
-  await rebuildStorage();
-  const sync = await chrome.storage.sync.get(['developerSites']);
-  if (typeof sync.developerSites !== 'string' || !sync.developerSites.trim()) {
-    await chrome.storage.sync.set({ developerSites: DEFAULT_DEV_SITES.join('\n') });
-  }
+chrome.runtime.onInstalled.addListener(async (details) => {
+  try {
+    const patch = {};
+    if (details.reason === 'install') {
+      patch.siteMode = 'developer';
+      patch.developerSites = DEFAULT_DEV_SITES.join('\n');
+    } else {
+      const sync = await chrome.storage.sync.get(['developerSites', 'siteMode']);
+      if (typeof sync.developerSites !== 'string' || !sync.developerSites.trim()) {
+        patch.developerSites = DEFAULT_DEV_SITES.join('\n');
+      }
+      if (!sync.siteMode) {
+        patch.siteMode = 'developer';
+      }
+    }
+    if (Object.keys(patch).length) {
+      await chrome.storage.sync.set(patch);
+    }
+  } catch (_) {}
+
+  try {
+    const baseData = await loadDefaultDictionaries();
+    await chrome.storage.local.set({ baseData });
+    await rebuildStorage();
+  } catch (_) {}
   try { await applySiteDefaults(false); } catch (_) {}
 });
 
