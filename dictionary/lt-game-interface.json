@@ -1,0 +1,1257 @@
+{
+  "terms": [
+    {
+      "en": "AP",
+      "ru": "СА",
+      "kr": "공증",
+      "tags": [
+        "context",
+        "game",
+        "interface",
+        "short"
+      ]
+    },
+    {
+      "en": "Brand",
+      "ru": "Стигма",
+      "kr": "낙인",
+      "tags": [
+        "game",
+        "interface",
+        "short"
+      ]
+    },
+    {
+      "en": "Identity",
+      "ru": "Особое умение",
+      "kr": "아덴",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "H.A. Skill",
+      "ru": "Архиумение (Т)",
+      "kr": "초각스",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Damage Type",
+      "ru": "Тип урона",
+      "kr": "데미지 종류",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Stagger",
+      "ru": "Изнурение",
+      "kr": "무력화",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Item Level",
+      "ru": "GS",
+      "kr": "아이템 레벨",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Combat Power",
+      "ru": "Боеспособность",
+      "kr": "전투력",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Crit",
+      "ru": "Cмертоносность",
+      "kr": "치명",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "CRIT",
+      "ru": "КШ",
+      "tags": [
+        "game",
+        "interface",
+        "stat",
+        "short"
+      ],
+      "caseSensitive": true,
+      "priority": 30
+    },
+    {
+      "en": "Specialization",
+      "ru": "Мастерство",
+      "kr": "특화",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Domination",
+      "ru": "Подавление",
+      "kr": "제압",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Swiftness",
+      "ru": "Сноровка",
+      "kr": "신속",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Endurance",
+      "ru": "Стойкость",
+      "kr": "인내",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Expertise",
+      "ru": "Искусность",
+      "kr": "숙련",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Trixion",
+      "ru": "Тризион",
+      "kr": "트리시온",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Anikka",
+      "ru": "Аньшу",
+      "kr": "애니츠",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Arthetine",
+      "ru": "Ардетайн",
+      "kr": "아르데타인",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Rethramis",
+      "ru": "Артемис",
+      "kr": "아르테미스",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Voldis",
+      "ru": "Волдайк",
+      "kr": "볼다이크",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "East Luterra",
+      "ru": "Восточная Лютерия",
+      "kr": "루테란 동부",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "West Luterra",
+      "ru": "Западная Лютерия",
+      "kr": "루테란 서부",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Yorn",
+      "ru": "Йон",
+      "kr": "욘",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Punika",
+      "ru": "Папуаника",
+      "kr": "파푸니카",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Rowen",
+      "ru": "Ровен",
+      "kr": "로웬",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Rohendel",
+      "ru": "Рохэндель",
+      "kr": "로헨델",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "North Vern",
+      "ru": "Северный Берн",
+      "kr": "베른 북부",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "North Kurzan",
+      "ru": "Северный Крузан",
+      "kr": "쿠르잔 북부",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Tortoyk",
+      "ru": "Тортоик",
+      "kr": "토토이크",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Feiton",
+      "ru": "Фейтон",
+      "kr": "페이튼",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Shushire",
+      "ru": "Шувьёрд",
+      "kr": "슈샤이어",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Elgacia",
+      "ru": "Эльгасия",
+      "kr": "엘가시아",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Yudia",
+      "ru": "Юдия",
+      "kr": "유디아",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "South Vern",
+      "ru": "Южный Берн",
+      "kr": "베른 남부",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "South Kurzan",
+      "ru": "Южный Крузан",
+      "kr": "쿠르잔 남부",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "South Rimeria",
+      "ru": "Южный Реймьярк",
+      "kr": "림레이크 남섬",
+      "tags": [
+        "game",
+        "interface",
+        "region"
+      ]
+    },
+    {
+      "en": "Ark Passive",
+      "ru": "Система А.Р.К.",
+      "kr": "아크 패시브",
+      "tags": [
+        "ark_passive",
+        "game",
+        "interface"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Ark Grid",
+      "ru": "Созвездия А.Р.К",
+      "kr": "아크 그리드",
+      "tags": [
+        "ark_passive",
+        "game",
+        "interface"
+      ],
+      "priority": 28
+    },
+    {
+      "en": "Cores",
+      "ru": "Ядра",
+      "kr": "코어",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Class",
+      "ru": "Класс",
+      "kr": "수업",
+      "tags": [
+        "context",
+        "game",
+        "interface",
+        "short"
+      ]
+    },
+    {
+      "en": "Class Engraving",
+      "ru": "Классовая ветка",
+      "kr": "직업 각인",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Evolution",
+      "ru": "Экспансия",
+      "kr": "진화",
+      "priority": 28,
+      "tags": [
+        "ark_passive",
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Enlightenment",
+      "ru": "Становление",
+      "kr": "깨달음",
+      "priority": 28,
+      "tags": [
+        "ark_passive",
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Leap",
+      "ru": "Прогресс",
+      "kr": "도약",
+      "priority": 28,
+      "tags": [
+        "ark_passive",
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Awakening Amplifier",
+      "ru": "Пробуждённое сознание",
+      "kr": "각성 증폭기",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Supersonic Breakthrough",
+      "ru": "Ураганная скорость",
+      "kr": "음속 돌파",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Blunt Thorn",
+      "ru": "Безграничная мощь",
+      "kr": "뭉툭한 가시",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Standing Striker",
+      "ru": "Пламя войны",
+      "kr": "입식 타격가",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Crit Rate",
+      "ru": "Шанс крита",
+      "kr": "치적",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Crit Rate",
+      "ru": "Шанс крита",
+      "kr": "치명타 적중률",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Bracelet ",
+      "ru": "Браслет",
+      "kr": "팔찌",
+      "tags": [
+        "game",
+        "interface",
+        "item"
+      ]
+    },
+    {
+      "en": "Bracelet Effects",
+      "ru": "Эффекты Браслета",
+      "kr": "팔찌 효과",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Accessory Effects",
+      "ru": "Эффект Бижутерии",
+      "kr": "장신구 효과",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Gems",
+      "ru": "Самоцветы",
+      "kr": "보석",
+      "tags": [
+        "game",
+        "interface",
+        "item"
+      ]
+    },
+    {
+      "en": "Necklace",
+      "ru": "Ожерелье",
+      "kr": "목걸이",
+      "tags": [
+        "game",
+        "interface",
+        "item"
+      ]
+    },
+    {
+      "en": "Earring",
+      "ru": "Сельга",
+      "kr": "귀걸이",
+      "tags": [
+        "game",
+        "interface",
+        "item"
+      ]
+    },
+    {
+      "en": "Ring",
+      "ru": "Кольцо",
+      "kr": "반지",
+      "tags": [
+        "game",
+        "interface",
+        "item"
+      ]
+    },
+    {
+      "en": "Stone",
+      "ru": "Фетранит",
+      "kr": "어빌리티 스톤",
+      "tags": [
+        "game",
+        "interface",
+        "item"
+      ]
+    },
+    {
+      "en": "Brand Power",
+      "ru": "Эффект. стигмы",
+      "kr": "낙인력",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Attack Power",
+      "ru": "Сила Атаки",
+      "kr": "공격력",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Additional Damage",
+      "ru": "Доп. Урон",
+      "kr": "추가 피해",
+      "priority": 28,
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Boss Damage",
+      "ru": "Урон по Боссам",
+      "kr": "보스 피해",
+      "priority": 28,
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Level",
+      "ru": "Ур.",
+      "kr": "레벨",
+      "tags": [
+        "context",
+        "game",
+        "interface",
+        "short"
+      ]
+    },
+    {
+      "en": "Character",
+      "ru": "Персонаж",
+      "kr": "캐릭터",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Outgoing Damage",
+      "ru": "Наносимый урон",
+      "kr": "주는 피해",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Outgoing Damage",
+      "ru": "Наносимый урон",
+      "kr": "적에게 주는 피해",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "to Staggered foes",
+      "ru": "по ошеломлённым противникам",
+      "kr": "무력화 상태의 적에게",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Back Attack Damage",
+      "ru": "Урон при атаке со спины",
+      "kr": "백어택 피해",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Engravings",
+      "ru": "Гравировки",
+      "kr": "각인",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Atk. Power",
+      "ru": "Сила атаки",
+      "kr": "공격력",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Weapon Power",
+      "ru": "Урон оружия",
+      "kr": "무기 공격력",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Crit Damage",
+      "ru": "Критический урон",
+      "kr": "치명타 피해",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Serenade, Piety, Harmony Meter Gain",
+      "ru": "Набор эн. аккордов/веры/гармонии",
+      "kr": "아덴 게이지 획득량",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Ally Damage Enhancement Effect",
+      "ru": "Эфф. увеличения урона союзников",
+      "kr": "아군 피해량 증가 효과",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Ally Damage Enhancement Effect",
+      "ru": "Эфф. увеличения урона союзников",
+      "kr": "아군 피해량 강화",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Equipment",
+      "ru": "Снаряжение",
+      "kr": "장비",
+      "tags": [
+        "game",
+        "interface",
+        "item"
+      ]
+    },
+    {
+      "en": "Roster Level",
+      "ru": "Уровень Наследия",
+      "kr": "원정대 레벨",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Character Level",
+      "ru": "Уровень Персонажа",
+      "kr": "전투 레벨",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Lv",
+      "ru": "Ур",
+      "kr": "Lv",
+      "tags": [
+        "context",
+        "game",
+        "interface",
+        "short"
+      ]
+    },
+    {
+      "en": "Galewind",
+      "ru": "Агель",
+      "kr": "질풍",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Conviction",
+      "ru": "Валь",
+      "kr": "단죄",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Judgment",
+      "ru": "Валь'Морт",
+      "kr": "심판",
+      "tags": [
+        "accessory",
+        "bracelet",
+        "bracelet effects",
+        "card",
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Bleed",
+      "ru": "Джар",
+      "kr": "출혈",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Protection",
+      "ru": "Квен",
+      "kr": "수호",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Iron Wall",
+      "ru": "Манназ",
+      "kr": "철벽",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Focus",
+      "ru": "Марх",
+      "kr": "집중",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "item",
+        "rune",
+        "short"
+      ]
+    },
+    {
+      "en": "Rage",
+      "ru": "Раш",
+      "kr": "광분",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune",
+        "short"
+      ]
+    },
+    {
+      "en": "Quick Recharge",
+      "ru": "Рейде",
+      "kr": "속행",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Purify",
+      "ru": "Солум",
+      "kr": "정화",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Overwhelm",
+      "ru": "Фехе",
+      "kr": "압도",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Mountain's Face",
+      "ru": "Фортис",
+      "kr": "태산",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Wealth",
+      "ru": "Эйге",
+      "kr": "풍요",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Poison",
+      "ru": "Эйтур",
+      "kr": "중독",
+      "tags": [
+        "game",
+        "gem",
+        "interface",
+        "rune"
+      ]
+    },
+    {
+      "en": "Boundless MP",
+      "ru": "Запас маны",
+      "kr": "끝없는 마나",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Illicit Spell",
+      "ru": "Запретное знание",
+      "kr": "금단의 주문",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Keen Sense",
+      "ru": "Отточенные рефлексы",
+      "kr": "예리한 감각",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Limit Break",
+      "ru": "Исключительный дар",
+      "kr": "한계 돌파",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Optimized Training",
+      "ru": "Изнурительные тренировки",
+      "kr": "최적화 훈련",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Low",
+      "ru": "Н",
+      "kr": "하",
+      "priority": 26,
+      "tags": [
+        "accessory",
+        "game",
+        "grade",
+        "interface"
+      ]
+    },
+    {
+      "en": "Mid",
+      "ru": "Э",
+      "kr": "중",
+      "priority": 26,
+      "tags": [
+        "accessory",
+        "game",
+        "grade",
+        "interface"
+      ]
+    },
+    {
+      "en": "High",
+      "ru": "Л",
+      "kr": "상",
+      "priority": 26,
+      "tags": [
+        "accessory",
+        "game",
+        "grade",
+        "interface"
+      ]
+    },
+    {
+      "en": "Crit Damage",
+      "ru": "Критический урон",
+      "kr": "치피",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Strength",
+      "ru": "Выносливость",
+      "kr": "체력",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Crit Damage",
+      "ru": "Критический урон",
+      "kr": "치명타 피해가 증가",
+      "parent": "치명타 피해가 증가",
+      "priority": 28,
+      "tags": [
+        "context",
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Ark Grid",
+      "ru": "Созвездия А.Р.К",
+      "kr": "아크그리드",
+      "parent": "아크그리드",
+      "priority": 28,
+      "tags": [
+        "ark_passive",
+        "context",
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "высокое",
+      "ru": "Л",
+      "kr": "상",
+      "priority": 30,
+      "tags": [
+        "accessory",
+        "game",
+        "grade",
+        "interface"
+      ]
+    },
+    {
+      "en": "среднее",
+      "ru": "Э",
+      "kr": "중",
+      "priority": 30,
+      "tags": [
+        "accessory",
+        "game",
+        "grade",
+        "interface"
+      ]
+    },
+    {
+      "en": "низкое",
+      "ru": "Н",
+      "kr": "하",
+      "priority": 30,
+      "tags": [
+        "accessory",
+        "game",
+        "grade",
+        "interface"
+      ]
+    },
+    {
+      "en": "Status Ailment Time Bonus",
+      "ru": "Длительность эффектов контроля",
+      "kr": "상태이상 공격 지속시간",
+      "priority": 28,
+      "tags": [
+        "accessory",
+        "bracelet",
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Status Ailment Duration",
+      "ru": "Длительность эффектов контроля",
+      "kr": "상태이상지속",
+      "priority": 28,
+      "tags": [
+        "accessory",
+        "bracelet",
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Status Ailment Time",
+      "ru": "Длительность эффектов контроля",
+      "kr": "상태이상 지속시간",
+      "priority": 27,
+      "tags": [
+        "accessory",
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Additional Damage",
+      "ru": "Доп. Урон",
+      "kr": "추가피해",
+      "parent": null,
+      "priority": 30,
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Boss Damage",
+      "ru": "Урон по Боссам",
+      "kr": "보스피해",
+      "priority": 28,
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Defense Reduction",
+      "ru": "Износ",
+      "kr": "방어력 감소",
+      "priority": 30,
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Strength",
+      "ru": "Сила",
+      "kr": "힘",
+      "parent": "+",
+      "priority": 28,
+      "tags": [
+        "context",
+        "game",
+        "interface",
+        "stat"
+      ]
+    },
+    {
+      "en": "Drops of Ether",
+      "ru": "Собиратель душ",
+      "kr": "구동",
+      "tags": [
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Ability cooldown",
+      "ru": "Время восстановления умений",
+      "kr": "스킬의 재사용 대기 시간이",
+      "parent": "2%",
+      "priority": 28,
+      "tags": [
+        "context",
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Health recovery",
+      "ru": "Восстанов. здоровья",
+      "kr": "전투 중 생명력 회복량",
+      "parent": "+",
+      "priority": 28,
+      "tags": [
+        "context",
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Weapon",
+      "ru": "Оружие",
+      "kr": "무기",
+      "priority": 22,
+      "tags": [
+        "accessory",
+        "game",
+        "interface",
+        "item"
+      ]
+    },
+    {
+      "en": "Reduction CD",
+      "ru": "Сокращение КД",
+      "kr": "재사용 대기시간 감소",
+      "parent": "재사용 대기시간 감소",
+      "priority": 28,
+      "tags": [
+        "context",
+        "game",
+        "interface"
+      ]
+    },
+    {
+      "en": "Agility",
+      "ru": "Ловкость",
+      "kr": "민첩",
+      "tags": [
+        "game",
+        "interface",
+        "stat"
+      ]
+    }
+  ]
+}

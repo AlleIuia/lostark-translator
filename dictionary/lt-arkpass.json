@@ -4,106 +4,102 @@
       "en": "Berserker",
       "ru": "Берсерк",
       "kr": "버서커",
-      "skills": [
+      "nodes": [
         {
-          "en": "Flashy Attack",
-          "ru": "Решительный натиск",
-          "kr": "현란한 공격"
+          "en": "Brawn",
+          "ru": "Закаленное тело",
+          "kr": "강인한 육체",
+          "tags": [
+            "arkpass"
+          ]
         },
         {
-          "en": "Stable Attack",
-          "ru": "Непоколебимость",
-          "kr": "현란한 공격"
+          "en": "Mayhem",
+          "ru": "Тёмное безрассудство",
+          "kr": "광기",
+          "tags": [
+            "arkpass"
+          ]
         },
         {
-          "en": "Swift Attack",
-          "ru": "Сверхскорость",
-          "kr": "재빠른 공격"
+          "en": "Invigoration",
+          "ru": "Выносливость эрдлинга",
+          "kr": "신체 활성",
+          "tags": [
+            "arkpass"
+          ]
         },
         {
-          "en": "Faith Enhancement",
-          "ru": "Абсолютная отдача",
-          "kr": "신념의 강화"
+          "en": "Restore Fury",
+          "ru": "Приток энергии",
+          "kr": "분노 반환",
+          "tags": [
+            "arkpass"
+          ]
         },
         {
-          "en": "Flowing Magick",
-          "ru": "Поток маны",
-          "kr": "신념의 강화"
+          "en": "Physical Awakening",
+          "ru": "Сила эрдлинга",
+          "kr": "신체 각성",
+          "tags": [
+            "arkpass"
+          ]
         },
         {
-          "en": "Fortitude Enhancement",
-          "ru": "Непреклонный дух",
-          "kr": "흐르는 마나"
+          "en": "Provocation",
+          "ru": "Воинственный запал",
+          "kr": "분노 자극",
+          "tags": [
+            "arkpass"
+          ]
         },
         {
-          "en": "Smoldering Strike",
-          "ru": "Пламя гордыни",
-          "kr": "불타는 일격"
+          "en": "Burst Enhancement",
+          "ru": "Жажда битвы",
+          "kr": "폭주 강화",
+          "tags": [
+            "arkpass"
+          ]
         },
         {
-          "en": "Absorbing Strike",
-          "ru": "Кровопийца",
-          "kr": "흡수의 일격"
+          "en": "Cold Fury",
+          "ru": "Холодная ярость",
+          "kr": "차가운 분노",
+          "tags": [
+            "arkpass"
+          ]
         },
         {
-          "en": "Crushing Strike",
-          "ru": "Разрушительный удар",
-          "kr": "흡수의 일격"
+          "en": "Fury Consumption",
+          "ru": "Управление гневом",
+          "kr": "분노 소모",
+          "tags": [
+            "arkpass"
+          ]
         },
         {
-          "en": "Echoing Brand",
-          "ru": "Сила стигмы",
-          "kr": "낙인의 흔적"
+          "en": "Berserker Technique",
+          "ru": "Безрассудство",
+          "kr": "광전사의 비기",
+          "tags": [
+            "arkpass"
+          ]
         },
         {
-          "en": "Echoing Steel",
-          "ru": "Щит избранных",
-          "kr": "강철의 흔적"
+          "en": "Dark Enhancement",
+          "ru": "Воплощение кошмара",
+          "kr": "어둠 강화",
+          "tags": [
+            "arkpass"
+          ]
         },
         {
-          "en": "Echoing Death",
-          "ru": "Метка гибели",
-          "kr": "치명적인 흔적"
-        },
-        {
-          "en": "Attack",
-          "ru": "Чистая мощь",
-          "kr": "공격"
-        },
-        {
-          "en": "Weapon",
-          "ru": "Путь стали",
-          "kr": "무기"
-        },
-        {
-          "en": "Salvation",
-          "ru": "Заступничество",
-          "kr": "무기"
-        },
-        {
-          "en": "Life",
-          "ru": "Жизненная сила",
-          "kr": "생명"
-        },
-        {
-          "en": "Speed",
-          "ru": "Стремительность",
-          "kr": "속도"
-        },
-        {
-          "en": "Defense",
-          "ru": "Неуязвимость",
-          "kr": "방어"
-        },
-        {
-          "en": "Salvation",
-          "kr": "구원",
-          "ru": "Заступничество"
-        },
-        {
-          "en": "Stable Attack",
-          "kr": "불굴의 강화",
-          "ru": "Непоколебимость"
+          "en": "Stampede",
+          "ru": "Разгон",
+          "kr": "쇄도",
+          "tags": [
+            "arkpass"
+          ]
         }
       ]
     },
@@ -111,169 +107,2885 @@
       "en": "Destroyer",
       "ru": "Сокрушитель",
       "kr": "디스트로이어",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Gravity Armor",
+          "ru": "Энергетический доспех",
+          "kr": "중력 갑옷",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Gravity Shock",
+          "ru": "Гравитационный шок",
+          "kr": "중력 충격",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Sharp Hammer",
+          "ru": "Гравитационное сжатие",
+          "kr": "날카로운 해머",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Gravity Charge",
+          "ru": "Стабильная гравитация",
+          "kr": "중력 충전",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Release Enhancement",
+          "ru": "Усиленное воздействие",
+          "kr": "해방 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Rage Hammer",
+          "ru": "Тяжелый молот",
+          "kr": "분노의 망치",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Gravity Training",
+          "ru": "Гравитационные возмущения",
+          "kr": "중력 수련",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Inertia Enhancement",
+          "ru": "Критическое воздействие",
+          "kr": "영역 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Gravity Conversion",
+          "ru": "Преобразование энергии",
+          "kr": "중력 변환",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Gravity Release",
+          "ru": "Режим инерции",
+          "kr": "중력 해방",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "New Core",
+          "ru": "Аккумуляция зарядов",
+          "kr": "새로운 코어",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Gravity Acceleration",
+          "ru": "Вектор ускорения",
+          "kr": "중력 가속",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Gunlancer",
       "ru": "Страж",
       "kr": "워로드",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Impregnable Fortress",
+          "ru": "Прочный купол",
+          "kr": "철옹성",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Lone Knight",
+          "ru": "Герой-одиночка",
+          "kr": "고독한 기사",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Sophistication",
+          "ru": "Меткий выпад",
+          "kr": "정교함",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Combat Readiness",
+          "ru": "Рвение защитника",
+          "kr": "전투 태세",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Skilled Tactician",
+          "ru": "Специальная подготовка",
+          "kr": "숙련된 전술가",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Increase Efficiency",
+          "ru": "Минимальная погрешность",
+          "kr": "효율 증대",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Gunlance Training",
+          "ru": "Штыковая атака",
+          "kr": "건랜스 수련",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Strategy Training",
+          "ru": "Беспроигрышная тактика",
+          "kr": "전술 훈련",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Cadet Squad",
+          "ru": "Голову с плеч",
+          "kr": "결사대",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Vanguard's Roar",
+          "ru": "Клич авангарда",
+          "kr": "선봉장의 함성",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Vanguard's Mindset",
+          "ru": "Передний край обороны",
+          "kr": "선봉장의 마음가짐",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Strategic Move",
+          "ru": "Наступательный маневр",
+          "kr": "전술 이동",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Slayer",
       "ru": "Валькирия",
       "kr": "슬레이어",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Unwavering Strength",
+          "ru": "Неутомимость",
+          "kr": "지치지 않는 힘",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Endless Fury",
+          "ru": "Бесконечная ярость",
+          "kr": "끝나지 않는 분노",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Enhanced Skill",
+          "ru": "Отточенная техника",
+          "kr": "강화된 기술",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Predator",
+          "ru": "Хищница",
+          "kr": "포식자",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Quench Thirst",
+          "ru": "Кладезь маны",
+          "kr": "갈증해소",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Punisher",
+          "ru": "Воля палача",
+          "kr": "처단자",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Wrath",
+          "ru": "Бесчинство",
+          "kr": "격분",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Combat Instinct",
+          "ru": "Воинская выучка",
+          "kr": "전투 본능",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Crushing Fear",
+          "ru": "Панический ужас",
+          "kr": "사무치는 공포",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Unstoppable Fury",
+          "ru": "Жажда битвы",
+          "kr": "막을 수 없는 분노",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Intensifying Fury",
+          "ru": "Распаленная гневом",
+          "kr": "깊어지는 분노",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Reckless Attack",
+          "ru": "Необузданная сила",
+          "kr": "무모한 공격",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Paladin",
       "ru": "Паладин",
       "kr": "홀리나이트",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Holy Protection",
+          "ru": "Божественная защита",
+          "kr": "신성 보호",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Divine Knight",
+          "ru": "Меч Святого престола",
+          "kr": "신의 기사",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Piety Training",
+          "ru": "Мастер-фехтовальщик",
+          "kr": "신앙 수련",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Blessed Aura",
+          "ru": "Исцеляющая вера",
+          "kr": "축복의 오라",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Prelude of Punishment",
+          "ru": "Преамбула возмездия",
+          "kr": "징벌의 서막",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Judgment",
+          "ru": "Доказательство веры",
+          "kr": "심판자",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Godly Grace",
+          "ru": "Забота о ближнем",
+          "kr": "신의 가호",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Bold Salvation",
+          "ru": "Быстрое восстановление",
+          "kr": "빠른 구원",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Protective Judgement",
+          "ru": "Щит правосудия",
+          "kr": "심판의 가호",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Blessing of Judgment",
+          "ru": "Неизбежность правосудия",
+          "kr": "심판의 세례",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Divine Liberation",
+          "ru": "Великое благословение",
+          "kr": "신성 해방",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Light's Vestige",
+          "ru": "Стигма",
+          "kr": "빛의 흔적",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Valkyrie",
       "ru": "Храмовница",
       "kr": "발키리",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Liberator",
+          "ru": "Освободитель",
+          "kr": "해방자",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Shining Knight",
+          "ru": "Рыцарь Света",
+          "kr": "빛의 기사",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Sword Training",
+          "ru": "Посвящение в рыцари",
+          "kr": "검술 훈련",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Vitality",
+          "ru": "Дар жизни",
+          "kr": "활력",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Light's Bond",
+          "ru": "Связующий свет",
+          "kr": "연결되는 빛",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Holy Sword Unleashed",
+          "ru": "Пробуждение клинка",
+          "kr": "성검 개방",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Divine Plan",
+          "ru": "Воля богов",
+          "kr": "하늘의 뜻",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Brilliant Bladecraft",
+          "ru": "Разящий луч",
+          "kr": "빛의 검기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Last Light",
+          "ru": "Просветление",
+          "kr": "최후의 빛",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Trinity",
+          "ru": "Утроение",
+          "kr": "삼위일체",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Wings of Freedom",
+          "ru": "Крылья свободы",
+          "kr": "해방의 날개",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Liberator's Sign",
+          "ru": "Анафема",
+          "kr": "해방자의 흔적",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Guardianknight",
       "ru": "Рыцарь-Хранитель",
       "kr": "가디언나이트",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Hellfire Successor",
+          "ru": "Наследница пламени",
+          "kr": "업화의 계승자",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Dreadful Roar",
+          "ru": "Глас истинной силы",
+          "kr": "드레드 로어",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Awoken Strength",
+          "ru": "Горнило первого пламени",
+          "kr": "깨어나는 힘",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Complete Combustion",
+          "ru": "Освобождённая воля",
+          "kr": "완전 연소",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Superior Flight",
+          "ru": "Выше неба",
+          "kr": "초비행",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Power Control",
+          "ru": "Обузданный пыл",
+          "kr": "힘의 제어",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Rousing Shout",
+          "ru": "Клич неудержимых",
+          "kr": "돌파의 외침",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Sharp Scale",
+          "ru": "Острый гребень",
+          "kr": "날카로운 비늘",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Ember",
+          "ru": "Отголоски пламени",
+          "kr": "잔불",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Complete Fusion",
+          "ru": "Полное слияние",
+          "kr": "완전 융화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Transcend Limit",
+          "ru": "Возрождение",
+          "kr": "한계 초월",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Halberd Master",
+          "ru": "Вес алебарды",
+          "kr": "할버드의 대가",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Arcanist",
       "ru": "Арканолог",
       "kr": "아르카나",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Grace of the Empress",
+          "ru": "Расчетливость императрицы",
+          "kr": "황후의 은총",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Order of the Emperor",
+          "ru": "Восшествие императора",
+          "kr": "황제의 명령",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Scheme of the Empress",
+          "ru": "Коварство императрицы",
+          "kr": "황후의 계략",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Gift of the Emperor",
+          "ru": "Указ императора",
+          "kr": "황제의 하사품",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Avarice of the Empress",
+          "ru": "Алчность императрицы",
+          "kr": "황후의 탐욕",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Banquet of the Empress",
+          "ru": "Гнев императрицы",
+          "kr": "황후의 연회",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Feast of the Emperor",
+          "ru": "Милость императора",
+          "kr": "황제의 만찬",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Mercy of the Emperor",
+          "ru": "Решимость императора",
+          "kr": "황제의 자비",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Knight of the Empress",
+          "ru": "Рыцарь",
+          "kr": "황후의 기사",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Whispers of the Empress",
+          "ru": "Секрет императрицы",
+          "kr": "황후의 속삭임",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Another Emperor",
+          "ru": "Двойник императора",
+          "kr": "또 다른 황제",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Judgment of the Emperor",
+          "ru": "Справедливый обмен",
+          "kr": "황제의 심판",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Summoner",
       "ru": "Призывательница",
       "kr": "서머너",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Master Summoner",
+          "ru": "Мудрость Энвиссы",
+          "kr": "상급 소환사",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Communication Overflow",
+          "ru": "Чародейская гениальность",
+          "kr": "넘치는 교감",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Cleverness",
+          "ru": "Смышленые помощники",
+          "kr": "총명함",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Mind Concentration",
+          "ru": "Ясное сознание",
+          "kr": "정신 집중",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Communication Enhancement",
+          "ru": "Дрессировка элементалей",
+          "kr": "교감 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Elemental's Harmony",
+          "ru": "Ментальная связь",
+          "kr": "정령의 교감",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Ancient Strength",
+          "ru": "Первородная сила",
+          "kr": "고대의 힘",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Ancient Wind",
+          "ru": "Бушующая стихия",
+          "kr": "고대의 바람",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Total Command",
+          "ru": "Гнев Рохэнделя",
+          "kr": "절대적인 명령",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Elemental Burst",
+          "ru": "Буйство элементов",
+          "kr": "정령 폭주",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Ancient Blessing",
+          "ru": "Благословение Древних",
+          "kr": "고대의 축복",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Ancient Whisper",
+          "ru": "Истинное имя",
+          "kr": "고대의 속삭임",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Bard",
       "ru": "Менестрель",
       "kr": "바드",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Perfect Harmony",
+          "ru": "Упоение музыкой",
+          "kr": "완벽한 화음",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "True Courage",
+          "ru": "Кантата доблести",
+          "kr": "진실된 용맹",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Hymn: Tempest",
+          "ru": "Акустическая стрела",
+          "kr": "찬가 : 템페스트",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Desperate Salvation",
+          "ru": "Экстаз",
+          "kr": "절실한 구원",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Serenade of Tolerance",
+          "ru": "Источник вдохновения",
+          "kr": "포용의 세레나데",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Serenade of Amplification",
+          "ru": "Ускоренный темп",
+          "kr": "증폭의 세레나데",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Maestro",
+          "ru": "Посвящение мужеству",
+          "kr": "마에스트로",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Hymn of Combat",
+          "ru": "Мелодия битвы",
+          "kr": "전투의 찬가",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Mad Dash",
+          "ru": "Симфония ярости",
+          "kr": "격노의 악장",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Serenade of Branding",
+          "ru": "Губительный звук",
+          "kr": "낙인의 세레나데",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Serenade of Secrets",
+          "ru": "Финальный аккорд",
+          "kr": "세레나데 코드",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Stormfield",
+          "ru": "Акустические волны",
+          "kr": "템페스트 필드",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Sorceress",
       "ru": "Чародейка",
       "kr": "소서리스",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Igniter",
+          "ru": "Обострённые чувства",
+          "kr": "점화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Reflux",
+          "ru": "Осознанный диссонанс",
+          "kr": "환류",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Igniter's Ember",
+          "ru": "Яркая искра",
+          "kr": "점화의 불씨",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Reflux Energy",
+          "ru": "Контроль над стихиями",
+          "kr": "환류의 기운",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Firepower Charge",
+          "ru": "Слово силы",
+          "kr": "화력 충전",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Ignite",
+          "ru": "Опаляющий жар",
+          "kr": "발화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Reflux Enhancement",
+          "ru": "Чародейское искусство",
+          "kr": "환류 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Arcane Release Seal",
+          "ru": "Печать стихий",
+          "kr": "해방 봉인",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Blink Explosion",
+          "ru": "Искривление пространства",
+          "kr": "점멸 폭발",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Magick Cycle",
+          "ru": "Эхо энергий",
+          "kr": "마나 순환",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Magick Charge",
+          "ru": "Магический заряд",
+          "kr": "마력 충전",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Concentrated Magick",
+          "ru": "Магическая синергия",
+          "kr": "응집되는 마력",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Deadeye",
       "ru": "Охотник на демонов",
       "kr": "데빌헌터",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Tactical Bullet",
+          "ru": "Экспериментальные боеприпасы",
+          "kr": "전술 탄환",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Pistoleer",
+          "ru": "Пистолеты и пули",
+          "kr": "핸드 거너",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Ammo Supplement",
+          "ru": "Профессионал",
+          "kr": "탄약 보충",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Fancy Footwork",
+          "ru": "Ловкий стрелок",
+          "kr": "화려한 발재간",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Precision Shot Training",
+          "ru": "Меткий глаз",
+          "kr": "정밀 사격 훈련",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Specialist's Movement",
+          "ru": "Тактическая подготовка",
+          "kr": "해결사의 움직임",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Handgun Enhancement",
+          "ru": "Комбинированные пули",
+          "kr": "핸드건 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Quick Draw",
+          "ru": "Солдатская удача",
+          "kr": "퀵 드로우",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "High Explosive Shot",
+          "ru": "Разрывная дробь",
+          "kr": "고폭탄",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Strategic Garb",
+          "ru": "Пересмотр тактики",
+          "kr": "전략적 군장",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Secret Weapon",
+          "ru": "Убойный сюрприз",
+          "kr": "비밀 병기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Shining Bullet",
+          "ru": "Счастливая пуля",
+          "kr": "빛나는 탄",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Gunslinger",
       "ru": "Охотница на демонов",
       "kr": "건슬링어",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Peacemaker: Handgun",
+          "ru": "Арсенал миротворца: пистолет",
+          "kr": "피스메이커 - 핸드건",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Time to Hunt",
+          "ru": "Отстрел",
+          "kr": "사냥의 시간",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Peacemaker: Shotgun",
+          "ru": "Арсенал миротворца: дробовик",
+          "kr": "피스메이커 - 샷건",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Rifle Cooling",
+          "ru": "Охлаждение ствола",
+          "kr": "라이플 냉각",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Secret Bullet",
+          "ru": "Ардетайнская рулетка",
+          "kr": "시크릿 불릿",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Peacemaker: Rifle",
+          "ru": "Арсенал миротворца: карабин",
+          "kr": "피스메이커 - 라이플",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Rifle Expertise",
+          "ru": "Искусство стрельбы",
+          "kr": "라이플 숙련",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Sniper's Will",
+          "ru": "Выгодная позиция",
+          "kr": "저격수의 의지",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Gun Replacement Skill",
+          "ru": "Стрельба навскидку",
+          "kr": "총기 교체 기술",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Pacifist",
+          "ru": "Дипломатия пустошей",
+          "kr": "평화주의자",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Dead Center",
+          "ru": "Фатальный выстрел",
+          "kr": "일발필중",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Vital Point Expert",
+          "ru": "Глазомер снайпера",
+          "kr": "급소 전문가",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Sharpshooter",
       "ru": "Рейнджер",
       "kr": "호크아이",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Death Strike",
+          "ru": "Последний полет",
+          "kr": "죽음의 습격",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Loyal Companion",
+          "ru": "Вторая модель",
+          "kr": "두 번째 동료",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Hawk Meter Recovery",
+          "ru": "Оперативное восстановление",
+          "kr": "호크 게이지 회수",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Hawk Support",
+          "ru": "Поддержка с воздуха",
+          "kr": "호크 서포트",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Faint Note",
+          "ru": "Система целеуказания",
+          "kr": "페일 노트",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Final Mark",
+          "ru": "Острые перья",
+          "kr": "최후의 표적",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Storm Mark",
+          "ru": "Опытный стрелок",
+          "kr": "폭풍의 표적",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Silverhawk Enhancement",
+          "ru": "Прочные сплавы",
+          "kr": "실버호크 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "MP Recovery",
+          "ru": "Накопители маны",
+          "kr": "마나 회수",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Silverhawk Assault",
+          "ru": "Соколиная охота",
+          "kr": "실버호크 강습",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Storm Hunter",
+          "ru": "Избыточный заряд",
+          "kr": "폭풍의 사냥꾼",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Deep Learning",
+          "ru": "Протокол координации",
+          "kr": "딥러닝",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Artillerist",
       "ru": "Механист",
       "kr": "블래스터",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Firepower Enhancement",
+          "ru": "Кибер-солдат",
+          "kr": "화력 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Barrage Enhancement",
+          "ru": "Бомбардировка",
+          "kr": "포격 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Barrage Charge",
+          "ru": "Продвинутое охлаждение",
+          "kr": "포격 충전",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Sustained Firepower",
+          "ru": "Механизм запирания",
+          "kr": "화력 지속",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Swiftness Barrage",
+          "ru": "Скорострельные орудия",
+          "kr": "신속 포격",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Barrage Output Enhancement",
+          "ru": "Прямая наводка",
+          "kr": "포격 출력 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Overheat",
+          "ru": "Больше пороха",
+          "kr": "과열",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Maintain Firepower",
+          "ru": "Непрерывный обстрел",
+          "kr": "화력 유지",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Positioning System",
+          "ru": "Транспозиционный привод",
+          "kr": "위치 이동 시스템",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Summon A.C.T",
+          "ru": "Батарея, огонь!",
+          "kr": "A.C.T 호출",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Barrage Attack",
+          "ru": "Свинцовый шквал",
+          "kr": "포화 공격",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Kindle",
+          "ru": "Контролируемая перегрузка",
+          "kr": "오버히트",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Machinist",
       "ru": "Агент С.К.А.У.Т.",
       "kr": "스카우터",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Evolutionary Legacy",
+          "ru": "Наследие «Генезиса»",
+          "kr": "진화의 유산",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Arthetinean Skill",
+          "ru": "Технология Ардетайна",
+          "kr": "아르데타인의 기술",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Oversync",
+          "ru": "Ресинхронизация",
+          "kr": "오버 싱크",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Drone Defense System",
+          "ru": "Рефракционная матрица",
+          "kr": "드론 방어 체계",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Core Reaction Amplification",
+          "ru": "Перегрузка ядра",
+          "kr": "코어 반응 증폭",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Skill Upgrade",
+          "ru": "Последнее слово техники",
+          "kr": "기술 업그레이드",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Tactical Reload",
+          "ru": "Тактика победы",
+          "kr": "전술 재장전",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Combat Mode",
+          "ru": "Боевой режим",
+          "kr": "전투 모드",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Zero Core Energy",
+          "ru": "Нулевой реактор",
+          "kr": "제로 코어 에너지",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Zero Mode",
+          "ru": "Синергия «Зеро»",
+          "kr": "제로 모드",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Enchanted Core",
+          "ru": "Адаптивное ядро",
+          "kr": "코어 인챈트",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Collaboration",
+          "ru": "Боевая двойка",
+          "kr": "최고의 합작",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Wardancer",
       "ru": "Аватар",
       "kr": "배틀마스터",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Powerful Taijutsu",
+          "ru": "Укрепление тела",
+          "kr": "강력한 체술",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Powerful Esoteric Skill",
+          "ru": "Резонанс элементов",
+          "kr": "강력한 오의",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Orb Bonus",
+          "ru": "Гуру",
+          "kr": "구슬 증가",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Energy Recovery",
+          "ru": "Приток маны",
+          "kr": "원기 회복",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Lethal Taijutsu",
+          "ru": "Болевые точки",
+          "kr": "치명적인 체술",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "First Intention",
+          "ru": "Перерождение",
+          "kr": "초심",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Esoteric Skill Enhancement",
+          "ru": "Духовное прозрение",
+          "kr": "오의 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Esoteric Combustion",
+          "ru": "Танец стихий",
+          "kr": "엘리멘탈 연소",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Arrive Empty",
+          "ru": "Путь пустой ладони",
+          "kr": "공수래",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Esoteric Origin",
+          "ru": "Светочи силы",
+          "kr": "근원의 엘리멘탈",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Circulation",
+          "ru": "Путь феникса",
+          "kr": "순환",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Esoteric Skill Preparation",
+          "ru": "Проводник стихий",
+          "kr": "오의 준비",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Scrapper",
       "ru": "Дуалист",
       "kr": "인파이터",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Stamina Recovery",
+          "ru": "Средоточие ки",
+          "kr": "기력 회복",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Enhanced Speed",
+          "ru": "Рефлексы мастера",
+          "kr": "속도 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Tenacity Recovery",
+          "ru": "Познание баланса",
+          "kr": "투지 회복",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Shock Recovery",
+          "ru": "Духовный цикл",
+          "kr": "충격 회복",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Keen Strike",
+          "ru": "Точные удары",
+          "kr": "날카로운 타격",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Ultimate Skill: Taijutsu",
+          "ru": "Избранный путь",
+          "kr": "극의 : 체술",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Shock Training",
+          "ru": "Ликующий дух",
+          "kr": "충격 단련",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Duck II",
+          "ru": "Яростный натиск",
+          "kr": "더킹 II",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Lethal Tenacity",
+          "ru": "Дуальность разрушения",
+          "kr": "치명적인 투지",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Earth Rend",
+          "ru": "Удар мудреца",
+          "kr": "대지 가르기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Shock Release",
+          "ru": "Торжество истины",
+          "kr": "충격 발산",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "One-Sided Strike",
+          "ru": "Всесторонние удары",
+          "kr": "일방 타격",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Soulfist",
       "ru": "Ки-мастер",
       "kr": "기공사",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Energy Overflow I",
+          "ru": "Медитация",
+          "kr": "무상신공",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Robust Spirit",
+          "ru": "Воплощение Силы",
+          "kr": "역천지체",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Energy Overflow II",
+          "ru": "Кипящая энергия",
+          "kr": "무상진결",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Energy Activation",
+          "ru": "Мантра восстановления",
+          "kr": "운기행공",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Keen Force",
+          "ru": "Точечные удары",
+          "kr": "날카로운 기공",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Natural Body",
+          "ru": "Стиль сухой ветви",
+          "kr": "혼원진기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Hype Enhancement",
+          "ru": "Внутренняя мощь",
+          "kr": "삼화취정",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Energy Practice",
+          "ru": "Отрицание усталости",
+          "kr": "금강선공 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Energy Explosion",
+          "ru": "Ветры ки",
+          "kr": "단전대성",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Limit Break",
+          "ru": "Безграничная Сила",
+          "kr": "오기조원",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Recoil Control",
+          "ru": "Неустанность",
+          "kr": "한계 돌파",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Energy Forbiddance",
+          "ru": "Нечувствительность к боли",
+          "kr": "반동 제어",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Glaivier",
       "ru": "Мастер копья",
       "kr": "창술사",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Control",
+          "ru": "Полнолуние",
+          "kr": "절제",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Pinnacle I",
+          "ru": "Превосходство светил",
+          "kr": "절정 I",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Flurry Move",
+          "ru": "Танцующая Луна",
+          "kr": "난무 이동",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Pinnacle II",
+          "ru": "Вечерняя заря",
+          "kr": "절정 II",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Lethal Slash",
+          "ru": "Безжалостное лезвие",
+          "kr": "치명적인 베기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Flurry Enhancement",
+          "ru": "Чемпион полуночи",
+          "kr": "난무 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Pinnacle III",
+          "ru": "Утренняя заря",
+          "kr": "절정 III",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Power Stab",
+          "ru": "Солнцепек",
+          "kr": "강력한 찌르기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Yeon-Style Mark",
+          "ru": "Клеймо двух светил",
+          "kr": "연가표식",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Yeon-Style Technique",
+          "ru": "Апогей",
+          "kr": "연가비기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Yeon-Style Encore",
+          "ru": "Солнечное копье",
+          "kr": "연가심공",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Quick-Change Crits",
+          "ru": "Круговорот светил",
+          "kr": "전환난무",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Striker",
       "ru": "Тайгон",
       "kr": "스트라이커",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Esoteric Flurry",
+          "ru": "Баланс элементов",
+          "kr": "오의난무",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Deathblow I",
+          "ru": "Ва-банк",
+          "kr": "일격필살 I",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Orb Bonus",
+          "ru": "Гуру",
+          "kr": "구슬 증가",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Untouchable",
+          "ru": "Стихийная поступь",
+          "kr": "답보",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Rear Ambush",
+          "ru": "Спинолом",
+          "kr": "후방 기습",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Esoteric Skill Focus",
+          "ru": "Кулак стихий",
+          "kr": "오의 집중",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Deathblow II",
+          "ru": "Гнев элементов",
+          "kr": "일격필살 II",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Lethal Esoteric Skill",
+          "ru": "Разрушительная стихия",
+          "kr": "치명적인 오의",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Taijutsu Enhancement",
+          "ru": "Потоки элементов",
+          "kr": "체술 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Flurry Enhancement",
+          "ru": "Стихийная связь",
+          "kr": "난무 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Orb's Blessing",
+          "ru": "Четки стихий",
+          "kr": "구슬의 축복",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Fully Charged",
+          "ru": "Предел возможностей",
+          "kr": "완전 충전",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Breaker",
       "ru": "Стальной кулак",
       "kr": "브레이커",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Brawl King Storm",
+          "ru": "Золотая печать",
+          "kr": "권왕파천무",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Asura's Path",
+          "ru": "Запретное откровение",
+          "kr": "수라의 길",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Hypogastric Breathing",
+          "ru": "Медитативное дыхание",
+          "kr": "단전 호흡",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Lethal Fist",
+          "ru": "Смертоносные кулаки",
+          "kr": "치명적인 주먹",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Falling Blossoms Enhancement",
+          "ru": "Стиль падающей звезды",
+          "kr": "권왕십이식 : 낙화 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Asura Iron Body",
+          "ru": "Ярость отступника",
+          "kr": "수라강체",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Brawl King Acuity",
+          "ru": "Могущество дракона",
+          "kr": "권왕심법",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "All-Out War",
+          "ru": "Противостояние",
+          "kr": "전면전",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Energy Shield",
+          "ru": "Драконья чешуя",
+          "kr": "호신강기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Violent Waves",
+          "ru": "Священный гонг",
+          "kr": "권왕십이식 : 풍랑",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Trance",
+          "ru": "Темный транс",
+          "kr": "무아지경",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Defensive Speculation Enhancement",
+          "ru": "Нерушимые обеты",
+          "kr": "호신투기 강화",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Deathblade",
       "ru": "Клинок смерти",
       "kr": "블레이드",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Surge Enhancement",
+          "ru": "Предельное усилие",
+          "kr": "버스트 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Swift Strike",
+          "ru": "Мгновенная реакция",
+          "kr": "신속한 일격",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Orb Compression",
+          "ru": "Твердая воля",
+          "kr": "오브 압축",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Remaining Energy",
+          "ru": "Остаточная энергия",
+          "kr": "잔재된 기운",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Swordcraft Enhancement",
+          "ru": "Продвинутое фехтование",
+          "kr": "검술 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Orb Control",
+          "ru": "Координация сфер",
+          "kr": "오브 제어",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Limit Break",
+          "ru": "За гранью возможного",
+          "kr": "한계 돌파",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Firm Will",
+          "ru": "Атакующий порыв",
+          "kr": "확고한 의지",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Locked In",
+          "ru": "Глубокая концентрация",
+          "kr": "혼돈 주입",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Sword Spirit Compression",
+          "ru": "Разящий удар",
+          "kr": "혼돈의 힘",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Extreme Body Movement",
+          "ru": "Совершенное тело",
+          "kr": "극한의 몸놀림",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Orb Circulation",
+          "ru": "Циркуляция энергии",
+          "kr": "오브 순환",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Shadowhunter",
       "ru": "Фурия",
       "kr": "데모닉",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Perfect Suppression",
+          "ru": "Абсолютный контроль",
+          "kr": "완벽한 억제",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Demonic Impulse",
+          "ru": "Темная сторона",
+          "kr": "멈출 수 없는 충동",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Instinct Enhancement",
+          "ru": "Во власти инстинктов",
+          "kr": "본능 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Shadowburst Control",
+          "ru": "Управление силой",
+          "kr": "잠식 제어",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Chaos Enhancement",
+          "ru": "Особый дар",
+          "kr": "혼돈 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Chaos Training",
+          "ru": "Закаленная Хаосом",
+          "kr": "혼돈 단련",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Weapon Training",
+          "ru": "Владение оружием",
+          "kr": "무기 단련",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Shadowburst Absorption",
+          "ru": "Поглощение энергии",
+          "kr": "잠식 흡수",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Corrosion",
+          "ru": "Красная пелена",
+          "kr": "침식",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Execution Ceremony",
+          "ru": "Бесконечное заклание",
+          "kr": "처형식",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Storm Grinding",
+          "ru": "Стальной шторм",
+          "kr": "스톰 그라인딩",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Enh. Release Shadowburst",
+          "ru": "Неутолимая жажда",
+          "kr": "잠식 강화",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Reaper",
       "ru": "Жнец",
       "kr": "리퍼",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Smell of Blood",
+          "ru": "Запах крови",
+          "kr": "피냄새",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Lunar Voice",
+          "ru": "Голос луны",
+          "kr": "달의 소리",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Hunger",
+          "ru": "Жажда",
+          "kr": "굶주림",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Ghost Dancer",
+          "ru": "Скрытая угроза",
+          "kr": "유령 무희",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Starvation",
+          "ru": "Извечный голод",
+          "kr": "갈증",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Acrobat",
+          "ru": "Акробатический выпад",
+          "kr": "곡예사",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Follow the Shadow",
+          "ru": "Неотступная тень",
+          "kr": "그림자 밟기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Assassin's Steps",
+          "ru": "Ловкость ассасина",
+          "kr": "암살자의 손놀림",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Incognito",
+          "ru": "Слиться с тенями",
+          "kr": "잠행",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Vital Point Secured",
+          "ru": "Действенный метод",
+          "kr": "급소 확보",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Slaughterer",
+          "ru": "Убийственное хладнокровие",
+          "kr": "살인귀",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Chaos Enhancement",
+          "ru": "Паутина Хаоса",
+          "kr": "혼돈 강화",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Souleater",
       "ru": "Пожирательница душ",
       "kr": "소울이터",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Soul Affinity",
+          "ru": "Бледная луна",
+          "kr": "영혼친화력",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Night's Edge",
+          "ru": "Узы судьбы",
+          "kr": "그믐의 경계",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Full Moon Harvester",
+          "ru": "Полуночный страж",
+          "kr": "만월의 집행자",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Death Refinement",
+          "ru": "Отголосок смерти",
+          "kr": "죽음 연마",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Broken Edge",
+          "ru": "Безжалостный приговор",
+          "kr": "허물어진 경계",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Soul Amplification",
+          "ru": "Амплификация душ",
+          "kr": "영혼 증폭",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Execution Enhancement",
+          "ru": "Час расплаты",
+          "kr": "집행 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Soul Enhancement",
+          "ru": "Потусторонняя мощь",
+          "kr": "영혼 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Soul Guide",
+          "ru": "Проводник душ",
+          "kr": "영혼 길잡이",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Soul Resonance",
+          "ru": "Таинственный резонанс",
+          "kr": "영혼 공명",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Soul Decapitation",
+          "ru": "Астральная казнь",
+          "kr": "영혼 참수",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Soul Control",
+          "ru": "Незримая нить",
+          "kr": "영혼 제어",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Artist",
       "ru": "Художница",
       "kr": "도화가",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Setting Moon",
+          "ru": "Полумесяц",
+          "kr": "저물어 가는 달",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Recurrence",
+          "ru": "Круговорот светил",
+          "kr": "회귀",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Full Bloom",
+          "ru": "Весенний рассвет",
+          "kr": "만개",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Rising Moon",
+          "ru": "Лунный эквилибриум",
+          "kr": "떠오르는 달",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Twin Shield",
+          "ru": "Щит равновесия",
+          "kr": "오누이",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Blessing of the Sun",
+          "ru": "Естественный баланс",
+          "kr": "해의 축복",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Lunar Blessing",
+          "ru": "Сила искусства",
+          "kr": "달의 축복",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Moon Shadow",
+          "ru": "Обратная сторона луны",
+          "kr": "달의 그림자",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Artistry",
+          "ru": "Непревзойденный талант",
+          "kr": "기예",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Brand Enhancement",
+          "ru": "Губительный росчерк",
+          "kr": "낙인 강화",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Paint: Combat Technique",
+          "ru": "Живопись: Контур бабочки",
+          "kr": "묵법 : 접무",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Paint: Shattering Strike",
+          "ru": "Живопись: Бамбуковая кисть",
+          "kr": "묵법 : 파죽",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Aeromancer",
       "ru": "Аэромант",
       "kr": "기상술사",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Drizzle",
+          "ru": "Сезон дождей",
+          "kr": "이슬비",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Wind Fury",
+          "ru": "Повелитель бури",
+          "kr": "질풍노도",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Ventilation",
+          "ru": "Воздушный карман",
+          "kr": "환기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Rain Shield",
+          "ru": "Дождевой щит",
+          "kr": "비의 보호막",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Nature's Flow",
+          "ru": "Как рыба в воде",
+          "kr": "자연의 흐름",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Sunny Day",
+          "ru": "Нет плохой погоды",
+          "kr": "맑은 날",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Swiftness",
+          "ru": "Ветер за плечами",
+          "kr": "기민함",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Training",
+          "ru": "Благоприятный прогноз",
+          "kr": "단련",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Path of the Wind",
+          "ru": "Виртуоз зонта",
+          "kr": "바람의 길",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Space Cleave",
+          "ru": "Рассечение пространства",
+          "kr": "공간 가르기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Dazzling Days",
+          "ru": "Солнечный денек",
+          "kr": "눈부신 나날들",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Steam Recharge",
+          "ru": "Испарение",
+          "kr": "수증기 충전",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     },
     {
       "en": "Wildsoul",
       "ru": "Друид",
       "kr": "환수사",
-      "skills": []
+      "nodes": [
+        {
+          "en": "Ferality",
+          "ru": "Дикое сердце",
+          "kr": "야성",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Phantom Beast Awakening",
+          "ru": "Родство с духами",
+          "kr": "환수 각성",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Awakened Potential",
+          "ru": "Пробужденный потенциал",
+          "kr": "깨어난 잠재력",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Vigor",
+          "ru": "Одухотворенность",
+          "kr": "활기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Bestial Resonance",
+          "ru": "Многоликость",
+          "kr": "야수의 공명",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Wild Impulse",
+          "ru": "Круговорот сущности",
+          "kr": "야생의 충동",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Phantom Beast Spirit",
+          "ru": "Огни мира духов",
+          "kr": "환수의 정기",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Natural Talent",
+          "ru": "Воля удачи",
+          "kr": "천부적 재능",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Swiftness",
+          "ru": "Звериное проворство",
+          "kr": "기민함",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Hunter Instinct",
+          "ru": "Высший хищник",
+          "kr": "사냥 본능",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Agile Gait",
+          "ru": "Поступь кумихо",
+          "kr": "날렵한 걸음걸이",
+          "tags": [
+            "arkpass"
+          ]
+        },
+        {
+          "en": "Phantom Beast Shaman",
+          "ru": "Друг духов",
+          "kr": "환수 술사",
+          "tags": [
+            "arkpass"
+          ]
+        }
+      ]
     }
   ]
 }

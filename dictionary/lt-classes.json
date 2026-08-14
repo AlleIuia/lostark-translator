@@ -1,39 +1,60 @@
 {
-  "_orphanBuilds": [
+  "archetype": [
     {
       "en": "Warrior",
+      "ru": "Воин",
       "kr": "전사",
-      "ru": "Воин"
+      "tags": [
+        "classtype"
+      ]
     },
     {
       "en": "Specialist",
+      "ru": "Творец",
       "kr": "스페셜리스트",
-      "ru": "Творец"
+      "tags": [
+        "classtype"
+      ]
     },
     {
       "en": "Mage",
+      "ru": "Маг",
       "kr": "마법사",
-      "ru": "Маг"
+      "tags": [
+        "classtype"
+      ]
     },
     {
       "en": "Martial Artist",
+      "ru": "Монах",
       "kr": "무도가",
-      "ru": "Монах"
+      "tags": [
+        "classtype"
+      ]
     },
     {
       "en": "Assassin",
+      "ru": "Ассасин",
       "kr": "암살자",
-      "ru": "Ассасин"
+      "tags": [
+        "classtype"
+      ]
     },
     {
       "en": "Gunner",
+      "ru": "Стрелок",
       "kr": "헌터",
-      "ru": "Стрелок"
+      "tags": [
+        "classtype"
+      ]
     },
     {
       "en": "Guardianknight",
+      "ru": "Рыцарь-Хранитель",
       "kr": "오리지널",
-      "ru": "Рыцарь-Хранитель"
+      "tags": [
+        "classtype"
+      ]
     }
   ],
   "classes": [
@@ -41,505 +62,771 @@
       "builds": [
         {
           "en": "Mayhem",
+          "ru": "Тёмное безрассудство",
           "kr": "광기",
-          "ru": "Тёмное безрассудство"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Berserker Technique",
+          "ru": "Безрассудство",
           "kr": "광전사의 비기",
-          "ru": "Безрассудство"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Berserker's Technique",
+          "ru": "Безрассудство",
           "kr": "광전사의 비기",
-          "ru": "Безрассудство"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Berserker",
       "kr": "버서커",
-      "ru": "Берсерк"
+      "ru": "Берсерк",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Gravity Training",
+          "ru": "Гравитационное сжатие",
           "kr": "중력 수련",
-          "ru": "Гравитационное сжатие"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Rage Hammer",
+          "ru": "Стабильная гравитация",
           "kr": "분노의 망치",
-          "ru": "Стабильная гравитация"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Destroyer",
       "kr": "디스트로이어",
-      "ru": "Сокрушитель"
+      "ru": "Сокрушитель",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Combat Readiness",
+          "ru": "Рвение защитника",
           "kr": "전투 태세",
-          "ru": "Рвение защитника"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Lone Knight",
+          "ru": "Герой-одиночка",
           "kr": "고독한 기사",
-          "ru": "Герой-одиночка"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Gunlancer",
       "kr": "워로드",
-      "ru": "Страж"
+      "ru": "Страж",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Predator",
+          "ru": "Хищница",
           "kr": "포식자",
-          "ru": "Хищница"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Punisher",
+          "ru": "Воля палача",
           "kr": "처단자",
-          "ru": "Воля палача"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Slayer",
       "kr": "슬레이어",
-      "ru": "Валькирия"
+      "ru": "Валькирия",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Blessed Aura",
+          "ru": "Исцеляющая вера",
           "kr": "축복의 오라",
-          "ru": "Исцеляющая вера"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Judgment",
-          "kr": "심판자",
           "ru": "Мастер-фехтовальщик",
-          "tags": ["holy", "Blessed Aura", "paladin", "(", "Class Engraving"]
+          "kr": "심판자",
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Paladin",
       "kr": "홀리나이트",
-      "ru": "Паладин"
+      "ru": "Паладин",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Shining Knight",
+          "ru": "Рыцарь света",
           "kr": "빛의 기사",
-          "ru": "Рыцарь света"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Liberator",
+          "ru": "Освободитель",
           "kr": "해방자",
-          "ru": "Освободитель"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Valkyrie",
       "kr": "발키리",
-      "ru": "Храмовница"
+      "ru": "Храмовница",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Dreadful Roar",
+          "ru": "Глас истинной силы",
           "kr": "드레드 로어",
-          "ru": "Глас истинной силы"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Hellfire Successor",
+          "ru": "Наследница пламени",
           "kr": "업화의 계승자",
-          "ru": "Наследница пламени"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Guardianknight",
       "kr": "가디언나이트",
-      "ru": "Рыцарь-Хранитель"
+      "ru": "Рыцарь-Хранитель",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Order of the Emperor",
+          "ru": "Император",
           "kr": "황제의 칙령",
-          "ru": "Император"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Grace of the Empress",
+          "ru": "Императрица",
           "kr": "황후의 은총",
-          "ru": "Императрица"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Arcanist",
       "kr": "아르카나",
-      "ru": "Арканолог"
+      "ru": "Арканолог",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Master Summoner",
+          "ru": "Мудрость Энвиссы",
           "kr": "상급 소환사",
-          "ru": "Мудрость Энвиссы"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Communication Overflow",
+          "ru": "Чародейская гениальность",
           "kr": "넘치는 교감",
-          "ru": "Чародейская гениальность"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Summoner",
       "kr": "서머너",
-      "ru": "Призывательница"
+      "ru": "Призывательница",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Desperate Salvation",
+          "ru": "Кантата исцеления",
           "kr": "절실한 구원",
-          "ru": "Кантата исцеления"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "True Courage",
+          "ru": "Экстаз",
           "kr": "진실된 용맹",
-          "ru": "Экстаз"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Bard",
       "kr": "바드",
-      "ru": "Менестрель"
+      "ru": "Менестрель",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Igniter",
+          "ru": "Обострённые чувства",
           "kr": "점화",
-          "ru": "Обострённые чувства"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Reflux",
+          "ru": "Осознанный диссонанс",
           "kr": "환류",
-          "ru": "Осознанный диссонанс"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Sorceress",
       "kr": "소서리스",
-      "ru": "Чародейка"
+      "ru": "Чародейка",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Pistoleer",
+          "ru": "Пистолеты и пули",
           "kr": "핸드거너",
-          "ru": "Пистолеты и пули"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Enhanced Weapon",
+          "ru": "Универсал",
           "kr": "전술 탄환",
-          "ru": "Универсал"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Deadeye",
       "kr": "데빌헌터",
-      "ru": "Охотник на демонов"
+      "ru": "Охотник на демонов",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Time to Hunt",
+          "ru": "Отстрел",
           "kr": "사냥의 시간",
-          "ru": "Отстрел"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Peacemaker",
+          "ru": "Миротворец",
           "kr": "피스메이커",
-          "ru": "Миротворец"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Gunslinger",
       "kr": "건슬링어",
-      "ru": "Охотница на демонов"
+      "ru": "Охотница на демонов",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Loyal Companion",
+          "ru": "Вторая модель",
           "kr": "두 번째 동료",
-          "ru": "Вторая модель"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Death Strike",
+          "ru": "Последний полёт",
           "kr": "죽음의 습격",
-          "ru": "Последний полёт"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Sharpshooter",
       "kr": "호크아이",
-      "ru": "Рейнджер"
+      "ru": "Рейнджер",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Barrage Enhancement",
+          "ru": "Бомбардировка",
           "kr": "포격 강화",
-          "ru": "Бомбардировка"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Firepower Enhancement",
+          "ru": "Кибер-солдат",
           "kr": "화력 강화",
-          "ru": "Кибер-солдат"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Artillerist",
       "kr": "블래스터",
-      "ru": "Механист"
+      "ru": "Механист",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Evolutionary Legacy",
+          "ru": "Наследие «Генезиса»",
           "kr": "진화의 유산",
-          "ru": "Наследие «Генезиса»"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Arthetinean Skill",
+          "ru": "Технология Ардетайна",
           "kr": "아르데타인의 기술",
-          "ru": "Технология Ардетайна"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Machinist",
       "kr": "스카우터",
-      "ru": "Агент С.К.А.У.Т."
+      "ru": "Агент С.К.А.У.Т.",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "First Intention",
+          "ru": "Перерождение",
           "kr": "초심",
-          "ru": "Перерождение"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Esoteric Skill Enhancement",
+          "ru": "Духовное прозрение",
           "kr": "오의 강화",
-          "ru": "Духовное прозрение"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Wardancer",
       "kr": "배틀마스터",
-      "ru": "Аватар"
+      "ru": "Аватар",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Ultimate Skill: Taijutsu",
+          "ru": "Избранный путь",
           "kr": "극의: 체술",
-          "ru": "Избранный путь"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Taijutsu",
+          "ru": "Избранный путь",
           "kr": "극의: 체술",
-          "ru": "Избранный путь"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Shock Training",
+          "ru": "Ликующий дух",
           "kr": "충격 단련",
-          "ru": "Ликующий дух"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Scrapper",
       "kr": "인파이터",
-      "ru": "Дуалист"
+      "ru": "Дуалист",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Energy Overflow",
+          "ru": "Медитация",
           "kr": "무상신공",
-          "ru": "Медитация"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Robust Spirit",
+          "ru": "Воплощение Силы",
           "kr": "역천지체",
-          "ru": "Воплощение Силы"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Soulfist",
       "kr": "기공사",
-      "ru": "Ки-мастер"
+      "ru": "Ки-мастер",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Pinnacle",
+          "ru": "Превосходство светил",
           "kr": "절정",
-          "ru": "Превосходство светил"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Control",
+          "ru": "Полнолуние",
           "kr": "절제",
-          "ru": "Полнолуние"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Glaivier",
       "kr": "창술사",
-      "ru": "Мастер копья"
+      "ru": "Мастер копья",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Deathblow",
+          "ru": "Ва-банк",
           "kr": "일격필살",
-          "ru": "Ва-банк"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Esoteric Flurry",
+          "ru": "Баланс элементов",
           "kr": "오의난무",
-          "ru": "Баланс элементов"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Striker",
       "kr": "스트라이커",
-      "ru": "Тайгон"
+      "ru": "Тайгон",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Asura's Path",
+          "ru": "Запретное откровение",
           "kr": "수라의 길",
-          "ru": "Запретное откровение"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Brawl King Storm",
+          "ru": "Золотая печать",
           "kr": "권왕파천무",
-          "ru": "Золотая печать"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Breaker",
       "kr": "브레이커",
-      "ru": "Стальной кулак"
+      "ru": "Стальной кулак",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Remaining Energy",
+          "ru": "Остаточная энергия",
           "kr": "잔재된 기운",
-          "ru": "Остаточная энергия"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Surge",
+          "ru": "Твёрдая воля",
           "kr": "버스트",
-          "ru": "Твёрдая воля"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Deathblade",
       "kr": "블레이드",
-      "ru": "Клинок смерти"
+      "ru": "Клинок смерти",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Demonic Impulse",
+          "ru": "Тёмная сторона",
           "kr": "멈출 수 없는 충동",
-          "ru": "Тёмная сторона"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Perfect Suppression",
+          "ru": "Абсолютный контроль",
           "kr": "완벽한 억제",
-          "ru": "Абсолютный контроль"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Shadowhunter",
       "kr": "데모닉",
-      "ru": "Фурия"
+      "ru": "Фурия",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Hunger",
+          "ru": "Жажда",
           "kr": "갈증",
-          "ru": "Жажда"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Lunar Voice",
+          "ru": "Голос луны",
           "kr": "달의 소리",
-          "ru": "Голос луны"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Reaper",
       "kr": "리퍼",
-      "ru": "Жнец"
+      "ru": "Жнец",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Full Moon Harvester",
+          "ru": "Бледная луна",
           "kr": "만월의 집행자",
-          "ru": "Бледная луна"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Night's Edge",
+          "ru": "Узы судьбы",
           "kr": "그믐의 경계",
-          "ru": "Узы судьбы"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Souleater",
       "kr": "소울이터",
-      "ru": "Пожирательница душ"
+      "ru": "Пожирательница душ",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Recurrence",
+          "ru": "Круговорот светил",
           "kr": "회귀",
-          "ru": "Круговорот светил"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Full Bloom",
+          "ru": "Весенний рассвет",
           "kr": "만개",
-          "ru": "Весенний рассвет"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Artist",
       "kr": "도화가",
-      "ru": "Художница"
+      "ru": "Художница",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Wind Fury",
+          "ru": "Повелитель бури",
           "kr": "질풍노도",
-          "ru": "Повелитель бури"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Drizzle",
+          "ru": "Сезон дождей",
           "kr": "이슬비",
-          "ru": "Сезон дождей"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Aeromancer",
       "kr": "기상술사",
-      "ru": "Аэромант"
+      "ru": "Аэромант",
+      "tags": [
+        "class"
+      ]
     },
     {
       "builds": [
         {
           "en": "Ferality",
+          "ru": "Дикое сердце",
           "kr": "야성",
-          "ru": "Дикое сердце"
+          "tags": [
+            "classbuild"
+          ]
         },
         {
           "en": "Phantom Beast Awakening",
+          "ru": "Родство с духами",
           "kr": "환수 각성",
-          "ru": "Родство с духами"
+          "tags": [
+            "classbuild"
+          ]
         }
       ],
       "en": "Wildsoul",
       "kr": "환수사",
-      "ru": "Друид"
+      "ru": "Друид",
+      "tags": [
+        "class"
+      ]
     }
   ]
 }

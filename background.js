@@ -2,6 +2,7 @@ const DEFAULT_DICTIONARY_FILES = [
   'dictionary/lt-classes.json',
   'dictionary/lt-engravings.json',
   'dictionary/lt-interface.json',
+  'dictionary/lt-game-interface.json',
   'dictionary/lt-skills.json',
   'dictionary/lt-arkpass.json',
   'dictionary/lt-classcore.json',
@@ -10,7 +11,8 @@ const DEFAULT_DICTIONARY_FILES = [
 
 async function getDictionaryFileList() {
   const result = await chrome.storage.local.get(['dictionaryFiles', 'disabledDictionaries']);
-  const all = result.dictionaryFiles || DEFAULT_DICTIONARY_FILES;
+  const stored = Array.isArray(result.dictionaryFiles) ? result.dictionaryFiles : [];
+  const all = [...new Set([...DEFAULT_DICTIONARY_FILES, ...stored])];
   const disabled = Array.isArray(result.disabledDictionaries) ? result.disabledDictionaries : [];
   return all.filter(f => !disabled.includes(f) && !disabled.includes(f.split('/').pop()));
 }
@@ -21,9 +23,12 @@ function flattenData(data, target) {
 
   function addEntry(srcVal, tgtVal, meta = {}) {
     if (!srcVal || !tgtVal) return;
-    if (!dict[srcVal]) dict[srcVal] = [];
-    dict[srcVal].push({
+    const source = String(srcVal);
+    if (!dict[source]) dict[source] = [];
+    dict[source].push({
       value: tgtVal,
+      source,
+      caseSensitive: !!meta.caseSensitive,
       parent: meta.parent || null,
       tags: meta.tags || [],
       priority: meta.priority || 0
@@ -66,7 +71,8 @@ function flattenData(data, target) {
       if (term[src]) addEntry(term[src], term[target], {
         tags: term.tags || ['interface', 'term'],
         parent: term.parent || null,
-        priority: term.priority != null ? term.priority : 22
+        priority: term.priority != null ? term.priority : 22,
+        caseSensitive: !!term.caseSensitive
       });
     });
   });
@@ -127,13 +133,15 @@ function flattenData(data, target) {
         priority: 20
       });
     });
-    (sc.skills || []).forEach(skill => {
+    const arkNodes = sc.nodes || sc.skills || [];
+    arkNodes.forEach(skill => {
       if (!skill || !skill.en || !String(skill.en).trim()) return;
       sources.forEach(src => {
         if (skill[src]) addEntry(skill[src], skill[target], {
           parent: sc.en,
           tags: skill.tags || ['arkpass', (sc.en || '').toLowerCase()],
-          priority: 12
+          priority: 12,
+          caseSensitive: !!skill.caseSensitive
         });
       });
     });
@@ -146,24 +154,40 @@ function flattenData(data, target) {
         priority: 20
       });
     });
-    (sc.skills || []).forEach(skill => {
+    const coreList = sc.classcore || sc.skills || [];
+    coreList.forEach(skill => {
       if (!skill || !skill.en || !String(skill.en).trim()) return;
       sources.forEach(src => {
         if (skill[src]) addEntry(skill[src], skill[target], {
           parent: sc.en,
-          tags: skill.tags || ['classcore', (sc.en || '').toLowerCase()],
-          priority: 12
+          tags: skill.tags || ['classcore', 'core', (sc.en || '').toLowerCase()],
+          priority: skill.priority != null ? skill.priority : 12,
+          caseSensitive: !!skill.caseSensitive
         });
       });
     });
   });
 
-  if (data._orphanBuilds) {
-    data._orphanBuilds.forEach(o => {
+  (data.commCore || []).forEach(item => {
+    if (!item) return;
+    sources.forEach(src => {
+      if (item[src]) addEntry(item[src], item[target], {
+        tags: item.tags || ['core', 'classcore'],
+        priority: item.priority != null ? item.priority : 12,
+        caseSensitive: !!item.caseSensitive,
+        parent: item.parent || null
+      });
+    });
+  });
+
+  const archetypeList = data.archetype || data._orphanBuilds || [];
+  if (archetypeList.length) {
+    archetypeList.forEach(o => {
       sources.forEach(src => {
         if (o[src]) addEntry(o[src], o[target], {
-          tags: o.tags || ['orphan'],
-          priority: 5
+          tags: o.tags || ['classtype', 'orphan'],
+          priority: 5,
+          caseSensitive: !!o.caseSensitive
         });
       });
     });
@@ -201,6 +225,8 @@ function cleanEmptyEntries(data) {
   if (data.engravings) data.engravings = data.engravings.filter(e => hasAny(e));
   if (data._orphanBuilds) data._orphanBuilds = data._orphanBuilds.filter(o => hasAny(o));
   if (data.terms) data.terms = data.terms.filter(t => hasAny(t));
+  if (data.commCore) data.commCore = data.commCore.filter(e => hasAny(e));
+  if (data.archetype) data.archetype = data.archetype.filter(e => hasAny(e));
   if (data.skills) data.skills = data.skills.filter(s => hasAny(s));
   if (data.skillClasses) {
     data.skillClasses = data.skillClasses.filter(c => hasAny(c) || (c && c.en)).map(c => {
@@ -421,6 +447,45 @@ function mergeData(target, source) {
     }
   }
 
+  if (!target.commCore) target.commCore = [];
+  for (const srcItem of source.commCore || []) {
+    if (!srcItem) continue;
+    const srcEn = (srcItem.en || '').trim();
+    const srcKr = (srcItem.kr || '').trim();
+    let existing = target.commCore.find(x => {
+      const te = (x.en || '').trim();
+      const tk = (x.kr || '').trim();
+      if (srcEn && srcKr && te && tk) return te === srcEn && tk === srcKr;
+      if (srcEn) return te === srcEn;
+      if (srcKr) return tk === srcKr;
+      return false;
+    });
+    if (existing) {
+      if (srcItem.ru) existing.ru = srcItem.ru;
+      if (srcItem.kr) existing.kr = srcItem.kr;
+      if (srcItem.en) existing.en = srcItem.en;
+      if (srcItem.tags) existing.tags = srcItem.tags;
+      if (srcItem.parent) existing.parent = srcItem.parent;
+      if (srcItem.priority != null) existing.priority = srcItem.priority;
+      if (srcItem.caseSensitive != null) existing.caseSensitive = srcItem.caseSensitive;
+    } else {
+      target.commCore.push({ ...srcItem });
+    }
+  }
+
+  if (!target.archetype) target.archetype = [];
+  for (const o of (source.archetype || [])) {
+    let existing = target.archetype.find(x => x.en === o.en);
+    if (existing) {
+      if (o.ru) existing.ru = o.ru;
+      if (o.kr) existing.kr = o.kr;
+      if (o.tags) existing.tags = o.tags;
+    } else {
+      target.archetype.push({ ...o });
+    }
+  }
+
+
   return target;
 }
 
@@ -434,7 +499,9 @@ function mergeWithDeleted(base, user) {
     skills: [],
     skillClasses: [],
     arkPassClasses: [],
-    classCoreClasses: []
+    classCoreClasses: [],
+    commCore: [],
+    archetype: []
   };
 
   const userClasses = JSON.parse(JSON.stringify(user.classes || []));
@@ -611,12 +678,29 @@ function mergeWithDeleted(base, user) {
     result.classCoreClasses.push(copy);
   }
 
+
+  const userComm = JSON.parse(JSON.stringify(user.commCore || []));
+  const userCommKeys = new Set(userComm.map(x => (x.en || '') + '\0' + (x.kr || '')));
+  result.commCore = [];
+  for (const item of userComm) {
+    if (deleted.has(item.en)) continue;
+    result.commCore.push(item);
+  }
+  for (const item of base.commCore || []) {
+    if (deleted.has(item.en)) continue;
+    const key = (item.en || '') + '\0' + (item.kr || '');
+    if (userCommKeys.has(key)) continue;
+    result.commCore.push(JSON.parse(JSON.stringify(item)));
+  }
+
+  result.archetype = JSON.parse(JSON.stringify(user.archetype || base.archetype || []));
+
   return result;
 }
 
 async function loadDefaultDictionaries() {
   const files = await getDictionaryFileList();
-  let merged = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [] };
+  let merged = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [], commCore: [], archetype: [] };
   for (const file of files) {
     try {
       const res = await fetch(chrome.runtime.getURL(file));
@@ -1075,6 +1159,7 @@ const SYNC_URLS = [
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classes.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-engravings.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-interface.json',
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-game-interface.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-skills.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-arkpass.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classcore.json'

@@ -37,6 +37,7 @@ const UI = {
     secImportExport: 'Импорт / Экспорт',
     exportBtn: 'Экспорт',
     importBtn: 'Импорт',
+    secDictFiles: 'Словари',
     secUserWords: 'Мои слова',
     hintUserWords: 'Записи, которые вы добавили или изменили. В списке словаря они показываются сверху.',
     exportUserBtn: 'Выгрузить мои слова',
@@ -110,6 +111,7 @@ const UI = {
     secImportExport: 'Import / Export',
     exportBtn: 'Export',
     importBtn: 'Import',
+    secDictFiles: 'Dictionaries',
     secUserWords: 'My words',
     hintUserWords: 'Entries you added or changed. They appear at the top of the dictionary list.',
     exportUserBtn: 'Export my words',
@@ -183,6 +185,7 @@ const UI = {
     secImportExport: '가져오기 / 내보내기',
     exportBtn: '내보내기',
     importBtn: '가져오기',
+    secDictFiles: '사전',
     secUserWords: '내 단어',
     hintUserWords: '직접 추가하거나 수정한 항목입니다. 사전 목록 상단에 표시됩니다.',
     exportUserBtn: '내 단어 내보내기',
@@ -458,6 +461,8 @@ function applyLocalization() {
   if (hintFitCss) hintFitCss.textContent = t.hintFitSiteCss || '';
   const hintFitPick = document.getElementById('hintFitPicker');
   if (hintFitPick) hintFitPick.textContent = t.hintFitPicker || '';
+  const secDict = document.getElementById('secDictFiles');
+  if (secDict) secDict.textContent = t.secDictFiles || 'Dictionaries';
   const secUser = document.getElementById('secUserWords');
   if (secUser) secUser.textContent = t.secUserWords;
   const hintUser = document.getElementById('hintUserWords');
@@ -488,6 +493,8 @@ function applyLocalization() {
   document.getElementById('thRepl').textContent = t.thRepl;
   loadUserWords();
 }
+
+  if (typeof loadDictFilesUI === 'function') loadDictFilesUI();
 
 function setupListeners() {
   document.getElementById('themeToggle').addEventListener('change', (e) => {
@@ -724,7 +731,7 @@ async function loadUserWords() {
       for (const b of c.builds || []) push('build', b, c.en);
     }
     for (const e of ud.engravings || []) push('engraving', e);
-    for (const o of ud._orphanBuilds || []) push('orphan', o);
+    for (const o of (ud.archetype || ud._orphanBuilds || [])) push('archetype', o);
     for (const term of ud.terms || []) push('term', term);
     for (const skill of ud.skills || []) push('skill', skill);
     for (const sc of ud.skillClasses || []) {
@@ -802,6 +809,7 @@ const BUNDLED_DICTS = [
   'dictionary/lt-classes.json',
   'dictionary/lt-engravings.json',
   'dictionary/lt-interface.json',
+  'dictionary/lt-game-interface.json',
   'dictionary/lt-skills.json',
   'dictionary/lt-arkpass.json',
   'dictionary/lt-classcore.json',

@@ -10,6 +10,7 @@ const SYNC_URLS = [
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classes.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-engravings.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-interface.json',
+  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-game-interface.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-skills.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-arkpass.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classcore.json'
@@ -474,7 +475,11 @@ function addSectionRow(tbody, label) {
 
 function matchesSearch(obj) {
   if (!currentSearch) return true;
-  return [obj.en, obj.ru, obj.kr].some(v => v && v.toLowerCase().includes(currentSearch));
+  const q = String(currentSearch).trim().toLowerCase();
+  if (!q) return true;
+  const fields = [obj.en, obj.ru, obj.kr];
+  if (Array.isArray(obj.tags)) fields.push(obj.tags.join(' '));
+  return fields.some(v => v && String(v).toLowerCase().includes(q));
 }
 
 function renderList() {

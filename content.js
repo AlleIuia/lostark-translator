@@ -156,15 +156,30 @@
     const keysForRegex = [];
     for (const [key, variants] of Object.entries(raw)) {
       if (!key || !key.trim()) continue;
-      const lower = key.toLowerCase();
-      if (!dictionary.has(lower)) {
-        dictionary.set(lower, variants);
-        keysForRegex.push(key);
-      } else {
-        const existing = dictionary.get(lower);
-        if (Array.isArray(existing) && Array.isArray(variants)) {
-          existing.push(...variants);
-          existing.sort((a, b) => (b.priority || 0) - (a.priority || 0));
+      const list = (Array.isArray(variants) ? variants : []).map(v => {
+        if (!v || typeof v !== 'object') return v;
+        return {
+          ...v,
+          source: v.source != null ? String(v.source) : key,
+          caseSensitive: !!v.caseSensitive
+        };
+      });
+      const forms = new Set([key, key.toLowerCase()]);
+      try {
+        forms.add(key.normalize('NFC'));
+        forms.add(key.normalize('NFC').toLowerCase());
+      } catch (_) {}
+      for (const form of forms) {
+        const mapKey = form.toLowerCase();
+        if (!dictionary.has(mapKey)) {
+          dictionary.set(mapKey, list.slice());
+          keysForRegex.push(form);
+        } else {
+          const existing = dictionary.get(mapKey);
+          if (Array.isArray(existing)) {
+            existing.push(...list);
+            existing.sort((a, b) => (b.priority || 0) - (a.priority || 0));
+          }
         }
       }
     }
@@ -298,12 +313,11 @@
     if (!surrounding) return false;
     const text = surrounding.toLowerCase();
     const tags = variant.tags || [];
-    const isSkillLike = tags.some(t =>
-      t === 'skill' || t === 'tripod' || t === 'arkpass' || t === 'classcore'
-    );
+
     if (variant.parent) {
-      const p = String(variant.parent).toLowerCase().trim();
-      if (p.length >= 2) {
+      const parents = String(variant.parent).split(',').map(s => s.toLowerCase().trim()).filter(Boolean);
+      for (const p of parents) {
+        if (p.length < 2) continue;
         if (p.length <= 3) {
           const re = new RegExp('(?:^|[^\\p{L}\\p{N}_])' + p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?:[^\\p{L}\\p{N}_]|$)', 'iu');
           if (re.test(text)) return true;
@@ -312,46 +326,75 @@
         }
       }
     }
-    // Для skill/tripod контекст только по parent (имя умения/класса рядом).
-    // Имя класса в tags на странице персонажа даёт ложные срабатывания и
-    // перебивает интерфейс (깨달음→Становление, 도약→Прогресс).
-    if (isSkillLike) return false;
+
+    // Tag-as-keyword only for meaningful custom tags (class names etc.), not type tags
+    const SKIP = new Set([
+      'skill', 'tripod', 'arkpass', 'classcore', 'core', 'class', 'class_build', 'classbuild',
+      'classtype', 'engraving', 'context', 'interface', 'term', 'rune', 'gem', 'item',
+      'accessory', 'bracelet', 'bracelet effects', 'card', 'grade', 'short', 'stat',
+      'game', 'site', 'region', 'ark_passive', 'filter', 'raid', 'tool', 'skill_class',
+      'arkpass_class', 'classcore_class', 'build', 'orphan'
+    ]);
     if (tags.length) {
       return tags.some(tag => {
         const t = String(tag).toLowerCase();
-        if (t === 'skill' || t === 'class_build' || t === 'engraving' || t === 'skill_class') return false;
-        if (t === 'arkpass' || t === 'classcore' || t === 'class' || t === 'tripod') return false;
-        if (t === 'context' || t === 'interface' || t === 'term' || t === 'rune' || t === 'gem' || t === 'item') return false;
-        if (t === 'accessory' || t === 'bracelet' || t === 'grade') return false;
+        if (SKIP.has(t)) return false;
         return t.length > 2 && text.includes(t);
       });
     }
     return false;
   }
 
-  function isBuildVariant(v) {
+  function hasTag(v, ...names) {
     const tags = v.tags || [];
-    return tags.includes('class_build') || tags.includes('build');
+    return names.some(n => tags.includes(n));
+  }
+
+  function isBuildVariant(v) {
+    return hasTag(v, 'class_build', 'classbuild', 'build');
+  }
+
+  function isCoreVariant(v) {
+    return hasTag(v, 'core', 'classcore');
+  }
+
+  function isArkpassVariant(v) {
+    return hasTag(v, 'arkpass');
+  }
+
+  function isPureSkillVariant(v) {
+    return hasTag(v, 'skill', 'tripod');
   }
 
   function isSkillVariant(v) {
-    const tags = v.tags || [];
-    return tags.includes('skill') || tags.includes('arkpass') || tags.includes('classcore') || tags.includes('tripod');
+    // legacy bundle: skill-like entries used in several call sites
+    return isPureSkillVariant(v) || isArkpassVariant(v) || isCoreVariant(v);
   }
 
   function isEngravingVariant(v) {
-    const tags = v.tags || [];
-    return tags.includes('engraving');
+    return hasTag(v, 'engraving');
   }
 
   function isClassVariant(v) {
-    const tags = v.tags || [];
-    return tags.includes('class') || tags.includes('skill_class') || tags.includes('arkpass_class') || tags.includes('classcore_class');
+    return hasTag(v, 'class', 'classtype', 'skill_class', 'arkpass_class', 'classcore_class');
   }
 
   function isInterfaceVariant(v) {
-    const tags = v.tags || [];
-    return tags.includes('interface') || tags.includes('term') || tags.includes('rune') || tags.includes('gem') || tags.includes('item');
+    return hasTag(v, 'interface', 'term', 'game', 'site', 'stat', 'rune', 'gem', 'item', 'region', 'ark_passive');
+  }
+
+  function isRestrictedInterface(v) {
+    return hasTag(v, 'gem', 'card', 'bracelet', 'bracelet effects', 'accessory', 'rune');
+  }
+
+  function isItemSlotVariant(v) {
+    return hasTag(v, 'item') && hasTag(v, 'interface', 'game');
+  }
+
+  function needsStrictContext(v) {
+    // Only explicit "context" tag blocks free matching.
+    // parent is a soft hint (checked in matchesContext), short is a type flag not a gate.
+    return hasTag(v, 'context');
   }
 
   function getLocalSkillContext(node) {
@@ -405,22 +448,44 @@
     return false;
   }
 
-  function hasArkCoreContext(node, surrounding) {
+  function collectNearbyText(node, surrounding, maxDepth) {
     let t = surrounding || '';
-    if (node) {
-      try {
-        let el = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
-        let depth = 0;
-        while (el && depth < 6) {
-          t += ' ' + (el.textContent || '').slice(0, 200);
-          const img = el.querySelector && el.querySelector('img[alt]');
-          if (img) t += ' ' + (img.getAttribute('alt') || '');
-          el = el.parentElement;
-          depth++;
+    if (!node) return t;
+    try {
+      let el = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
+      let depth = 0;
+      const limit = maxDepth == null ? 6 : maxDepth;
+      while (el && depth < limit) {
+        t += ' ' + (el.textContent || '').slice(0, 220);
+        if (el.className && typeof el.className === 'string') t += ' ' + el.className;
+        if (el.id) t += ' ' + el.id;
+        if (el.getAttribute) {
+          t += ' ' + (el.getAttribute('title') || '');
+          t += ' ' + (el.getAttribute('aria-label') || '');
         }
-      } catch (_) {}
-    }
-    return /코어|core|ядр|혼돈|질서|chaos|order|ark\s*grid|아크\s*그리드|созвезд|그리드|grid/i.test(t);
+        if (el.querySelectorAll) {
+          const imgs = el.querySelectorAll('img[src], img[alt]');
+          for (let i = 0; i < imgs.length && i < 10; i++) {
+            t += ' ' + (imgs[i].getAttribute('src') || '') + ' ' + (imgs[i].getAttribute('alt') || '');
+          }
+        }
+        el = el.parentElement;
+        depth++;
+      }
+    } catch (_) {}
+    return t;
+  }
+
+  function hasArkCoreContext(node, surrounding) {
+    const t = collectNearbyText(node, surrounding, 7);
+    return /코어|core|ядр|ядер|혼돈|질서|chaos|order|ark\s*grid|아크\s*그리드|아크그리드|созвезд|그리드|\bgrid\b|порядок|хаос|flashy\s*attack|smoldering\s*strike|stable\s*attack|swift\s*attack|echoing\s*(brand|steel|death)|absorbing\s*strike|crushing\s*strike|faith\s*enhancement|flowing\s*magick|fortitude\s*enhancement|order\s*(sun|moon|star)|chaos\s*(sun|moon|star)|солнце|луна|звезда|arkgrid|class\s*core|classcore/i.test(t);
+  }
+
+  function hasEquipContext(node, surrounding) {
+    const t = collectNearbyText(node, surrounding, 6);
+    // Equipment / armory signals — not ark grid cores
+    if (hasArkCoreContext(node, surrounding)) return false;
+    return /armory|equip|equipment|weapon\s*slot|item\s*level|\bilvl\b|quality|honing|\+\s*\d{1,2}\b|tier\s*[0-9e]|t[1-4]\b|장비|무기|품질|재련|아이템\s*레벨|equipitem|chaItem|ItemGrade|QualityBar/i.test(t);
   }
 
   function hasGemItemContext(surrounding, node) {
@@ -449,70 +514,159 @@
         }
       } catch (_) {}
     }
-    return /gem|card|bracelet|accessory|bracelet\s*effects|браслет|карт[аы]?|гем|рунит|악세|카드|젬|팔찌|장신구|질풍|단죄|심판|출혈|갈망/i.test(t);
+    return /gem|card|bracelet|accessory|bracelet\s*effects|браслет|карт[аы]?|гем|рунит|악세|카드|젬|팔찌|장신구|질풍|단죄|심판|출혈|갈망|rune/i.test(t);
   }
 
-  function isRestrictedInterface(v) {
-    const tags = v.tags || [];
-    return tags.some(t =>
-      t === 'gem' || t === 'card' || t === 'bracelet' || t === 'accessory' || t === 'bracelet effects'
-    );
+  function hasBuildContext(node, surrounding) {
+    const t = collectNearbyText(node, surrounding, 5);
+    return /build|engraving|class\s*engraving|각인|ветк|class\s*build|spec\b|специализа|build\s*name|engravings/i.test(t);
+  }
+
+  function getVariantsForMatch(match) {
+    const all = dictionary.get(String(match).toLowerCase());
+    if (!all || !all.length) return null;
+    if (typeof all === 'string') return all;
+    const exact = [];
+    const fuzzy = [];
+    for (const v of all) {
+      if (!v || typeof v !== 'object') continue;
+      const src = v.source != null ? String(v.source) : null;
+      if (v.caseSensitive) {
+        if (src === match) exact.push(v);
+        continue;
+      }
+      if (src === match) exact.push(v);
+      else fuzzy.push(v);
+    }
+    if (exact.length) return exact;
+    return fuzzy.length ? fuzzy : all;
   }
 
   function resolveTranslation(match, surrounding, node) {
-    const variants = dictionary.get(match.toLowerCase());
+    const variants = getVariantsForMatch(match);
     if (!variants || !variants.length) return match;
     if (typeof variants === 'string') return variants;
 
+    const arkCore = hasArkCoreContext(node, surrounding);
+    const equip = hasEquipContext(node, surrounding);
+    const gemCtx = hasGemItemContext(surrounding, node);
+    const skillUi = hasSkillLevelContext(node) || hasSkillUiContext(node);
+    const buildCtx = hasBuildContext(node, surrounding);
+
+    // 1) Explicit parent/context match (any type)
     for (const v of variants) {
-      if (isBuildVariant(v) && matchesContext(v, surrounding)) return v.value;
-    }
-    for (const v of variants) {
-      if (isInterfaceVariant(v) && !isRestrictedInterface(v)) return v.value;
-    }
-    if (hasGemItemContext(surrounding, node)) {
-      for (const v of variants) {
-        if (isInterfaceVariant(v) && isRestrictedInterface(v)) return v.value;
+      if (matchesContext(v, surrounding)) {
+        // Prefer more specific types when several match
+        if (isBuildVariant(v) || isCoreVariant(v) || isArkpassVariant(v) || isPureSkillVariant(v) || isEngravingVariant(v) || isInterfaceVariant(v)) {
+          return v.value;
+        }
       }
     }
     for (const v of variants) {
-      if (isBuildVariant(v)) return v.value;
+      if (matchesContext(v, surrounding)) return v.value;
     }
-    for (const v of variants) {
-      if (isSkillVariant(v) && matchesContext(v, surrounding)) return v.value;
+
+    // 2) Ark Grid / cores block → common cores & arkpass nodes first
+    if (arkCore) {
+      for (const v of variants) {
+        if (isCoreVariant(v) && !needsStrictContext(v)) return v.value;
+      }
+      for (const v of variants) {
+        if (isCoreVariant(v)) return v.value;
+      }
+      for (const v of variants) {
+        if (isArkpassVariant(v)) return v.value;
+      }
     }
-    const skillUi = hasSkillLevelContext(node) || hasSkillUiContext(node);
+
+    // 3) Equipment / armory → item slots (Weapon→Оружие), never short cores
+    if (equip) {
+      for (const v of variants) {
+        if (isItemSlotVariant(v)) return v.value;
+      }
+      for (const v of variants) {
+        if (isInterfaceVariant(v) && hasTag(v, 'item') && !isRestrictedInterface(v)) return v.value;
+      }
+      for (const v of variants) {
+        if (isInterfaceVariant(v) && !isRestrictedInterface(v) && !isCoreVariant(v)) return v.value;
+      }
+    }
+
+    // 4) Gem / rune / bracelet context
+    if (gemCtx) {
+      for (const v of variants) {
+        if (isRestrictedInterface(v)) return v.value;
+      }
+    }
+
+    // 5) Skill UI (icons, skill links, lv.10)
     if (skillUi) {
       for (const v of variants) {
-        if (isSkillVariant(v)) return v.value;
+        if (isPureSkillVariant(v)) return v.value;
       }
     }
-    if (hasArkCoreContext(node, surrounding)) {
+
+    // 6) Class build near build/engraving UI
+    if (buildCtx) {
       for (const v of variants) {
-        if (isSkillVariant(v) && (v.tags || []).some(t => t === 'arkpass' || t === 'classcore')) return v.value;
+        if (isBuildVariant(v)) return v.value;
       }
       for (const v of variants) {
-        if (isSkillVariant(v)) return v.value;
+        if (isEngravingVariant(v)) return v.value;
       }
+    }
+
+    // 7) Safe interface (not restricted, not strict-context-only)
+    for (const v of variants) {
+      if (isInterfaceVariant(v) && !isRestrictedInterface(v) && !needsStrictContext(v) && !isCoreVariant(v)) {
+        return v.value;
+      }
+    }
+
+    // 8) Builds / engavings / classes without extra context
+    for (const v of variants) {
+      if (isBuildVariant(v) && !needsStrictContext(v)) return v.value;
     }
     for (const v of variants) {
       if (isEngravingVariant(v)) return v.value;
     }
     for (const v of variants) {
-      if (isClassVariant(v)) return v.value;
+      if (isClassVariant(v) && !needsStrictContext(v)) return v.value;
+    }
+
+    // 9) Remaining interface including restricted (if no gem ctx still allow last-resort)
+    for (const v of variants) {
+      if (isInterfaceVariant(v) && !needsStrictContext(v)) return v.value;
     }
     for (const v of variants) {
-      if (!isSkillVariant(v) && !isBuildVariant(v) && !isRestrictedInterface(v)) return v.value;
+      if (isInterfaceVariant(v) && matchesContext(v, surrounding)) return v.value;
     }
-    for (const v of variants) {
-      if (isInterfaceVariant(v) && isRestrictedInterface(v)) return v.value;
+
+    // 10) Cores only if not clearly equipment, or if ark context already handled above
+    if (!equip) {
+      for (const v of variants) {
+        if (isCoreVariant(v) && !needsStrictContext(v)) return v.value;
+      }
     }
+
+    // 11) Skills / arkpass fallback for multi-char matches
     const compactLen = String(match).replace(/\s+/g, '').length;
     if (compactLen >= 2) {
       for (const v of variants) {
-        if (isSkillVariant(v)) return v.value;
+        if (isArkpassVariant(v) || isPureSkillVariant(v)) return v.value;
+      }
+      if (!equip) {
+        for (const v of variants) {
+          if (isCoreVariant(v)) return v.value;
+        }
       }
     }
+
+    // 12) Last resort: anything not requiring strict context
+    for (const v of variants) {
+      if (!needsStrictContext(v)) return v.value;
+    }
+
     return match;
   }
 

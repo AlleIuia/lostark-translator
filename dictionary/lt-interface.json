@@ -1,2159 +1,2764 @@
 {
   "terms": [
     {
-      "en": "AP",
-      "ru": "СА",
-      "kr": "공증"
-    },
-    {
-      "en": "Brand",
-      "ru": "Стигма",
-      "kr": "낙인"
-    },
-    {
-      "en": "Identity",
-      "ru": "Особое умение",
-      "kr": "아덴"
-    },
-    {
-      "en": "H.A. Skill",
-      "ru": "Архиумение (Т)",
-      "kr": "초각스"
-    },
-    {
       "en": "Absolute",
       "ru": "Абсолютная",
-      "kr": "절대"
+      "kr": "절대",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Relative",
       "ru": "Относительный",
-      "kr": "상대적"
+      "kr": "상대적",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Performance",
       "ru": "Производительность",
-      "kr": "지표"
+      "kr": "지표",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Raid Performance",
       "ru": "Рейдовые показатели",
-      "kr": "지표"
+      "kr": "지표",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Filters",
       "ru": "Фильтры",
-      "kr": "분류"
+      "kr": "분류",
+      "tags": [
+        "filter",
+        "interface",
+        "site"
+      ]
     },
     {
       "en": "Raid",
       "ru": "Рейд",
-      "kr": "레이드"
+      "kr": "레이드",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Gate 1",
       "ru": "Фаза 1",
-      "kr": "1관"
+      "kr": "1관",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Gate 2",
       "ru": "Фаза 2",
-      "kr": "2관"
+      "kr": "2관",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Gate 3",
       "ru": "Фаза 3",
-      "kr": "3관"
+      "kr": "3관",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Brelshaza",
       "ru": "Аврельсуд",
-      "kr": "아브렐슈드"
+      "kr": "아브렐슈드",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Aegir",
       "ru": "Эгир",
-      "kr": "에기르"
+      "kr": "에기르",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Mordum",
       "ru": "Мордум",
-      "kr": "모르둠"
+      "kr": "모르둠",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Armoche",
       "ru": "Армог",
-      "kr": "4막"
+      "kr": "4막",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Kazeros",
       "ru": "Казерос",
-      "kr": "카제로스"
+      "kr": "카제로스",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Serca",
       "ru": "Зерка",
-      "kr": "세르카"
+      "kr": "세르카",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Horizon Cathedral",
       "ru": "Арсенос",
-      "kr": "지평의 성당"
+      "kr": "지평의 성당",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Difficulty",
       "ru": "Сложность",
-      "kr": "난이도"
+      "kr": "난이도",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Normal",
       "ru": "Обычка",
-      "kr": "노말"
+      "kr": "노말",
+      "tags": [
+        "interface",
+        "raid",
+        "short",
+        "site"
+      ]
     },
     {
       "en": "Hard",
       "ru": "Героик",
-      "kr": "하드"
+      "kr": "하드",
+      "tags": [
+        "interface",
+        "raid",
+        "short",
+        "site"
+      ]
     },
     {
       "en": "Nightmare",
       "ru": "Кошмар",
-      "kr": "나이트메어"
+      "kr": "나이트메어",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "The First",
       "ru": "Вызов",
-      "kr": "더퍼스트"
+      "kr": "더퍼스트",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Extreme",
       "ru": "Экстрим",
-      "kr": "익스트림"
-    },
-    {
-      "en": "Damage Type",
-      "ru": "Тип урона",
-      "kr": "데미지 종류"
-    },
-    {
-      "en": "Stagger",
-      "ru": "Изнурение",
-      "kr": "무력화"
+      "kr": "익스트림",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Filter By",
       "ru": "Фильтр к",
-      "kr": "분류 방법"
-    },
-    {
-      "en": "Item Level",
-      "ru": "GS",
-      "kr": "아이템 레벨"
-    },
-    {
-      "en": "Combat Power",
-      "ru": "Боеспособность",
-      "kr": "전투력"
+      "kr": "분류 방법",
+      "tags": [
+        "filter",
+        "interface",
+        "site"
+      ]
     },
     {
       "en": "by Combat Power",
       "ru": "от Боеспособности",
-      "kr": "1투력당"
+      "kr": "1투력당",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Additional Options",
       "ru": "Дополнительные параметры",
-      "kr": "추가 설정"
+      "kr": "추가 설정",
+      "tags": [
+        "filter",
+        "interface",
+        "site"
+      ]
     },
     {
       "en": "Include Bus",
       "ru": "Добавить проводки",
-      "kr": "버스 포함"
+      "kr": "버스 포함",
+      "tags": [
+        "filter",
+        "interface",
+        "site"
+      ]
     },
     {
       "en": "Include Weird",
       "ru": "Добавить нестандартные",
-      "kr": "이상한 파티 조합 포함"
+      "kr": "이상한 파티 조합 포함",
+      "tags": [
+        "filter",
+        "interface",
+        "site"
+      ]
     },
     {
       "en": "Patch",
       "ru": "Обновление",
-      "kr": "패치 버전"
+      "kr": "패치 버전",
+      "tags": [
+        "filter",
+        "interface",
+        "site"
+      ]
     },
     {
       "en": "January",
       "ru": "Январь",
-      "kr": "1월"
+      "kr": "1월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "February",
       "ru": "Февраль",
-      "kr": "2월"
+      "kr": "2월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "March",
       "ru": "Март",
-      "kr": "3월"
+      "kr": "3월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "April",
       "ru": "Апрель",
-      "kr": "4월"
+      "kr": "4월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "May",
       "ru": "Май",
-      "kr": "5월"
+      "kr": "5월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "June",
       "ru": "Июнь",
-      "kr": "6월"
+      "kr": "6월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "July",
       "ru": "Июль",
-      "kr": "7월"
+      "kr": "7월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "August",
       "ru": "Август",
-      "kr": "8월"
+      "kr": "8월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "September",
       "ru": "Сентябрь",
-      "kr": "9월"
+      "kr": "9월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "October",
       "ru": "Октябрь",
-      "kr": "10월"
+      "kr": "10월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "November",
       "ru": "Ноябрь",
-      "kr": "11월"
+      "kr": "11월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "December",
       "ru": "Декабрь",
-      "kr": "12월"
+      "kr": "12월",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Sort By",
       "ru": "Сортировать по",
-      "kr": "정렬"
+      "kr": "정렬",
+      "tags": [
+        "filter",
+        "interface",
+        "site"
+      ]
     },
     {
       "en": "Floor",
       "ru": "Минимум",
-      "kr": "최솟값"
+      "kr": "최솟값",
+      "tags": [
+        "interface",
+        "short",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Q1",
       "ru": "Нижние 25%",
-      "kr": "하위 25%"
+      "kr": "하위 25%",
+      "tags": [
+        "interface",
+        "short",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Median",
       "ru": "Медиана",
-      "kr": "중앙값"
+      "kr": "중앙값",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Q3",
       "ru": "Верхние 25%",
-      "kr": "상위 25%"
+      "kr": "상위 25%",
+      "tags": [
+        "interface",
+        "short",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Ceiling",
       "ru": "Максимум",
-      "kr": "최댓값"
+      "kr": "최댓값",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Best",
       "ru": "Рекорд",
-      "kr": "최고 기록"
+      "kr": "최고 기록",
+      "tags": [
+        "interface",
+        "short",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Support",
       "ru": "Поддержка",
-      "kr": "서폿"
+      "kr": "서폿",
+      "tags": [
+        "interface",
+        "short",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Contribution",
       "ru": "Вклад",
-      "kr": "찬조 수치"
+      "kr": "찬조 수치",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "bDPS",
       "ru": "Урон от баффов",
-      "kr": "조력 피해 DPS"
+      "kr": "조력 피해 DPS",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Uptime",
       "ru": "Аптайм",
-      "kr": "유효율"
+      "kr": "유효율",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Last updated",
       "ru": "Последнее обновление",
-      "kr": "마지막 갱신"
+      "kr": "마지막 갱신",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "minutes ago",
-      "ru": "минут назад",
-      "kr": "분 전"
+      "ru": "Минут назад",
+      "kr": "분 전",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Details",
       "ru": "Детали",
-      "kr": "세부 정보"
-    },
-    {
-      "en": "Crit",
-      "ru": "Cмертоносность",
-      "kr": "치명"
-    },
-    {
-      "en": "Specialization",
-      "ru": "Мастерство",
-      "kr": "특화"
-    },
-    {
-      "en": "Domination",
-      "ru": "Подавление",
-      "kr": "제압"
-    },
-    {
-      "en": "Swiftness",
-      "ru": "Сноровка",
-      "kr": "신속"
-    },
-    {
-      "en": "Endurance",
-      "ru": "Стойкость",
-      "kr": "인내"
-    },
-    {
-      "en": "Expertise",
-      "ru": "Искусность",
-      "kr": "숙련"
-    },
-    {
-      "en": "Trixion",
-      "ru": "Тризион",
-      "kr": "트리시온"
-    },
-    {
-      "en": "Anikka",
-      "ru": "Аньшу",
-      "kr": "애니츠"
-    },
-    {
-      "en": "Arthetine",
-      "ru": "Ардетайн",
-      "kr": "아르데타인"
-    },
-    {
-      "en": "Rethramis",
-      "ru": "Артемис",
-      "kr": "아르테미스"
-    },
-    {
-      "en": "Voldis",
-      "ru": "Волдайк",
-      "kr": "볼다이크"
-    },
-    {
-      "en": "East Luterra",
-      "ru": "Восточная Лютерия",
-      "kr": "루테란 동부"
-    },
-    {
-      "en": "West Luterra",
-      "ru": "Западная Лютерия",
-      "kr": "루테란 서부"
-    },
-    {
-      "en": "Yorn",
-      "ru": "Йон",
-      "kr": "욘"
-    },
-    {
-      "en": "Punika",
-      "ru": "Папуаника",
-      "kr": "파푸니카"
-    },
-    {
-      "en": "Rowen",
-      "ru": "Ровен",
-      "kr": "로웬"
-    },
-    {
-      "en": "Rohendel",
-      "ru": "Рохэндель",
-      "kr": "로헨델"
-    },
-    {
-      "en": "North Vern",
-      "ru": "Северный Берн",
-      "kr": "베른 북부"
-    },
-    {
-      "en": "North Kurzan",
-      "ru": "Северный Крузан",
-      "kr": "쿠르잔 북부"
-    },
-    {
-      "en": "Tortoyk",
-      "ru": "Тортоик",
-      "kr": "토토이크"
-    },
-    {
-      "en": "Feiton",
-      "ru": "Фейтон",
-      "kr": "페이튼"
-    },
-    {
-      "en": "Shushire",
-      "ru": "Шувьёрд",
-      "kr": "슈샤이어"
-    },
-    {
-      "en": "Elgacia",
-      "ru": "Эльгасия",
-      "kr": "엘가시아"
-    },
-    {
-      "en": "Yudia",
-      "ru": "Юдия",
-      "kr": "유디아"
-    },
-    {
-      "en": "South Vern",
-      "ru": "Южный Берн",
-      "kr": "베른 남부"
-    },
-    {
-      "en": "South Kurzan",
-      "ru": "Южный Крузан",
-      "kr": "쿠르잔 남부"
-    },
-    {
-      "en": "South Rimeria",
-      "ru": "Южный Реймьярк",
-      "kr": "림레이크 남섬"
+      "kr": "세부 정보",
+      "tags": [
+        "interface",
+        "short",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Stats",
       "ru": "Статистика",
-      "kr": "통계"
+      "kr": "통계",
+      "tags": [
+        "interface",
+        "short",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "General",
       "ru": "Общие",
-      "kr": "일반적인"
-    },
-    {
-      "en": "Ark Passive",
-      "ru": "Система А.Р.К.",
-      "kr": "아크 패시브"
+      "kr": "일반적인",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Average",
       "ru": "Средний",
-      "kr": "평균"
+      "kr": "평균",
+      "tags": [
+        "interface",
+        "short",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Classes",
       "ru": "Классы",
-      "kr": "직업"
+      "kr": "직업",
+      "tags": [
+        "interface",
+        "short",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Distribution By",
       "ru": "Сортировка по",
-      "kr": "분포 기준"
-    },
-    {
-      "en": "Ark Grid",
-      "ru": "Созвездия А.Р.К",
-      "kr": "아크 그리드"
-    },
-    {
-      "en": "Cores",
-      "ru": "Ядра",
-      "kr": "코어"
+      "kr": "분포 기준",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Kazeros Raid",
       "ru": "Рейды Казероса",
-      "kr": "카제로스 레이드"
+      "kr": "카제로스 레이드",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Shadow Raid",
       "ru": "Рейды Теней",
-      "kr": "그림자 레이드"
+      "kr": "그림자 레이드",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Abyssal Dungeon",
       "ru": "Подземелья Бездны",
-      "kr": "어비스 던전"
+      "kr": "어비스 던전",
+      "tags": [
+        "interface",
+        "raid",
+        "site"
+      ]
     },
     {
       "en": "Relative Performance",
       "ru": "Относительная производительность",
-      "kr": "상대적 성능"
-    },
-    {
-      "en": "Class",
-      "ru": "Класс",
-      "kr": "수업"
-    },
-    {
-      "en": "Class Engraving",
-      "ru": "Классовая ветка",
-      "kr": "직업 각인"
+      "kr": "상대적 성능",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Points",
       "ru": "Очки",
-      "kr": "포인트"
-    },
-    {
-      "en": "Evolution",
-      "ru": "Экспансия",
-      "kr": "진화",
+      "kr": "포인트",
       "tags": [
         "interface",
-        "ark_passive"
-      ],
-      "priority": 28
-    },
-    {
-      "en": "Enlightenment",
-      "ru": "Становление",
-      "kr": "깨달음",
-      "tags": [
-        "interface",
-        "ark_passive"
-      ],
-      "priority": 28
-    },
-    {
-      "en": "Leap",
-      "ru": "Прогресс",
-      "kr": "도약",
-      "tags": [
-        "interface",
-        "ark_passive"
-      ],
-      "priority": 28
-    },
-    {
-      "en": "Awakening Amplifier",
-      "ru": "Пробуждённое сознание",
-      "kr": "각성 증폭기"
-    },
-    {
-      "en": "Supersonic Breakthrough",
-      "ru": "Ураганная скорость",
-      "kr": "음속 돌파"
-    },
-    {
-      "en": "Blunt Thorn",
-      "ru": "Безграничная мощь",
-      "kr": "뭉툭한 가시"
-    },
-    {
-      "en": "Standing Striker",
-      "ru": "Пламя войны",
-      "kr": "입식 타격가"
-    },
-    {
-      "en": "Crit Rate",
-      "ru": "Шанс крита",
-      "kr": "치적"
-    },
-    {
-      "en": "Crit Rate",
-      "ru": "Шанс крита",
-      "kr": "치명타 적중률"
-    },
-    {
-      "en": "Bracelet ",
-      "ru": "Браслет",
-      "kr": "팔찌"
-    },
-    {
-      "en": "Bracelet Effects",
-      "ru": "Эффекты Браслета",
-      "kr": "팔찌 효과"
-    },
-    {
-      "en": "Accessory Effects",
-      "ru": "Эффект Бижутерии",
-      "kr": "장신구 효과"
-    },
-    {
-      "en": "Gems",
-      "ru": "Самоцветы",
-      "kr": "보석"
-    },
-    {
-      "en": "Necklace",
-      "ru": "Ожерелье",
-      "kr": "목걸이"
-    },
-    {
-      "en": "Earring",
-      "ru": "Сельга",
-      "kr": "귀걸이"
-    },
-    {
-      "en": "Ring",
-      "ru": "Кольцо",
-      "kr": "반지"
-    },
-    {
-      "en": "Stone",
-      "ru": "Фетранит",
-      "kr": "어빌리티 스톤"
-    },
-    {
-      "en": "Brand Power",
-      "ru": "Эффект. стигмы",
-      "kr": "낙인력"
-    },
-    {
-      "en": "Attack Power",
-      "ru": "Сила Атаки",
-      "kr": "공격력"
-    },
-    {
-      "en": "Additional Damage",
-      "ru": "Доп. Урон",
-      "kr": "추가 피해",
-      "priority": 28
-    },
-    {
-      "en": "Boss Damage",
-      "ru": "Урон по Боссам",
-      "kr": "보스 피해",
-      "priority": 28
-    },
-    {
-      "en": "Level",
-      "ru": "Ур.",
-      "kr": "레벨"
-    },
-    {
-      "en": "Character",
-      "ru": "Персонаж",
-      "kr": "캐릭터"
-    },
-    {
-      "en": "Outgoing Damage",
-      "ru": "Наносимый урон",
-      "kr": "주는 피해"
-    },
-    {
-      "en": "Outgoing Damage",
-      "ru": "Наносимый урон",
-      "kr": "적에게 주는 피해"
-    },
-    {
-      "en": "to Staggered foes",
-      "ru": "по ошеломлённым противникам",
-      "kr": "무력화 상태의 적에게"
-    },
-    {
-      "en": "Back Attack Damage",
-      "ru": "Урон при атаке со спины",
-      "kr": "백어택 피해"
-    },
-    {
-      "en": "Engravings",
-      "ru": "Гравировки",
-      "kr": "각인"
-    },
-    {
-      "en": "Atk. Power",
-      "ru": "Сила атаки",
-      "kr": "공격력"
-    },
-    {
-      "en": "Weapon Power",
-      "ru": "Урон оружия",
-      "kr": "무기 공격력"
-    },
-    {
-      "en": "Crit Damage",
-      "ru": "Критический урон",
-      "kr": "치명타 피해"
-    },
-    {
-      "en": "Serenade, Piety, Harmony Meter Gain",
-      "ru": "Набор эн. аккордов/веры/гармонии",
-      "kr": "아덴 게이지 획득량"
-    },
-    {
-      "en": "Ally Damage Enhancement Effect",
-      "ru": "Эфф. увеличения урона союзников",
-      "kr": "아군 피해량 증가 효과"
-    },
-    {
-      "en": "Ally Damage Enhancement Effect",
-      "ru": "Эфф. увеличения урона союзников",
-      "kr": "아군 피해량 강화"
-    },
-    {
-      "en": "Equipment",
-      "ru": "Снаряжение",
-      "kr": "장비"
-    },
-    {
-      "en": "Roster Level",
-      "ru": "Уровень Наследия",
-      "kr": "원정대 레벨"
-    },
-    {
-      "en": "Character Level",
-      "ru": "Уровень Персонажа",
-      "kr": "전투 레벨"
-    },
-    {
-      "en": "Lv",
-      "ru": "Ур",
-      "kr": "Lv"
-    },
-    {
-      "en": "Galewind",
-      "ru": "Агель",
-      "kr": "질풍"
-    },
-    {
-      "en": "Conviction",
-      "ru": "Валь",
-      "kr": "단죄"
-    },
-    {
-      "en": "Judgment",
-      "ru": "Валь'Морт",
-      "kr": "심판",
-      "tags": [
-        "gem",
-        "card",
-        "bracelet",
-        "bracelet effects",
-        "accessory"
+        "short",
+        "site",
+        "term"
       ]
-    },
-    {
-      "en": "Bleed",
-      "ru": "Джар",
-      "kr": "출혈"
-    },
-    {
-      "en": "Protection",
-      "ru": "Квен",
-      "kr": "수호"
-    },
-    {
-      "en": "Iron Wall",
-      "ru": "Манназ",
-      "kr": "철벽"
-    },
-    {
-      "en": "Focus",
-      "ru": "Марх",
-      "kr": "집중",
-      "tags": [
-        "rune",
-        "gem",
-        "item"
-      ]
-    },
-    {
-      "en": "Rage",
-      "ru": "Раш",
-      "kr": "광분"
-    },
-    {
-      "en": "Quick Recharge",
-      "ru": "Рейде",
-      "kr": "속행"
-    },
-    {
-      "en": "Purify",
-      "ru": "Солум",
-      "kr": "정화"
-    },
-    {
-      "en": "Overwhelm",
-      "ru": "Фехе",
-      "kr": "압도"
-    },
-    {
-      "en": "Mountain's Face",
-      "ru": "Фортис",
-      "kr": "태산"
-    },
-    {
-      "en": "Wealth",
-      "ru": "Эйге",
-      "kr": "풍요"
-    },
-    {
-      "en": "Poison",
-      "ru": "Эйтур",
-      "kr": "중독"
     },
     {
       "en": "Statistics",
       "ru": "Статистика",
-      "kr": ""
-    },
-    {
-      "en": "Boundless MP",
-      "ru": "Запас маны",
-      "kr": "끝없는 마나"
-    },
-    {
-      "en": "Illicit Spell",
-      "ru": "Запретное знание",
-      "kr": "금단의 주문"
-    },
-    {
-      "en": "Keen Sense",
-      "ru": "Отточенные рефлексы",
-      "kr": "예리한 감각"
-    },
-    {
-      "en": "Limit Break",
-      "ru": "Исключительный дар",
-      "kr": "한계 돌파"
-    },
-    {
-      "en": "Optimized Training",
-      "ru": "Изнурительные тренировки",
-      "kr": "최적화 훈련"
+      "kr": "",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Goddess of Blessings",
       "ru": "Благосклонность фортуны",
-      "kr": "축복의 여신"
+      "kr": "축복의 여신",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Unlimited Magick",
       "ru": "Неисчерпаемый резерв",
-      "kr": "무한한 마력"
+      "kr": "무한한 마력",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Zealous Smite",
       "ru": "Взрывной натиск",
-      "kr": "혼신의 강타"
+      "kr": "혼신의 강타",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Strike",
       "ru": "Высший приоритет",
-      "kr": "일격"
+      "kr": "일격",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Destruction Charger",
       "ru": "Машина для убийства",
-      "kr": "파괴 전차"
+      "kr": "파괴 전차",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Dominion Timing",
       "ru": "На шаг впереди",
-      "kr": "타이밍 지배"
+      "kr": "타이밍 지배",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Passionate Dance",
       "ru": "Упоение битвой",
-      "kr": "정열의 춤사위"
+      "kr": "정열의 춤사위",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Critical",
       "ru": "Ликование",
-      "kr": "회심"
+      "kr": "회심",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Master",
       "ru": "Мастерский удар",
-      "kr": "달인"
+      "kr": "달인",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Pulverize",
       "ru": "Сокрушение",
-      "kr": "분쇄"
+      "kr": "분쇄",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Luminary",
       "ru": "Умелый лидер",
-      "kr": "선각자"
+      "kr": "선각자",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Advance",
       "ru": "Дух товарищества",
-      "kr": "진군"
+      "kr": "진군",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Prayer",
       "ru": "Исток",
-      "kr": "기원"
+      "kr": "기원",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Infighting",
       "ru": "Стремление побеждать",
-      "kr": "인파이팅"
+      "kr": "인파이팅",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "MP Furnace",
       "ru": "Конвертация маны",
-      "kr": "마나 용광로"
+      "kr": "마나 용광로",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Stable Manager",
       "ru": "Выверенная стратегия",
-      "kr": "안정된 관리자"
+      "kr": "안정된 관리자",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Transcendent Power",
       "ru": "Ключевой аспект",
-      "kr": "초월적인 힘"
+      "kr": "초월적인 힘",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Charged Fury",
       "ru": "На пике возможностей",
-      "kr": "충전된 분노"
+      "kr": "충전된 분노",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Unleashed Power",
       "ru": "Несравненная сила",
-      "kr": "풀려난 힘"
+      "kr": "풀려난 힘",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Release Potential",
       "ru": "Стремительное восстановление",
-      "kr": "잠재력 해방"
+      "kr": "잠재력 해방",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Instant Spell",
       "ru": "Божественное вдохновение",
-      "kr": "즉각적인 주문"
+      "kr": "즉각적인 주문",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Ally Damage Enh.",
       "ru": "Урон соратников",
-      "kr": "아군 피해 강화"
+      "kr": "아군 피해 강화",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Ally Attack Enh.",
       "ru": "Сила атаки соратников",
-      "kr": "아군 공격 강화"
+      "kr": "아군 공격 강화",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Ranking",
       "ru": "Рейтинг",
-      "kr": "순위"
+      "kr": "순위",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Vision",
       "ru": "Ульд",
-      "kr": "비전"
+      "kr": "비전",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Destruction",
       "ru": "Разрушение",
-      "kr": "부위 파괴"
+      "kr": "부위 파괴",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Counter",
       "ru": "Контратака",
-      "kr": "카운터"
-    },
-    {
-      "en": "Low",
-      "ru": "Н",
-      "kr": "하",
+      "kr": "카운터",
       "tags": [
         "interface",
-        "grade",
-        "accessory"
-      ],
-      "priority": 26
-    },
-    {
-      "en": "Mid",
-      "ru": "Э",
-      "kr": "중",
-      "tags": [
-        "interface",
-        "grade",
-        "accessory"
-      ],
-      "priority": 26
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Mid-High",
       "ru": "средне-высокое",
-      "kr": "중상"
+      "kr": "중상",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Damage Increase",
       "ru": "Увеличение урона",
-      "kr": "피해 증가"
+      "kr": "피해 증가",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "CDR",
       "ru": "КД",
-      "kr": "쿨타임 감소"
+      "kr": "쿨타임 감소",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Sun",
       "ru": "Солнце",
-      "kr": "해"
-    },
-    {
-      "en": "High",
-      "ru": "Л",
-      "kr": "상",
+      "kr": "해",
       "tags": [
         "interface",
-        "grade",
-        "accessory"
-      ],
-      "priority": 26
+        "site",
+        "term"
+      ]
     },
     {
       "en": "High Grade",
       "ru": "Л",
       "kr": "상",
+      "priority": 26,
       "tags": [
         "interface",
-        "grade"
-      ],
-      "priority": 26
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Mid Grade",
-      "ru": "Э",
+      "ru": "Средний",
       "kr": "중",
+      "priority": 20,
       "tags": [
+        "grade",
         "interface",
-        "grade"
-      ],
-      "priority": 26
+        "short",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Low Grade",
       "ru": "Н",
       "kr": "하",
+      "priority": 26,
       "tags": [
         "interface",
-        "grade"
-      ],
-      "priority": 26
+        "site",
+        "term"
+      ]
     },
     {
       "en": "All order core combinations",
       "ru": "Все комбинации ядер",
-      "kr": "모든 질서 코어 조합"
+      "kr": "모든 질서 코어 조합",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Popularity",
       "ru": "Популярность",
-      "kr": "인기"
+      "kr": "인기",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "rContribution",
       "ru": "Общий вклад",
-      "kr": "기여도"
+      "kr": "기여도",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Sample Runs",
       "ru": "Выборочные прогоны",
-      "kr": "샘플 기록"
+      "kr": "샘플 기록",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Rank",
       "ru": "Ранг",
-      "kr": "순위"
+      "kr": "순위",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Current Loadout",
       "ru": "Текущая сборка",
-      "kr": "현재 세팅"
+      "kr": "현재 세팅",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Raid Loadout",
       "ru": "Рейд сборка",
-      "kr": "레이드 세팅"
+      "kr": "레이드 세팅",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "No gems equipped.",
       "ru": "Самоцветов нет",
-      "kr": ""
+      "kr": "",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "This character has no Ark Grid cores equipped.",
       "ru": "У этого персонажа не установлены Созвездия А.Р.К.",
-      "kr": "이 캐릭터는 아크 그리드 코어를 장착하지 않았습니다."
+      "kr": "이 캐릭터는 아크 그리드 코어를 장착하지 않았습니다.",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "No rune",
       "ru": "Нет руны",
-      "kr": "룬 없음"
+      "kr": "룬 없음",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Stronghold",
       "ru": "Поместье",
-      "kr": "영지"
+      "kr": "영지",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Skills",
       "ru": "Умения",
-      "kr": "스킬"
+      "kr": "스킬",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Crit Hit Damage",
       "ru": "При критическом ударе, урон",
-      "kr": "치명타 적중시 피증"
+      "kr": "치명타 적중시 피증",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Crit Hit Damage",
       "ru": "При критическом ударе, урон",
-      "kr": "공격이 치명타로 적중 시 적에게 주는 피해가"
+      "kr": "공격이 치명타로 적중 시 적에게 주는 피해가",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Non-directional Skill Damage",
       "ru": "Урон ненаправленных умений",
-      "kr": ""
+      "kr": "",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Skill",
       "ru": "Умение",
-      "kr": ""
+      "kr": "",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Awakening Skills do not apply.",
       "ru": "Не распространяется на умения пробуждения.",
-      "kr": ""
+      "kr": "",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Paradise",
       "ru": "Пантеон",
-      "kr": "낙원"
+      "kr": "낙원",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Order",
       "ru": "Порядок",
-      "kr": "질서의"
+      "kr": "질서의",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Chaos",
       "ru": "Хаос",
-      "kr": "혼돈의"
+      "kr": "혼돈의",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Combat HP Recovery",
       "ru": "Восстановление здоровья в бою",
-      "kr": ""
+      "kr": "",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Max MP",
       "ru": "Объём маны",
-      "kr": "최대 마나"
+      "kr": "최대 마나",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Shield for Party Members",
       "ru": "Эфф. щита для союзников",
-      "kr": "파티원 보호막 효과"
+      "kr": "파티원 보호막 효과",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Ally Atk. Power Enhancement Effect",
       "ru": "Эфф. увел. силы атаки союзников",
-      "kr": "아군 공격력 강화"
+      "kr": "아군 공격력 강화",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Party Member protection and recovery effect",
       "ru": "Защитные и исцеляющие эффекты усиливаются",
-      "kr": ""
+      "kr": "",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "On hit, target's Defense",
       "ru": "Попадание снижает защиту",
-      "kr": ""
+      "kr": "",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "On hit, target's Crit Damage",
       "ru": "Попадание повышает восприимчевость к крит. урону",
-      "kr": "치명타 저항"
+      "kr": "치명타 저항",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "for 8s",
       "ru": "на 8 сек",
-      "kr": ""
+      "kr": "",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
+    },
+    {
+      "en": "Ally Atk. Power Enhancement",
+      "ru": "Сила атаки соратников",
+      "kr": "아공강",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool",
+        "stat"
+      ],
+      "parent": null,
+      "priority": 30
     },
     {
       "en": "Ally Atk. Power Enhancement",
       "ru": "Эфф. увел. силы атаки союзников",
-      "kr": "아공강"
-    },
-    {
-      "en": "Ally Atk. Power Enhancement",
-      "ru": "Эфф. увел. силы атаки союзников",
-      "kr": "아공강 효과"
+      "kr": "아공강 효과",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Ally Damage Enhancement",
       "ru": "Эфф. увел. урона союзников",
-      "kr": ""
+      "kr": "",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "This effect is limited to a single application per party",
       "ru": "Эффект может быть использован только одним членом группы",
-      "kr": ""
+      "kr": "",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Order",
       "ru": "Порядок",
-      "kr": "질서"
+      "kr": "질서",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Chaos",
       "ru": "Хаос",
-      "kr": "혼돈"
+      "kr": "혼돈",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Rune",
       "ru": "Руны",
-      "kr": "스킬 룬"
+      "kr": "스킬 룬",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "",
       "ru": "Архипелаг Кадарум",
-      "kr": "카다룸"
+      "kr": "카다룸",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Max HP",
       "ru": "Объём здоровья",
-      "kr": "최대 생명력"
+      "kr": "최대 생명력",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Atk./Move Speed",
       "ru": "Скорость атаки и передвижения",
-      "kr": "공이속"
-    },
-    {
-      "en": "Crit Damage",
-      "ru": "Критический урон",
-      "kr": "치피"
-    },
-    {
-      "en": "Strength",
-      "ru": "Выносливость",
-      "kr": "체력"
+      "kr": "공이속",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Resistance",
       "ru": "Сопротивление",
-      "kr": "마법 방어력"
+      "kr": "마법 방어력",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "DD",
       "ru": "ДД",
-      "kr": "딜러"
+      "kr": "딜러",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "SUP",
       "ru": "Поддержка",
-      "kr": "서포터"
+      "kr": "서포터",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "",
       "ru": "Наносимый урон повышается на",
-      "kr": "적에게 주는 피해가 증가"
+      "kr": "적에게 주는 피해가 증가",
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "공격력 감소",
-      "kr": "공격력 감소",
       "ru": "Ржавчина",
+      "kr": "공격력 감소",
       "tags": [
         "interface",
+        "site",
         "term"
       ]
     },
     {
       "en": "CritD+CritD",
-      "kr": "치피증+치피증",
       "ru": "КУ+КУ",
+      "kr": "치피증+치피증",
       "tags": [
         "interface",
+        "site",
         "term"
-      ]
-    },
-    {
-      "en": "Crit Damage",
-      "kr": "치명타 피해가 증가",
-      "parent": "치명타 피해가 증가",
-      "priority": 28,
-      "ru": "Критический урон",
-      "tags": [
-        "context"
       ]
     },
     {
       "en": "Server",
+      "ru": "Сервер",
       "kr": "서버",
-      "ru": "Сервер"
-    },
-    {
-      "en": "CD",
-      "kr": "쿨감",
-      "parent": "쿨감 10광휘x7",
-      "priority": 28,
-      "ru": "КД",
-      "tags": [
-        "context"
-      ]
-    },
-    {
-      "en": "DD",
-      "kr": "피해",
-      "parent": "피해",
-      "priority": 28,
-      "ru": "Урон",
-      "tags": [
-        "context"
-      ]
-    },
-    {
-      "en": "Ark Grid",
-      "kr": "아크그리드",
-      "parent": "아크그리드",
-      "priority": 28,
-      "ru": "Созвездия А.Р.К",
-      "tags": [
-        "context"
-      ]
-    },
-    {
-      "en": "치명타 피해",
-      "kr": "치명타 피해",
-      "parent": "치명타 피해",
-      "priority": 28,
-      "ru": "Критический урон",
-      "tags": [
-        "context"
-      ]
-    },
-    {
-      "en": "высокое",
-      "ru": "Л",
-      "kr": "상",
       "tags": [
         "interface",
-        "grade",
-        "accessory"
-      ],
-      "priority": 30
-    },
-    {
-      "en": "среднее",
-      "ru": "Э",
-      "kr": "중",
-      "tags": [
-        "interface",
-        "grade",
-        "accessory"
-      ],
-      "priority": 30
-    },
-    {
-      "en": "низкое",
-      "ru": "Н",
-      "kr": "하",
-      "tags": [
-        "interface",
-        "grade",
-        "accessory"
-      ],
-      "priority": 30
-    },
-    {
-      "en": "Status Ailment Time Bonus",
-      "ru": "Длительность эффектов контроля",
-      "kr": "상태이상 공격 지속시간",
-      "tags": [
-        "interface",
-        "accessory",
-        "bracelet"
-      ],
-      "priority": 28
-    },
-    {
-      "en": "Status Ailment Duration",
-      "ru": "Длительность эффектов контроля",
-      "kr": "상태이상지속",
-      "tags": [
-        "interface",
-        "accessory",
-        "bracelet"
-      ],
-      "priority": 28
-    },
-    {
-      "en": "Status Ailment Time",
-      "ru": "Длительность эффектов контроля",
-      "kr": "상태이상 지속시간",
-      "tags": [
-        "interface",
-        "accessory"
-      ],
-      "priority": 27
-    },
-    {
-      "en": "게임 화면의 젬의 상태와 똑같이 입력해주세요.",
-      "kr": "게임 화면의 젬의 상태와 똑같이 입력해주세요.",
-      "ru": "Пожалуйста, введите точно такие же характеристики, как у рунита на экране в игре.",
-      "tags": [
-        "interface",
+        "site",
         "term"
       ]
     },
     {
-      "en": "혼돈 포인트",
-      "kr": "혼돈 포인트",
-      "parent": "초기화 가능초기화 불가 초기화 의지력 효율 1 공격력 1 낙인력 1 혼돈 포인트 1 가공 비용 0G900G1800G 남은 가공 123456789",
+      "en": "CD",
+      "ru": "КД",
+      "kr": "쿨감",
+      "parent": "쿨감 10광휘x7",
       "priority": 28,
-      "ru": "Очки Хаоса",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site"
+      ]
+    },
+    {
+      "en": "DD",
+      "ru": "Урон",
+      "kr": "피해",
+      "parent": "피해",
+      "priority": 28,
+      "tags": [
+        "context",
+        "interface",
+        "site"
+      ]
+    },
+    {
+      "en": "치명타 피해",
+      "ru": "Критический урон",
+      "kr": "치명타 피해",
+      "parent": "치명타 피해",
+      "priority": 28,
+      "tags": [
+        "context",
+        "interface",
+        "site"
+      ]
+    },
+    {
+      "en": "게임 화면의 젬의 상태와 똑같이 입력해주세요.",
+      "ru": "Пожалуйста, введите точно такие же характеристики, как у рунита на экране в игре.",
+      "kr": "게임 화면의 젬의 상태와 똑같이 입력해주세요.",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "혼돈 포인트",
+      "ru": "Очки Хаоса",
+      "kr": "혼돈 포인트",
+      "parent": null,
+      "priority": 30,
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "아피강",
-      "kr": "아피강",
       "ru": "Урон соратников",
+      "kr": "아피강",
       "tags": [
         "interface",
+        "site",
         "term"
       ]
     },
     {
       "en": "아군피해강화",
-      "kr": "아군피해강화",
-      "parent": "새로고침 0회1회2회3회4회5회6회7회8회9회10회",
-      "priority": 28,
       "ru": "Урон соратников",
+      "kr": "아군피해강화",
+      "parent": null,
+      "priority": 30,
       "tags": [
-        "context"
-      ]
-    },
-    {
-      "en": "Additional Damage",
-      "kr": "추가피해",
-      "parent": "Ввод характеристик рунита",
-      "priority": 28,
-      "ru": "Доп. Урон",
-      "tags": [
-        "context"
+        "interface",
+        "site",
+        "term",
+        "tool",
+        "stat"
       ]
     },
     {
       "en": "공격력",
+      "ru": "Сила атаки",
       "kr": "공격력",
       "parent": "Ввод характеристик рунита",
       "priority": 28,
-      "ru": "Сила атаки",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "혼돈",
+      "ru": "Очки Хаоса",
       "kr": "혼돈",
       "parent": "등장 옵션 4개 선택",
       "priority": 28,
-      "ru": "Очки Хаоса",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "질서",
+      "ru": "Очки Порядка",
       "kr": "질서",
       "parent": "젬 가공 시뮬레이터 - 젬파고",
       "priority": 28,
-      "ru": "Очки Порядка",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "질서 포인트",
-      "kr": "질서 포인트",
-      "parent": "질서 포인트",
-      "priority": 28,
       "ru": "Очки Порядка",
+      "kr": "질서 포인트",
+      "parent": null,
+      "priority": 30,
       "tags": [
-        "context"
+        "interface",
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "젬파고",
-      "kr": "젬파고",
-      "parent": "젬 가공 시뮬레이터 - 젬파고",
-      "priority": 28,
       "ru": "Gempago",
+      "kr": "젬파고",
+      "parent": null,
+      "priority": 28,
       "tags": [
-        "context"
+        "interface",
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "의지력 효율",
+      "ru": "Экономия заряда",
       "kr": "의지력 효율",
       "parent": "의지력 효율",
       "priority": 28,
-      "ru": "Экономия заряда",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "의지력",
+      "ru": "Заряд",
       "kr": "의지력",
-      "parent": "⚙️ 사용자 젬 상태 입력",
-      "priority": 28,
-      "ru": "Экономия заряда",
+      "parent": null,
+      "priority": 26,
       "tags": [
-        "context"
+        "interface",
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "수동 편집",
+      "ru": "назначить вручную",
       "kr": "수동 편집",
       "parent": "수동 편집",
       "priority": 28,
-      "ru": "назначить вручную",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "자동 추적 중",
+      "ru": "Автоматически",
       "kr": "자동 추적 중",
       "parent": "자동 추적 중",
       "priority": 28,
-      "ru": "Автоматически",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "젬 초기 옵션",
+      "ru": "Приоритет характеристик рунита",
       "kr": "젬 초기 옵션",
       "parent": "젬 초기 옵션",
       "priority": 28,
-      "ru": "Приоритет характеристик рунита",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "서포터",
+      "ru": "Сап",
       "kr": "서포터",
       "parent": "수동 편집",
       "priority": 28,
-      "ru": "Сап",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "딜러",
+      "ru": "ДД",
       "kr": "딜러",
       "parent": "공격력",
       "priority": 28,
-      "ru": "ДД",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "포지션 설정",
+      "ru": "Роль персонажа",
       "kr": "포지션 설정",
       "parent": "포지션 설정",
       "priority": 28,
-      "ru": "Роль персонажа",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "사용자 설정",
+      "ru": "Пользовательские настройки",
       "kr": "사용자 설정",
       "parent": "사용자 설정",
       "priority": 28,
-      "ru": "Пользовательские настройки",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "다시 실행",
+      "ru": "Вперёд",
       "kr": "다시 실행",
-      "parent": "Рунит 초기 옵션",
+      "parent": null,
       "priority": 28,
-      "ru": "Вперед",
       "tags": [
-        "context"
+        "interface",
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "실행 취소",
-      "kr": "실행 취소",
-      "parent": "사용자 설정",
-      "priority": 28,
       "ru": "Назад",
+      "kr": "실행 취소",
+      "parent": null,
+      "priority": 28,
       "tags": [
-        "context"
+        "interface",
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "조작 히스토리",
+      "ru": "История действий",
       "kr": "조작 히스토리",
       "parent": "조작 히스토리",
       "priority": 28,
-      "ru": "История действий",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "사용자 젬 상태 입력",
+      "ru": "Ввод характеристик рунита",
       "kr": "사용자 젬 상태 입력",
       "parent": "⚙️ 사용자 젬 상태 입력",
       "priority": 28,
-      "ru": "Ввод характеристик рунита",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "붕괴",
-      "kr": "붕괴",
-      "parent": "포지션 설정",
-      "priority": 32,
       "ru": "Крах",
+      "kr": "붕괴",
+      "parent": null,
+      "priority": 32,
       "tags": [
-        "term",
         "interface",
-        "context"
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "왜곡",
-      "kr": "왜곡",
-      "parent": "포지션 설정",
-      "priority": 32,
       "ru": "Раздор",
+      "kr": "왜곡",
+      "parent": null,
+      "priority": 32,
       "tags": [
-        "term",
         "interface",
-        "context"
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "침식",
-      "kr": "침식",
-      "parent": "포지션 설정",
-      "priority": 32,
       "ru": "Ропот",
+      "kr": "침식",
+      "parent": null,
+      "priority": 32,
       "tags": [
-        "term",
         "interface",
-        "context"
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "불변",
-      "kr": "불변",
       "ru": "Истина",
+      "kr": "불변",
+      "priority": 32,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 32
+      ]
     },
     {
       "en": "견고",
-      "kr": "견고",
-      "parent": "사용자 설정",
-      "priority": 32,
       "ru": "Закон",
+      "kr": "견고",
+      "parent": null,
+      "priority": 32,
       "tags": [
-        "term",
         "interface",
-        "context"
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "안정",
-      "kr": "안정",
-      "parent": "Gempago",
-      "priority": 32,
       "ru": "Обет",
+      "kr": "안정",
+      "parent": null,
+      "priority": 32,
       "tags": [
-        "term",
         "interface",
-        "context"
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "영웅",
+      "ru": "Эпический",
       "kr": "영웅",
       "parent": "Калькулятор обработки рунитов - Gempago",
       "priority": 28,
-      "ru": "Эпический",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "희귀",
+      "ru": "Редкий",
       "kr": "희귀",
       "parent": "Качество рунита",
       "priority": 28,
-      "ru": "Редкий",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "고급",
+      "ru": "Необычный",
       "kr": "고급",
       "parent": "Gempago",
       "priority": 28,
-      "ru": "Необычный",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "젬 종류",
+      "ru": "Тип рунита",
       "kr": "젬 종류",
       "parent": "젬 종류",
       "priority": 28,
-      "ru": "Тип рунита",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "젬 등급",
+      "ru": "Качество рунита",
       "kr": "젬 등급",
       "parent": "젬 등급",
       "priority": 28,
-      "ru": "Качество рунита",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "젬",
+      "ru": "Рунит",
       "kr": "젬",
       "parent": "젬 등급",
       "priority": 28,
-      "ru": "Рунит",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "수동 입력",
+      "ru": "Ручной ввод",
       "kr": "수동 입력",
       "parent": "⚙️ 사용자 젬 상태 입력",
       "priority": 28,
-      "ru": "Ручной ввод",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "화면인식",
-      "kr": "화면인식",
-      "parent": "화면인식 Gempago",
-      "priority": 28,
       "ru": "Распознавание экрана",
+      "kr": "화면인식",
+      "parent": null,
+      "priority": 28,
       "tags": [
-        "context"
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "화면 인식",
+      "ru": "Распознавание экрана",
       "kr": "화면 인식",
-      "parent": "화면 공유 시작 버튼을 누르고 LOST ARK 프로그램을 선택해주세요.",
+      "parent": null,
       "priority": 28,
-      "ru": "Демонстрация экрана",
       "tags": [
-        "context"
+        "interface",
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
       "en": "젬 가공 시뮬레이터",
+      "ru": "Калькулятор обработки рунитов",
       "kr": "젬 가공 시뮬레이터",
       "parent": "젬 가공 시뮬레이터 - 젬파고",
       "priority": 28,
-      "ru": "Калькулятор обработки рунитов",
       "tags": [
-        "context"
+        "context",
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "Gempago",
-      "kr": "젬파고",
-      "parent": "젬 가공 시뮬레이터 - 젬파고",
-      "priority": 28,
       "ru": "Gempago",
+      "kr": "젬파고",
+      "parent": null,
+      "priority": 28,
       "tags": [
-        "context"
+        "interface",
+        "site",
+        "tool"
       ]
     },
     {
       "en": "Appearing Options",
-      "kr": "등장 옵션 4개 선택",
       "ru": "Выбор 4 вариантов",
+      "kr": "등장 옵션 4개 선택",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Status Maintain",
-      "kr": "상태유지",
       "ru": "Без изменений",
+      "kr": "상태유지",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Convert",
-      "kr": "변환",
       "ru": "Замена",
+      "kr": "변환",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Refresh",
-      "kr": "새로고침",
       "ru": "Обновить",
+      "kr": "새로고침",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Cost",
-      "kr": "비용",
       "ru": "Стоимость",
+      "kr": "비용",
+      "priority": 28,
       "tags": [
         "interface",
+        "short",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Reset Possible",
-      "kr": "초기화 가능",
       "ru": "Можно сбросить",
+      "kr": "초기화 가능",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Reset Impossible",
-      "kr": "초기화 불가",
       "ru": "Нельзя сбросить",
+      "kr": "초기화 불가",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Reset",
-      "kr": "초기화",
       "ru": "Сброс",
+      "kr": "초기화",
+      "priority": 28,
       "tags": [
         "interface",
+        "short",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Crafting Cost",
-      "kr": "가공 비용",
       "ru": "Стоимость обработки",
+      "kr": "가공 비용",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Remaining Crafts",
-      "kr": "남은 가공",
       "ru": "Осталось попыток",
+      "kr": "남은 가공",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Option 1",
-      "kr": "1번 옵션",
       "ru": "Вариант 1",
+      "kr": "1번 옵션",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Option 2",
-      "kr": "2번 옵션",
       "ru": "Вариант 2",
+      "kr": "2번 옵션",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Option 3",
-      "kr": "3번 옵션",
       "ru": "Вариант 3",
+      "kr": "3번 옵션",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Option 4",
-      "kr": "4번 옵션",
       "ru": "Вариант 4",
+      "kr": "4번 옵션",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Select 4 options hint",
-      "kr": "등장 옵션 4개를 선택하면 행동 추천이 표시됩니다",
       "ru": "Выберите 4 варианта — появится рекомендация",
+      "kr": "등장 옵션 4개를 선택하면 행동 추천이 표시됩니다",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "Click to apply",
-      "kr": "클릭하면 젬 상태에 즉시 반영됩니다",
       "ru": "Клик сразу применяется к руниту",
+      "kr": "클릭하면 젬 상태에 즉시 반영됩니다",
+      "priority": 28,
       "tags": [
         "interface",
-        "term"
-      ],
-      "priority": 28
-    },
-    {
-      "en": "Boss Damage",
-      "ru": "Урон по Боссам",
-      "kr": "보스피해",
-      "tags": [
-        "interface",
-        "term"
-      ],
-      "priority": 28
+        "site",
+        "term",
+        "tool"
+      ]
     },
     {
       "en": "Processing",
-      "kr": "가공하기",
       "ru": "Обработка",
+      "kr": "가공하기",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
-    },
-    {
-      "en": "Defense Reduction",
-      "kr": "방어력 감소",
-      "ru": "Износ",
-      "tags": [
-        "interface",
-        "term"
-      ],
-      "priority": 30
+      ]
     },
     {
       "en": "포기(분해)",
-      "kr": "포기(분해)",
       "ru": "Разобрать",
+      "kr": "포기(분해)",
+      "priority": 28,
       "tags": [
         "interface",
-        "term"
-      ],
-      "priority": 28
+        "site",
+        "term",
+        "tool"
+      ]
     },
     {
       "en": "Increase",
-      "kr": "증가",
       "ru": "+100%",
+      "kr": "증가",
+      "priority": 22,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 22
+      ]
     },
     {
       "en": "Decrease",
-      "kr": "감소",
       "ru": "-100%",
+      "kr": "감소",
+      "priority": 22,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 22
+      ]
     },
     {
       "en": "Recommended Strategy",
-      "kr": "추천 전략",
       "ru": "Рекомендуемая стратегия",
+      "kr": "추천 전략",
+      "priority": 28,
       "tags": [
         "interface",
+        "site",
         "term"
-      ],
-      "priority": 28
+      ]
     },
     {
       "en": "포기(완료)",
-      "kr": "포기(완료)",
       "ru": "Сдаться",
+      "kr": "포기(완료)",
+      "priority": 28,
       "tags": [
         "interface",
-        "term"
-      ],
-      "priority": 28
+        "site",
+        "term",
+        "tool"
+      ]
     },
     {
       "en": "도달가능성",
+      "ru": "Вероятность успеха",
       "kr": "도달가능성",
-      "ru": "Шанс",
+      "priority": 28,
       "tags": [
         "interface",
-        "term"
-      ],
-      "priority": 28
+        "site",
+        "term",
+        "tool"
+      ]
     },
     {
       "en": "Class Loadouts",
-      "kr": "클래스 장비 구성",
       "ru": "Классовые сборки",
+      "kr": "클래스 장비 구성",
       "tags": [
         "interface",
+        "site",
         "term"
       ]
     },
     {
-      "en": "Strength",
-      "kr": "힘",
-      "parent": "+",
-      "priority": 28,
-      "ru": "Сила",
-      "tags": [
-        "context"
-      ]
-    },
-    {
-      "en": "Drops of Ether",
-      "kr": "구동",
-      "ru": "Собиратель душ"
-    },
-    {
       "en": "Simulator",
+      "ru": "Симулятор",
       "kr": "시뮬레이터",
-      "ru": "Симулятор"
+      "tags": [
+        "interface",
+        "site",
+        "term"
+      ]
     },
     {
       "en": "Stats",
+      "ru": "Статистика",
       "kr": "능력치",
-      "ru": "Статистика"
-    },
-    {
-      "en": "Ability cooldown",
-      "kr": "스킬의 재사용 대기 시간이",
-      "parent": "2%",
-      "priority": 28,
-      "ru": "Время восстановления умений",
       "tags": [
-        "context"
-      ]
-    },
-    {
-      "en": "Health recovery",
-      "kr": "전투 중 생명력 회복량",
-      "parent": "+",
-      "priority": 28,
-      "ru": "Восстанов. здоровья",
-      "tags": [
-        "context"
+        "interface",
+        "short",
+        "site",
+        "term"
       ]
     },
     {
       "en": "Auction",
-      "kr": "시세",
       "ru": "Аукцион",
+      "kr": "시세",
       "tags": [
         "interface",
+        "site",
         "term"
       ]
     },
     {
-      "en": "Reduction CD",
-      "kr": "재사용 대기시간 감소",
-      "parent": "재사용 대기시간 감소",
-      "priority": 28,
-      "ru": "Сокращение КД",
+      "en": "(우선 소모)",
+      "kr": "(우선 소모)",
+      "ru": "(Сначала)",
       "tags": [
-        "context"
+        "interface",
+        "site",
+        "term",
+        "tool"
       ]
     },
     {
-      "en": "Agility",
-      "kr": "민첩",
-      "ru": "Ловкость",
+      "en": "구매 추천",
+      "kr": "구매 추천",
+      "ru": "для этой цели",
       "tags": [
         "interface",
-        "term"
+        "site",
+        "term",
+        "tool"
       ]
+    },
+    {
+      "en": "분해 후",
+      "kr": "분해 후",
+      "ru": "Рекомендуется",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "재화",
+      "kr": "재화",
+      "ru": "Валюта",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "체크 해제 시 0골드",
+      "kr": "체크 해제 시 0골드",
+      "ru": "Снять галочку = 0 голд",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "가격 수동 설정",
+      "kr": "가격 수동 설정",
+      "ru": "Ручная настройка цены",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "95 크리스탈 기준",
+      "kr": "95 크리스탈 기준",
+      "ru": "95 кристаллов",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "크리스탈",
+      "kr": "크리스탈",
+      "ru": "Кристалл",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "페온",
+      "kr": "페온",
+      "ru": "Феон",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "현재 최저",
+      "kr": "현재 최저",
+      "ru": "Текущий минимум",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "전일 평균",
+      "kr": "전일 평균",
+      "ru": "Среднее за день",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "재화 가치 설정",
+      "kr": "재화 가치 설정",
+      "ru": "Настройка стоимости",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "달성 비용",
+      "kr": "달성 비용",
+      "ru": "Стоимость достижения",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "추천강도",
+      "kr": "추천강도",
+      "ru": "Степень рекомендации",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "고대",
+      "kr": "고대",
+      "ru": "Древний",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "grade"
+      ]
+    },
+    {
+      "en": "유물",
+      "kr": "유물",
+      "ru": "Реликтовый",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "grade"
+      ]
+    },
+    {
+      "en": "상 (사장님)",
+      "kr": "상 (사장님)",
+      "ru": "Топ (Максимальная эффективность)",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "만G",
+      "kr": "만G",
+      "ru": "К золота",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "하 (발사대)",
+      "kr": "하 (발사대)",
+      "ru": "Стартовый (Приоритет: активация ядра)",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "목표",
+      "kr": "목표",
+      "ru": "Цель",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "등장 확률:",
+      "kr": "등장 확률:",
+      "ru": "Вероятность появления:",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "아군공격력강화",
+      "kr": "아군공격력강화",
+      "ru": "Сила атаки соратников",
+      "parent": null,
+      "priority": 30,
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool",
+        "stat"
+      ]
+    },
+    {
+      "en": "10회",
+      "kr": "10회",
+      "ru": "10 раз",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "9회",
+      "kr": "9회",
+      "ru": "9 раз",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "8회",
+      "kr": "8회",
+      "ru": "8 раз",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "7회",
+      "kr": "7회",
+      "ru": "7 раз",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "6회",
+      "kr": "6회",
+      "ru": "6 раз",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "5회",
+      "kr": "5회",
+      "ru": "5 раз",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "4회",
+      "kr": "4회",
+      "ru": "4 раза",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "3회",
+      "kr": "3회",
+      "ru": "3 раза",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "2회",
+      "kr": "2회",
+      "ru": "2 раза",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "1회",
+      "kr": "1회",
+      "ru": "1 раз",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "0회",
+      "kr": "0회",
+      "ru": "0 раз",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "취소",
+      "kr": "취소",
+      "ru": "Отмена",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "확인",
+      "kr": "확인",
+      "ru": "Применить",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ]
+    },
+    {
+      "en": "초기화",
+      "kr": "초기화",
+      "ru": "Сброс",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool",
+        "short"
+      ],
+      "priority": 26
+    },
+    {
+      "en": "추가피해",
+      "kr": "추가피해",
+      "ru": "Доп. Урон",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool",
+        "stat"
+      ],
+      "priority": 30
+    },
+    {
+      "en": "비용",
+      "kr": "비용",
+      "ru": "Стоимость",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool",
+        "short"
+      ],
+      "priority": 26
+    },
+    {
+      "en": "혼돈포인트",
+      "kr": "혼돈포인트",
+      "ru": "Очки Хаоса",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 30
+    },
+    {
+      "en": "질서포인트",
+      "kr": "질서포인트",
+      "ru": "Очки Порядка",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 30
+    },
+    {
+      "en": "아군 피해 강화",
+      "kr": "아군 피해 강화",
+      "ru": "Урон соратников",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool",
+        "stat"
+      ],
+      "priority": 30
     }
   ]
 }
