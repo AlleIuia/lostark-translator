@@ -985,16 +985,17 @@
     },
     {
       "en": "Mid Grade",
-      "ru": "Средний",
+      "ru": "средний",
       "kr": "중",
-      "priority": 20,
+      "priority": 15,
       "tags": [
         "grade",
         "interface",
         "short",
         "site",
         "term"
-      ]
+      ],
+      "parent": null
     },
     {
       "en": "Low Grade",
@@ -1640,10 +1641,9 @@
       "en": "수동 편집",
       "ru": "назначить вручную",
       "kr": "수동 편집",
-      "parent": "수동 편집",
+      "parent": null,
       "priority": 28,
       "tags": [
-        "context",
         "interface",
         "site",
         "tool"
@@ -1925,11 +1925,11 @@
       "ru": "Рунит",
       "kr": "젬",
       "parent": "젬 등급",
-      "priority": 28,
+      "priority": 26,
       "tags": [
-        "context",
         "interface",
         "site",
+        "term",
         "tool"
       ]
     },
@@ -1937,12 +1937,12 @@
       "en": "수동 입력",
       "ru": "Ручной ввод",
       "kr": "수동 입력",
-      "parent": "⚙️ 사용자 젬 상태 입력",
-      "priority": 28,
+      "parent": null,
+      "priority": 30,
       "tags": [
-        "context",
         "interface",
         "site",
+        "term",
         "tool"
       ]
     },
@@ -2030,15 +2030,17 @@
       ]
     },
     {
-      "en": "Refresh",
+      "en": "새로고침",
       "ru": "Обновить",
       "kr": "새로고침",
-      "priority": 28,
+      "priority": 32,
       "tags": [
         "interface",
         "site",
-        "term"
-      ]
+        "term",
+        "tool"
+      ],
+      "parent": null
     },
     {
       "en": "Cost",
@@ -2310,24 +2312,27 @@
     {
       "en": "구매 추천",
       "kr": "구매 추천",
-      "ru": "для этой цели",
+      "ru": "Рекомендация к покупке",
       "tags": [
         "interface",
         "site",
         "term",
         "tool"
-      ]
+      ],
+      "priority": 22,
+      "parent": null
     },
     {
       "en": "분해 후",
       "kr": "분해 후",
-      "ru": "Рекомендуется",
+      "ru": "после разбора",
       "tags": [
         "interface",
         "site",
         "term",
         "tool"
-      ]
+      ],
+      "priority": 18
     },
     {
       "en": "재화",
@@ -2486,13 +2491,15 @@
     {
       "en": "만G",
       "kr": "만G",
-      "ru": "К золота",
+      "ru": "x10к G",
       "tags": [
         "interface",
         "site",
         "term",
         "tool"
-      ]
+      ],
+      "priority": 25,
+      "parent": null
     },
     {
       "en": "하 (발사대)",
@@ -2759,6 +2766,198 @@
         "stat"
       ],
       "priority": 30
+    },
+    {
+      "en": "Heroic Gem",
+      "kr": "영웅 젬",
+      "ru": "Эпический рунит",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool",
+        "grade"
+      ],
+      "priority": 30
+    },
+    {
+      "en": "목표: 중",
+      "kr": "목표: 중",
+      "ru": "Цель: средний эффект",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 45,
+      "parent": null
+    },
+    {
+      "en": "영웅젬",
+      "kr": "영웅젬",
+      "ru": "Эпический рунит",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool",
+        "grade"
+      ],
+      "priority": 30
+    },
+    {
+      "en": "목표:중",
+      "kr": "목표:중",
+      "ru": "Цель: средний эффект",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 45,
+      "parent": null
+    },
+    {
+      "en": "분해 후 희귀 젬 구매 추천",
+      "kr": "분해 후 희귀 젬 구매 추천",
+      "ru": "Рекомендуется купить редкий рунит",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 45,
+      "parent": null
+    },
+    {
+      "en": "만 G",
+      "kr": "만 G",
+      "ru": "x10к G",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 25,
+      "parent": null
+    },
+    {
+      "en": "목표 : 중",
+      "kr": "목표 : 중",
+      "ru": "Цель: средний эффект",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 45,
+      "parent": null
+    },
+    {
+      "en": "목표 : 하 (발사대)",
+      "kr": "목표 : 하 (발사대)",
+      "ru": "Цель: старт (ядро)",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 45,
+      "parent": null
+    },
+    {
+      "en": "목표: 하 (발사대)",
+      "kr": "목표: 하 (발사대)",
+      "ru": "Цель: старт (ядро)",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 45,
+      "parent": null
+    },
+    {
+      "en": "목표 : 상 (사장님)",
+      "kr": "목표 : 상 (사장님)",
+      "ru": "Цель: топ (макс.)",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 45,
+      "parent": null
+    },
+    {
+      "en": "목표: 상 (사장님)",
+      "kr": "목표: 상 (사장님)",
+      "ru": "Цель: топ (макс.)",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 45,
+      "parent": null
+    },
+    {
+      "en": "완료 후 희귀 젬 구매 추천",
+      "kr": "완료 후 희귀 젬 구매 추천",
+      "ru": "Рекомендуется купить редкий рунит",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 45,
+      "parent": null
+    },
+    {
+      "en": "분해 후 영웅 젬 구매 추천",
+      "kr": "분해 후 영웅 젬 구매 추천",
+      "ru": "Рекомендуется купить эпический рунит",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 45
+    },
+    {
+      "en": "완료 후 영웅 젬 구매 추천",
+      "kr": "완료 후 영웅 젬 구매 추천",
+      "ru": "Рекомендуется купить эпический рунит",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 45
+    },
+    {
+      "en": "억G",
+      "kr": "억G",
+      "ru": "x100м G",
+      "tags": [
+        "interface",
+        "site",
+        "term",
+        "tool"
+      ],
+      "priority": 25
     }
   ]
 }

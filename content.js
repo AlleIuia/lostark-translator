@@ -705,10 +705,25 @@
     return chosen;
   }
 
+  
+  function applyBuiltinNumericPatterns(text) {
+    if (!text) return text;
+    // Korean large-number gold suffixes (digits always vary — not dictionary keys)
+    // 28.0만G → 28.0x10к G | 1.5억G → 1.5x100м G
+    let out = String(text);
+    out = out.replace(/(\d+(?:[.,]\d+)?)\s*억\s*[GgＧｇ]/g, '$1x100м G');
+    out = out.replace(/(\d+(?:[.,]\d+)?)\s*억\s*골드/g, '$1x100м золота');
+    out = out.replace(/(\d+(?:[.,]\d+)?)\s*만\s*[GgＧｇ]/g, '$1x10к G');
+    out = out.replace(/(\d+(?:[.,]\d+)?)\s*만\s*골드/g, '$1x10к золота');
+    return out;
+  }
+
   function doTranslatePlain(text, surrounding) {
     if (!text || !text.trim()) return null;
+    const beforeNum = text;
+    text = applyBuiltinNumericPatterns(text);
     let result = text;
-    let matchCount = 0;
+    let matchCount = text !== beforeNum ? 1 : 0;
     if (compiledRegex) {
       const hits = collectLongestMatches(result);
       if (hits.length) {
@@ -899,8 +914,14 @@
 
     if (!force && PROCESSED.has(node)) return;
 
-    const text = node.textContent;
+    let text = node.textContent;
     if (!text || !text.trim()) return;
+    // numeric suffixes (28.0만G) before dictionary match
+    const textNum = applyBuiltinNumericPatterns(text);
+    if (textNum !== text) {
+      node.textContent = textNum;
+      text = textNum;
+    }
     const surrounding = getSurroundingText(node);
 
     const trimmed = text.trim();
@@ -919,6 +940,7 @@
         if (mode === 'brackets') out = lead + trimmed + ' (' + translated + ')' + trail;
         else out = lead + translated + trail;
         if (canUseHostMode(parent, node)) {
+          out = applyBuiltinNumericPatterns(out);
           node.textContent = out;
           if (parent.nodeType === Node.ELEMENT_NODE) {
             parent.classList.add('notranslate');
@@ -963,6 +985,7 @@
       }
       if (out !== text) {
         if (!SVG_ORIG.has(node)) SVG_ORIG.set(node, text);
+        out = applyBuiltinNumericPatterns(out);
         node.textContent = out;
         translatedCount += matchCount;
       }
@@ -1034,6 +1057,7 @@
         }
       }
       if (!SVG_ORIG.has(node)) SVG_ORIG.set(node, text);
+      out = applyBuiltinNumericPatterns(out);
       node.textContent = out;
       if (parent.nodeType === Node.ELEMENT_NODE) {
         if (mode === 'annotate' && termParts.length === 1) {
@@ -1075,6 +1099,7 @@
         }
       }
       if (!SVG_ORIG.has(node)) SVG_ORIG.set(node, text);
+      out = applyBuiltinNumericPatterns(out);
       node.textContent = out;
       if (parent.nodeType === Node.ELEMENT_NODE) {
         if (mode === 'annotate' && termParts.length) {
@@ -1138,10 +1163,10 @@
     }
   }
 
-  function translateElementTree(root) {
+  function translateElementTree(root, force) {
     if (!root) return;
     if (root.nodeType === Node.TEXT_NODE) {
-      translateNode(root);
+      translateNode(root, force);
       return;
     }
     if (root.nodeType === Node.ELEMENT_NODE) {
@@ -1153,7 +1178,7 @@
         textNodes.push(node);
       }
       for (const tn of textNodes) {
-        translateNode(tn);
+        translateNode(tn, force);
       }
       if (root.shadowRoot) {
         const shadowText = [];
@@ -1172,7 +1197,7 @@
   function translateDocument() {
     if (!siteAllowed) return;
     translatedCount = 0;
-    translateElementTree(document.body);
+    translateElementTree(document.body, true);
     try {
       document.body.querySelectorAll('span.lt-term').forEach(ensureSpaceAroundTerm);
     } catch (_) {}
@@ -1345,6 +1370,13 @@
     if (observer) observer.disconnect();
     const target = document.documentElement || document.body;
     if (!target) return;
+    // SPA/hydration: content often appears after first paint
+    try {
+      clearTimeout(window.__ltDelayedRescan1);
+      clearTimeout(window.__ltDelayedRescan2);
+      window.__ltDelayedRescan1 = setTimeout(function () { if (isEnabled && siteAllowed) translateDocument(); }, 400);
+      window.__ltDelayedRescan2 = setTimeout(function () { if (isEnabled && siteAllowed) translateDocument(); }, 1500);
+    } catch (_) {}
     observer = new MutationObserver((mutations) => {
       if (!isEnabled || !siteAllowed) return;
       let relevant = false;
