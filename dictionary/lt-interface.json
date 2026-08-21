@@ -984,20 +984,6 @@
       ]
     },
     {
-      "en": "Mid Grade",
-      "ru": "средний",
-      "kr": "중",
-      "priority": 15,
-      "tags": [
-        "grade",
-        "interface",
-        "short",
-        "site",
-        "term"
-      ],
-      "parent": null
-    },
-    {
       "en": "Low Grade",
       "ru": "Н",
       "kr": "하",
@@ -2209,6 +2195,9 @@
         "interface",
         "site",
         "term"
+      ],
+      "sites": [
+        "loatto.kr"
       ]
     },
     {
@@ -2220,6 +2209,9 @@
         "interface",
         "site",
         "term"
+      ],
+      "sites": [
+        "loatto.kr"
       ]
     },
     {

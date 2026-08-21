@@ -787,10 +787,10 @@
       "kr": "질풍",
       "tags": [
         "game",
-        "gem",
         "interface",
         "rune"
-      ]
+      ],
+      "priority": 40
     },
     {
       "en": "Conviction",
@@ -1223,13 +1223,14 @@
       "en": "Weapon",
       "ru": "Оружие",
       "kr": "무기",
-      "priority": 22,
+      "priority": 35,
       "tags": [
-        "accessory",
         "game",
         "interface",
-        "item"
-      ]
+        "item",
+        "slot"
+      ],
+      "parent": null
     },
     {
       "en": "Reduction CD",

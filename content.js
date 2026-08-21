@@ -6,6 +6,8 @@
   let compiledRegex = null;
   let isEnabled = true;
   let siteAllowed = true;
+  let enabledDicts = null; // null = all
+  let disabledDicts = null;
   let termMode = 'replace';
   let observer = null;
   let translatedCount = 0;
@@ -107,7 +109,7 @@
         chrome.storage.local.get(['siteProfiles'], (loc2) => {
           chrome.storage.sync.get([
             'isEnabled','siteMode','allowedSites','blockedSites','developerSites','termMode',
-            'termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites'
+            'termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites','termModeDeferredSites','termModeDeferredSites'
           ], (syncResult) => {
             const merged = Object.assign({}, syncResult, { siteProfiles: loc2.siteProfiles || {} });
             isEnabled = merged.isEnabled !== false;
@@ -278,10 +280,24 @@
     return null;
   }
 
+  function applyDictFiltersFromProfile(profile) {
+    enabledDicts = null;
+    disabledDicts = null;
+    if (!profile) return;
+    if (Array.isArray(profile.enabledDicts) && profile.enabledDicts.length) {
+      enabledDicts = profile.enabledDicts.map(function (x) { return String(x).toLowerCase(); });
+    }
+    if (Array.isArray(profile.disabledDicts) && profile.disabledDicts.length) {
+      disabledDicts = profile.disabledDicts.map(function (x) { return String(x).toLowerCase(); });
+    }
+  }
+
   function resolveTermMode(result) {
     const hostname = location.hostname;
     const profile = getProfileForHost(result.siteProfiles, hostname);
+    applyDictFiltersFromProfile(profile);
     if (profile && profile.termMode) return profile.termMode;
+    if (domainInList(hostname, result.termModeDeferredSites)) return 'deferred';
     if (domainInList(hostname, result.termModeAnnotateSites)) return 'annotate';
     if (domainInList(hostname, result.termModeBracketsSites)) return 'brackets';
     if (domainInList(hostname, result.termModeReplaceSites)) return 'replace';
@@ -388,7 +404,8 @@
   }
 
   function isItemSlotVariant(v) {
-    return hasTag(v, 'item') && hasTag(v, 'interface', 'game');
+    if (hasTag(v, 'slot')) return true;
+    return hasTag(v, 'item') && hasTag(v, 'interface', 'game') && !isCoreVariant(v);
   }
 
   function needsStrictContext(v) {
@@ -481,11 +498,58 @@
     return /코어|core|ядр|ядер|혼돈|질서|chaos|order|ark\s*grid|아크\s*그리드|아크그리드|созвезд|그리드|\bgrid\b|порядок|хаос|flashy\s*attack|smoldering\s*strike|stable\s*attack|swift\s*attack|echoing\s*(brand|steel|death)|absorbing\s*strike|crushing\s*strike|faith\s*enhancement|flowing\s*magick|fortitude\s*enhancement|order\s*(sun|moon|star)|chaos\s*(sun|moon|star)|солнце|луна|звезда|arkgrid|class\s*core|classcore/i.test(t);
   }
 
-  function hasEquipContext(node, surrounding) {
+  function hasCoreListContext(node, surrounding) {
     const t = collectNearbyText(node, surrounding, 6);
-    // Equipment / armory signals — not ark grid cores
-    if (hasArkCoreContext(node, surrounding)) return false;
-    return /armory|equip|equipment|weapon\s*slot|item\s*level|\bilvl\b|quality|honing|\+\s*\d{1,2}\b|tier\s*[0-9e]|t[1-4]\b|장비|무기|품질|재련|아이템\s*레벨|equipitem|chaItem|ItemGrade|QualityBar/i.test(t);
+    // Explicit ark-grid ranking / core list UI (loawa tables, ags lists)
+    try {
+      let el = node && (node.nodeType === Node.TEXT_NODE ? node.parentElement : node);
+      let d = 0;
+      while (el && d < 12) {
+        if (el.getAttribute) {
+          const col = el.getAttribute('data-col') || '';
+          if (/arkgrid|ark_grid|core/i.test(col)) return true;
+        }
+        const cls = (el.className && String(el.className)) || '';
+        if (/arkgrid|ark-grid|ark_grid/i.test(cls)) return true;
+        el = el.parentElement;
+        d++;
+      }
+    } catch (_) {}
+    // Core icons use_13_* next to points (19P / 20P)
+    if (/use_13_\d+/i.test(t) && /\b\d{1,2}P\b/i.test(t)) return true;
+    const names = (t.match(/\b(Weapon|Attack|Salvation|Life|Defense|Speed|Flashy Attack|Stable Attack|Swift Attack|Smoldering Strike|Absorbing Strike|Crushing Strike)\b/gi) || []);
+    if (names.length >= 2) return true;
+    if (/\d+(?:[.,]\d+)?%/.test(t) && /\b(Weapon|Attack|Salvation|Life|Defense|Speed)\b/i.test(t)) {
+      if (/use_13_\d+|bg-blue-300|divide-neutral|bg-surface-950|rounded-xs/i.test(t)) return true;
+    }
+    if ((t.match(/무기|공격|구원|생명|방어|속도/g) || []).length >= 2 && (/\d+(?:[.,]\d+)?%/.test(t) || /\b\d{1,2}P\b/i.test(t))) return true;
+    return false;
+  }
+
+  function hasEquipContext(node, surrounding) {
+    // Ark-grid / core list never counts as equipment
+    if (hasArkCoreContext(node, surrounding) || hasCoreListContext(node, surrounding)) return false;
+
+    const t = collectNearbyText(node, surrounding, 5);
+    // Strong equipment UI only — do NOT use bare +N from ranking tables
+    if (/equipment-grid|equip-grid|armory|equipitem|chaItem|ItemGrade|QualityBar|quality-bar/i.test(t)) return true;
+    if (/\bHoning\b|\bIlvl\b|item\s*level|아이템\s*레벨|재련/i.test(t)) return true;
+    // Gear slot cluster (Head/Chest/...) with Tier — real armory panel
+    if (/\b(Head|Shoulder|Chest|Pants|Gloves|Necklace|Earring|Ring|Stone|Bracelet)\b/i.test(t) && /\b(Tier|T[1-4]|Ilvl|Honing)\b/i.test(t)) return true;
+    try {
+      let el = node && (node.nodeType === Node.TEXT_NODE ? node.parentElement : node);
+      let d = 0;
+      while (el && d < 10) {
+        const cls = (el.className && String(el.className)) || '';
+        if (/equipment-grid|armory|equip-grid|ItemProfile|ChaItem|QualityBar/i.test(cls)) return true;
+        if (el.closest && el.closest('.equipment-grid, [class*="equipment-grid"], [class*="Armory"]')) return true;
+        // ranking table ark column — not equip
+        if (el.getAttribute && /arkgrid/i.test(el.getAttribute('data-col') || '')) return false;
+        el = el.parentElement;
+        d++;
+      }
+    } catch (_) {}
+    return false;
   }
 
   function hasGemItemContext(surrounding, node) {
@@ -522,14 +586,47 @@
     return /build|engraving|class\s*engraving|각인|ветк|class\s*build|spec\b|специализа|build\s*name|engravings/i.test(t);
   }
 
+
+  function hostMatchesDomainList(hostname, list) {
+    if (!list || !list.length) return false;
+    const host = String(hostname || location.hostname || '').replace(/^www\./, '').toLowerCase();
+    return list.some(function (d) {
+      const dom = String(d || '').trim().toLowerCase().replace(/^www\./, '');
+      if (!dom) return false;
+      return host === dom || host.endsWith('.' + dom);
+    });
+  }
+
+  function variantAllowedOnHost(v, hostname) {
+    if (!v || typeof v !== 'object') return true;
+    const host = hostname || location.hostname;
+    if (v.sites && v.sites.length) {
+      if (!hostMatchesDomainList(host, v.sites)) return false;
+    }
+    if (v.sitesExclude && v.sitesExclude.length) {
+      if (hostMatchesDomainList(host, v.sitesExclude)) return false;
+    }
+    // Per-site dictionary file filters (siteProfiles.enabledDicts / disabledDicts)
+    const dkey = v.dict ? String(v.dict).toLowerCase() : '';
+    if (enabledDicts && enabledDicts.length) {
+      if (!dkey || enabledDicts.indexOf(dkey) === -1) return false;
+    }
+    if (disabledDicts && disabledDicts.length) {
+      if (dkey && disabledDicts.indexOf(dkey) !== -1) return false;
+    }
+    return true;
+  }
+
   function getVariantsForMatch(match) {
     const all = dictionary.get(String(match).toLowerCase());
     if (!all || !all.length) return null;
     if (typeof all === 'string') return all;
+    const host = location.hostname;
     const exact = [];
     const fuzzy = [];
     for (const v of all) {
       if (!v || typeof v !== 'object') continue;
+      if (!variantAllowedOnHost(v, host)) continue;
       const src = v.source != null ? String(v.source) : null;
       if (v.caseSensitive) {
         if (src === match) exact.push(v);
@@ -539,7 +636,9 @@
       else fuzzy.push(v);
     }
     if (exact.length) return exact;
-    return fuzzy.length ? fuzzy : all;
+    if (fuzzy.length) return fuzzy;
+    // no site-allowed variants
+    return null;
   }
 
   function resolveTranslation(match, surrounding, node) {
@@ -552,6 +651,26 @@
     const gemCtx = hasGemItemContext(surrounding, node);
     const skillUi = hasSkillLevelContext(node) || hasSkillUiContext(node);
     const buildCtx = hasBuildContext(node, surrounding);
+
+    // Recompute core list first (equip is false inside arkgrid by design)
+    const coreList = hasCoreListContext(node, surrounding);
+
+    // 0) Homonyms Weapon/Attack/무기
+    //    arkgrid ranking / core list / ark grid → Путь стали
+    //    real equipment panel → Оружие
+    if (arkCore || coreList) {
+      for (const v of variants) {
+        if (isCoreVariant(v)) return v.value;
+      }
+    }
+    if (equip && !arkCore && !coreList) {
+      for (const v of variants) {
+        if (isItemSlotVariant(v)) return v.value;
+      }
+      for (const v of variants) {
+        if (isInterfaceVariant(v) && hasTag(v, 'item', 'slot') && !isCoreVariant(v)) return v.value;
+      }
+    }
 
     // 1) Explicit parent/context match (any type)
     for (const v of variants) {
@@ -769,26 +888,133 @@
 
   function makeTermSpan(translated, original) {
     const span = document.createElement('span');
-    span.className = 'lt-term notranslate';
-    span.setAttribute('translate', 'no');
     span.setAttribute('data-lt-orig', original);
     span.setAttribute('data-lt-tr', translated);
     const mode = termMode || 'replace';
-    if (mode === 'annotate') {
+    if (mode === 'deferred') {
+      // Keep original text so browser translator sees full context.
+      // After page is translated, finalizeDeferredTerms() applies dictionary.
+      span.className = 'lt-term lt-pending';
+      span.setAttribute('translate', 'yes');
+      span.textContent = original;
+      span.title = translated;
+      span.setAttribute('data-lt-mode', 'deferred');
+    } else if (mode === 'annotate') {
+      span.className = 'lt-term notranslate';
+      span.setAttribute('translate', 'no');
       span.textContent = original;
       span.title = translated;
       span.setAttribute('data-lt-mode', 'annotate');
     } else if (mode === 'brackets') {
+      span.className = 'lt-term notranslate';
+      span.setAttribute('translate', 'no');
       span.textContent = original + ' (' + translated + ')';
       span.title = translated;
       span.setAttribute('data-lt-mode', 'brackets');
     } else {
+      span.className = 'lt-term notranslate';
+      span.setAttribute('translate', 'no');
       span.textContent = translated;
       span.title = original;
       span.setAttribute('data-lt-mode', 'replace');
     }
     return span;
   }
+
+  function isBrowserTranslated() {
+    try {
+      const html = document.documentElement;
+      if (!html) return false;
+      const cls = html.className || '';
+      if (/\btranslated-ltr\b|\btranslated-rtl\b/i.test(cls)) return true;
+      if (html.getAttribute('translated') != null) return true;
+      // Chrome / Edge sometimes set lang differently after translate
+      if (html.classList && (html.classList.contains('translated-ltr') || html.classList.contains('translated-rtl'))) return true;
+    } catch (_) {}
+    return false;
+  }
+
+  function finalizeDeferredTerms(force) {
+    if ((termMode || 'replace') !== 'deferred' && !force) return 0;
+    if (!force && !isBrowserTranslated()) return 0;
+    let n = 0;
+    const nodes = document.querySelectorAll('span.lt-pending[data-lt-tr], span.lt-term.lt-pending[data-lt-tr]');
+    for (const span of nodes) {
+      const tr = span.getAttribute('data-lt-tr');
+      if (!tr) continue;
+      const orig = span.getAttribute('data-lt-orig') || '';
+      span.textContent = tr;
+      span.title = orig;
+      span.classList.remove('lt-pending');
+      span.classList.add('notranslate', 'lt-done');
+      span.setAttribute('translate', 'no');
+      span.setAttribute('data-lt-mode', 'deferred-done');
+      n++;
+      translatedCount++;
+    }
+    // Restore spaces lost when browser translator rewrites neighboring text nodes
+    document.querySelectorAll('span.lt-term.lt-done, span.lt-term[data-lt-mode="deferred-done"]').forEach(function (sp) {
+      ensureSpaceAroundTerm(sp);
+    });
+    return n;
+  }
+
+  let deferredObserver = null;
+  let deferredTimer = null;
+  let deferredFallbackTimer = null;
+
+  function startDeferredWatch() {
+    stopDeferredWatch();
+    if ((termMode || 'replace') !== 'deferred') return;
+
+    deferredObserver = new MutationObserver(function () {
+      if (isBrowserTranslated()) {
+        finalizeDeferredTerms(true);
+      }
+    });
+    try {
+      deferredObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'translated'],
+        subtree: false
+      });
+    } catch (_) {}
+
+    // Poll: browser may translate without reliable class in some builds
+    deferredTimer = setInterval(function () {
+      if ((termMode || 'replace') !== 'deferred') return;
+      if (isBrowserTranslated()) finalizeDeferredTerms(true);
+      else if (document.querySelector('font[style*="vertical"], font[lang], .notranslate font')) {
+        // Google Translate often injects <font>
+        finalizeDeferredTerms(true);
+      }
+    }, 1200);
+
+    // Fallback: if user never runs browser translate, apply after 12s so page is not stuck
+    deferredFallbackTimer = setTimeout(function () {
+      if ((termMode || 'replace') !== 'deferred') return;
+      const pending = document.querySelectorAll('span.lt-pending').length;
+      if (pending > 0 && !isBrowserTranslated()) {
+        finalizeDeferredTerms(true);
+      }
+    }, 60000);
+  }
+
+  function stopDeferredWatch() {
+    if (deferredObserver) {
+      try { deferredObserver.disconnect(); } catch (_) {}
+      deferredObserver = null;
+    }
+    if (deferredTimer) {
+      clearInterval(deferredTimer);
+      deferredTimer = null;
+    }
+    if (deferredFallbackTimer) {
+      clearTimeout(deferredFallbackTimer);
+      deferredFallbackTimer = null;
+    }
+  }
+
 
   function firstContentChar(node) {
     if (!node) return '';
@@ -836,22 +1062,42 @@
     return false;
   }
 
+  function needsSpaceBetween(leftCh, rightCh) {
+    if (!leftCh || !rightCh) return false;
+    // letter/digit glued to letter/digit
+    if (isWordChar(leftCh) && isWordChar(rightCh)) return true;
+    // punctuation glued to letter: "Или,Паладин" / "or,Paladin"
+    if (/[,.;:!?)]/.test(leftCh) && isWordChar(rightCh)) return true;
+    if (isWordChar(leftCh) && /[(\[]/.test(rightCh)) return true;
+    return false;
+  }
+
   function ensureSpaceAroundTerm(span) {
-    if ((termMode || 'replace') !== 'replace') return;
+    if (!span || !span.parentNode) return;
     const parent = span.parentNode;
-    if (!parent) return;
+    const mode = termMode || 'replace';
+    // replace + deferred (pending and after finalize) need spacing; annotate/brackets keep original layout
+    if (mode === 'annotate' || mode === 'brackets') return;
 
     const next = span.nextSibling;
     if (next) {
       if (next.nodeType === Node.TEXT_NODE) {
         const t = next.textContent || '';
-        if (t.length && !/^\s/.test(t) && isWordChar(t[0])) {
-          next.textContent = ' ' + t;
+        if (t.length && !/^\s/.test(t)) {
+          const left = (span.textContent || '').slice(-1);
+          if (needsSpaceBetween(left, t[0]) || isWordChar(t[0])) {
+            next.textContent = ' ' + t;
+          }
         }
-      } else if (next.nodeType === Node.ELEMENT_NODE && isTranslatorWrapper(next)) {
-        const ch = firstContentChar(next);
-        if (isWordChar(ch)) {
+      } else if (next.nodeType === Node.ELEMENT_NODE) {
+        if (next.classList && next.classList.contains('lt-term')) {
           parent.insertBefore(document.createTextNode(' '), next);
+        } else if (isTranslatorWrapper(next)) {
+          const ch = firstContentChar(next);
+          const left = (span.textContent || '').slice(-1);
+          if (needsSpaceBetween(left, ch) || isWordChar(ch)) {
+            parent.insertBefore(document.createTextNode(' '), next);
+          }
         }
       }
     }
@@ -860,13 +1106,22 @@
     if (prev) {
       if (prev.nodeType === Node.TEXT_NODE) {
         const t = prev.textContent || '';
-        if (t.length && !/\s$/.test(t) && isWordChar(t[t.length - 1])) {
-          prev.textContent = t + ' ';
+        if (t.length && !/\s$/.test(t)) {
+          const right = (span.textContent || '')[0];
+          const left = t[t.length - 1];
+          if (needsSpaceBetween(left, right) || isWordChar(left)) {
+            prev.textContent = t + ' ';
+          }
         }
-      } else if (prev.nodeType === Node.ELEMENT_NODE && isTranslatorWrapper(prev)) {
-        const ch = lastContentChar(prev);
-        if (isWordChar(ch)) {
+      } else if (prev.nodeType === Node.ELEMENT_NODE) {
+        if (prev.classList && prev.classList.contains('lt-term')) {
           parent.insertBefore(document.createTextNode(' '), span);
+        } else if (isTranslatorWrapper(prev)) {
+          const ch = lastContentChar(prev);
+          const right = (span.textContent || '')[0];
+          if (needsSpaceBetween(ch, right) || isWordChar(ch)) {
+            parent.insertBefore(document.createTextNode(' '), span);
+          }
         }
       }
     }
@@ -932,6 +1187,13 @@
         if (mode === 'annotate') {
           if (parent.nodeType === Node.ELEMENT_NODE) parent.setAttribute('title', translated);
           PROCESSED.add(node);
+          return;
+        }
+        if (mode === 'deferred') {
+          const span = makeTermSpan(translated, trimmed);
+          parent.replaceChild(span, node);
+          ensureSpaceAroundTerm(span);
+          PROCESSED.add(span);
           return;
         }
         const lead = text.match(/^\s*/)[0];
@@ -1042,6 +1304,19 @@
     const wholeNodeIsTerms = textParts.length === 0;
 
     if (wholeNodeIsTerms || (termParts.length >= 1 && textParts.length === 0)) {
+      if (mode === 'deferred') {
+        // Mark each term as pending span so browser can still see original words
+        const frag = document.createDocumentFragment();
+        for (const part of parts) {
+          if (part.type === 'term') {
+            frag.appendChild(makeTermSpan(part.value, part.original));
+          } else {
+            frag.appendChild(document.createTextNode(part.value || ''));
+          }
+        }
+        parent.replaceChild(frag, node);
+        return;
+      }
       let out = '';
       for (const part of parts) {
         if (part.type === 'term') {
@@ -1074,13 +1349,23 @@
 
     for (let i = 0; i < parts.length; i++) {
       if (parts[i].type !== 'term') continue;
+      const prev = parts[i - 1];
       const next = parts[i + 1];
-      if (!next) continue;
-      if (next.type === 'text') {
-        if (next.value && /^[\p{L}\p{N}]/u.test(next.value[0])) {
+      const termText = parts[i].original || parts[i].value || '';
+      if (prev && prev.type === 'text' && prev.value) {
+        const left = prev.value[prev.value.length - 1];
+        const right = termText[0];
+        if (left && right && !/\s/.test(left) && (isWordChar(left) || /[,.;:!?)\]]/.test(left)) && isWordChar(right)) {
+          prev.value = prev.value + ' ';
+        }
+      }
+      if (next && next.type === 'text' && next.value) {
+        const left = termText[termText.length - 1];
+        const right = next.value[0];
+        if (right && !/^\s/.test(next.value) && isWordChar(right)) {
           next.value = ' ' + next.value;
         }
-      } else if (next.type === 'term') {
+      } else if (next && next.type === 'term') {
         parts.splice(i + 1, 0, { type: 'text', value: ' ' });
         i++;
       }
@@ -1201,6 +1486,8 @@
     try {
       document.body.querySelectorAll('span.lt-term').forEach(ensureSpaceAroundTerm);
     } catch (_) {}
+    if ((termMode || 'replace') === 'deferred') startDeferredWatch();
+    else stopDeferredWatch();
     reportStats();
   }
 
@@ -2013,7 +2300,12 @@
         restoreDocument();
       }
       sendResponse({ success: true });
-    } else if (request.action === 'getStats') {
+    } else if (request.action === 'finalizeDeferred') {
+      const n = finalizeDeferredTerms(true);
+      sendResponse({ success: true, count: n });
+      return true;
+    }
+    if (request.action === 'getStats') {
       sendResponse({ success: true, count: translatedCount });
     } else if (request.action === 'updatePatterns') {
       loadCustomPatterns(request.patterns || []);
@@ -2046,7 +2338,7 @@
     if (area === 'local' && changes.siteProfiles) {
       chrome.storage.sync.get([
         'isEnabled','siteMode','allowedSites','blockedSites','developerSites',
-        'termMode','termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites'
+        'termMode','termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites','termModeDeferredSites','termModeDeferredSites'
       ], (r) => {
         const merged = Object.assign({}, r, { siteProfiles: changes.siteProfiles.newValue || {} });
         isEnabled = merged.isEnabled !== false;
@@ -2068,7 +2360,7 @@
       chrome.storage.local.get(['siteProfiles'], (loc) => {
         chrome.storage.sync.get([
           'isEnabled','siteMode','allowedSites','blockedSites','developerSites',
-          'termMode','termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites'
+          'termMode','termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites','termModeDeferredSites','termModeDeferredSites'
         ], (r) => {
           const merged = Object.assign({}, r, { siteProfiles: loc.siteProfiles || {} });
           isEnabled = merged.isEnabled !== false;

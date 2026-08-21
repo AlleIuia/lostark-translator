@@ -17,6 +17,64 @@ async function getDictionaryFileList() {
   return all.filter(f => !disabled.includes(f) && !disabled.includes(f.split('/').pop()));
 }
 
+function normalizeDomainList(v) {
+  if (v == null || v === '') return null;
+  const arr = Array.isArray(v) ? v : String(v).split(/[,;\s]+/);
+  const out = [];
+  for (const x of arr) {
+    const d = String(x || '').trim().toLowerCase().replace(/^www\./, '');
+    if (d) out.push(d);
+  }
+  return out.length ? out : null;
+}
+
+
+function dictKeyFromFile(file) {
+  const name = String(file || '').split('/').pop().toLowerCase();
+  if (name.includes('classcore')) return 'classcore';
+  if (name.includes('arkpass')) return 'arkpass';
+  if (name.includes('game-interface')) return 'game-interface';
+  if (name.includes('interface')) return 'interface';
+  if (name.includes('engrav')) return 'engravings';
+  if (name.includes('skill')) return 'skills';
+  if (name.includes('class')) return 'classes';
+  if (name.includes('user')) return 'user';
+  return name.replace(/^lt-/, '').replace(/\.json$/, '') || 'other';
+}
+
+function stampDictSource(data, dictKey) {
+  if (!data || !dictKey) return data;
+  const stamp = (item) => {
+    if (item && typeof item === 'object' && item._dict == null) item._dict = dictKey;
+  };
+  (data.classes || []).forEach(c => {
+    stamp(c);
+    (c.builds || []).forEach(stamp);
+  });
+  (data.engravings || []).forEach(stamp);
+  (data.terms || []).forEach(stamp);
+  (data.skills || []).forEach(stamp);
+  (data._orphanBuilds || []).forEach(stamp);
+  (data.archetype || []).forEach(stamp);
+  (data.commCore || []).forEach(stamp);
+  (data.skillClasses || []).forEach(sc => {
+    stamp(sc);
+    (sc.skills || []).forEach(s => {
+      stamp(s);
+      (s.tripods || []).forEach(stamp);
+    });
+  });
+  (data.arkPassClasses || []).forEach(sc => {
+    stamp(sc);
+    (sc.skills || sc.nodes || []).forEach(stamp);
+  });
+  (data.classCoreClasses || []).forEach(sc => {
+    stamp(sc);
+    (sc.classcore || sc.skills || []).forEach(stamp);
+  });
+  return data;
+}
+
 function flattenData(data, target) {
   const dict = {};
   const sources = ['en', 'ru', 'kr'].filter(f => f !== target);
@@ -25,21 +83,30 @@ function flattenData(data, target) {
     if (!srcVal || !tgtVal) return;
     const source = String(srcVal);
     if (!dict[source]) dict[source] = [];
-    dict[source].push({
+    const entry = {
       value: tgtVal,
       source,
       caseSensitive: !!meta.caseSensitive,
       parent: meta.parent || null,
       tags: meta.tags || [],
       priority: meta.priority || 0
-    });
+    };
+    const sites = normalizeDomainList(meta.sites);
+    const sitesExclude = normalizeDomainList(meta.sitesExclude);
+    if (sites) entry.sites = sites;
+    if (sitesExclude) entry.sitesExclude = sitesExclude;
+    if (meta.dict) entry.dict = meta.dict;
+    dict[source].push(entry);
   }
 
   (data.classes || []).forEach(cls => {
     sources.forEach(src => {
       if (cls[src]) addEntry(cls[src], cls[target], {
         tags: cls.tags || ['class'],
-        priority: 30
+        priority: 30,
+        sites: cls.sites,
+        sitesExclude: cls.sitesExclude,
+        dict: cls._dict || 'classes'
       });
     });
 
@@ -51,7 +118,10 @@ function flattenData(data, target) {
         if (b[src]) addEntry(b[src], b[target], {
           parent: cls.en,
           tags,
-          priority: 25
+          priority: 25,
+          sites: b.sites,
+          sitesExclude: b.sitesExclude,
+          dict: b._dict || cls._dict || 'classes'
         });
       });
     });
@@ -61,7 +131,10 @@ function flattenData(data, target) {
     sources.forEach(src => {
       if (eng[src]) addEntry(eng[src], eng[target], {
         tags: eng.tags || ['engraving'],
-        priority: 15
+        priority: eng.priority != null ? eng.priority : 15,
+        sites: eng.sites,
+        sitesExclude: eng.sitesExclude,
+        dict: eng._dict || 'engravings'
       });
     });
   });
@@ -72,7 +145,10 @@ function flattenData(data, target) {
         tags: term.tags || ['interface', 'term'],
         parent: term.parent || null,
         priority: term.priority != null ? term.priority : 22,
-        caseSensitive: !!term.caseSensitive
+        caseSensitive: !!term.caseSensitive,
+        sites: term.sites,
+        sitesExclude: term.sitesExclude,
+        dict: term._dict || 'interface'
       });
     });
   });
@@ -90,7 +166,10 @@ function flattenData(data, target) {
         if (skill[src]) addEntry(skill[src], skill[target], {
           parent: sc.en,
           tags: skill.tags || ['skill', (sc.en || '').toLowerCase()],
-          priority: 12
+          priority: 12,
+          sites: skill.sites,
+          sitesExclude: skill.sitesExclude,
+          dict: skill._dict || sc._dict || 'skills'
         });
       });
       (skill.tripods || []).forEach(tp => {
@@ -141,7 +220,10 @@ function flattenData(data, target) {
           parent: sc.en,
           tags: skill.tags || ['arkpass', (sc.en || '').toLowerCase()],
           priority: 12,
-          caseSensitive: !!skill.caseSensitive
+          caseSensitive: !!skill.caseSensitive,
+          sites: skill.sites,
+          sitesExclude: skill.sitesExclude,
+          dict: skill._dict || sc._dict || 'arkpass'
         });
       });
     });
@@ -162,7 +244,10 @@ function flattenData(data, target) {
           parent: sc.en,
           tags: skill.tags || ['classcore', 'core', (sc.en || '').toLowerCase()],
           priority: skill.priority != null ? skill.priority : 12,
-          caseSensitive: !!skill.caseSensitive
+          caseSensitive: !!skill.caseSensitive,
+          sites: skill.sites,
+          sitesExclude: skill.sitesExclude,
+          dict: skill._dict || sc._dict || 'classcore'
         });
       });
     });
@@ -175,7 +260,10 @@ function flattenData(data, target) {
         tags: item.tags || ['core', 'classcore'],
         priority: item.priority != null ? item.priority : 12,
         caseSensitive: !!item.caseSensitive,
-        parent: item.parent || null
+        parent: item.parent || null,
+        sites: item.sites,
+        sitesExclude: item.sitesExclude,
+        dict: item._dict || 'classcore'
       });
     });
   });
@@ -187,7 +275,9 @@ function flattenData(data, target) {
         if (o[src]) addEntry(o[src], o[target], {
           tags: o.tags || ['classtype', 'orphan'],
           priority: 5,
-          caseSensitive: !!o.caseSensitive
+          caseSensitive: !!o.caseSensitive,
+          sites: o.sites,
+          sitesExclude: o.sitesExclude
         });
       });
     });
@@ -706,6 +796,8 @@ async function loadDefaultDictionaries() {
       const res = await fetch(chrome.runtime.getURL(file));
       if (!res.ok) continue;
       const data = await res.json();
+      const key = dictKeyFromFile(file);
+      stampDictSource(data, key);
       mergeData(merged, normalizeSourceData(data, file));
     } catch (err) {
       console.error('Failed to load:', file, err.message);
@@ -1111,6 +1203,7 @@ async function syncFromUrls(urls) {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`${url} -> ${res.status}`);
       const data = await res.json();
+      stampDictSource(data, dictKeyFromFile(url));
       mergeData(merged, normalizeSourceData(data, url));
       totalCount += (data.classes?.length || 0) +
                     (data.engravings?.length || 0) +
@@ -1250,7 +1343,19 @@ async function applySiteDefaults(force) {
       const prev = profiles[domain] || {};
       profiles[domain] = Object.assign({}, prev);
       if (d.termMode) profiles[domain].termMode = d.termMode;
+      if (d.enabledDicts) profiles[domain].enabledDicts = d.enabledDicts;
+      if (d.disabledDicts) profiles[domain].disabledDicts = d.disabledDicts;
       profilesChanged = true;
+    } else {
+      // fill missing dict filters from defaults without overwriting user
+      if (d.enabledDicts && !profiles[domain].enabledDicts) {
+        profiles[domain].enabledDicts = d.enabledDicts;
+        profilesChanged = true;
+      }
+      if (d.disabledDicts && !profiles[domain].disabledDicts) {
+        profiles[domain].disabledDicts = d.disabledDicts;
+        profilesChanged = true;
+      }
     }
     if (d.siteCss && String(d.siteCss).trim()) {
       const header = '# ' + domain;

@@ -32,8 +32,9 @@ const UI_TEXTS = {
     typeEngraving: 'Гравировка', typeBuild: 'Сборка', typeClass: 'Класс',
     typeArkpass: 'Система А.Р.К.', typeClasscore: 'Ядра',
     statsLabel: 'переведено: ',
-    termModeReplace: 'ЗА', termModeAnnotate: 'ПД', termModeBrackets: 'СК',
+    termModeReplace: 'ЗА', termModeAnnotate: 'ПД', termModeBrackets: 'СК', termModeDeferred: 'ОТ',
     termModeReplaceTitle: 'Замена', termModeAnnotateTitle: 'Подсказка', termModeBracketsTitle: 'Скобки',
+    termModeDeferredTitle: 'После переводчика браузера (Reddit / форумы)',
     syncLoading: 'Загрузка…', syncOk: 'Словарь обновлён', syncErr: 'Ошибка синхронизации: ',
     importErrorFormat: 'Неверный формат файла.', importErrorJson: 'Ошибка чтения JSON: '
   },
@@ -52,8 +53,9 @@ const UI_TEXTS = {
     typeEngraving: 'Engraving', typeBuild: 'Build', typeClass: 'Class',
     typeArkpass: 'Ark Passive', typeClasscore: 'Core',
     statsLabel: 'translated: ',
-    termModeReplace: 'RE', termModeAnnotate: 'TT', termModeBrackets: 'BR',
+    termModeReplace: 'RE', termModeAnnotate: 'TT', termModeBrackets: 'BR', termModeDeferred: 'AF',
     termModeReplaceTitle: 'Replace', termModeAnnotateTitle: 'Tooltip', termModeBracketsTitle: 'Brackets',
+    termModeDeferredTitle: 'After browser translate (Reddit / forums)',
     syncLoading: 'Loading…', syncOk: 'Dictionary updated', syncErr: 'Sync error: ',
     importErrorFormat: 'Invalid file format.', importErrorJson: 'JSON read error: '
   },
@@ -72,8 +74,9 @@ const UI_TEXTS = {
     typeEngraving: '각인', typeBuild: '빌드', typeClass: '직업',
     typeArkpass: '아크 패시브', typeClasscore: '코어',
     statsLabel: '번역됨: ',
-    termModeReplace: '교', termModeAnnotate: '팁', termModeBrackets: '괄',
+    termModeReplace: '교', termModeAnnotate: '팁', termModeBrackets: '괄', termModeDeferred: '후',
     termModeReplaceTitle: '교체', termModeAnnotateTitle: '툴팁', termModeBracketsTitle: '괄호',
+    termModeDeferredTitle: '브라우저 번역 후 적용 (Reddit / 포럼)',
     syncLoading: '로딩 중…', syncOk: '사전 업데이트됨', syncErr: '동기화 오류: ',
     importErrorFormat: '잘못된 파일 형식입니다.', importErrorJson: 'JSON 읽기 오류: '
   }
@@ -88,6 +91,14 @@ let isStandalone = false;
 let currentSearch = '';
 let currentFilter = 'all';
 let deleteMode = false;
+
+function debounce(fn, wait) {
+  let timer = null;
+  return function debounced(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
 
 
 function installPlainPaste(root) {
@@ -161,6 +172,9 @@ function applyLocalization() {
     } else if (m === 'brackets') {
       btn.textContent = t.termModeBrackets;
       btn.title = t.termModeBracketsTitle;
+    } else if (m === 'deferred') {
+      btn.textContent = t.termModeDeferred || 'ОТ';
+      btn.title = t.termModeDeferredTitle || 'After browser translate';
     }
     btn.classList.toggle('active', m === termMode);
   });
@@ -317,9 +331,10 @@ function setupListeners() {
     });
   });
 
+  const debouncedRenderList = debounce(renderList, 200);
   document.getElementById('searchInput').addEventListener('input', (e) => {
     currentSearch = e.target.value.toLowerCase();
-    renderList();
+    debouncedRenderList();
   });
 
   document.querySelectorAll('.filter-btn').forEach(btn => {

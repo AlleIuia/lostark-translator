@@ -116,12 +116,12 @@
         "short",
         "context"
       ],
-      "priority": 10
+      "priority": 12
     },
     {
       "en": "Salvation",
       "ru": "Заступничество",
-      "kr": "무기",
+      "kr": "구원",
       "tags": [
         "core",
         "short",
