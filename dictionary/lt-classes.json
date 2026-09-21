@@ -805,6 +805,32 @@
     {
       "builds": [
         {
+          "en": "Time Wielder",
+          "ru": "Повелитель времени",
+          "kr": "시간 관리자",
+          "tags": [
+            "classbuild"
+          ]
+        },
+        {
+          "en": "Space Wielder",
+          "ru": "Хранитель пространства",
+          "kr": "공간 검사",
+          "tags": [
+            "classbuild"
+          ]
+        }
+      ],
+      "en": "Dimensionalist",
+      "kr": "차원술사",
+      "ru": "Хрономант",
+      "tags": [
+        "class"
+      ]
+    },
+    {
+      "builds": [
+        {
           "en": "Ferality",
           "ru": "Дикое сердце",
           "kr": "야성",

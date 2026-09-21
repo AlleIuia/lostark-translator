@@ -3,7 +3,6 @@ const DEFAULT_DICTIONARY_FILES = [
   'dictionary/lt-engravings.json',
   'dictionary/lt-interface.json',
   'dictionary/lt-game-interface.json',
-  'dictionary/lt-skills.json',
   'dictionary/lt-arkpass.json',
   'dictionary/lt-classcore.json',
   'dictionary/lt-user.json'
@@ -1253,7 +1252,6 @@ const SYNC_URLS = [
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-engravings.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-interface.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-game-interface.json',
-  'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-skills.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-arkpass.json',
   'https://raw.githubusercontent.com/AlleIuia/lostark-translator/main/dictionary/lt-classcore.json'
 ];

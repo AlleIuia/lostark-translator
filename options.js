@@ -8,12 +8,10 @@ const UI = {
     lblTermMode: 'Режим',
     termReplace: 'Замена',
     termAnnotate: 'Подсказка',
-    termBrackets: 'Скобки',
-    hintTermMode: 'Режим переключается в главном меню (ЗА / ПД / СК). Списки ниже задают режим автоматически при открытии сайта (Подсказка → Скобки → Замена → последний режим из меню).',
+    hintTermMode: 'Режим переключается в главном меню (ЗА / ПД / ОТ). Списки ниже задают режим автоматически при открытии сайта (Подсказка → Замена → последний режим из меню).',
     lblTermReplaceSites: 'Сайты: Замена',
     lblTermAnnotateSites: 'Сайты: Подсказка',
-    lblTermBracketsSites: 'Сайты: Скобки',
-    hintTermModeSites: 'По одному домену на строку. При открытии сайта режим берётся из списка (Подсказка → Скобки → Замена → по умолчанию).',
+    hintTermModeSites: 'По одному домену на строку. При открытии сайта режим берётся из списка (Подсказка → Замена → по умолчанию).',
     secSites: 'Сайты',
     lblSiteMode: 'Режим',
     siteEverywhere: 'Везде',
@@ -82,12 +80,10 @@ const UI = {
     lblTermMode: 'Mode',
     termReplace: 'Replace',
     termAnnotate: 'Tooltip',
-    termBrackets: 'Brackets',
-    hintTermMode: 'Mode is switched in the popup (RE / TT / BR). Lists below set the mode automatically when you open a matching site (Tooltip → Brackets → Replace → last popup mode).',
+    hintTermMode: 'Mode is switched in the popup (RE / TT / AF). Lists below set the mode automatically when you open a matching site (Tooltip → Replace → last popup mode).',
     lblTermReplaceSites: 'Replace sites',
     lblTermAnnotateSites: 'Tooltip sites',
-    lblTermBracketsSites: 'Brackets sites',
-    hintTermModeSites: 'One domain per line. On visit, mode is taken from lists (Tooltip → Brackets → Replace → default).',
+    hintTermModeSites: 'One domain per line. On visit, mode is taken from lists (Tooltip → Replace → default).',
     secSites: 'Sites',
     lblSiteMode: 'Mode',
     siteEverywhere: 'Everywhere',
@@ -156,12 +152,10 @@ const UI = {
     lblTermMode: '모드',
     termReplace: '교체',
     termAnnotate: '툴팁',
-    termBrackets: '괄호',
-    hintTermMode: '모드는 팝업에서 전환합니다(교 / 팁 / 괄). 아래 목록은 사이트 접속 시 모드를 자동 설정합니다(툴팁 → 괄호 → 교체 → 팝업 마지막 모드).',
+    hintTermMode: '모드는 팝업에서 전환합니다(교 / 팁 / 후). 아래 목록은 사이트 접속 시 모드를 자동 설정합니다(툴팁 → 교체 → 팝업 마지막 모드).',
     lblTermReplaceSites: '교체 사이트',
     lblTermAnnotateSites: '툴팁 사이트',
-    lblTermBracketsSites: '괄호 사이트',
-    hintTermModeSites: '줄당 하나의 도메인. 사이트 접속 시 목록에서 모드 선택 (툴팁 → 괄호 → 교체 → 기본값).',
+    hintTermModeSites: '줄당 하나의 도메인. 사이트 접속 시 목록에서 모드 선택 (툴팁 → 교체 → 기본값).',
     secSites: '사이트',
     lblSiteMode: '모드',
     siteEverywhere: '전체',
@@ -335,7 +329,7 @@ function saveFitSettings(immediate) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  chrome.storage.sync.get(['targetLang', 'theme', 'siteMode', 'allowedSites', 'blockedSites', 'developerSites', 'termMode', 'termModeReplaceSites', 'termModeAnnotateSites', 'termModeBracketsSites'], (sync) => {
+  chrome.storage.sync.get(['targetLang', 'theme', 'siteMode', 'allowedSites', 'blockedSites', 'developerSites', 'termMode', 'termModeReplaceSites', 'termModeAnnotateSites'], (sync) => {
     targetLang = sync.targetLang || 'ru';
     t = UI[targetLang] || UI.ru;
     applyLocalization();
@@ -348,8 +342,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (trs) trs.value = sync.termModeReplaceSites || '';
     const tas = document.getElementById('termModeAnnotateSites');
     if (tas) tas.value = sync.termModeAnnotateSites || '';
-    const tbs = document.getElementById('termModeBracketsSites');
-    if (tbs) tbs.value = sync.termModeBracketsSites || '';
 
     const mode = sync.siteMode || 'developer';
     document.getElementById('siteMode').value = mode;
@@ -414,8 +406,6 @@ function applyLocalization() {
   if (lr) lr.textContent = t.lblTermReplaceSites;
   const la = document.getElementById('lblTermAnnotateSites');
   if (la) la.textContent = t.lblTermAnnotateSites;
-  const lb = document.getElementById('lblTermBracketsSites');
-  if (lb) lb.textContent = t.lblTermBracketsSites;
   const hs = document.getElementById('hintTermModeSites');
   if (hs) hs.textContent = t.hintTermModeSites;
   document.getElementById('secSites').textContent = t.secSites;
@@ -528,10 +518,9 @@ function setupListeners() {
     chrome.storage.sync.set({
       termModeReplaceSites: (document.getElementById('termModeReplaceSites') || {}).value || '',
       termModeAnnotateSites: (document.getElementById('termModeAnnotateSites') || {}).value || '',
-      termModeBracketsSites: (document.getElementById('termModeBracketsSites') || {}).value || ''
     });
   }
-  ['termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites'].forEach(id => {
+  ['termModeReplaceSites','termModeAnnotateSites'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('input', () => {
@@ -810,7 +799,6 @@ const BUNDLED_DICTS = [
   'dictionary/lt-engravings.json',
   'dictionary/lt-interface.json',
   'dictionary/lt-game-interface.json',
-  'dictionary/lt-skills.json',
   'dictionary/lt-arkpass.json',
   'dictionary/lt-classcore.json',
   'dictionary/lt-user.json'
@@ -857,7 +845,7 @@ async function exportSettings() {
   const st = document.getElementById('ioStatus');
   try {
     const sync = await chrome.storage.sync.get([
-      'termMode', 'termModeReplaceSites', 'termModeAnnotateSites', 'termModeBracketsSites',
+      'termMode', 'termModeReplaceSites', 'termModeAnnotateSites',
       'siteMode', 'allowedSites', 'blockedSites', 'developerSites'
     ]);
     const local = await chrome.storage.local.get(['customPatterns', 'fitText', 'siteProfiles']);
@@ -867,7 +855,6 @@ async function exportSettings() {
       termMode: sync.termMode || 'replace',
       termModeReplaceSites: sync.termModeReplaceSites || '',
       termModeAnnotateSites: sync.termModeAnnotateSites || '',
-      termModeBracketsSites: sync.termModeBracketsSites || '',
       siteMode: sync.siteMode || 'developer',
       allowedSites: sync.allowedSites || '',
       blockedSites: sync.blockedSites || '',
@@ -911,7 +898,6 @@ async function importSettings(e) {
     if (data.termMode) syncUpdates.termMode = data.termMode;
     if (typeof data.termModeReplaceSites === 'string') syncUpdates.termModeReplaceSites = data.termModeReplaceSites;
     if (typeof data.termModeAnnotateSites === 'string') syncUpdates.termModeAnnotateSites = data.termModeAnnotateSites;
-    if (typeof data.termModeBracketsSites === 'string') syncUpdates.termModeBracketsSites = data.termModeBracketsSites;
     if (data.siteMode) syncUpdates.siteMode = data.siteMode;
     if (typeof data.allowedSites === 'string') syncUpdates.allowedSites = data.allowedSites;
     if (typeof data.blockedSites === 'string') syncUpdates.blockedSites = data.blockedSites;
@@ -933,8 +919,6 @@ async function importSettings(e) {
     if (trs && typeof data.termModeReplaceSites === 'string') trs.value = data.termModeReplaceSites;
     const tas = document.getElementById('termModeAnnotateSites');
     if (tas && typeof data.termModeAnnotateSites === 'string') tas.value = data.termModeAnnotateSites;
-    const tbs = document.getElementById('termModeBracketsSites');
-    if (tbs && typeof data.termModeBracketsSites === 'string') tbs.value = data.termModeBracketsSites;
     const siteModeEl = document.getElementById('siteMode');
     if (siteModeEl && data.siteMode) siteModeEl.value = data.siteMode;
     updateSitesListUI(data.siteMode || 'developer', {

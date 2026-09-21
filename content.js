@@ -109,7 +109,7 @@
         chrome.storage.local.get(['siteProfiles'], (loc2) => {
           chrome.storage.sync.get([
             'isEnabled','siteMode','allowedSites','blockedSites','developerSites','termMode',
-            'termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites','termModeDeferredSites','termModeDeferredSites'
+            'termModeReplaceSites','termModeAnnotateSites','termModeDeferredSites','termModeDeferredSites'
           ], (syncResult) => {
             const merged = Object.assign({}, syncResult, { siteProfiles: loc2.siteProfiles || {} });
             isEnabled = merged.isEnabled !== false;
@@ -299,9 +299,9 @@
     if (profile && profile.termMode) return profile.termMode;
     if (domainInList(hostname, result.termModeDeferredSites)) return 'deferred';
     if (domainInList(hostname, result.termModeAnnotateSites)) return 'annotate';
-    if (domainInList(hostname, result.termModeBracketsSites)) return 'brackets';
     if (domainInList(hostname, result.termModeReplaceSites)) return 'replace';
-    return result.termMode || 'replace';
+    const m = result.termMode || 'replace';
+    return m === 'brackets' ? 'replace' : m;
   }
 
   function shouldSkipNode(node) {
@@ -905,12 +905,6 @@
       span.textContent = original;
       span.title = translated;
       span.setAttribute('data-lt-mode', 'annotate');
-    } else if (mode === 'brackets') {
-      span.className = 'lt-term notranslate';
-      span.setAttribute('translate', 'no');
-      span.textContent = original + ' (' + translated + ')';
-      span.title = translated;
-      span.setAttribute('data-lt-mode', 'brackets');
     } else {
       span.className = 'lt-term notranslate';
       span.setAttribute('translate', 'no');
@@ -1076,8 +1070,8 @@
     if (!span || !span.parentNode) return;
     const parent = span.parentNode;
     const mode = termMode || 'replace';
-    // replace + deferred (pending and after finalize) need spacing; annotate/brackets keep original layout
-    if (mode === 'annotate' || mode === 'brackets') return;
+    // replace + deferred (pending and after finalize) need spacing; annotate keeps original layout
+    if (mode === 'annotate') return;
 
     const next = span.nextSibling;
     if (next) {
@@ -1198,9 +1192,7 @@
         }
         const lead = text.match(/^\s*/)[0];
         const trail = text.match(/\s*$/)[0];
-        let out;
-        if (mode === 'brackets') out = lead + trimmed + ' (' + translated + ')' + trail;
-        else out = lead + translated + trail;
+        let out = lead + translated + trail;
         if (canUseHostMode(parent, node)) {
           out = applyBuiltinNumericPatterns(out);
           node.textContent = out;
@@ -1322,8 +1314,6 @@
         if (part.type === 'term') {
           if (mode === 'annotate') {
             out += part.original;
-          } else if (mode === 'brackets') {
-            out += part.original + ' (' + part.value + ')';
           } else {
             out += part.value;
           }
@@ -1371,13 +1361,12 @@
       }
     }
 
-    // replace/brackets: одна текстовая строка — не ломает узкие блоки (nmc-row-name)
-    if (mode === 'replace' || mode === 'brackets' || mode === 'annotate') {
+    // replace/annotate: одна текстовая строка — не ломает узкие блоки (nmc-row-name)
+    if (mode === 'replace' || mode === 'annotate') {
       let out = '';
       for (const part of parts) {
         if (part.type === 'term') {
           if (mode === 'annotate') out += part.original;
-          else if (mode === 'brackets') out += part.original + ' (' + part.value + ')';
           else out += part.value;
         } else {
           out += part.value || '';
@@ -2338,7 +2327,7 @@
     if (area === 'local' && changes.siteProfiles) {
       chrome.storage.sync.get([
         'isEnabled','siteMode','allowedSites','blockedSites','developerSites',
-        'termMode','termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites','termModeDeferredSites','termModeDeferredSites'
+        'termMode','termModeReplaceSites','termModeAnnotateSites','termModeDeferredSites','termModeDeferredSites'
       ], (r) => {
         const merged = Object.assign({}, r, { siteProfiles: changes.siteProfiles.newValue || {} });
         isEnabled = merged.isEnabled !== false;
@@ -2354,13 +2343,13 @@
       });
     }
     if (area === 'sync' && (changes.termMode || changes.termModeReplaceSites ||
-        changes.termModeAnnotateSites || changes.termModeBracketsSites ||
+        changes.termModeAnnotateSites ||
         changes.siteMode || changes.allowedSites || changes.blockedSites || changes.developerSites ||
         changes.isEnabled)) {
       chrome.storage.local.get(['siteProfiles'], (loc) => {
         chrome.storage.sync.get([
           'isEnabled','siteMode','allowedSites','blockedSites','developerSites',
-          'termMode','termModeReplaceSites','termModeAnnotateSites','termModeBracketsSites','termModeDeferredSites','termModeDeferredSites'
+          'termMode','termModeReplaceSites','termModeAnnotateSites','termModeDeferredSites','termModeDeferredSites'
         ], (r) => {
           const merged = Object.assign({}, r, { siteProfiles: loc.siteProfiles || {} });
           isEnabled = merged.isEnabled !== false;
