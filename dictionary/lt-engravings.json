@@ -2,347 +2,218 @@
   "engravings": [
     {
       "en": "Adrenaline",
-      "ru": "Адреналин",
       "kr": "아드레날린",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Адреналин"
     },
     {
       "en": "MP Efficiency Increase",
-      "ru": "Астральное тело",
       "kr": "마나 효율 증가",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Астральное тело"
     },
     {
       "en": "Magick Stream",
-      "ru": "Безмятежный дух",
       "kr": "마나의 흐름",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Безмятежный дух"
     },
     {
       "en": "Ether Predator",
-      "ru": "Час жатвы",
       "kr": "에테르 포식자",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Час жатвы"
     },
     {
       "en": "Broken Bone",
-      "ru": "Беспощадность",
       "kr": "부러진 뼈",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Беспощадность"
     },
     {
       "en": "Ambush Master",
-      "ru": "Бесшумный убийца",
       "kr": "기습의 대가",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Бесшумный убийца"
     },
     {
       "en": "Divine Protection",
-      "ru": "Божественная защита",
       "kr": "여신의 가호",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Божественная защита"
     },
     {
       "en": "Stabilized Status",
-      "ru": "Бравада",
       "kr": "안정된 상태",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Бравада"
     },
     {
       "en": "Master Brawler",
-      "ru": "Гильотина",
       "kr": "결투의 대가",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Гильотина"
     },
     {
       "en": "Cursed Doll",
-      "ru": "Голем",
       "kr": "저주받은 인형",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Голем"
     },
     {
       "en": "Explosive Expert",
-      "ru": "Гренадер",
       "kr": "폭발물 전문가",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Гренадер"
     },
     {
       "en": "Lightning Fury",
-      "ru": "Грозовая буря",
       "kr": "번개의 분노",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Грозовая буря"
     },
     {
       "en": "Preemptive Strike",
-      "ru": "Засада",
       "kr": "선수필승",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Засада"
     },
     {
       "en": "Expert",
-      "ru": "Заступник",
       "kr": "전문의",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Заступник"
     },
     {
       "en": "Vital Point Hit",
-      "ru": "Иссечение",
       "kr": "급소 타격",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Иссечение"
     },
     {
       "en": "Max MP Increase",
-      "ru": "Источник маны",
       "kr": "최대 마나 증가",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Источник маны"
     },
     {
       "en": "Mass Increase",
-      "ru": "Карающая длань",
       "kr": "질량 증가",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Карающая длань"
     },
     {
       "en": "Barricade",
-      "ru": "Лучшая защита",
       "kr": "바리케이드",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Лучшая защита"
     },
     {
       "en": "Super Charge",
-      "ru": "Мастер подготовки",
       "kr": "슈퍼 차지",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Мастер подготовки"
     },
     {
       "en": "Master of Escape",
-      "ru": "Молниеносные рефлексы",
       "kr": "탈출의 명수",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Молниеносные рефлексы"
     },
     {
       "en": "Keen Blunt Weapon",
-      "ru": "Моргенштерн",
       "kr": "예리한 둔기",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Моргенштерн"
     },
     {
       "en": "Strong Will",
-      "ru": "Несокрушимый боец",
       "kr": "굳은 의지",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Несокрушимый боец"
     },
     {
       "en": "Fortitude",
-      "ru": "Неутомимость",
       "kr": "불굴",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Неутомимость"
     },
     {
       "en": "Raid Captain",
-      "ru": "Неутомимый натиск",
       "kr": "돌격대장",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Неутомимый натиск"
     },
     {
       "en": "Awakening",
-      "ru": "Новый рассвет",
       "kr": "각성",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Новый рассвет"
     },
     {
       "en": "Crisis Evasion",
-      "ru": "Обман смерти",
       "kr": "위기 모면",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Обман смерти"
     },
     {
       "en": "Propulsion",
-      "ru": "Обманный маневр",
       "kr": "추진력",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Обманный маневр"
     },
     {
       "en": "Enhanced Shield",
-      "ru": "Отражающий барьер",
       "kr": "강화 방패",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Отражающий барьер"
     },
     {
       "en": "Sight Focus",
-      "ru": "ПАНИКА",
       "kr": "시선 집중",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "ПАНИКА"
     },
     {
       "en": "Contender",
-      "ru": "Победная эйфория",
       "kr": "승부사",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Победная эйфория"
     },
     {
       "en": "Hit Master",
-      "ru": "Побоище",
       "kr": "타격의 대가",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Побоище"
     },
     {
       "en": "Disrespect",
-      "ru": "Презрение к слабым",
       "kr": "약자 무시",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Презрение к слабым"
     },
     {
       "en": "Shield Piercing",
-      "ru": "Разрушитель щитов",
       "kr": "실드관통",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Разрушитель щитов"
     },
     {
       "en": "Precise Dagger",
-      "ru": "Скальпель",
       "kr": "정밀 단도",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Скальпель"
     },
     {
       "en": "Emergency Rescue",
-      "ru": "Скорая помощь",
       "kr": "긴급구조",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Скорая помощь"
     },
     {
       "en": "All-Out Attack",
-      "ru": "Скоротечная расправа",
       "kr": "속전속결",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Скоротечная расправа"
     },
     {
       "en": "Drops of Ether",
-      "ru": "Собиратель душ",
       "kr": "구슬동자",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Собиратель душ"
     },
     {
       "en": "Master's Tenacity",
-      "ru": "Стальные нервы",
       "kr": "달인의 저력",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Стальные нервы"
     },
     {
       "en": "Spirit Absorption",
-      "ru": "Стремительность",
       "kr": "정기 흡수",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Стремительность"
     },
     {
       "en": "Crushing Fist",
-      "ru": "Тактическое превосходство",
       "kr": "분쇄의 주먹",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Тактическое превосходство"
     },
     {
       "en": "Necromancy",
-      "ru": "Темный пакт",
       "kr": "강령술",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Темный пакт"
     },
     {
       "en": "Grudge",
-      "ru": "Титаноборец",
       "kr": "원한",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Титаноборец"
     },
     {
       "en": "Heavy Armor",
-      "ru": "Тяжелая броня",
       "kr": "중갑 착용",
-      "tags": [
-        "engraving"
-      ]
+      "ru": "Тяжелая броня"
     }
   ]
 }

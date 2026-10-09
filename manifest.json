@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "LA Translator",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Перевод иностранных сайтов Lost Ark.",
   "permissions": [
     "storage",
@@ -43,7 +43,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["dictionary/lt-*.json"],
+      "resources": ["dictionary/lt-*.json", "lt-*.json"],
       "matches": ["<all_urls>"]
     }
   ],

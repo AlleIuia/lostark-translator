@@ -1,0 +1,279 @@
+{
+  "arkPassClasses": [
+    {
+      "en": "Berserker",
+      "ru": "Берсерк",
+      "kr": "버서커",
+      "skills": [
+        {
+          "en": "Flashy Attack",
+          "ru": "Решительный натиск",
+          "kr": "현란한 공격"
+        },
+        {
+          "en": "Stable Attack",
+          "ru": "Непоколебимость",
+          "kr": "현란한 공격"
+        },
+        {
+          "en": "Swift Attack",
+          "ru": "Сверхскорость",
+          "kr": "재빠른 공격"
+        },
+        {
+          "en": "Faith Enhancement",
+          "ru": "Абсолютная отдача",
+          "kr": "신념의 강화"
+        },
+        {
+          "en": "Flowing Magick",
+          "ru": "Поток маны",
+          "kr": "신념의 강화"
+        },
+        {
+          "en": "Fortitude Enhancement",
+          "ru": "Непреклонный дух",
+          "kr": "흐르는 마나"
+        },
+        {
+          "en": "Smoldering Strike",
+          "ru": "Пламя гордыни",
+          "kr": "불타는 일격"
+        },
+        {
+          "en": "Absorbing Strike",
+          "ru": "Кровопийца",
+          "kr": "흡수의 일격"
+        },
+        {
+          "en": "Crushing Strike",
+          "ru": "Разрушительный удар",
+          "kr": "흡수의 일격"
+        },
+        {
+          "en": "Echoing Brand",
+          "ru": "Сила стигмы",
+          "kr": "낙인의 흔적"
+        },
+        {
+          "en": "Echoing Steel",
+          "ru": "Щит избранных",
+          "kr": "강철의 흔적"
+        },
+        {
+          "en": "Echoing Death",
+          "ru": "Метка гибели",
+          "kr": "치명적인 흔적"
+        },
+        {
+          "en": "Attack",
+          "ru": "Чистая мощь",
+          "kr": "공격"
+        },
+        {
+          "en": "Weapon",
+          "ru": "Путь стали",
+          "kr": "무기"
+        },
+        {
+          "en": "Salvation",
+          "ru": "Заступничество",
+          "kr": "무기"
+        },
+        {
+          "en": "Life",
+          "ru": "Жизненная сила",
+          "kr": "생명"
+        },
+        {
+          "en": "Speed",
+          "ru": "Стремительность",
+          "kr": "속도"
+        },
+        {
+          "en": "Defense",
+          "ru": "Неуязвимость",
+          "kr": "방어"
+        },
+        {
+          "en": "Salvation",
+          "kr": "구원",
+          "ru": "Заступничество"
+        },
+        {
+          "en": "Stable Attack",
+          "kr": "불굴의 강화",
+          "ru": "Непоколебимость"
+        }
+      ]
+    },
+    {
+      "en": "Destroyer",
+      "ru": "Сокрушитель",
+      "kr": "디스트로이어",
+      "skills": []
+    },
+    {
+      "en": "Gunlancer",
+      "ru": "Страж",
+      "kr": "워로드",
+      "skills": []
+    },
+    {
+      "en": "Slayer",
+      "ru": "Валькирия",
+      "kr": "슬레이어",
+      "skills": []
+    },
+    {
+      "en": "Paladin",
+      "ru": "Паладин",
+      "kr": "홀리나이트",
+      "skills": []
+    },
+    {
+      "en": "Valkyrie",
+      "ru": "Храмовница",
+      "kr": "발키리",
+      "skills": []
+    },
+    {
+      "en": "Guardianknight",
+      "ru": "Рыцарь-Хранитель",
+      "kr": "가디언나이트",
+      "skills": []
+    },
+    {
+      "en": "Arcanist",
+      "ru": "Арканолог",
+      "kr": "아르카나",
+      "skills": []
+    },
+    {
+      "en": "Summoner",
+      "ru": "Призывательница",
+      "kr": "서머너",
+      "skills": []
+    },
+    {
+      "en": "Bard",
+      "ru": "Менестрель",
+      "kr": "바드",
+      "skills": []
+    },
+    {
+      "en": "Sorceress",
+      "ru": "Чародейка",
+      "kr": "소서리스",
+      "skills": []
+    },
+    {
+      "en": "Deadeye",
+      "ru": "Охотник на демонов",
+      "kr": "데빌헌터",
+      "skills": []
+    },
+    {
+      "en": "Gunslinger",
+      "ru": "Охотница на демонов",
+      "kr": "건슬링어",
+      "skills": []
+    },
+    {
+      "en": "Sharpshooter",
+      "ru": "Рейнджер",
+      "kr": "호크아이",
+      "skills": []
+    },
+    {
+      "en": "Artillerist",
+      "ru": "Механист",
+      "kr": "블래스터",
+      "skills": []
+    },
+    {
+      "en": "Machinist",
+      "ru": "Агент С.К.А.У.Т.",
+      "kr": "스카우터",
+      "skills": []
+    },
+    {
+      "en": "Wardancer",
+      "ru": "Аватар",
+      "kr": "배틀마스터",
+      "skills": []
+    },
+    {
+      "en": "Scrapper",
+      "ru": "Дуалист",
+      "kr": "인파이터",
+      "skills": []
+    },
+    {
+      "en": "Soulfist",
+      "ru": "Ки-мастер",
+      "kr": "기공사",
+      "skills": []
+    },
+    {
+      "en": "Glaivier",
+      "ru": "Мастер копья",
+      "kr": "창술사",
+      "skills": []
+    },
+    {
+      "en": "Striker",
+      "ru": "Тайгон",
+      "kr": "스트라이커",
+      "skills": []
+    },
+    {
+      "en": "Breaker",
+      "ru": "Стальной кулак",
+      "kr": "브레이커",
+      "skills": []
+    },
+    {
+      "en": "Deathblade",
+      "ru": "Клинок смерти",
+      "kr": "블레이드",
+      "skills": []
+    },
+    {
+      "en": "Shadowhunter",
+      "ru": "Фурия",
+      "kr": "데모닉",
+      "skills": []
+    },
+    {
+      "en": "Reaper",
+      "ru": "Жнец",
+      "kr": "리퍼",
+      "skills": []
+    },
+    {
+      "en": "Souleater",
+      "ru": "Пожирательница душ",
+      "kr": "소울이터",
+      "skills": []
+    },
+    {
+      "en": "Artist",
+      "ru": "Художница",
+      "kr": "도화가",
+      "skills": []
+    },
+    {
+      "en": "Aeromancer",
+      "ru": "Аэромант",
+      "kr": "기상술사",
+      "skills": []
+    },
+    {
+      "en": "Wildsoul",
+      "ru": "Друид",
+      "kr": "환수사",
+      "skills": []
+    }
+  ]
+}

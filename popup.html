@@ -166,7 +166,11 @@
 
   <div class="status-bar">
     <span id="status" class="status"></span>
-    <span id="pageStats"></span>
+    <span id="pageStats" style="flex:1;text-align:center;"></span>
+    <span style="display:flex;align-items:center;gap:4px;flex-shrink:0;margin-left:auto;">
+      <span id="siteProfileLabel" style="opacity:0.75;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:140px;"></span>
+      <button type="button" class="icon-btn" id="addSiteBtn" title="Добавить сайт в «Сайты: Замена»" style="font-size:14px;font-weight:700;line-height:1;padding:0 4px;min-width:20px;height:18px;border:1px solid var(--border);border-radius:3px;background:var(--btn-bg);">+</button>
+    </span>
   </div>
 
   <div class="search-bar">

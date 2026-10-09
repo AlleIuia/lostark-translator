@@ -109,6 +109,23 @@ function flattenData(data, target) {
       });
     });
 
+    // Short KR aliases (e.g. 기상 for 기상술사) — keep full kr intact
+    if (cls[target] && cls.kr_short) {
+      const shorts = Array.isArray(cls.kr_short) ? cls.kr_short : [cls.kr_short];
+      for (const sk of shorts) {
+        if (!sk || String(sk).trim() === '') continue;
+        if (cls.kr && String(sk) === String(cls.kr)) continue;
+        addEntry(String(sk).trim(), cls[target], {
+          tags: cls.tags || ['class', 'short'],
+          priority: 28,
+          parent: cls.en || null,
+          sites: cls.sites,
+          sitesExclude: cls.sitesExclude,
+          dict: cls._dict || 'classes'
+        });
+      }
+    }
+
     (cls.builds || []).forEach(b => {
       const autoTags = ['class_build', (cls.en || '').toLowerCase()];
       const tags = b.tags ? [...autoTags, ...b.tags] : autoTags;
@@ -349,6 +366,7 @@ function mergeData(target, source) {
     if (existingClass) {
       if (srcClass.ru) existingClass.ru = srcClass.ru;
       if (srcClass.kr) existingClass.kr = srcClass.kr;
+      if (srcClass.kr_short != null) existingClass.kr_short = srcClass.kr_short;
       if (srcClass.tags) existingClass.tags = srcClass.tags;
       for (const srcBuild of srcClass.builds || []) {
         let existingBuild = existingClass.builds.find(b => b.en === srcBuild.en);
@@ -361,13 +379,15 @@ function mergeData(target, source) {
         }
       }
     } else {
-      target.classes.push({
+      const row = {
         en: srcClass.en,
         ru: srcClass.ru || '',
         kr: srcClass.kr || '',
         tags: srcClass.tags || undefined,
         builds: (srcClass.builds || []).map(b => ({ ...b }))
-      });
+      };
+      if (srcClass.kr_short != null) row.kr_short = srcClass.kr_short;
+      target.classes.push(row);
     }
   }
 
@@ -608,7 +628,17 @@ function mergeWithDeleted(base, user) {
     const baseCls = (base.classes || []).find(c => c.en === cls.en);
     if (baseCls) {
       if (!cls.ru) cls.ru = baseCls.ru || '';
-      if (!cls.kr) cls.kr = baseCls.kr || '';
+      // If user only has a short KR, keep the full base KR and store user KR as kr_short
+      const userKr = (cls.kr || '').trim();
+      const baseKr = (baseCls.kr || '').trim();
+      if (!userKr) {
+        cls.kr = baseCls.kr || '';
+      } else if (baseKr && userKr !== baseKr && userKr.length < baseKr.length) {
+        cls.kr_short = cls.kr_short != null ? cls.kr_short : userKr;
+        cls.kr = baseKr;
+      }
+      // Keep short KR aliases from base unless user explicitly set them
+      if (cls.kr_short == null && baseCls.kr_short != null) cls.kr_short = baseCls.kr_short;
       const userBuildEns = new Set((cls.builds || []).map(b => b.en));
       const mergedBuilds = [...(cls.builds || [])];
       for (const b of baseCls.builds || []) {
@@ -787,14 +817,36 @@ function mergeWithDeleted(base, user) {
   return result;
 }
 
+async function fetchDictionaryJson(file) {
+  // Prefer packaged path (dictionary/lt-*.json); fall back to root lt-*.json for unpacked dev folders.
+  const candidates = [];
+  const name = String(file || '').split('/').pop();
+  if (file) candidates.push(file);
+  if (name && name !== file) candidates.push(name);
+  if (name && !String(file).startsWith('dictionary/')) candidates.push('dictionary/' + name);
+  const tried = new Set();
+  for (const path of candidates) {
+    if (!path || tried.has(path)) continue;
+    tried.add(path);
+    try {
+      const res = await fetch(chrome.runtime.getURL(path));
+      if (res.ok) return { data: await res.json(), path };
+    } catch (_) {}
+  }
+  return null;
+}
+
 async function loadDefaultDictionaries() {
   const files = await getDictionaryFileList();
   let merged = { classes: [], engravings: [], _orphanBuilds: [], terms: [], skills: [], skillClasses: [], arkPassClasses: [], classCoreClasses: [], commCore: [], archetype: [] };
   for (const file of files) {
     try {
-      const res = await fetch(chrome.runtime.getURL(file));
-      if (!res.ok) continue;
-      const data = await res.json();
+      const loaded = await fetchDictionaryJson(file);
+      if (!loaded) {
+        console.warn('Dictionary not found:', file);
+        continue;
+      }
+      const data = loaded.data;
       const key = dictKeyFromFile(file);
       stampDictSource(data, key);
       mergeData(merged, normalizeSourceData(data, file));
@@ -1467,7 +1519,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true;
   }
   if (request.action === 'rebuildDictionary') {
-    reply(rebuildStorage());
+    // Always re-read packaged JSON files so kr_short / new terms are picked up
+    reply((async () => {
+      const baseData = await loadDefaultDictionaries();
+      await chrome.storage.local.set({ baseData });
+      await rebuildStorage();
+      const shortCount = (baseData.classes || []).filter(c => c && c.kr_short).length;
+      return {
+        classes: (baseData.classes || []).length,
+        terms: (baseData.terms || []).length,
+        krShort: shortCount
+      };
+    })());
     return true;
   }
   if (request.action === 'toggle') {

@@ -172,7 +172,8 @@
         forms.add(key.normalize('NFC').toLowerCase());
       } catch (_) {}
       for (const form of forms) {
-        const mapKey = form.toLowerCase();
+        let mapKey = form;
+        try { mapKey = form.normalize('NFC').toLowerCase(); } catch (_) { mapKey = form.toLowerCase(); }
         if (!dictionary.has(mapKey)) {
           dictionary.set(mapKey, list.slice());
           keysForRegex.push(form);
@@ -617,13 +618,21 @@
     return true;
   }
 
+  function normKey(s) {
+    if (s == null) return '';
+    let t = String(s);
+    try { t = t.normalize('NFC'); } catch (_) {}
+    return t.toLowerCase();
+  }
+
   function getVariantsForMatch(match) {
-    const all = dictionary.get(String(match).toLowerCase());
+    const all = dictionary.get(normKey(match));
     if (!all || !all.length) return null;
     if (typeof all === 'string') return all;
     const host = location.hostname;
     const exact = [];
     const fuzzy = [];
+    const matchNorm = normKey(match);
     for (const v of all) {
       if (!v || typeof v !== 'object') continue;
       if (!variantAllowedOnHost(v, host)) continue;
@@ -632,7 +641,8 @@
         if (src === match) exact.push(v);
         continue;
       }
-      if (src === match) exact.push(v);
+      // NFC + case-insensitive compare so Hangul/latin keys always match
+      if (src != null && (src === match || normKey(src) === matchNorm)) exact.push(v);
       else fuzzy.push(v);
     }
     if (exact.length) return exact;
@@ -1132,9 +1142,17 @@
     return out;
   }
 
+  function isOptionLike(el) {
+    if (!el || el.nodeType !== Node.ELEMENT_NODE) return false;
+    const tag = el.tagName.toLowerCase();
+    return tag === 'option' || tag === 'optgroup';
+  }
+
   function canUseHostMode(parent, node) {
     if (!parent || parent.nodeType !== Node.ELEMENT_NODE) return false;
     const tag = parent.tagName.toLowerCase();
+    // <option>/<optgroup> cannot contain elements — always replace text only
+    if (tag === 'option' || tag === 'optgroup') return true;
     if (tag === 'html' || tag === 'body' || tag === 'main' || tag === 'title' || tag === 'head') return false;
     if (parent.id === 'root' || parent.id === 'app' || parent.id === '__next') return false;
     if (parent.closest && parent.closest('head')) return false;
@@ -1183,7 +1201,7 @@
           PROCESSED.add(node);
           return;
         }
-        if (mode === 'deferred') {
+        if (mode === 'deferred' && !isOptionLike(parent)) {
           const span = makeTermSpan(translated, trimmed);
           parent.replaceChild(span, node);
           ensureSpaceAroundTerm(span);
@@ -1193,10 +1211,10 @@
         const lead = text.match(/^\s*/)[0];
         const trail = text.match(/\s*$/)[0];
         let out = lead + translated + trail;
-        if (canUseHostMode(parent, node)) {
+        if (canUseHostMode(parent, node) || isOptionLike(parent)) {
           out = applyBuiltinNumericPatterns(out);
           node.textContent = out;
-          if (parent.nodeType === Node.ELEMENT_NODE) {
+          if (parent.nodeType === Node.ELEMENT_NODE && !isOptionLike(parent)) {
             parent.classList.add('notranslate');
             parent.setAttribute('translate', 'no');
             parent.setAttribute('data-lt-host', '1');
@@ -1296,7 +1314,7 @@
     const wholeNodeIsTerms = textParts.length === 0;
 
     if (wholeNodeIsTerms || (termParts.length >= 1 && textParts.length === 0)) {
-      if (mode === 'deferred') {
+      if (mode === 'deferred' && !isOptionLike(parent)) {
         // Mark each term as pending span so browser can still see original words
         const frag = document.createDocumentFragment();
         for (const part of parts) {
@@ -1324,7 +1342,7 @@
       if (!SVG_ORIG.has(node)) SVG_ORIG.set(node, text);
       out = applyBuiltinNumericPatterns(out);
       node.textContent = out;
-      if (parent.nodeType === Node.ELEMENT_NODE) {
+      if (parent.nodeType === Node.ELEMENT_NODE && !isOptionLike(parent)) {
         if (mode === 'annotate' && termParts.length === 1) {
           parent.setAttribute('title', termParts[0].value);
         }
@@ -1375,7 +1393,7 @@
       if (!SVG_ORIG.has(node)) SVG_ORIG.set(node, text);
       out = applyBuiltinNumericPatterns(out);
       node.textContent = out;
-      if (parent.nodeType === Node.ELEMENT_NODE) {
+      if (parent.nodeType === Node.ELEMENT_NODE && !isOptionLike(parent)) {
         if (mode === 'annotate' && termParts.length) {
           parent.setAttribute('title', termParts.map(function (p) { return p.value; }).join(' · '));
         } else if (mode === 'replace') {
@@ -1385,6 +1403,19 @@
         parent.setAttribute('translate', 'no');
         parent.setAttribute('data-lt-host', '1');
       }
+      translatedCount += matchCount;
+      PROCESSED.add(node);
+      return;
+    }
+
+    // option/optgroup cannot host <span> — fall back to plain textContent
+    if (isOptionLike(parent)) {
+      let out = '';
+      for (const part of parts) {
+        if (part.type === 'term') out += part.value;
+        else out += part.value || '';
+      }
+      node.textContent = applyBuiltinNumericPatterns(out);
       translatedCount += matchCount;
       PROCESSED.add(node);
       return;
@@ -2289,6 +2320,27 @@
         restoreDocument();
       }
       sendResponse({ success: true });
+    } else if (request.action === 'siteListUpdated') {
+      chrome.storage.local.get(['siteProfiles'], (loc) => {
+        chrome.storage.sync.get([
+          'isEnabled', 'siteMode', 'allowedSites', 'blockedSites', 'developerSites', 'termMode',
+          'termModeReplaceSites', 'termModeAnnotateSites', 'termModeDeferredSites'
+        ], (sync) => {
+          const merged = Object.assign({}, sync, { siteProfiles: loc.siteProfiles || {} });
+          isEnabled = merged.isEnabled !== false;
+          termMode = resolveTermMode(merged);
+          checkSiteAllowed(merged);
+          if (isEnabled && siteAllowed) {
+            translateDocument();
+            startObserver();
+          } else {
+            stopObserver();
+            restoreDocument();
+          }
+          sendResponse({ success: true, siteAllowed: siteAllowed });
+        });
+      });
+      return true;
     } else if (request.action === 'finalizeDeferred') {
       const n = finalizeDeferredTerms(true);
       sendResponse({ success: true, count: n });

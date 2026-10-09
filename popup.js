@@ -34,6 +34,10 @@ const UI_TEXTS = {
     termModeReplace: 'ЗА', termModeAnnotate: 'ПД', termModeDeferred: 'ОТ',
     termModeReplaceTitle: 'Замена', termModeAnnotateTitle: 'Подсказка',
     termModeDeferredTitle: 'После переводчика браузера (Reddit / форумы)',
+    addSiteTitle: 'Добавить текущий сайт в «Сайты: Замена»',
+    addSiteAdded: 'Добавлен в «Сайты: Замена»',
+    addSiteExists: 'Уже в «Сайты: Замена»',
+    addSiteFail: 'Не удалось добавить сайт',
     syncLoading: 'Загрузка…', syncOk: 'Словарь обновлён', syncErr: 'Ошибка синхронизации: ',
     importErrorFormat: 'Неверный формат файла.', importErrorJson: 'Ошибка чтения JSON: '
   },
@@ -55,6 +59,10 @@ const UI_TEXTS = {
     termModeReplace: 'RE', termModeAnnotate: 'TT', termModeDeferred: 'AF',
     termModeReplaceTitle: 'Replace', termModeAnnotateTitle: 'Tooltip',
     termModeDeferredTitle: 'After browser translate (Reddit / forums)',
+    addSiteTitle: 'Add current site to Replace sites',
+    addSiteAdded: 'Added to Replace sites',
+    addSiteExists: 'Already in Replace sites',
+    addSiteFail: 'Could not add site',
     syncLoading: 'Loading…', syncOk: 'Dictionary updated', syncErr: 'Sync error: ',
     importErrorFormat: 'Invalid file format.', importErrorJson: 'JSON read error: '
   },
@@ -76,6 +84,10 @@ const UI_TEXTS = {
     termModeReplace: '교', termModeAnnotate: '팁', termModeDeferred: '후',
     termModeReplaceTitle: '교체', termModeAnnotateTitle: '툴팁',
     termModeDeferredTitle: '브라우저 번역 후 적용 (Reddit / 포럼)',
+    addSiteTitle: '현재 사이트를 «교체 사이트»에 추가',
+    addSiteAdded: '교체 사이트에 추가됨',
+    addSiteExists: '이미 교체 사이트에 있음',
+    addSiteFail: '사이트를 추가할 수 없음',
     syncLoading: '로딩 중…', syncOk: '사전 업데이트됨', syncErr: '동기화 오류: ',
     importErrorFormat: '잘못된 파일 형식입니다.', importErrorJson: 'JSON 읽기 오류: '
   }
@@ -143,6 +155,7 @@ function applyLocalization() {
   const map = {
     addBtn: t.addTitle, syncBtn: t.syncTitle, deleteModeBtn: t.deleteModeTitle,
     detachBtn: t.detachTitle, optionsBtn: t.optionsTitle,
+    addSiteBtn: t.addSiteTitle,
     saveNewBtn: t.saveNewTitle, cancelAddBtn: t.cancelAddTitle
   };
   for (const [id, title] of Object.entries(map)) {
@@ -225,22 +238,12 @@ function loadData() {
             btn.classList.toggle('active', btn.dataset.termMode === termMode);
           });
         }
-        const stats = document.getElementById('pageStats');
-        if (stats && host) {
-          const base = stats.textContent || '';
-          if (!base.includes(host)) {
-            /* keep stats; domain shown via title on mode buttons context */
-          }
+        const siteLabel = document.getElementById('siteProfileLabel');
+        if (siteLabel) {
+          siteLabel.textContent = host + (p && p.termMode ? ' · site' : '');
+          siteLabel.title = host;
         }
-        const statusBar = document.querySelector('.status-bar');
-        let siteLabel = document.getElementById('siteProfileLabel');
-        if (!siteLabel && statusBar) {
-          siteLabel = document.createElement('span');
-          siteLabel.id = 'siteProfileLabel';
-          siteLabel.style.cssText = 'opacity:0.75;font-size:10px;margin-left:6px;';
-          statusBar.appendChild(siteLabel);
-        }
-        if (siteLabel) siteLabel.textContent = host + (p && p.termMode ? ' · site' : '');
+        updateAddSiteBtnState(host);
       });
     });
   });
@@ -258,6 +261,82 @@ function updateStatus() {
   const t = UI_TEXTS[targetLang] || UI_TEXTS.ru;
   statusEl.textContent = isEnabled ? t.active : t.disabled;
   statusEl.className = 'status ' + (isEnabled ? 'active' : 'disabled');
+}
+
+function parseDomainLines(raw) {
+  return String(raw || '')
+    .split(/[\n,;\s]+/)
+    .map(s => s.trim().toLowerCase().replace(/^www\./, ''))
+    .filter(Boolean);
+}
+
+function domainInLines(host, lines) {
+  const h = String(host || '').toLowerCase().replace(/^www\./, '');
+  return lines.some(d => h === d || h.endsWith('.' + d));
+}
+
+function updateAddSiteBtnState(host) {
+  const btn = document.getElementById('addSiteBtn');
+  if (!btn) return;
+  const t = UI_TEXTS[targetLang] || UI_TEXTS.ru;
+  btn.title = t.addSiteTitle;
+  if (!host || host.startsWith('chrome') || host === 'newtab') {
+    btn.disabled = true;
+    btn.style.opacity = '0.4';
+    return;
+  }
+  chrome.storage.sync.get(['termModeReplaceSites'], (sync) => {
+    const inList = domainInLines(host, parseDomainLines(sync.termModeReplaceSites));
+    btn.disabled = false;
+    btn.style.opacity = inList ? '0.5' : '1';
+    btn.title = inList ? (t.addSiteExists + ': ' + host) : t.addSiteTitle;
+  });
+}
+
+function addCurrentSiteToList() {
+  const t = UI_TEXTS[targetLang] || UI_TEXTS.ru;
+  const flash = (msg, ok) => {
+    const label = document.getElementById('siteProfileLabel');
+    if (!label) return;
+    const prev = label.textContent;
+    label.textContent = msg;
+    label.style.color = ok ? '#4caf50' : '#d9534f';
+    setTimeout(() => {
+      label.style.color = '';
+      label.textContent = prev;
+    }, 1600);
+  };
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const tab = tabs && tabs[0];
+    if (!tab || !tab.url) {
+      flash(t.addSiteFail, false);
+      return;
+    }
+    let host = '';
+    try { host = new URL(tab.url).hostname.replace(/^www\./, '').toLowerCase(); } catch (_) {}
+    if (!host || host.startsWith('chrome')) {
+      flash(t.addSiteFail, false);
+      return;
+    }
+    // Always write to termModeReplaceSites → options field «Сайты: Замена»
+    chrome.storage.sync.get(['termModeReplaceSites'], (sync) => {
+      const lines = parseDomainLines(sync.termModeReplaceSites);
+      if (domainInLines(host, lines)) {
+        flash(t.addSiteExists, true);
+        updateAddSiteBtnState(host);
+        return;
+      }
+      lines.push(host);
+      lines.sort();
+      chrome.storage.sync.set({ termModeReplaceSites: lines.join('\n') }, () => {
+        flash(t.addSiteAdded + ': ' + host, true);
+        updateAddSiteBtnState(host);
+        if (tab.id) {
+          chrome.tabs.sendMessage(tab.id, { action: 'siteListUpdated' }).catch(() => {});
+        }
+      });
+    });
+  });
 }
 
 function refreshPageStats() {
@@ -283,6 +362,14 @@ function refreshPageStats() {
 }
 
 function setupListeners() {
+  const addSiteBtn = document.getElementById('addSiteBtn');
+  if (addSiteBtn) {
+    addSiteBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      addCurrentSiteToList();
+    });
+  }
+
   document.getElementById('toggleEnabled').addEventListener('change', (e) => {
     isEnabled = e.target.checked;
     chrome.storage.sync.set({ isEnabled });
